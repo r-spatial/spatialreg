@@ -1,0 +1,19 @@
+library(sphet)
+help(kpjtest)
+library(spdep)#
+library(sphet)#
+data(boston)#
+boslw <- nb2listw(boston.soi)#
+#
+Bos.Knn <- knearneigh(boston.utm, k = 5)#
+bos.nb <- knn2nb(Bos.Knn)#
+boslw2 <- nb2listw(bos.nb)#
+#
+fm <- log(MEDV) ~ CRIM + ZN + INDUS + CHAS#
+fm2 <- log(MEDV) ~ CRIM + ZN + INDUS + RM + AGE #
+#
+test <- kpjtest(fm, fm2, data = boston.c, listw0 = boslw, listw1 = boslw2, model = "lag")
+summary(test)
+38-5
+38-5
+38/5
