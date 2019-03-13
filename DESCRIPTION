@@ -2,8 +2,9 @@ Package: spreg
 Version: 1.1-1
 Date: 2019-03-12
 Title: Spatial Regression Analysis 
+Encoding: UTF-8
 Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
-             person(given = "Gianfranco", family = "Piras", role = c("aut", "cre"), email = "gpiras@mac.com"),
+             person(given = "Gianfranco", family = "Piras", role = c("aut"), email = "gpiras@mac.com"),
              person("Luc", "Anselin", role = "ctb"),
              person("Andrew", "Bernat", role = "ctb"),
              person("Eric", "Blankmeyer", role = "ctb"),
@@ -19,8 +20,8 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person(given = "Mauricio", family = "Sarrias", role = c("ctb"), email = "mauricio.sarrias@ucn.cl"),
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
-Depends: R (>= 3.3.0), methods, sp (>= 1.0), Matrix (>= 1.0.12), spData (>= 0.2.6.0), sf
-Imports: LearnBayes, splines, coda, nlme, MASS, stats, gmodels, expm, graphics, grDevices, utils
-Suggests: parallel, spam(>= 2.1-0), RANN, rgeos, RColorBrewer, lattice, xtable, maptools (>= 0.5-4), foreign, igraph, knitr, rgdal, classInt
+Depends: R (>= 3.3.0), spData
+Imports: spdep
+Suggests: RSpectra
 Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice) currently contained in spdep, sphet and spse.  
 License: GPL-2
