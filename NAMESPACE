@@ -2,11 +2,14 @@ useDynLib(spreg)
 
 import(spData)
 
-importFrom("spdep", "is.symmetric.glist", "lag.listw", "card", "can.be.simmed",
-  "similar.listw", "nb2listw")
+importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
+ "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
+ "get.ZeroPolicyOption", "get.VerboseOption")
 importFrom("stats", "lm.fit")
 
 export(lextrB, lextrW, lextrS, l_max)
+export(griffith_sone, subgraph_eigenw)
 
-
+export(set.VerboseOption, get.VerboseOption, set.ZeroPolicyOption, 
+        get.ZeroPolicyOption)
 
