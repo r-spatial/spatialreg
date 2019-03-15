@@ -9,8 +9,6 @@
 \alias{print.summary.gmsar}
 \alias{Hausman.test.gmsar}
 \alias{GMargminImage}
-\alias{gstsls}
-\alias{impacts.gmsar}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Spatial simultaneous autoregressive error model estimation by GMM}

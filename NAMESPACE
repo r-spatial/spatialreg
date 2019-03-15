@@ -6,7 +6,7 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
              "model.matrix", "na.fail", "napredict", "pnorm",
              "printCoefmat", "quantile", "residuals", "terms", 
 	     "coefficients", "deviance", "nlminb", "optim",
-             "pchisq", "summary.lm", "var")
+             "pchisq", "summary.lm", "var", "logLik", "optimHess")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
@@ -17,6 +17,7 @@ import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
 importFrom("methods", "as")
+importFrom(MASS, mvrnorm)
 
 ################## temporary !!!
 
@@ -36,6 +37,10 @@ export(stsls, print.stsls, summary.stsls, print.summary.stsls,
 export(GMerrorsar, gstsls, GMargminImage,
 	residuals.gmsar, deviance.gmsar, coef.gmsar, fitted.gmsar, 
 	print.gmsar, summary.gmsar, print.summary.gmsar, impacts.gmsar)
+
+export(lagmess, LR1.lagmess, coef.lagmess, deviance.lagmess, fitted.lagmess,
+    impacts.lagmess, logLik.lagmess, print.lagmess, print.summary.lagmess,
+    residuals.lagmess, summary.lagmess)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
@@ -62,4 +67,14 @@ S3method(Hausman.test, gmsar)
 S3method(impacts, gmsar)
 
 S3method(print, summary.gmsar)
+
+S3method(print, lagmess)
+S3method(summary, lagmess)
+S3method(print, summary.lagmess)
+S3method(residuals, lagmess)
+S3method(deviance, lagmess)
+S3method(coef, lagmess)
+S3method(fitted, lagmess)
+S3method(logLik, lagmess)
+S3method(impacts, lagmess)
 

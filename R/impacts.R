@@ -305,14 +305,14 @@ processSample <- function(x, irho, drop2beta, type, iicept, icept, zero_fill,
     }
     res
 }
-
+}
 lagImpactsExact <- function(SW, P, n) {
     direct <- sapply(P, function(x) sum(diag(x*SW))/n)
     total <- sapply(P, function(x) sum(x*SW)/n)
     indirect <- total - direct
     list(direct=direct, indirect=indirect, total=total)
 }
-
+if (FALSE) {
 mixedImpactsExact <- function(SW, P, n, listw) {
     p <- dim(P)[1]
     direct <- numeric(p)
