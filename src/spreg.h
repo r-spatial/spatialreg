@@ -15,4 +15,4 @@ SEXP lmin22(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta);
 SEXP lmin23(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta, SEXP tol);
 SEXP lmin3(SEXP nb, SEXP ev1, SEXP ev1_lag, SEXP n_nei, SEXP beta, SEXP tol);
 SEXP lmin3S(SEXP nb, SEXP ev1, SEXP ev1_lag, SEXP n_nei, SEXP card, SEXP beta, SEXP tol);
-
+SEXP mom_calc_int2(SEXP is, SEXP m, SEXP nb, SEXP weights, SEXP card);

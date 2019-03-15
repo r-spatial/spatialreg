@@ -2,14 +2,64 @@ useDynLib(spreg)
 
 import(spData)
 
+importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
+             "model.matrix", "na.fail", "napredict", "pnorm",
+             "printCoefmat", "quantile", "residuals", "terms", 
+	     "coefficients", "deviance", "nlminb", "optim",
+             "pchisq", "summary.lm", "var")
+
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
- "get.ZeroPolicyOption", "get.VerboseOption")
-importFrom("stats", "lm.fit")
+ "get.ZeroPolicyOption", "get.VerboseOption", "trW", "as_dsCMatrix_I",
+ "powerWeights")
+
+import(Matrix, except=c("expm"))
+importFrom(expm, expAtv, expm)
+importFrom(coda, as.mcmc, HPDinterval)
+importFrom("methods", "as")
+
+################## temporary !!!
+
+importFrom("spdep", "intImpacts") 
+
+##################
 
 export(lextrB, lextrW, lextrS, l_max)
+
 export(griffith_sone, subgraph_eigenw)
+
+export(mom_calc, mom_calc_int2)
+
+export(stsls, print.stsls, summary.stsls, print.summary.stsls, 
+	residuals.stsls, coef.stsls, deviance.stsls, impacts.stsls)
+
+export(GMerrorsar, gstsls, GMargminImage,
+	residuals.gmsar, deviance.gmsar, coef.gmsar, fitted.gmsar, 
+	print.gmsar, summary.gmsar, print.summary.gmsar, impacts.gmsar)
+
+export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
+        set.ClusterOption, get.ClusterOption)
 
 export(set.VerboseOption, get.VerboseOption, set.ZeroPolicyOption, 
         get.ZeroPolicyOption)
+
+S3method(residuals, stsls) 
+S3method(deviance, stsls) 
+S3method(coef, stsls) 
+S3method(print, stsls) 
+S3method(summary, stsls) 
+S3method(impacts, stsls) 
+
+S3method(print, summary.stsls) 
+
+S3method(residuals, gmsar)
+S3method(deviance, gmsar)
+S3method(coef, gmsar)
+S3method(fitted, gmsar)
+S3method(print, gmsar)
+S3method(summary, gmsar)
+S3method(Hausman.test, gmsar)
+S3method(impacts, gmsar)
+
+S3method(print, summary.gmsar)
 

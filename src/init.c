@@ -15,6 +15,7 @@ static R_CallMethodDef CallEntries[] = {
     {"lmin23", (DL_FUNC) &lmin23, 6},
     {"lmin3", (DL_FUNC) &lmin3, 6},
     {"lmin3S", (DL_FUNC) &lmin3S, 7},
+    {"mom_calc_int2", (DL_FUNC) &mom_calc_int2, 5},
     {NULL, NULL, 0}
 };
 
