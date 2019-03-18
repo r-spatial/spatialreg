@@ -13,4 +13,6 @@ assign("cluster", spdep::get.ClusterOption(), envir = .spregOptions)
 
 #setOldClass(c("listw"))
 
+Hausman.test <- function(object, ...)
+    UseMethod("Hausman.test", object)
 

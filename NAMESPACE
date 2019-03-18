@@ -47,6 +47,12 @@ export(lagmess, LR1.lagmess, coef.lagmess, deviance.lagmess, fitted.lagmess,
 export(SpatialFiltering, print.SFResult, fitted.SFResult,
 	ME, print.ME_res, fitted.ME_res)
 
+
+export(LR.sarlm, LR1.sarlm, Wald1.sarlm)
+
+export(Hausman.test, Hausman.test.gmsar, Hausman.test.sarlm,
+  logLik.sarlm)
+
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
 
@@ -87,4 +93,7 @@ S3method(fitted, SFResult)
 S3method(print, SFResult)
 S3method(fitted, ME_res)
 S3method(print, ME_res)
+
+
+S3method(Hausman.test, sarlm)
 

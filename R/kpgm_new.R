@@ -351,8 +351,6 @@ print.summary.gmsar<-function (x, digits = max(5, .Options$digits - 3), signif.s
     invisible(x)
 }
 
-Hausman.test <- function(object, ...)
-    UseMethod("Hausman.test", object)
 
 
 Hausman.test.gmsar <- function(object, ..., tol=NULL) {
