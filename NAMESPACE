@@ -6,18 +6,20 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
              "model.matrix", "na.fail", "napredict", "pnorm",
              "printCoefmat", "quantile", "residuals", "terms", 
 	     "coefficients", "deviance", "nlminb", "optim",
-             "pchisq", "summary.lm", "var", "logLik", "optimHess")
+             "pchisq", "summary.lm", "var", "logLik", "optimHess",
+             "gaussian", "glm.fit", "model.offset", "model.weights")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
  "get.ZeroPolicyOption", "get.VerboseOption", "trW", "as_dsCMatrix_I",
- "powerWeights")
+ "powerWeights", "listw2U", "listw2mat", "Szero")
 
 import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
 importFrom("methods", "as")
 importFrom(MASS, mvrnorm)
+importFrom(boot, boot)
 
 ################## temporary !!!
 
@@ -41,6 +43,9 @@ export(GMerrorsar, gstsls, GMargminImage,
 export(lagmess, LR1.lagmess, coef.lagmess, deviance.lagmess, fitted.lagmess,
     impacts.lagmess, logLik.lagmess, print.lagmess, print.summary.lagmess,
     residuals.lagmess, summary.lagmess)
+
+export(SpatialFiltering, print.SFResult, fitted.SFResult,
+	ME, print.ME_res, fitted.ME_res)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
@@ -77,4 +82,9 @@ S3method(coef, lagmess)
 S3method(fitted, lagmess)
 S3method(logLik, lagmess)
 S3method(impacts, lagmess)
+
+S3method(fitted, SFResult)
+S3method(print, SFResult)
+S3method(fitted, ME_res)
+S3method(print, ME_res)
 
