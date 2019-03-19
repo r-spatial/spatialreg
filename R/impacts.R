@@ -1,5 +1,4 @@
 # Copyright 2009-2017 by Roger Bivand
-if (FALSE) {
 trW <- function(W=NULL, m=30, p=16, type="mult", listw=NULL, momentsSymmetry=TRUE) {
 # returns traces
     timings <- list()
@@ -52,7 +51,7 @@ trW <- function(W=NULL, m=30, p=16, type="mult", listw=NULL, momentsSymmetry=TRU
     attr(tr, "n") <- n
     tr
 }
-}
+
 mom_calc_int <- function(is, m, W, eta0) {
     Omega <- rep(0.0, m)
     for (i in is) {
@@ -213,7 +212,7 @@ summary.WXImpact <- function(object, ...,
     class(object) <- c("summary.WXImpact", class(object))
     object
 }
-
+}
 
 
 
@@ -305,14 +304,14 @@ processSample <- function(x, irho, drop2beta, type, iicept, icept, zero_fill,
     }
     res
 }
-}
+
 lagImpactsExact <- function(SW, P, n) {
     direct <- sapply(P, function(x) sum(diag(x*SW))/n)
     total <- sapply(P, function(x) sum(x*SW)/n)
     indirect <- total - direct
     list(direct=direct, indirect=indirect, total=total)
 }
-if (FALSE) {
+
 mixedImpactsExact <- function(SW, P, n, listw) {
     p <- dim(P)[1]
     direct <- numeric(p)
@@ -786,4 +785,4 @@ HPDinterval.lagImpact <- function(obj, prob = 0.95, ..., choice="direct") {
     res <- HPDinterval(obj$sres[[choice]], prob=prob)
     res
 }
-}
+

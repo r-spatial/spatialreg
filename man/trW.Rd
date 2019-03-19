@@ -1,22 +1,22 @@
 \name{trW}
 \Rdversion{1.1}
-%\alias{trW}
+\alias{trW}
 \alias{mom_calc}
 \alias{mom_calc_int2}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Spatial weights matrix powers traces}
 \description{The function is used to prepare a vector of traces of powers of a spatial weights matrix}
 \usage{
-#trW(W=NULL, m = 30, p = 16, type = "mult", listw=NULL, momentsSymmetry=TRUE)
+trW(W=NULL, m = 30, p = 16, type = "mult", listw=NULL, momentsSymmetry=TRUE)
 mom_calc(lw, m)
 mom_calc_int2(is, m, nb, weights, Card)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-%  \item{W}{A spatial weights matrix in CsparseMatrix form}
+  \item{W}{A spatial weights matrix in CsparseMatrix form}
   \item{m}{The number of powers; must be an even number for \sQuote{type}=\dQuote{moments} (default changed from 100 to 30 (2010-11-17))}
-%  \item{p}{The number of samples used in Monte Carlo simulation of the traces if type is MC (default changed from 50 to 16 (2010-11-17))}
-%  \item{type}{Either \dQuote{mult} (default) for powering a sparse matrix (with moderate or larger N, the matrix becomes dense, and may lead to swapping), or \dQuote{MC} for Monte Carlo simulation of the traces (the first two simulated traces are replaced by their analytical equivalents), or \dQuote{moments} to use the looping space saving algorithm proposed by Smirnov and Anselin (2009) - for \dQuote{moments}, \code{W} must be symmetric, for row-standardised weights through a similarity transformation}
+  \item{p}{The number of samples used in Monte Carlo simulation of the traces if type is MC (default changed from 50 to 16 (2010-11-17))}
+  \item{type}{Either \dQuote{mult} (default) for powering a sparse matrix (with moderate or larger N, the matrix becomes dense, and may lead to swapping), or \dQuote{MC} for Monte Carlo simulation of the traces (the first two simulated traces are replaced by their analytical equivalents), or \dQuote{moments} to use the looping space saving algorithm proposed by Smirnov and Anselin (2009) - for \dQuote{moments}, \code{W} must be symmetric, for row-standardised weights through a similarity transformation}
   \item{listw, lw}{a listw object, which should either be fully symmetric, or be constructed as similar to symmetric from intrinsically symmetric neighbours using \code{\link{similar.listw}}, used with \sQuote{type}=\dQuote{moments}}
   \item{momentsSymmetry}{default TRUE; assert Smirnov/Anselin symmetry assumption}
   \item{is}{(used internally only in \code{mom_calc_int2} for \sQuote{type}=\dQuote{moments} on a cluster)}
@@ -37,7 +37,7 @@ A numeric vector of \code{m} traces, with \dQuote{timings} and \dQuote{type} att
 \code{\link{as_dgRMatrix_listw}}, \code{\link{nb2listw}}
 }
 \examples{
-if (require("sf", quietly=TRUE)) {
+require("sf", quietly=TRUE) 
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
 require(spdep)
 col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])
@@ -88,7 +88,6 @@ if(!get.mcOption()) {
 }
 all.equal(trmom, trmomp, check.attributes=FALSE)
 invisible(set.coresOption(coresOpt))
-}
 }
 }
 \keyword{spatial}

@@ -7,12 +7,14 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
              "printCoefmat", "quantile", "residuals", "terms", 
 	     "coefficients", "deviance", "nlminb", "optim",
              "pchisq", "summary.lm", "var", "logLik", "optimHess",
-             "gaussian", "glm.fit", "model.offset", "model.weights")
+             "gaussian", "glm.fit", "model.offset", "model.weights",
+             "rnorm", "sd")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
- "get.ZeroPolicyOption", "get.VerboseOption", "trW", "as_dsCMatrix_I",
- "powerWeights", "listw2U", "listw2mat", "Szero")
+ "get.ZeroPolicyOption", "get.VerboseOption", "trW", #"as_dsCMatrix_I",
+ "powerWeights", "listw2U", "listw2mat", "Szero", "listw2sn", "invIrW",
+ "mat2listw")
 
 import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
@@ -20,10 +22,9 @@ importFrom(coda, as.mcmc, HPDinterval)
 importFrom("methods", "as")
 importFrom(MASS, mvrnorm)
 importFrom(boot, boot)
+importFrom("methods", "new", "is")
+importFrom("graphics", "plot")
 
-################## temporary !!!
-
-importFrom("spdep", "intImpacts") 
 
 ##################
 
@@ -52,6 +53,18 @@ export(LR.sarlm, LR1.sarlm, Wald1.sarlm)
 
 export(Hausman.test, Hausman.test.gmsar, Hausman.test.sarlm,
   logLik.sarlm)
+
+export(as_dgRMatrix_listw, as_dsTMatrix_listw, as_dsCMatrix_I,
+	as_dsCMatrix_IrW, Jacobian_W, listw2U_Matrix)
+
+exportMethods(coerce)
+
+export(powerWeights)
+
+export(as.spam.listw, listw2U_spam)
+
+export(trW, impacts, intImpacts, plot.lagImpact, print.lagImpact, print.summary.lagImpact, summary.lagImpact, HPDinterval.lagImpact)
+
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
@@ -94,6 +107,11 @@ S3method(print, SFResult)
 S3method(fitted, ME_res)
 S3method(print, ME_res)
 
+S3method(print, lagImpact)
+S3method(plot, lagImpact)
+S3method(summary, lagImpact)
+S3method(HPDinterval, lagImpact)
+S3method(print, summary.lagImpact)
 
 S3method(Hausman.test, sarlm)
 
