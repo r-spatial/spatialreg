@@ -25,6 +25,7 @@ importFrom(boot, boot)
 importFrom("methods", "new", "is", "slot")
 importFrom("graphics", "plot")
 importFrom(splines, interpSpline)
+importFrom(LearnBayes, rwmetrop)
 
 
 ##################
@@ -72,6 +73,12 @@ export(do_ldet, eigen_setup, mcdet_setup, cheb_setup, spam_setup,
         Matrix_setup, LU_setup, Matrix_J_setup, spam_update_setup,
         moments_setup, SE_classic_setup, SE_whichMin_setup, SE_interp_setup,
         LU_prepermutate_setup, eigen_pre_setup)
+
+export(MCMCsamp, MCMCsamp.spautolm, MCMCsamp.sarlm)
+
+export(spautolm, residuals.spautolm, deviance.spautolm, coef.spautolm, 
+	fitted.spautolm, print.spautolm, summary.spautolm, LR1.spautolm, 
+	logLik.spautolm, print.summary.spautolm)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
@@ -121,4 +128,7 @@ S3method(HPDinterval, lagImpact)
 S3method(print, summary.lagImpact)
 
 S3method(Hausman.test, sarlm)
+S3method(MCMCsamp, sarlm)
+
+S3method(MCMCsamp, spautolm)
 
