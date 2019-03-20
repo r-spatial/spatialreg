@@ -8,7 +8,7 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
 	     "coefficients", "deviance", "nlminb", "optim",
              "pchisq", "summary.lm", "var", "logLik", "optimHess",
              "gaussian", "glm.fit", "model.offset", "model.weights",
-             "rnorm", "sd", "predict")
+             "rnorm", "sd", "predict", "AIC", "nlm", "optimize")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
@@ -26,6 +26,7 @@ importFrom("methods", "new", "is", "slot")
 importFrom("graphics", "plot")
 importFrom(splines, interpSpline)
 importFrom(LearnBayes, rwmetrop)
+importFrom(nlme, fdHess)
 
 
 ##################
