@@ -8,13 +8,13 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
 	     "coefficients", "deviance", "nlminb", "optim",
              "pchisq", "summary.lm", "var", "logLik", "optimHess",
              "gaussian", "glm.fit", "model.offset", "model.weights",
-             "rnorm", "sd")
+             "rnorm", "sd", "predict")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
  "get.ZeroPolicyOption", "get.VerboseOption", "trW", #"as_dsCMatrix_I",
  "powerWeights", "listw2U", "listw2mat", "Szero", "listw2sn", "invIrW",
- "mat2listw")
+ "mat2listw", "is.symmetric.nb")
 
 import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
@@ -22,8 +22,9 @@ importFrom(coda, as.mcmc, HPDinterval)
 importFrom("methods", "as")
 importFrom(MASS, mvrnorm)
 importFrom(boot, boot)
-importFrom("methods", "new", "is")
+importFrom("methods", "new", "is", "slot")
 importFrom("graphics", "plot")
+importFrom(splines, interpSpline)
 
 
 ##################
@@ -65,6 +66,12 @@ export(as.spam.listw, listw2U_spam)
 
 export(trW, impacts, intImpacts, plot.lagImpact, print.lagImpact, print.summary.lagImpact, summary.lagImpact, HPDinterval.lagImpact)
 
+export(eigenw, jacobianSetup, can.be.simmed, similar.listw)
+
+export(do_ldet, eigen_setup, mcdet_setup, cheb_setup, spam_setup,
+        Matrix_setup, LU_setup, Matrix_J_setup, spam_update_setup,
+        moments_setup, SE_classic_setup, SE_whichMin_setup, SE_interp_setup,
+        LU_prepermutate_setup, eigen_pre_setup)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)

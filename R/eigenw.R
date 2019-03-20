@@ -1,6 +1,5 @@
 # Copyright 2002-12 by Roger Bivand 
 #
-if (FALSE) {
 eigenw <- function(listw, quiet=NULL)
 {
 	if(!inherits(listw, "listw")) stop("not a listw object")
@@ -18,7 +17,7 @@ eigenw <- function(listw, quiet=NULL)
 	}
 	e
 }
-}
+
 
 griffith_sone <- function(P, Q, type="rook") {
     stopifnot(P >= 1)

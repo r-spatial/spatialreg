@@ -21,7 +21,7 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
 Depends: R (>= 3.3.0), spData, Matrix
-Imports: spdep, expm, coda, methods, MASS, boot
+Imports: spdep, expm, coda, methods, MASS, boot, splines
 Suggests: parallel, RSpectra, sf, foreign, spam
 Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice) currently contained in spdep, sphet and spse.  
 License: GPL-2

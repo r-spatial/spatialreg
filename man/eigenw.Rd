@@ -1,6 +1,6 @@
 % Copyright 2002-2012 by Roger S. Bivand
 \name{griffith_sone}
-%\alias{eigenw}
+\alias{eigenw}
 \alias{griffith_sone}
 \alias{subgraph_eigenw}
 %- Also NEED an `\alias' for EACH other topic documented here.
@@ -17,13 +17,13 @@ where \eqn{W}{W} is the n by n spatial weights matrix, and \eqn{\lambda_i}{lambd
 eigenvalues of \eqn{W}{W}.
 }
 \usage{
-#eigenw(listw, quiet=NULL)
+eigenw(listw, quiet=NULL)
 griffith_sone(P, Q, type="rook")
 subgraph_eigenw(nb, glist=NULL, style="W", zero.policy=NULL, quiet=NULL)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
-%  \item{listw}{a \code{listw} object created for example by \code{nb2listw}}
+  \item{listw}{a \code{listw} object created for example by \code{nb2listw}}
   \item{quiet}{default NULL, use global !verbose option value; set to FALSE for short summary}
   \item{P}{number of columns in the grid (number of units in a horizontal axis direction)}
   \item{Q}{number of rows in the grid (number of units in a vertical axis direction.)}
