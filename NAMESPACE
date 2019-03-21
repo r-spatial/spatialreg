@@ -82,7 +82,7 @@ export(spautolm, residuals.spautolm, deviance.spautolm, coef.spautolm,
 	fitted.spautolm, print.spautolm, summary.spautolm, LR1.spautolm, 
 	logLik.spautolm, print.summary.spautolm)
 
-export(spBreg_lag, spBreg_err, spBreg_sac)
+export(spBreg_lag, spBreg_err, spBreg_sac, impacts.MCMC_sac_g, impacts.MCMC_sar_g, impacts.MCMC_sem_g)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
