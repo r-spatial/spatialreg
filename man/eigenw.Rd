@@ -50,31 +50,31 @@ of the American Statistical Association, 70, 120-126.; Griffith, D. A. and Sone,
 }
 
 \examples{
-require(spdep)
-data(oldcol)
-W.eig <- eigenw(nb2listw(COL.nb, style="W"))
+#require(spdep)
+data(oldcol, package="spdep")
+W.eig <- eigenw(spdep::nb2listw(COL.nb, style="W"))
 1/range(W.eig)
-S.eig <- eigenw(nb2listw(COL.nb, style="S"))
+S.eig <- eigenw(spdep::nb2listw(COL.nb, style="S"))
 1/range(S.eig)
-B.eig <- eigenw(nb2listw(COL.nb, style="B"))
+B.eig <- eigenw(spdep::nb2listw(COL.nb, style="B"))
 1/range(B.eig)
 # cases for intrinsically asymmetric weights
 crds <- cbind(COL.OLD$X, COL.OLD$Y)
-k3 <- knn2nb(knearneigh(crds, k=3))
-is.symmetric.nb(k3)
-k3eig <- eigenw(nb2listw(k3, style="W"))
+k3 <- spdep::knn2nb(spdep::knearneigh(crds, k=3))
+spdep::is.symmetric.nb(k3)
+k3eig <- eigenw(spdep::nb2listw(k3, style="W"))
 is.complex(k3eig)
 rho <- 0.5
 Jc <- sum(log(1 - rho * k3eig))
 # complex eigenvalue Jacobian
 Jc
 # subgraphs
-nc <- n.comp.nb(k3)
+nc <- spdep::n.comp.nb(k3)
 nc$nc
 table(nc$comp.id)
 k3eigSG <- subgraph_eigenw(k3, style="W")
 all.equal(sort(k3eig), k3eigSG)
-W <- as(nb2listw(k3, style="W"), "CsparseMatrix")
+W <- as(spdep::nb2listw(k3, style="W"), "CsparseMatrix")
 I <- diag(length(k3))
 Jl <- sum(log(abs(diag(slot(lu(I - rho * W), "U")))))
 # LU Jacobian equals complex eigenvalue Jacobian
@@ -102,15 +102,15 @@ all.equal(Jr, Jc2)
 sum(diag(W \%*\% W))
 crossprod(k3eig)
 # analytical regular grid eigenvalues
-rg <- cell2nb(ncol=7, nrow=7, type="rook")
-rg_eig <- eigenw(nb2listw(rg, style="B"))
+rg <- spdep::cell2nb(ncol=7, nrow=7, type="rook")
+rg_eig <- eigenw(spdep::nb2listw(rg, style="B"))
 rg_GS <- griffith_sone(P=7, Q=7, type="rook")
 all.equal(rg_eig, rg_GS)
 \dontrun{
 run <- FALSE
 if (require("RSpectra", quietly=TRUE)) run <- TRUE
 if (run) {
-B <- as(nb2listw(rg, style="B"), "CsparseMatrix")
+B <- as(spdep::nb2listw(rg, style="B"), "CsparseMatrix")
 res1 <- eigs(B, k=1, which="LR")$values
 resn <- eigs(B, k=1, which="SR")$values
 print(Re(c(resn, res1)))
@@ -119,7 +119,7 @@ if (run) {
 print(all.equal(range(Re(rg_eig)), c(resn, res1))) 
 }
 if (run) {
-lw <- nb2listw(rg, style="W")
+lw <- spdep::nb2listw(rg, style="W")
 rg_eig <- eigenw(similar.listw(lw))
 print(range(Re(rg_eig)))
 }

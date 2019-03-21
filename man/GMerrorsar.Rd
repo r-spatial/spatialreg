@@ -100,13 +100,14 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 
 \seealso{\code{\link[stats]{optim}}, \code{\link[stats]{nlminb}}, \code{\link{errorsarlm}}}
 \examples{
-require("spdep", quietly=TRUE)
-data(oldcol)
-COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- nb2listw(COL.nb, style="W"), method="eigen")
+#require("spdep", quietly=TRUE)
+data(oldcol, package="spdep")
+COL.errW.eig <- spdep::errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
+ spdep::nb2listw(COL.nb, style="W"), method="eigen")
+# FIXME spdep::
 summary(COL.errW.eig, Hausman=TRUE)
 COL.errW.GM <- GMerrorsar(CRIME ~ INC + HOVAL, data=COL.OLD,
- nb2listw(COL.nb, style="W"), returnHcov=TRUE)
+ spdep::nb2listw(COL.nb, style="W"), returnHcov=TRUE)
 summary(COL.errW.GM, Hausman=TRUE)
 aa <- GMargminImage(COL.errW.GM)
 levs <- quantile(aa$z, seq(0, 1, 1/12))
@@ -114,16 +115,17 @@ image(aa, breaks=levs, xlab="lambda", ylab="s2")
 points(COL.errW.GM$lambda, COL.errW.GM$s2, pch=3, lwd=2)
 contour(aa, levels=signif(levs, 4), add=TRUE)
 COL.errW.GM1 <- GMerrorsar(CRIME ~ INC + HOVAL, data=COL.OLD,
- nb2listw(COL.nb, style="W"))
+ spdep::nb2listw(COL.nb, style="W"))
 summary(COL.errW.GM1)
+require("sf", quietly=TRUE)
 nydata <- st_read(system.file("shapes/NY8_bna_utm18.gpkg", package="spData")[1], quiet=TRUE)
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1])[-1]))
 suppressMessages(ID <- as.character(names(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1]))[-1]))
 identical(substring(ID, 2, 10), substring(as.character(nydata$AREAKEY), 2, 10))
-nyadjlw <- mat2listw(nyadjmat, as.character(nydata$AREAKEY))
-listw_NY <- nb2listw(nyadjlw$neighbours, style="B")
+nyadjlw <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY))
+listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
 esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, family="SAR", method="eigen")
 summary(esar1f)

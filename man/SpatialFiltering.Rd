@@ -56,8 +56,8 @@ SpatialFiltering(formula, lagformula=NULL, data=list(), na.action=na.fail,
 \examples{
 require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
-require("spdep", quietly=TRUE)
-col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])
+#require("spdep", quietly=TRUE)
+col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 lmbase <- lm(CRIME ~ INC + HOVAL, data=columbus)
 sarcol <- SpatialFiltering(CRIME ~ INC + HOVAL, data=columbus,
  nb=col.gal.nb, style="W", ExactEV=TRUE)
@@ -65,14 +65,14 @@ sarcol
 lmsar <- lm(CRIME ~ INC + HOVAL + fitted(sarcol), data=columbus)
 lmsar
 anova(lmbase, lmsar)
-lm.morantest(lmsar, nb2listw(col.gal.nb))
+spdep::lm.morantest(lmsar, spdep::nb2listw(col.gal.nb))
 lagcol <- SpatialFiltering(CRIME ~ 1, ~ INC + HOVAL - 1, data=columbus,
  nb=col.gal.nb, style="W")
 lagcol
 lmlag <- lm(CRIME ~ INC + HOVAL + fitted(lagcol), data=columbus)
 lmlag
 anova(lmbase, lmlag)
-lm.morantest(lmlag, nb2listw(col.gal.nb))
+spdep::lm.morantest(lmlag, spdep::nb2listw(col.gal.nb))
 NA.columbus <- columbus
 NA.columbus$CRIME[20:25] <- NA
 COL.SF.NA <- SpatialFiltering(CRIME ~ INC + HOVAL, data=NA.columbus,

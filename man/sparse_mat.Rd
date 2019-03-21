@@ -46,17 +46,17 @@ powerWeights(W, rho, order=250, X, tol=.Machine$double.eps^(3/5))
 \examples{
 require(sf, quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
-require(spdep, quietly=TRUE)
-col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])
-col.listw <- nb2listw(col.gal.nb)
+#require(spdep, quietly=TRUE)
+col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
+col.listw <- spdep::nb2listw(col.gal.nb)
 if (require("spam", quietly=TRUE)) {
 col.sp <- as.spam.listw(col.listw)
 str(col.sp)
 }
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1])[-1]))
-nyadjlw <- mat2listw(nyadjmat)
-listw_NY <- nb2listw(nyadjlw$neighbours, style="B")
+nyadjlw <- spdep::mat2listw(nyadjmat)
+listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
 W_C <- as(listw_NY, "CsparseMatrix")
 W_R <- as(listw_NY, "RsparseMatrix")
 W_S <- as(listw_NY, "symmetricMatrix")
@@ -68,8 +68,9 @@ sum(log(1 - rho * eigenw(listw_NY)))
 nW <- - W_S
 nChol <- Cholesky(nW, Imult=8)
 n * log(rho) + (2 * c(determinant(update(nChol, nW, 1/rho))$modulus))
-nb7rt <- cell2nb(7, 7, torus=TRUE)
+nb7rt <- spdep::cell2nb(7, 7, torus=TRUE)
 x <- matrix(sample(rnorm(500*length(nb7rt))), nrow=length(nb7rt))
+lw <- spdep::nb2listw(nb7rt)
 if (FALSE) {
 # Only needed in some simulation settings where the input and
 # output distributions must agree in all but autocorrelation
@@ -80,21 +81,22 @@ x <- apply(x, 2, function(v) residuals(spautolm(v ~ 1, listw=lw,
  method="eigen", control=list(pre_eig=e, fdHess=FALSE))))
 x <- apply(x, 2, scale)
 }
-W <- as(nb2listw(nb7rt), "CsparseMatrix")
+W <- as(lw, "CsparseMatrix")
 system.time(ee <- powerWeights(W, rho=0.9, X=x))
-system.time(e <- invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) \%*\% x)
+system.time(e <- spdep::invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) \%*\% x)
 system.time(ee <- powerWeights(W, rho=0.98, X=x))
 str(attr(ee, "internal"))
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 system.time(ee <- powerWeights(W, rho=0.98, order=1000, X=x))
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
-nb60rt <- cell2nb(60, 60, torus=TRUE)
-W <- as(nb2listw(nb60rt), "CsparseMatrix")
+nb60rt <- spdep::cell2nb(60, 60, torus=TRUE)
+W <- as(spdep::nb2listw(nb60rt), "CsparseMatrix")
 set.seed(1)
 x <- matrix(rnorm(dim(W)[1]), ncol=1)
 system.time(ee <- powerWeights(W, rho=0.3, X=x))
 str(as(ee, "matrix"))
-obj <- errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=nb2listw(nb60rt), method="Matrix")
+obj <- spdep::errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=spdep::nb2listw(nb60rt), method="Matrix")
+# FIXME spdep::
 coefficients(obj)
 }
 \keyword{spatial}

@@ -69,9 +69,10 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 \seealso{\code{\link{lagsarlm}}}
 \examples{
 data(oldcol, package="spdep")
-require(spdep, quietly=TRUE)
-lw <- nb2listw(COL.nb)
-COL.lag.eig <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
+#require(spdep, quietly=TRUE)
+lw <- spdep::nb2listw(COL.nb)
+COL.lag.eig <- spdep::lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
+# FIXME spdep::
 summary(COL.lag.eig, correlation=TRUE)
 COL.lag.stsls <- stsls(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
 summary(COL.lag.stsls, correlation=TRUE)
@@ -95,7 +96,7 @@ summary(COL.lag.stslsRl, correlation=TRUE)
 data(boston, package="spData")
 gp2a <- stsls(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2) +
   AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT),
- data=boston.c, nb2listw(boston.soi))
+ data=boston.c, spdep::nb2listw(boston.soi))
 summary(gp2a)
 }
 \keyword{spatial}

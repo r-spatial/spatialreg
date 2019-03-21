@@ -255,8 +255,8 @@ Bivand, R. S., Hauke, J., and Kossowski, T. (2013). Computing the Jacobian in Ga
 
 \examples{
 data(boston, package="spData")
-require("spdep", quietly=TRUE)
-lw <- nb2listw(boston.soi)
+#require("spdep", quietly=TRUE)
+lw <- spdep::nb2listw(boston.soi)
 can.sim <- can.be.simmed(lw)
 env <- new.env(parent=globalenv())
 assign("listw", lw, envir=env)

@@ -49,11 +49,13 @@ Wald1.sarlm(object)
 \examples{
 require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
-require("spdep", quietly=TRUE)
-col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])
-mixed <- lagsarlm(CRIME ~ HOVAL + INC, data=columbus, nb2listw(col.gal.nb),
+#require("spdep", quietly=TRUE)
+col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
+mixed <- spdep::lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb),
   type="mixed")
-error <- errorsarlm(CRIME ~ HOVAL + INC, data=columbus, nb2listw(col.gal.nb))
+# FIXME spdep::
+error <- spdep::errorsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
+# FIXME spdep::
 LR.sarlm(mixed, error)
 Hausman.test(error)
 }

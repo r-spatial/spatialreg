@@ -80,18 +80,18 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 
 \seealso{\code{\link[stats]{optim}}, \code{\link[stats]{nlminb}}, \code{\link{GMerrorsar}}, \code{\link{GMargminImage}}}
 \examples{
-require("spdep", quietly=TRUE) 
-data(oldcol)
-COL.errW.GM <- gstsls(CRIME ~ INC + HOVAL, data=COL.OLD, nb2listw(COL.nb, style="W"))
+#require("spdep", quietly=TRUE) 
+data(oldcol, package="spdep")
+COL.errW.GM <- gstsls(CRIME ~ INC + HOVAL, data=COL.OLD, spdep::nb2listw(COL.nb, style="W"))
 summary(COL.errW.GM)
 aa <- GMargminImage(COL.errW.GM)
 levs <- quantile(aa$z, seq(0, 1, 1/12))
 image(aa, breaks=levs, xlab="lambda", ylab="s2")
 points(COL.errW.GM$lambda, COL.errW.GM$s2, pch=3, lwd=2)
 contour(aa, levels=signif(levs, 4), add=TRUE)
-COL.errW.GM <- gstsls(CRIME ~ INC + HOVAL, data=COL.OLD, nb2listw(COL.nb, style="W"), scaleU=TRUE)
+COL.errW.GM <- gstsls(CRIME ~ INC + HOVAL, data=COL.OLD, spdep::nb2listw(COL.nb, style="W"), scaleU=TRUE)
 summary(COL.errW.GM)
-listw <- nb2listw(COL.nb)
+listw <- spdep::nb2listw(COL.nb)
 W <- as(listw, "CsparseMatrix")
 trMat <- trW(W, type="mult")
 impacts(COL.errW.GM, tr=trMat)

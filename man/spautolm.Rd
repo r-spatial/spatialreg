@@ -141,11 +141,12 @@ suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
 suppressMessages(ID <- as.character(names(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1]))[-1]))
 identical(substring(ID, 2, 10), substring(as.character(nydata$AREAKEY), 2, 10))
-require("spdep", quietly=TRUE)
-nyadjlw <- mat2listw(nyadjmat, as.character(nydata$AREAKEY))
-listw_NY <- nb2listw(nyadjlw$neighbours, style="B")
-esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+#require("spdep", quietly=TRUE)
+nyadjlw <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY))
+listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
+esar0 <- spdep::errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
+# FIXME spdep::
 summary(esar0)
 system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="eigen"))
@@ -190,15 +191,15 @@ nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TR
 ft.SID74 <- sqrt(1000)*(sqrt(nc.sids$SID74/nc.sids$BIR74) +
  sqrt((nc.sids$SID74+1)/nc.sids$BIR74))
 lm_nc <- lm(ft.SID74 ~ 1)
-sids.nhbr30 <- dnearneigh(cbind(nc.sids$east, nc.sids$north), 0, 30, row.names=row.names(nc.sids))
-sids.nhbr30.dist <- nbdists(sids.nhbr30, cbind(nc.sids$east, nc.sids$north))
-sids.nhbr <- listw2sn(nb2listw(sids.nhbr30, glist=sids.nhbr30.dist, style="B", zero.policy=TRUE))
+sids.nhbr30 <- spdep::dnearneigh(cbind(nc.sids$east, nc.sids$north), 0, 30, row.names=row.names(nc.sids))
+sids.nhbr30.dist <- spdep::nbdists(sids.nhbr30, cbind(nc.sids$east, nc.sids$north))
+sids.nhbr <- spdep::listw2sn(spdep::nb2listw(sids.nhbr30, glist=sids.nhbr30.dist, style="B", zero.policy=TRUE))
 dij <- sids.nhbr[,3]
 n <- nc.sids$BIR74
 el1 <- min(dij)/dij
 el2 <- sqrt(n[sids.nhbr$to]/n[sids.nhbr$from])
 sids.nhbr$weights <- el1*el2
-sids.nhbr.listw <- sn2listw(sids.nhbr)
+sids.nhbr.listw <- spdep::sn2listw(sids.nhbr)
 both <- factor(paste(nc.sids$L_id, nc.sids$M_id, sep=":"))
 ft.NWBIR74 <- sqrt(1000)*(sqrt(nc.sids$NWBIR74/nc.sids$BIR74) +
  sqrt((nc.sids$NWBIR74+1)/nc.sids$BIR74))
@@ -206,17 +207,19 @@ mdata <- data.frame(both, ft.NWBIR74, ft.SID74, BIR74=nc.sids$BIR74)
 outl <- which.max(rstandard(lm_nc))
 as.character(nc.sids$NAME[outl])
 mdata.4 <- mdata[-outl,]
-W <- listw2mat(sids.nhbr.listw)
+W <- spdep::listw2mat(sids.nhbr.listw)
 W.4 <- W[-outl, -outl]
-sids.nhbr.listw.4 <- mat2listw(W.4)
-esarI <- errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
+sids.nhbr.listw.4 <- spdep::mat2listw(W.4)
+esarI <- spdep::errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
+# FIXME spdep::
 summary(esarI)
 esarIa <- spautolm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
 summary(esarIa)
-esarIV <- errorsarlm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
+esarIV <- spdep::errorsarlm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
+# FIXME spdep::
 summary(esarIV)
 esarIVa <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
@@ -242,17 +245,18 @@ summary(ecarIVaw)
 nc.sids$fitIV <- append(fitted.values(ecarIVaw), NA, outl-1)
 plot(nc.sids[,"fitIV"], nbreaks=12) # Cressie 1993, p. 565
 \dontrun{
-data(oldcol)
-COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- nb2listw(COL.nb, style="W"))
+data(oldcol, package="spdep")
+COL.errW.eig <- spdep::errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
+ spdep::nb2listw(COL.nb, style="W"))
+# FIXME spdep::
 summary(COL.errW.eig)
 COL.errW.sar <- spautolm(CRIME ~ INC + HOVAL, data=COL.OLD,
- nb2listw(COL.nb, style="W"))
+ spdep::nb2listw(COL.nb, style="W"))
 summary(COL.errW.sar)
 data(boston, package="spData")
 gp1 <- spautolm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2)
  + I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT), 
- data=boston.c, nb2listw(boston.soi), family="SMA")
+ data=boston.c, spdep::nb2listw(boston.soi), family="SMA")
 summary(gp1)
 }
 }

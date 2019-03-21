@@ -36,8 +36,8 @@ The functions return approximations to the extreme eigenvalues with the eigenvec
 
 \examples{
 data(boston, package="spData")
-require(spdep, quietly=TRUE)
-ab.listb <- nb2listw(boston.soi, style="B")
+#require(spdep, quietly=TRUE)
+ab.listb <- spdep::nb2listw(boston.soi, style="B")
 er <- range(eigenw(ab.listb))
 er
 res_1 <- lextrB(ab.listb)
@@ -51,12 +51,12 @@ eigs(B, k=1, which="SR")$values
 if (run) {
 eigs(B, k=1, which="LR")$values
 }
-k5 <- knn2nb(knearneigh(boston.utm, k=5))
-c(l_max(nb2listw(k5, style="B")))
-max(Re(eigenw(nb2listw(k5, style="B"))))
-c(l_max(nb2listw(k5, style="C")))
-max(Re(eigenw(nb2listw(k5, style="C"))))
-ab.listw <- nb2listw(boston.soi, style="W")
+k5 <- spdep::knn2nb(spdep::knearneigh(boston.utm, k=5))
+c(l_max(spdep::nb2listw(k5, style="B")))
+max(Re(eigenw(spdep::nb2listw(k5, style="B"))))
+c(l_max(spdep::nb2listw(k5, style="C")))
+max(Re(eigenw(spdep::nb2listw(k5, style="C"))))
+ab.listw <- spdep::nb2listw(boston.soi, style="W")
 er <- range(eigenw(similar.listw(ab.listw)))
 er
 res_1 <- lextrW(ab.listw)
@@ -69,7 +69,7 @@ if (run) {
 eigs(B, k=1, which="LR")$values
 }
 \dontrun{
-ab.listw <- nb2listw(boston.soi, style="S")
+ab.listw <- spdep::nb2listw(boston.soi, style="S")
 er <- range(eigenw(similar.listw(ab.listw)))
 er
 res_1 <- lextrS(ab.listw)

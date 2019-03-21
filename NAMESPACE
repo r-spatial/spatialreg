@@ -8,13 +8,14 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
 	     "coefficients", "deviance", "nlminb", "optim",
              "pchisq", "summary.lm", "var", "logLik", "optimHess",
              "gaussian", "glm.fit", "model.offset", "model.weights",
-             "rnorm", "sd", "predict", "AIC", "nlm", "optimize")
+             "rnorm", "sd", "predict", "AIC", "nlm", "optimize",
+             "dbeta", "rchisq", "runif", "spline")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
- "can.be.simmed", "similar.listw", "nb2listw", "n.comp.nb", "eigenw",
- "get.ZeroPolicyOption", "get.VerboseOption", "trW", #"as_dsCMatrix_I",
- "powerWeights", "listw2U", "listw2mat", "Szero", "listw2sn", "invIrW",
- "mat2listw", "is.symmetric.nb")
+ "nb2listw", "n.comp.nb", "listw2U", "listw2mat", "Szero", "listw2sn",
+ "invIrW", "mat2listw", "is.symmetric.nb")
+
+importFrom("spdep", "create_WX") # temporary
 
 import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
@@ -81,6 +82,8 @@ export(spautolm, residuals.spautolm, deviance.spautolm, coef.spautolm,
 	fitted.spautolm, print.spautolm, summary.spautolm, LR1.spautolm, 
 	logLik.spautolm, print.summary.spautolm)
 
+export(spBreg_lag, spBreg_err, spBreg_sac)
+
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
 
@@ -132,4 +135,17 @@ S3method(Hausman.test, sarlm)
 S3method(MCMCsamp, sarlm)
 
 S3method(MCMCsamp, spautolm)
+S3method(residuals, spautolm)
+S3method(deviance, spautolm)
+S3method(coef, spautolm)
+S3method(fitted, spautolm)
+S3method(print, spautolm)
+S3method(summary, spautolm)
+S3method(logLik, spautolm)
+
+S3method(print, summary.spautolm)
+
+S3method(impacts, MCMC_sar_g)
+S3method(impacts, MCMC_sem_g)
+S3method(impacts, MCMC_sac_g)
 

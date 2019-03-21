@@ -1,5 +1,11 @@
 # Copyright 2009-2013 by Roger Bivand
 
+
+is.formula <- function(x){
+   inherits(x,"formula")
+}
+
+
 sar_error_hess_sse <- function(lambda, beta, env) {
     if (get("compiled_sse", envir=env)) {
         ft <- get("first_time", envir=env)

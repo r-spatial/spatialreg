@@ -123,7 +123,6 @@ impacts <- function(obj, ...)
     UseMethod("impacts", obj)
 
 
-if (FALSE) {
 
 impacts.SLX <- function(obj, ...) {
     stopifnot(!is.null(attr(obj, "mixedImps")))
@@ -212,7 +211,7 @@ summary.WXImpact <- function(object, ...,
     class(object) <- c("summary.WXImpact", class(object))
     object
 }
-}
+
 
 
 

@@ -21,10 +21,10 @@ similar.listw(listw)
 
 \seealso{\code{\link{lagsarlm}}, \code{\link{errorsarlm}}}
 \examples{
-require("spdep", quietly=TRUE)
-data(oldcol)
-COL.W <- nb2listw(COL.nb, style="W")
-COL.S <- nb2listw(COL.nb, style="S")
+#require("spdep", quietly=TRUE)
+data(oldcol, package="spdep")
+COL.W <- spdep::nb2listw(COL.nb, style="W")
+COL.S <- spdep::nb2listw(COL.nb, style="S")
 sum(log(1 - 0.5 * eigenw(COL.W)))
 sum(log(1 - 0.5 * eigenw(similar.listw(COL.W))))
 W_J <- as(as_dsTMatrix_listw(similar.listw(COL.W)), "CsparseMatrix")
