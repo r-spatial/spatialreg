@@ -95,8 +95,7 @@ set.seed(1)
 x <- matrix(rnorm(dim(W)[1]), ncol=1)
 system.time(ee <- powerWeights(W, rho=0.3, X=x))
 str(as(ee, "matrix"))
-obj <- spdep::errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=spdep::nb2listw(nb60rt), method="Matrix")
-# FIXME spdep::
+obj <- errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=spdep::nb2listw(nb60rt), method="Matrix")
 coefficients(obj)
 }
 \keyword{spatial}

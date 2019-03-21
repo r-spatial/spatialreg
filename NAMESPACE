@@ -9,25 +9,26 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
              "pchisq", "summary.lm", "var", "logLik", "optimHess",
              "gaussian", "glm.fit", "model.offset", "model.weights",
              "rnorm", "sd", "predict", "AIC", "nlm", "optimize",
-             "dbeta", "rchisq", "runif", "spline")
+             "dbeta", "rchisq", "runif", "spline", "fitted", "formula",
+             "model.response", "anova", "delete.response", "fitted.values",
+             "model.frame")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "nb2listw", "n.comp.nb", "listw2U", "listw2mat", "Szero", "listw2sn",
- "invIrW", "mat2listw", "is.symmetric.nb")
-
-importFrom("spdep", "create_WX") # temporary
+ "invIrW", "mat2listw", "is.symmetric.nb", "chkIDs", "get.spChkOption",
+ "subset.listw")
 
 import(Matrix, except=c("expm"))
 importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
-importFrom("methods", "as")
 importFrom(MASS, mvrnorm)
 importFrom(boot, boot)
-importFrom("methods", "new", "is", "slot")
+importFrom("methods", "new", "is", "slot", "as")
 importFrom("graphics", "plot")
 importFrom(splines, interpSpline)
 importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
+importFrom(gmodels, estimable)
 
 
 ##################
@@ -84,6 +85,14 @@ export(spautolm, residuals.spautolm, deviance.spautolm, coef.spautolm,
 
 export(spBreg_lag, spBreg_err, spBreg_sac, impacts.MCMC_sac_g, impacts.MCMC_sar_g, impacts.MCMC_sem_g)
 
+export(lmSLX, create_WX, predict.SLX, impacts.SLX)
+
+export(errorsarlm, lagsarlm, sacsarlm)
+
+export(print.sarlm, summary.sarlm, residuals.sarlm, deviance.sarlm, 
+	coef.sarlm, fitted.sarlm, logLik.sarlm, anova.sarlm, vcov.sarlm,
+	predict.sarlm, print.summary.sarlm, print.sarlm.pred, bptest.sarlm)
+
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
 
@@ -131,6 +140,20 @@ S3method(summary, lagImpact)
 S3method(HPDinterval, lagImpact)
 S3method(print, summary.lagImpact)
 
+S3method(print, sarlm)
+S3method(summary, sarlm)
+S3method(residuals, sarlm)
+S3method(deviance, sarlm)
+S3method(coef, sarlm)
+S3method(vcov, sarlm)
+S3method(fitted, sarlm)
+S3method(logLik, sarlm)
+S3method(anova, sarlm)
+S3method(predict, sarlm)
+S3method(impacts, sarlm)
+S3method(print, summary.sarlm)
+S3method(print, sarlm.pred)
+S3method(as.data.frame, sarlm.pred)
 S3method(Hausman.test, sarlm)
 S3method(MCMCsamp, sarlm)
 
@@ -148,4 +171,11 @@ S3method(print, summary.spautolm)
 S3method(impacts, MCMC_sar_g)
 S3method(impacts, MCMC_sem_g)
 S3method(impacts, MCMC_sac_g)
+
+S3method(print, WXImpact)
+S3method(summary, WXImpact)
+S3method(print, summary.WXImpact)
+
+S3method(impacts, SLX)
+S3method(predict, SLX)
 

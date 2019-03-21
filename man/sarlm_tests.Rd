@@ -5,8 +5,9 @@
 \alias{Wald1.sarlm}
 \alias{Hausman.test}
 \alias{Hausman.test.sarlm}
-%\alias{Hausman.test.gmsar}
 \alias{logLik.sarlm}
+\alias{anova.sarlm}
+\alias{bptest.sarlm}
 %- Also NEED an `\alias' for EACH other topic documented here.
 \title{Likelihood ratio test}
 \description{
@@ -18,15 +19,20 @@ LR.sarlm(x, y)
 LR1.sarlm(object)
 Wald1.sarlm(object)
 \method{Hausman.test}{sarlm}(object, ..., tol=NULL)
+\method{anova}{sarlm}(object, ...)
+bptest.sarlm(object, varformula=NULL, studentize = TRUE, data=list())
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
   \item{x}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
   \item{y}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
-  \item{object}{a \code{sarlm} object from \code{lagsarlm()} or \code{errorsarlm()}}
+  \item{object}{a \code{sarlm} object}
   \item{\dots}{further arguments passed to or from other methods}
   \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
-}
+  \item{varformula}{a formula describing only the potential explanatory variables for the variance (no dependent variable needed). By default the same explanatory variables are taken as in the main regression model}
+  \item{studentize}{logical. If set to \code{TRUE} Koenker's studentized
+   version of the test statistic will be used.}
+  \item{data}{an optional data frame containing the variables in the varformula}}
 \value{
   The tests return objects of class \code{htest} with:
   \item{statistic}{value of statistic}
@@ -41,8 +47,18 @@ Wald1.sarlm(object)
 
 \note{The numbers of degrees of freedom returned by \code{logLik.sarlm()} include nuisance parameters, that is the number of regression coefficients, plus sigma, plus spatial parameter esitmate(s).}
 
-\references{LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 61--63; Pace RK and LeSage J (2008) A spatial Hausman test. \emph{Economics Letters} 101, 282--284.}
-\author{Roger Bivand \email{Roger.Bivand@nhh.no}}
+\references{LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 61--63; Pace RK and LeSage J (2008) A spatial Hausman test. \emph{Economics Letters} 101, 282--284.
+T.S. Breusch & A.R. Pagan (1979),
+A Simple Test for Heteroscedasticity and Random Coefficient Variation.
+\emph{Econometrica} \bold{47}, 1287--1294
+
+W. Krämer & H. Sonnberger (1986),
+\emph{The Linear Regression Model under Test}. Heidelberg: Physica.
+
+L. Anselin (1988) \emph{Spatial econometrics: methods and models.}
+Dordrecht: Kluwer, pp. 121--122.
+}
+\author{Roger Bivand \email{Roger.Bivand@nhh.no}, \code{bptest}: Torsten Hothorn and Achim Zeileis, modified by Roger Bivand}
 
 \seealso{\code{\link{logLik.lm}}, \code{\link{anova.sarlm}}}
 
@@ -51,12 +67,22 @@ require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
-mixed <- spdep::lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb),
-  type="mixed")
-# FIXME spdep::
-error <- spdep::errorsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
-# FIXME spdep::
-LR.sarlm(mixed, error)
+lm.mod <- lm(CRIME ~ HOVAL + INC, data=columbus)
+lag <- lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
+mixed <- lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb), type="mixed")
+error <- errorsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
 Hausman.test(error)
+LR.sarlm(mixed, error)
+anova(lag, lm.mod)
+anova(lag, error, mixed)
+AIC(lag, error, mixed)
+bptest.sarlm(error)
+bptest.sarlm(error, studentize=FALSE)
+\dontrun{
+lm.target <- lm(error$tary ~ error$tarX - 1)
+if (require(lmtest, quietly=TRUE) && require(sandwich, quietly=TRUE)) {
+  print(coeftest(lm.target, vcov=vcovHC(lm.target, type="HC0"), df=Inf))
+}
+}
 }
 \keyword{spatial}

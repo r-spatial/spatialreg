@@ -71,8 +71,7 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 data(oldcol, package="spdep")
 #require(spdep, quietly=TRUE)
 lw <- spdep::nb2listw(COL.nb)
-COL.lag.eig <- spdep::lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
-# FIXME spdep::
+COL.lag.eig <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
 summary(COL.lag.eig, correlation=TRUE)
 COL.lag.stsls <- stsls(CRIME ~ INC + HOVAL, data=COL.OLD, lw)
 summary(COL.lag.stsls, correlation=TRUE)

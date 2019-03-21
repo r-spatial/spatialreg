@@ -102,9 +102,8 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 \examples{
 #require("spdep", quietly=TRUE)
 data(oldcol, package="spdep")
-COL.errW.eig <- spdep::errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
+COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"), method="eigen")
-# FIXME spdep::
 summary(COL.errW.eig, Hausman=TRUE)
 COL.errW.GM <- GMerrorsar(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"), returnHcov=TRUE)

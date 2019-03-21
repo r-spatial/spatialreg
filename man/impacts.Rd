@@ -100,89 +100,79 @@ columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], qui
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 listw <- spdep::nb2listw(col.gal.nb)
 ev <- eigenw(listw)
-lobj <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw,
+lobj <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw,
  control=list(pre_eig=ev))
-# FIXME spdep::
 summary(lobj)
-mobj <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin=TRUE,
+mobj <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin=TRUE,
  control=list(pre_eig=ev))
-# FIXME spdep::
 summary(mobj)
-mobj1 <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin= ~ INC,
+mobj1 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin= ~ INC,
  control=list(pre_eig=ev))
-# FIXME spdep::
 summary(mobj1)
 W <- as(listw, "CsparseMatrix")
 trMatc <- trW(W, type="mult")
 trMC <- trW(W, type="MC")
 set.seed(1)
-spdep::impacts(lobj, listw=listw)
-spdep::impacts(lobj, tr=trMatc)
-spdep::impacts(lobj, tr=trMC)
-spdep::impacts(lobj, evalues=ev)
+impacts(lobj, listw=listw)
+impacts(lobj, tr=trMatc)
+impacts(lobj, tr=trMC)
+impacts(lobj, evalues=ev)
 library(coda)
-lobjIQ5 <- spdep::impacts(lobj, tr=trMatc, R=200, Q=5)
+lobjIQ5 <- impacts(lobj, tr=trMatc, R=200, Q=5)
 summary(lobjIQ5, zstats=TRUE, short=TRUE)
 summary(lobjIQ5, zstats=TRUE, short=TRUE, reportQ=TRUE)
-spdep::impacts(mobj, listw=listw)
-spdep::impacts(mobj, tr=trMatc)
-spdep::impacts(mobj, tr=trMC)
-spdep::impacts(mobj1, tr=trMatc)
-spdep::impacts(mobj1, listw=listw)
-cat(try(spdep::impacts(mobj, evalues=ev), silent=TRUE), "\n")
-summary(spdep::impacts(mobj, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
-summary(spdep::impacts(mobj1, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
+impacts(mobj, listw=listw)
+impacts(mobj, tr=trMatc)
+impacts(mobj, tr=trMC)
+impacts(mobj1, tr=trMatc)
+impacts(mobj1, listw=listw)
+cat(try(impacts(mobj, evalues=ev), silent=TRUE), "\n")
+summary(impacts(mobj, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
+summary(impacts(mobj1, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
 xobj <- spdep::lmSLX(CRIME ~ INC + HOVAL, columbus, listw)
-summary(spdep::impacts(xobj))
-eobj <- spdep::errorsarlm(CRIME ~ INC + HOVAL, columbus, listw, etype="emixed")
-# FIXME spdep::
-summary(spdep::impacts(eobj), adjust_k=TRUE)
+summary(impacts(xobj))
+eobj <- errorsarlm(CRIME ~ INC + HOVAL, columbus, listw, etype="emixed")
+summary(impacts(eobj), adjust_k=TRUE)
 \dontrun{
-mobj1 <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+mobj1 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
 method="Matrix", control=list(fdHess=TRUE))
-# FIXME spdep::
 summary(mobj1)
 set.seed(1)
-summary(spdep::impacts(mobj1, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
-summary(spdep::impacts(mobj, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
-mobj2 <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+summary(impacts(mobj1, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
+summary(impacts(mobj, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
+mobj2 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
 method="Matrix", control=list(fdHess=TRUE, optimHess=TRUE))
-# FIXME spdep::
-summary(spdep::impacts(mobj2, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
-mobj3 <- spdep::lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+summary(impacts(mobj2, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
+mobj3 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
 method="spam", control=list(fdHess=TRUE))
-# FIXME spdep::
-summary(spdep::impacts(mobj3, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
+summary(impacts(mobj3, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
 }
 \dontrun{
 data(boston, package="spData")
 Wb <- as(spdep::nb2listw(boston.soi), "CsparseMatrix")
 trMatb <- trW(Wb, type="mult")
-gp2mMi <- spdep::lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
+gp2mMi <- lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
 I(RM^2) +  AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT), 
 data=boston.c, spdep::nb2listw(boston.soi), type="mixed", method="Matrix", 
 control=list(fdHess=TRUE), trs=trMatb)
-# FIXME spdep::
 summary(gp2mMi)
-summary(spdep::impacts(gp2mMi, tr=trMatb, R=1000), zstats=TRUE, short=TRUE)
+summary(impacts(gp2mMi, tr=trMatb, R=1000), zstats=TRUE, short=TRUE)
 data(house, package="spData")
 lw <- spdep::nb2listw(LO_nb)
 form <- formula(log(price) ~ age + I(age^2) + I(age^3) + log(lotsize) +
    rooms + log(TLA) + beds + syear)
-lobj <- spdep::lagsarlm(form, house, lw, method="Matrix",
+lobj <- lagsarlm(form, house, lw, method="Matrix",
  control=list(fdHess=TRUE), trs=trMat)
-# FIXME spdep::
 summary(lobj)
-loobj <- spdep::impacts(lobj, tr=trMat, R=1000)
+loobj <- impacts(lobj, tr=trMat, R=1000)
 summary(loobj, zstats=TRUE, short=TRUE)
 lobj1 <- stsls(form, house, lw)
 loobj1 <- impacts(lobj1, tr=trMat, R=1000)
 summary(loobj1, zstats=TRUE, short=TRUE)
-mobj <- spdep::lagsarlm(form, house, lw, type="mixed",
+mobj <- lagsarlm(form, house, lw, type="mixed",
  method="Matrix", control=list(fdHess=TRUE), trs=trMat)
-# FIXME spdep::
 summary(mobj)
-moobj <- spdep::impacts(mobj, tr=trMat, R=1000)
+moobj <- impacts(mobj, tr=trMat, R=1000)
 summary(moobj, zstats=TRUE, short=TRUE)
 }
 }

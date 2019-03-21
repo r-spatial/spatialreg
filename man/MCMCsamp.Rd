@@ -66,46 +66,39 @@ summary(ecar1fw)
 res <- MCMCsamp(ecar1fw, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
 }
-esar0 <- spdep::errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
-# FIXME spdep::
 summary(esar0)
 res <- MCMCsamp(esar0, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
 \dontrun{
-esar0w <- spdep::errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+esar0w <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8)
-# FIXME spdep::
 summary(esar0)
 res <- MCMCsamp(esar0w, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
-esar1 <- spdep::errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+esar1 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, etype="emixed")
-# FIXME spdep::
 summary(esar1)
 res <- MCMCsamp(esar1, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
-lsar0 <- spdep::lagsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+lsar0 <- lagsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
-# FIXME spdep::
 summary(lsar0)
 res <- MCMCsamp(lsar0, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
-lsar1 <- spdep::lagsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+lsar1 <- lagsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, type="mixed")
-# FIXME spdep::
 summary(lsar1)
 res <- MCMCsamp(lsar1, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
-ssar0 <- spdep::sacsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+ssar0 <- sacsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
-# FIXME spdep::
 summary(ssar0)
 res <- MCMCsamp(ssar0, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)
-ssar1 <- spdep::sacsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+ssar1 <- sacsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, type="sacmixed")
-# FIXME spdep::
 summary(ssar1)
 res <- MCMCsamp(ssar1, mcmc=5000, burnin=500, listw=listw_NY)
 summary(res)

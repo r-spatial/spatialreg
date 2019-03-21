@@ -144,9 +144,8 @@ identical(substring(ID, 2, 10), substring(as.character(nydata$AREAKEY), 2, 10))
 #require("spdep", quietly=TRUE)
 nyadjlw <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY))
 listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
-esar0 <- spdep::errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
+esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
-# FIXME spdep::
 summary(esar0)
 system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="eigen"))
@@ -210,16 +209,14 @@ mdata.4 <- mdata[-outl,]
 W <- spdep::listw2mat(sids.nhbr.listw)
 W.4 <- W[-outl, -outl]
 sids.nhbr.listw.4 <- spdep::mat2listw(W.4)
-esarI <- spdep::errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
+esarI <- errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
-# FIXME spdep::
 summary(esarI)
 esarIa <- spautolm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
 summary(esarIa)
-esarIV <- spdep::errorsarlm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
+esarIV <- errorsarlm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
-# FIXME spdep::
 summary(esarIV)
 esarIVa <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
@@ -246,9 +243,8 @@ nc.sids$fitIV <- append(fitted.values(ecarIVaw), NA, outl-1)
 plot(nc.sids[,"fitIV"], nbreaks=12) # Cressie 1993, p. 565
 \dontrun{
 data(oldcol, package="spdep")
-COL.errW.eig <- spdep::errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
+COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"))
-# FIXME spdep::
 summary(COL.errW.eig)
 COL.errW.sar <- spautolm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"))

@@ -85,10 +85,9 @@ summary(obj3)
 \donttest{
 data(boston, package="spData")
 lw <- spdep::nb2listw(boston.soi)
-gp2 <- spdep::lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2)
+gp2 <- lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2)
  +  AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT),
  data=boston.c, lw, method="Matrix")
-# FIXME spdep::
 summary(gp2)
 gp2a <- lagmess(CMEDV ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2)
  +  AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT),

@@ -124,95 +124,11 @@ impacts <- function(obj, ...)
 
 
 
-impacts.SLX <- function(obj, ...) {
-    stopifnot(!is.null(attr(obj, "mixedImps")))
-    n <- nrow(obj$model)
-    k <- obj$qr$rank
-    impactsWX(attr(obj, "mixedImps"), n, k, type="SLX", method="estimable")
-}
-
 impactSDEM <- function(obj) {
     n <- nrow(obj$tarX)
     k <- ncol(obj$tarX)
     impactsWX(obj$emixedImps, n, k, type="SDEM", method="estimable")
 }
-
-impactsWX <- function(obj, n, k, type="SLX", method="estimable") {
-    imps <- lapply(obj, function(x) x[, 1])
-    names(imps) <- c("direct", "indirect", "total")
-    attr(imps, "bnames") <- rownames(obj[[1]])
-    ses <- lapply(obj, function(x) x[, 2])
-    names(ses) <- c("direct", "indirect", "total")
-    attr(ses, "bnames") <- rownames(obj[[1]])
-    res <- list(impacts=imps, se=ses)
-    attr(res, "n") <- n
-    attr(res, "k") <- k
-    attr(res, "type") <- type
-    attr(res, "method") <- method
-    attr(res, "bnames") <- rownames(obj[[1]])
-    class(res) <- "WXImpact"
-    res
-}
-
-
-print.WXImpact <- function(x, ...) {
-    mat <- lagImpactMat(x$impacts)
-    cat("Impact measures (", attr(x, "type"), ", ",
-        attr(x, "method"), "):\n", sep="")
-    print(mat, ...)
-    cat("\n")
-    invisible(x)
-}
-
-print.summary.WXImpact <- function(x, ...) {
-    mat <- x$mat
-    cat("Impact measures (", attr(x, "type"), ", ",
-        attr(x, "method"), "):\n", sep="")
-    print(mat, ...)
-    cat("========================================================\n")
-    mat <- x$semat
-    cat("Standard errors:\n", sep="")
-    print(mat, ...)
-    cat("========================================================\n")
-    cat("Z-values:\n")
-    mat <- x$zmat
-    rownames(mat) <- attr(x, "bnames")
-    print(mat, ...)
-    cat("\np-values:\n")
-    xx <- apply(x$pzmat, 2, format.pval)
-# 100928 Eelke Folmer
-    if (length(attr(x, "bnames")) == 1L) {
-        xx <- matrix(xx, ncol=3)
-        colnames(xx) <- c("Direct", "Indirect", "Total")
-    }
-    rownames(xx) <- attr(x, "bnames")
-    print(xx, ..., quote=FALSE)
-    cat("\n")
-    invisible(x)
-}
-
-summary.WXImpact <- function(object, ...,
- adjust_k=(attr(object, "type") == "SDEM")) {
-    stopifnot(is.logical(adjust_k))
-    stopifnot(length(adjust_k) == 1L)
-    object$mat <- lagImpactMat(object$impacts)
-    object$semat <- lagImpactMat(object$se)
-    if (adjust_k) {
-        object$semat <- sqrt((object$semat^2) * ((attr(object, "n") - 
-            attr(object, "k"))/attr(object, "n")))
-        attr(object, "method") <- paste(attr(object, "method"),
-            ", n", sep="")
-    } else {
-        attr(object, "method") <- paste(attr(object, "method"),
-            ", n-k", sep="")
-    }
-    object$zmat <- object$mat/object$semat
-    object$pzmat <- 2*(1-pnorm(abs(object$zmat)))
-    class(object) <- c("summary.WXImpact", class(object))
-    object
-}
-
-
 
 
 lagImpacts <- function(T, g, P) {

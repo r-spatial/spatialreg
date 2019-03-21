@@ -11,6 +11,7 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person("Yongwan", "Chun", role = "ctb"),
              person("Virgilio", "Gómez-Rubio", role = "ctb"),
              person("Martin", "Gubri", role = "ctb"),
+             person("Rein", "Halbersma", role = "ctb"),
              person("Angela", "Li", role = "ctb"),
              person("Jielai", "Ma", role = "ctb"),
              person("Abhirup", "Mallik", role = c("ctb", "trl")),
@@ -21,8 +22,8 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
 Depends: R (>= 3.3.0), spData, Matrix
-Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes, nlme
-Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr
+Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes, nlme, gmodels
+Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr, lmtest, sandwich
 Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice) currently contained in spdep, sphet and spse.  
 License: GPL-2
 VignetteBuilder: knitr
