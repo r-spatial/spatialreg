@@ -186,6 +186,7 @@ system.time(ecar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="CAR", method="Matrix"))
 summary(ecar1wM)
 }
+require("sf", quietly=TRUE)
 nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
 ft.SID74 <- sqrt(1000)*(sqrt(nc.sids$SID74/nc.sids$BIR74) +
  sqrt((nc.sids$SID74+1)/nc.sids$BIR74))

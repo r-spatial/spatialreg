@@ -91,7 +91,8 @@ export(errorsarlm, lagsarlm, sacsarlm)
 
 export(print.sarlm, summary.sarlm, residuals.sarlm, deviance.sarlm, 
 	coef.sarlm, fitted.sarlm, logLik.sarlm, anova.sarlm, vcov.sarlm,
-	predict.sarlm, print.summary.sarlm, print.sarlm.pred, bptest.sarlm)
+	predict.sarlm, print.summary.sarlm, print.sarlm.pred,
+        as.data.frame.sarlm.pred, bptest.sarlm, impacts.sarlm)
 
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)

@@ -8,6 +8,8 @@
 \alias{logLik.sarlm}
 \alias{anova.sarlm}
 \alias{bptest.sarlm}
+\alias{impacts.sarlm}
+
 %- Also NEED an `\alias' for EACH other topic documented here.
 \title{Likelihood ratio test}
 \description{
@@ -21,18 +23,28 @@ Wald1.sarlm(object)
 \method{Hausman.test}{sarlm}(object, ..., tol=NULL)
 \method{anova}{sarlm}(object, ...)
 bptest.sarlm(object, varformula=NULL, studentize = TRUE, data=list())
+\method{impacts}{sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
+ useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
   \item{x}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
   \item{y}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
-  \item{object}{a \code{sarlm} object}
+  \item{object, obj}{a \code{sarlm} object}
   \item{\dots}{further arguments passed to or from other methods}
-  \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
+%  \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
   \item{varformula}{a formula describing only the potential explanatory variables for the variance (no dependent variable needed). By default the same explanatory variables are taken as in the main regression model}
   \item{studentize}{logical. If set to \code{TRUE} Koenker's studentized
    version of the test statistic will be used.}
-  \item{data}{an optional data frame containing the variables in the varformula}}
+  \item{data}{an optional data frame containing the variables in the varformula}  \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
+  \item{listw}{If \code{tr} is not given, a spatial weights object as created by \code{nb2listw}; they must be the same spatial weights as were used in fitting the spatial regression, but do not have to be row-standardised}
+  \item{evalues}{vector of eigenvalues of spatial weights matrix for impacts calculations}
+  \item{R}{If given, simulations are used to compute distributions for the impact measures, returned as \code{mcmc} objects; the objects are used for convenience but are not output by an MCMC process}
+  \item{useHESS}{Use the Hessian approximation (if available) even if the asymptotic coefficient covariance matrix is available; used for comparing methods}
+  \item{tol}{Argument passed to \code{mvrnorm} and \code{solve}: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix}
+  \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
+  \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
+}
 \value{
   The tests return objects of class \code{htest} with:
   \item{statistic}{value of statistic}
