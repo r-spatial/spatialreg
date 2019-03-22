@@ -190,9 +190,11 @@ nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TR
 ft.SID74 <- sqrt(1000)*(sqrt(nc.sids$SID74/nc.sids$BIR74) +
  sqrt((nc.sids$SID74+1)/nc.sids$BIR74))
 lm_nc <- lm(ft.SID74 ~ 1)
-sids.nhbr30 <- spdep::dnearneigh(cbind(nc.sids$east, nc.sids$north), 0, 30, row.names=row.names(nc.sids))
+sids.nhbr30 <- spdep::dnearneigh(cbind(nc.sids$east, nc.sids$north), 0, 30,
+ row.names=row.names(nc.sids))
 sids.nhbr30.dist <- spdep::nbdists(sids.nhbr30, cbind(nc.sids$east, nc.sids$north))
-sids.nhbr <- spdep::listw2sn(spdep::nb2listw(sids.nhbr30, glist=sids.nhbr30.dist, style="B", zero.policy=TRUE))
+sids.nhbr <- spdep::listw2sn(spdep::nb2listw(sids.nhbr30,
+ glist=sids.nhbr30.dist, style="B", zero.policy=TRUE))
 dij <- sids.nhbr[,3]
 n <- nc.sids$BIR74
 el1 <- min(dij)/dij
