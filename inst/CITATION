@@ -1,4 +1,4 @@
-citHeader("To cite spreg in publications use one or more of the following as appropriate:")
+citHeader("To cite spatialreg in publications use one or more of the following as appropriate:")
 
 citEntry(entry = "Article",
   title        = "Comparing Implementations of Estimation Methods for Spatial Econometrics",
