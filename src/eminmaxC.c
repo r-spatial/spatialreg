@@ -1,6 +1,6 @@
 /* Copyright 2015 by Roger S. Bivand. */
 
-#include "spreg.h"
+#include "spatialreg.h"
 
 
 SEXP lmin21(SEXP nb, SEXP y, SEXP cy, SEXP card) {

@@ -1,7 +1,7 @@
-Package: spreg
+Package: spatialreg
 Version: 1.1-1
 Date: 2019-03-12
-Title: Spatial Regression Analysis 
+Title: Spatial Regression Analysis
 Encoding: UTF-8
 Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
              person(given = "Gianfranco", family = "Piras", role = c("aut"), email = "gpiras@mac.com"),
@@ -22,9 +22,31 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
 Depends: R (>= 3.3.0), spData, Matrix
-Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes, nlme, gmodels
-Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr, lmtest, sandwich
+Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes,
+        nlme, gmodels
+Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr, lmtest,
+        sandwich
 Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice) currently contained in spdep, sphet and spse.  
 License: GPL-2
 VignetteBuilder: knitr
-
+NeedsCompilation: yes
+Packaged: 2019-03-22 19:20:12 UTC; rsb
+Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>),
+  Gianfranco Piras [aut],
+  Luc Anselin [ctb],
+  Andrew Bernat [ctb],
+  Eric Blankmeyer [ctb],
+  Yongwan Chun [ctb],
+  Virgilio Gómez-Rubio [ctb],
+  Martin Gubri [ctb],
+  Rein Halbersma [ctb],
+  Angela Li [ctb],
+  Jielai Ma [ctb],
+  Abhirup Mallik [ctb, trl],
+  Giovanni Millo [ctb],
+  Pedro Peres-Neto [ctb],
+  Michael Tiefelsdorf [ctb],
+  Mauricio Sarrias [ctb],
+  JuanTomas Sayago [ctb],
+  Michael Tiefelsdorf [ctb]
+Maintainer: Roger Bivand <Roger.Bivand@nhh.no>

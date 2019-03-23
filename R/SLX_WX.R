@@ -2,7 +2,7 @@
 
 lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL) {
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
         if (class(formula) != "formula") formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
@@ -179,7 +179,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
 
 predict.SLX <- function(object, newdata, listw, zero.policy=NULL, ...) {
     if (is.null(zero.policy))
-        zero.policy <- get("zeroPolicy", envir = .spregOptions)
+        zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
     stopifnot(is.logical(zero.policy))
     if (missing(newdata)) {
         return(fitted(object))
@@ -292,7 +292,7 @@ summary.WXImpact <- function(object, ...,
 
 create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
 	if (NROW(x) != length(listw$neighbours))

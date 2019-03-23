@@ -68,7 +68,7 @@ mom_calc_int <- function(is, m, W, eta0) {
 }
 
 mom_calc_int2 <- function(is, m, nb, weights, Card) {
-    Omega <- .Call("mom_calc_int2", is, as.integer(m), nb, weights, Card, PACKAGE="spreg")
+    Omega <- .Call("mom_calc_int2", is, as.integer(m), nb, weights, Card, PACKAGE="spatialreg")
     Omega
 }
 

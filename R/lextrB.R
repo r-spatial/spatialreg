@@ -153,7 +153,7 @@ lminC_2.3 <- function(lw, y, sse.new, crd, zero.policy=TRUE,
     if (control$useC) {
 #      crd <- card(lw$neighbours)
       uCres23 <- .Call("lmin23", lw$neighbours, y, cy, crd, beta, ttol,
-        PACKAGE="spreg")
+        PACKAGE="spatialreg")
       y <- uCres23[[1]]
       n.switch4 <- uCres23[[2]]
     } else {
@@ -222,7 +222,7 @@ lminC_2.2 <- function(lw, res_2.1, crd, zero.policy=TRUE,
   if (control$useC) {
 #    crd <- card(lw$neighbours)
     uCres22 <- .Call("lmin22", lw$neighbours, y, cy, crd, beta,
-      PACKAGE="spreg")
+      PACKAGE="spatialreg")
     y <- uCres22[[1]]
     n.switch3 <- uCres22[[2]]
   } else {
@@ -284,7 +284,7 @@ lminC_2.1 <- function(lw, y, crd, zero.policy=TRUE,
     if (control$useC) {
 #      crd <- card(lw$neighbours)
       uCres21 <- .Call("lmin21", lw$neighbours, y, cy, crd,
-        PACKAGE="spreg")
+        PACKAGE="spatialreg")
       y <- uCres21[[1]]
       n.switch <- uCres21[[2]]
     } else {

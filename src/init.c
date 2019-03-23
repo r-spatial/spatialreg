@@ -1,6 +1,6 @@
 /* Copyright 2019 by Roger S. Bivand. */
 
-#include "spreg.h"
+#include "spatialreg.h"
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
 

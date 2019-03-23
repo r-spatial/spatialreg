@@ -51,7 +51,7 @@ NY_nb <- read.gal(system.file("weights/NY_nb.gal", package="spData"), override.i
 ```
 
 ```{r echo=TRUE,eval=TRUE}
-library(spreg)
+library(spatialreg)
 nySFE <- SpatialFiltering(Z~PEXPOSURE+PCTAGE65P+PCTOWNHOME, data=NY8, nb=NY_nb, style="W", verbose=FALSE)
 nylmSFE <- lm(Z~PEXPOSURE+PCTAGE65P+PCTOWNHOME+fitted(nySFE), data=NY8)
 summary(nylmSFE)

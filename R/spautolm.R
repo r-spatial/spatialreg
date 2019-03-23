@@ -18,10 +18,10 @@ spautolm <- function(formula, data = list(), listw, weights,
         warning("unknown names in control: ", paste(noNms, collapse = ", "))
     if (!inherits(listw, "listw")) 
         stop("No neighbourhood list")
-    if (is.null(verbose)) verbose <- get("verbose", envir = .spregOptions)
+    if (is.null(verbose)) verbose <- get("verbose", envir = .spatialregOptions)
     stopifnot(is.logical(verbose))
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
 
     if (family == "SMA" && method != "eigen") stop("SMA only for eigen method")

@@ -18,10 +18,10 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         con[(namc <- names(control))] <- control
         if (length(noNms <- namc[!namc %in% nmsC])) 
             warning("unknown names in control: ", paste(noNms, collapse = ", "))
-        if (is.null(quiet)) quiet <- !get("verbose", envir = .spregOptions)
+        if (is.null(quiet)) quiet <- !get("verbose", envir = .spatialregOptions)
         stopifnot(is.logical(quiet))
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
         stopifnot(is.logical(con$optimHess))
@@ -219,7 +219,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         timings[[nm]] <- proc.time() - .ptime_start
         .ptime_start <- proc.time()
         if (con$compiled_sse) {
-             ptr <- .Call("opt_error_init", PACKAGE="spreg")
+             ptr <- .Call("opt_error_init", PACKAGE="spatialreg")
              assign("ptr", ptr, envir=env)
         }
 	opt <- optimize(sar.error.f, interval=interval, 
@@ -231,7 +231,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	names(lambda) <- "lambda"
 	LL <- opt$objective
         if (con$compiled_sse) {
-             .Call("opt_error_free", get("ptr", envir=env), PACKAGE="spreg")
+             .Call("opt_error_free", get("ptr", envir=env), PACKAGE="spatialreg")
         }
         nm <- paste(method, "opt", sep="_")
         timings[[nm]] <- proc.time() - .ptime_start
@@ -424,14 +424,14 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         if (con$fdHess) {
             coefs <- c(lambda, coef.lambda)
             if (con$compiled_sse) {
-                ptr <- .Call("hess_error_init", PACKAGE="spreg")
+                ptr <- .Call("hess_error_init", PACKAGE="spatialreg")
                 assign("ptr", ptr, envir=env)
             }
             fdHess <- getVmate(coefs, env, s2, trs, tol.solve=tol.solve,
                 optim=con$optimHess, optimM=con$optimHessMethod)
             if (con$compiled_sse) {
                 .Call("hess_error_free", get("ptr", envir=env),
-                    PACKAGE="spreg")
+                    PACKAGE="spatialreg")
             }
             if (is.null(trs)) {
                 rownames(fdHess) <- colnames(fdHess) <- 
@@ -489,7 +489,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 sar_error_sse <- function(lambda, env) {
     if (get("compiled_sse", envir=env)) {
         ft <- get("first_time", envir=env)
-        SSE <- .Call("R_ml_sse_env", env, lambda, PACKAGE="spreg")
+        SSE <- .Call("R_ml_sse_env", env, lambda, PACKAGE="spatialreg")
         if (ft) assign("first_time", FALSE, envir=env)
     } else {
         yl <- get("y", envir=env) - lambda * get("wy", envir=env)
@@ -536,7 +536,7 @@ lagsarlm <- function(formula, data = list(), listw,
         con[(namc <- names(control))] <- control
         if (length(noNms <- namc[!namc %in% nmsC])) 
             warning("unknown names in control: ", paste(noNms, collapse = ", "))
-        if (is.null(quiet)) quiet <- !get("verbose", envir = .spregOptions)
+        if (is.null(quiet)) quiet <- !get("verbose", envir = .spatialregOptions)
         stopifnot(is.logical(quiet))
         if (is.null(zero.policy))
             zero.policy <- get.ZeroPolicyOption()
@@ -779,7 +779,7 @@ lagsarlm <- function(formula, data = list(), listw,
         if (con$fdHess) {
             coefs <- c(rho, coef.rho)
             if (con$compiled_sse) {
-               ptr <- .Call("hess_lag_init", PACKAGE="spreg")
+               ptr <- .Call("hess_lag_init", PACKAGE="spatialreg")
                assign("ptr", ptr, envir=env)
             }
             fdHess <- getVmatl(coefs, env,
@@ -787,7 +787,7 @@ lagsarlm <- function(formula, data = list(), listw,
                optimM=con$optimHessMethod)
             if (con$compiled_sse) {
                 .Call("hess_lag_free", get("ptr", envir=env),
-                     PACKAGE="spreg")
+                     PACKAGE="spatialreg")
             }
             if (is.null(trs)) {
                 rownames(fdHess) <- colnames(fdHess) <- 
@@ -882,7 +882,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
         con[(namc <- names(control))] <- control
         if (length(noNms <- namc[!namc %in% nmsC])) 
             warning("unknown names in control: ", paste(noNms, collapse = ", "))
-        if (is.null(quiet)) quiet <- !get("verbose", envir = .spregOptions)
+        if (is.null(quiet)) quiet <- !get("verbose", envir = .spatialregOptions)
 #FIXME
         if (missing(type)) type <- "sac"
         if (type == "Durbin") type <- "sacmixed"
@@ -899,7 +899,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	    stop("\nUnknown model type\n"))
         stopifnot(is.logical(quiet))
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
         if (class(formula) != "formula") formula <- as.formula(formula)
 	mt <- terms(formula, data = data)

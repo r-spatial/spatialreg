@@ -37,10 +37,10 @@ SpatialFiltering <- function (formula, lagformula=NULL, data=list(), na.action=n
     
     if (is.null(nb)) stop("Neighbour list argument missing")
     if (missing(formula)) stop("Formula argument missing")
-    if (is.null(verbose)) verbose <- get("verbose", envir = .spregOptions)
+    if (is.null(verbose)) verbose <- get("verbose", envir = .spatialregOptions)
     stopifnot(is.logical(verbose))
         if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spregOptions)
+            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
 
 

@@ -1,5 +1,5 @@
-# spreg
-spreg: spatial models estimation and testing
+# spatialreg
+spatialreg: spatial models estimation and testing
 
 (name of package and repo subject to change)
 

@@ -24,7 +24,7 @@ get.ClusterOption()
   \item{cl}{a cluster object created by \code{makeCluster} in \pkg{parallel}}
 }
 \details{
- Options in the spreg package are held in an environment local to the package namespace and not exported. Option values are set and retrieved with pairs of access functions, get and set. The \code{mc} option is set by default to FALSE on Windows systems, as they cannot fork the R session; by default it is TRUE on other systems, but may be set FALSE. If \code{mc} is FALSE, the \code{Cluster} option is used: if \code{mc} is FALSE and the \code{Cluster} option is NULL no parallel computing is done, or the \code{Cluster} option is passed a \dQuote{cluster} object created by the parallel or snow package for access without being passed as an argument. The \code{cores} option is set to NULL by default, and can be used to store the number of cores to use as an integer. If \code{cores} is NULL, facilities from the parallel package will not be used.
+ Options in the spatialreg package are held in an environment local to the package namespace and not exported. Option values are set and retrieved with pairs of access functions, get and set. The \code{mc} option is set by default to FALSE on Windows systems, as they cannot fork the R session; by default it is TRUE on other systems, but may be set FALSE. If \code{mc} is FALSE, the \code{Cluster} option is used: if \code{mc} is FALSE and the \code{Cluster} option is NULL no parallel computing is done, or the \code{Cluster} option is passed a \dQuote{cluster} object created by the parallel or snow package for access without being passed as an argument. The \code{cores} option is set to NULL by default, and can be used to store the number of cores to use as an integer. If \code{cores} is NULL, facilities from the parallel package will not be used.
 }
 \value{
   The option access functions return their current settings, the assignment functions usually return the previous value of the option.
@@ -35,7 +35,7 @@ get.ClusterOption()
 
  
 \examples{
-ls(envir=spreg:::.spregOptions)
+ls(envir=spatialreg:::.spatialregOptions)
 library(parallel)
 nc <- detectCores(logical=FALSE)
 nc
@@ -53,9 +53,9 @@ if (!is.na(nc)) {
   cl <- makeCluster(get.coresOption())
   print(clusterEvalQ(cl, exists("mom_calc")))
   set.ClusterOption(cl)
-  clusterEvalQ(get.ClusterOption(), library(spreg))
+  clusterEvalQ(get.ClusterOption(), library(spatialreg))
   print(clusterEvalQ(cl, exists("mom_calc")))
-  clusterEvalQ(get.ClusterOption(), detach(package:spreg))
+  clusterEvalQ(get.ClusterOption(), detach(package:spatialreg))
   set.ClusterOption(NULL)
   print(clusterEvalQ(cl, exists("mom_calc")))
   stopCluster(cl)
@@ -68,9 +68,9 @@ if (!is.na(nc)) {
   cl <- makeCluster(nc)
   print(clusterEvalQ(cl, exists("mom_calc")))
   set.ClusterOption(cl)
-  clusterEvalQ(get.ClusterOption(), library(spreg))
+  clusterEvalQ(get.ClusterOption(), library(spatialreg))
   print(clusterEvalQ(cl, exists("mom_calc")))
-  clusterEvalQ(get.ClusterOption(), detach(package:spreg))
+  clusterEvalQ(get.ClusterOption(), detach(package:spatialreg))
   set.ClusterOption(NULL)
   print(clusterEvalQ(cl, exists("mom_calc")))
   stopCluster(cl)

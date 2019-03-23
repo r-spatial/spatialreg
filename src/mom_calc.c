@@ -1,6 +1,6 @@
 /* Copyright 2010 by Roger S. Bivand. */
 
-#include "spreg.h"
+#include "spatialreg.h"
 
 static int c__1 = 1;
 

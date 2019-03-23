@@ -93,7 +93,7 @@ lminW_3 <- function(lw, ev1, n.nei, zero.policy=TRUE,
    
     if (control$useC) {
       uCres3 <- .Call("lmin3", lw$neighbours, ev1, ev1.lag, n.nei, beta, tol,
-        PACKAGE="spreg")
+        PACKAGE="spatialreg")
       ev1 <- uCres3[[1]]
     } else {
       for (i in 1:n) {
@@ -240,7 +240,7 @@ lminS_3 <- function(lw, ev1, comp, crd, zero.policy=TRUE,
 # FIXME need double n.nei
     if (control$useC) {
       uCres3 <- .Call("lmin3S", lw$neighbours, ev1, ev1.lag, n.nei, crd,
-        beta, tol, PACKAGE="spreg")
+        beta, tol, PACKAGE="spatialreg")
       ev1 <- uCres3[[1]]
     } else {
       for (i in 1:n) {

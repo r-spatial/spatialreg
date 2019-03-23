@@ -3,7 +3,7 @@
 eigenw <- function(listw, quiet=NULL)
 {
 	if(!inherits(listw, "listw")) stop("not a listw object")
-        if (is.null(quiet)) quiet <- !get("verbose", envir = .spregOptions)
+        if (is.null(quiet)) quiet <- !get("verbose", envir = .spatialregOptions)
         stopifnot(is.logical(quiet))
 
 	w <- listw2mat(listw)
@@ -38,10 +38,10 @@ griffith_sone <- function(P, Q, type="rook") {
 subgraph_eigenw <- function(nb, glist=NULL, style="W", zero.policy=NULL,
     quiet=NULL) {
     if(!inherits(nb, "nb")) stop("Not a neighbours list")
-    if (is.null(quiet)) quiet <- !get("verbose", envir = .spregOptions)
+    if (is.null(quiet)) quiet <- !get("verbose", envir = .spatialregOptions)
     stopifnot(is.logical(quiet))
     if (is.null(zero.policy))
-        zero.policy <- get("zeroPolicy", envir = .spregOptions)
+        zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
     stopifnot(is.logical(zero.policy))
     if (!(style %in% c("W", "B", "C", "S", "U", "minmax")))
         stop(paste("Style", style, "invalid"))

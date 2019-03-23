@@ -80,7 +80,7 @@ summary(obj2)
 system.time(obj2a <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw,
  use_expm=TRUE))
 summary(obj2a)
-obj3 <- spdep::lagsarlm(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw)
+obj3 <- lagsarlm(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw)
 summary(obj3)
 \donttest{
 data(boston, package="spData")

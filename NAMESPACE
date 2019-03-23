@@ -1,4 +1,4 @@
-useDynLib(spreg)
+useDynLib(spatialreg)
 
 import(spData)
 

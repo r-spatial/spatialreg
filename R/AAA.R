@@ -1,15 +1,15 @@
 # Copyright 2019 by Roger Bivand 
 #
 
-.spregOptions <- new.env(FALSE, globalenv())
-#assign("spChkID", FALSE, envir = .spregOptions)
-assign("zeroPolicy", spdep::get.ZeroPolicyOption(), envir = .spregOptions)
-assign("verbose", spdep::get.VerboseOption(), envir = .spregOptions)
-assign("mc", spdep::get.mcOption(), envir = .spregOptions)
-assign("cores", spdep::get.coresOption(), envir = .spregOptions)
-assign("cluster", spdep::get.ClusterOption(), envir = .spregOptions)
-#assign("rlecuyerSeed", rep(12345, 6), envir = .spregOptions)
-#assign("listw_is_CsparseMatrix", FALSE, envir = .spregOptions)
+.spatialregOptions <- new.env(FALSE, globalenv())
+#assign("spChkID", FALSE, envir = .spatialregOptions)
+assign("zeroPolicy", spdep::get.ZeroPolicyOption(), envir = .spatialregOptions)
+assign("verbose", spdep::get.VerboseOption(), envir = .spatialregOptions)
+assign("mc", spdep::get.mcOption(), envir = .spatialregOptions)
+assign("cores", spdep::get.coresOption(), envir = .spatialregOptions)
+assign("cluster", spdep::get.ClusterOption(), envir = .spatialregOptions)
+#assign("rlecuyerSeed", rep(12345, 6), envir = .spatialregOptions)
+#assign("listw_is_CsparseMatrix", FALSE, envir = .spatialregOptions)
 
 setOldClass(c("listw"))
 

@@ -313,7 +313,7 @@ getVmate <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
 sar_error_hess_sse <- function(lambda, beta, env) {
     if (get("compiled_sse", envir=env)) {
         ft <- get("first_time", envir=env)
-        SSE <- .Call("R_ml1_sse_env", env, lambda, beta, PACKAGE="spreg")
+        SSE <- .Call("R_ml1_sse_env", env, lambda, beta, PACKAGE="spatialreg")
         if (ft) assign("first_time", FALSE, envir=env)
     } else {
         yl <- get("y", envir=env) - lambda * get("wy", envir=env)
@@ -394,7 +394,7 @@ getVmatl <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
 sar_lag_hess_sse <- function(rho, beta, env) {
     if (get("compiled_sse", envir=env)) {
         ft <- get("first_time", envir=env)
-        SSE <- .Call("R_ml2_sse_env", env, rho, beta, PACKAGE="spreg")
+        SSE <- .Call("R_ml2_sse_env", env, rho, beta, PACKAGE="spatialreg")
         if (ft) assign("first_time", FALSE, envir=env)
     } else {
         res <- (get("y", envir=env) - rho * get("wy", envir=env)) - 

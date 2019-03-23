@@ -13,7 +13,7 @@ MCMCsamp.spautolm <- function(object, mcmc = 1L, verbose = NULL, ...,
     con[(namc <- names(control))] <- control
     if (length(noNms <- namc[!namc %in% nmsC])) 
         warning("unknown names in control: ", paste(noNms, collapse = ", "))
-    if (is.null(verbose)) verbose <- get("verbose", envir = .spregOptions)
+    if (is.null(verbose)) verbose <- get("verbose", envir = .spatialregOptions)
     stopifnot(is.logical(verbose))
     if (!inherits(listw, "listw")) 
         stop("No neighbourhood list")
@@ -93,7 +93,7 @@ MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
     con[(namc <- names(control))] <- control
     if (length(noNms <- namc[!namc %in% nmsC])) 
         warning("unknown names in control: ", paste(noNms, collapse = ", "))
-    if (is.null(verbose)) verbose <- get("verbose", envir = .spregOptions)
+    if (is.null(verbose)) verbose <- get("verbose", envir = .spatialregOptions)
     stopifnot(is.logical(verbose))
     if (!inherits(listw, "listw")) 
         stop("No neighbourhood list")
@@ -171,7 +171,7 @@ MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
 
     if (Type == "LAG") {
         if (con$compiled_sse) {
-           ptr <- .Call("hess_lag_init", PACKAGE="spreg")
+           ptr <- .Call("hess_lag_init", PACKAGE="spatialreg")
            assign("ptr", ptr, envir=env)
         }
         start <- c(object$rho, object$coefficients)
@@ -184,7 +184,7 @@ MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
 
         if (con$compiled_sse) {
             .Call("hess_lag_free", get("ptr", envir=env),
-                 PACKAGE="spreg")
+                 PACKAGE="spatialreg")
         }
         res <- as.mcmc(res0$par[(burnin+1):(mcmc+burnin),])
         attr(res, "accept") <- res0$accept
@@ -197,7 +197,7 @@ MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
         assign("WX", WX, envir=env)
 
         if (con$compiled_sse) {
-            ptr <- .Call("hess_error_init", PACKAGE="spreg")
+            ptr <- .Call("hess_error_init", PACKAGE="spatialreg")
             assign("ptr", ptr, envir=env)
         }
         start <- c(object$lambda, object$coefficients)
@@ -210,7 +210,7 @@ MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
 
         if (con$compiled_sse) {
             .Call("hess_error_free", get("ptr", envir=env),
-                PACKAGE="spreg")
+                PACKAGE="spatialreg")
         }
         res <- as.mcmc(res0$par[(burnin+1):(mcmc+burnin),])
         attr(res, "accept") <- res0$accept

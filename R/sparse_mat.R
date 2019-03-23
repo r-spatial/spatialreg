@@ -29,7 +29,7 @@ as_dgRMatrix_listw <- function(listw) {
 	p0 <- as.integer(c(0, cumsum(cardw)))
 	scard <- sum(cardw)
 	z <- .Call("listw2dgR", listw$neighbours, listw$weights,
-		as.integer(cardw), as.integer(scard), PACKAGE="spreg")
+		as.integer(cardw), as.integer(scard), PACKAGE="spatialreg")
 	res <- new("dgRMatrix", j=z[[1]], p=p0, Dim=as.integer(c(n, n)),
 		x=z[[2]])
         colnames(res) <- attr(listw$neighbours, "region.id")
@@ -46,7 +46,7 @@ as_dsTMatrix_listw <- function(listw) {
 	scard <- sum(cardw)
 	if (scard %% 2 != 0) stop("odd neighbours sum")
 	z <- .Call("listw2dsT", listw$neighbours, listw$weights,
-		as.integer(cardw), as.integer(scard/2), PACKAGE="spreg")
+		as.integer(cardw), as.integer(scard/2), PACKAGE="spatialreg")
 
 	res <- new("dsTMatrix", i=z[[1]], j=z[[2]], Dim=as.integer(c(n, n)),
 		x=z[[3]])
