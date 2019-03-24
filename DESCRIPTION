@@ -30,4 +30,4 @@ Description: This new project aims at collecting all the estimation functions fo
 License: GPL-2
 VignetteBuilder: knitr
 NeedsCompilation: yes
-
+RoxygenNote: 6.1.1
