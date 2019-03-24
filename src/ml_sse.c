@@ -2,7 +2,6 @@
 
 #include "spatialreg.h"
 
-/** */
 static int c__1 = 1;
 
 typedef struct opt_error_sse {
