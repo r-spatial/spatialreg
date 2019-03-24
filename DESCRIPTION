@@ -26,7 +26,7 @@ Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes,
         nlme, gmodels
 Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr, lmtest,
         sandwich
-Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice) currently contained in spdep, sphet and spse.  
+Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice/areal data using spatial weights matrices) contained up to now in 'spdep', 'sphet' and 'spse'. spatialreg 1.1-1 corresponds to 'spdep' 1.1-1, in which the model fitting functions are deprecated and pass through to 'spatialreg', but will mask those in 'spatialreg'. From versions 1.2-*, the fuctions will be made defunct in 'spdep'.
 License: GPL-2
 VignetteBuilder: knitr
 NeedsCompilation: yes
