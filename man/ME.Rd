@@ -107,7 +107,7 @@ set.seed(123)
 MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
  listw=spdep::nb2listw(hopkins.rook.nb, style="B"), alpha=0.2, verbose=TRUE)
 glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
-anova(glmME, test="Chisq")
+#anova(glmME, test="Chisq")
 anova(glmbase, glmME, test="Chisq")
 }
 \keyword{spatial}

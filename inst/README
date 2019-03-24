@@ -1,0 +1,54 @@
+Spatial Regression Analysis
+
+A collection of functions for estimating spatial simultaneous
+autoregressive (SAR) lag and error models, weighted and unweighted
+SAR and CAR spatial regression models, and GM SAR error models.
+
+This file is intended to clarify ownership and copyright: where
+possible individual files also carry brief copyright notices. 
+
+Copyrights
+==========
+
+File: R/lag.spsarlm.R is copyright (c) 1998-2002 by Roger Bivand and Andrew
+Bernat, and is subject to the licence at the foot of this file.
+
+File: R/kpgm_new.R is copyright (c) 2005 by Luc Anselin and Roger Bivand, 
+and is subject to the licence at the foot of this file.
+
+File: R/SpatialFiltering.R is copyright (c) 2005 by Yongwan Chun, Michael 
+Tiefelsdorf and Roger Bivand, and is subject to the licence at the foot 
+of this file.
+
+File R/SpBreg.R is copyright (c) 2011-2019 by Abhirup Mallik,
+Virgilio Gómez-Rubio and Roger Bivand, and is subject to the licence 
+at the foot of this file. It is based on translated Matlab code from the 
+Spatial Econometrics toolbox by James LeSage and R. Kelley Pace 
+(http://www.spatial-econometrics.com/).
+
+All other files are copyright (c) 1998-2019 Roger S. Bivand and
+are subject to the licence at the foot of this file.
+
+Licence
+=======
+
+    This is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+
+
+The file COPYING in the R top-level directory is a copy of the "GNU
+General Public License".
+
+Roger.Bivand@nhh.no
+

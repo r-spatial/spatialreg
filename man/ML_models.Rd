@@ -369,6 +369,7 @@ COL.msacW2.eig <- sacsarlm(CRIME ~ DISCBD + INC + HOVAL, data=COL.OLD,
  listw, Durbin= ~ INC, control=list(pre_eig1=ev, pre_eig2=ev))
 summary(COL.msacW2.eig)
 summary(impacts(COL.msacW2.eig, tr=trMatc, R=2000), zstats=TRUE, short=TRUE)
+\dontrun{
 COL.mix.eig <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb), type="mixed", method="eigen")
 summary(COL.mix.eig, correlation=TRUE, Nagelkerke=TRUE)
@@ -378,6 +379,6 @@ summary(COL.mix.M, correlation=TRUE, Nagelkerke=TRUE)
 COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
   spdep::nb2listw(COL.nb, style="W"), method="eigen")
 summary(COL.errW.eig, correlation=TRUE, Nagelkerke=TRUE, Hausman=TRUE)
-
+}
 }
 

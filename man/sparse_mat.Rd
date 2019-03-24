@@ -49,9 +49,11 @@ columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], qui
 #require(spdep, quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 col.listw <- spdep::nb2listw(col.gal.nb)
+\dontrun{
 if (require("spam", quietly=TRUE)) {
-col.sp <- as.spam.listw(col.listw)
-str(col.sp)
+  col.sp <- as.spam.listw(col.listw)
+  str(col.sp)
+}
 }
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1])[-1]))

@@ -26,27 +26,8 @@ Imports: spdep, expm, coda, methods, MASS, boot, splines, LearnBayes,
         nlme, gmodels
 Suggests: parallel, RSpectra, sf, tmap, foreign, spam, knitr, lmtest,
         sandwich
-Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice/areal data using spatial weights matrices) contained up to now in 'spdep', 'sphet' and 'spse'. spatialreg 1.1-1 corresponds to 'spdep' 1.1-1, in which the model fitting functions are deprecated and pass through to 'spatialreg', but will mask those in 'spatialreg'. From versions 1.2-*, the fuctions will be made defunct in 'spdep'.
+Description: This new project aims at collecting all the estimation functions for spatial cross-sectional models (on lattice/areal data using spatial weights matrices) contained up to now in 'spdep', 'sphet' and 'spse'. 'spatialreg' 1.1-1 corresponds to 'spdep' 1.1-1, in which the model fitting functions are deprecated and pass through to 'spatialreg', but will mask those in 'spatialreg'. From versions 1.2-*, the functions will be made defunct in 'spdep'.
 License: GPL-2
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2019-03-22 19:20:12 UTC; rsb
-Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>),
-  Gianfranco Piras [aut],
-  Luc Anselin [ctb],
-  Andrew Bernat [ctb],
-  Eric Blankmeyer [ctb],
-  Yongwan Chun [ctb],
-  Virgilio Gómez-Rubio [ctb],
-  Martin Gubri [ctb],
-  Rein Halbersma [ctb],
-  Angela Li [ctb],
-  Jielai Ma [ctb],
-  Abhirup Mallik [ctb, trl],
-  Giovanni Millo [ctb],
-  Pedro Peres-Neto [ctb],
-  Michael Tiefelsdorf [ctb],
-  Mauricio Sarrias [ctb],
-  JuanTomas Sayago [ctb],
-  Michael Tiefelsdorf [ctb]
-Maintainer: Roger Bivand <Roger.Bivand@nhh.no>
+
