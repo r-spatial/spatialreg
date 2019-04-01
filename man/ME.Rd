@@ -49,26 +49,37 @@ An object of class \code{ME_res}:
 \seealso{\code{\link{SpatialFiltering}}, \code{\link[stats]{glm}}}
 
 \examples{
+#require("spdep", quietly=TRUE)
+data(hopkins, package="spData")
+hopkins_part <- hopkins[21:36,36:21]
+hopkins_part[which(hopkins_part > 0, arr.ind=TRUE)] <- 1
+hopkins.rook.nb <- spdep::cell2nb(16, 16, type="rook")
+glmbase <- glm(c(hopkins_part) ~ 1, family="binomial")
+set.seed(123)
+MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
+ listw=spdep::nb2listw(hopkins.rook.nb, style="B"), alpha=0.2, verbose=TRUE)
+glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
+#anova(glmME, test="Chisq")
+anova(glmbase, glmME, test="Chisq")
+\dontrun{
 require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 lw <- spdep::nb2listw(col.gal.nb)
 lmbase <- lm(CRIME ~ INC + HOVAL, data=columbus)
-\dontrun{
 lagcol <- SpatialFiltering(CRIME ~ 1, ~ INC + HOVAL, data=columbus,
  nb=col.gal.nb, style="W", alpha=0.1, verbose=TRUE)
 lagcol
 lmlag <- lm(CRIME ~ INC + HOVAL + fitted(lagcol), data=columbus)
 anova(lmbase, lmlag)
-}
 set.seed(123)
 system.time(lagcol1 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
  listw=lw, alpha=0.1, verbose=TRUE))
 lagcol1
 lmlag1 <- lm(CRIME ~ INC + HOVAL + fitted(lagcol1), data=columbus)
 anova(lmbase, lmlag1)
-\dontrun{
+
 set.seed(123)
 lagcol2 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
  listw=lw, alpha=0.1, stdev=TRUE, verbose=TRUE)
@@ -100,18 +111,6 @@ glmME <- glm(SID74 ~ 1 + fitted(MEpois1), data=nc.sids, offset=log(BIR74),
 anova(glmME, test="Chisq")
 anova(glmbase, glmME, test="Chisq")
 }
-#require("spdep", quietly=TRUE)
-data(hopkins, package="spData")
-hopkins_part <- hopkins[21:36,36:21]
-hopkins_part[which(hopkins_part > 0, arr.ind=TRUE)] <- 1
-hopkins.rook.nb <- spdep::cell2nb(16, 16, type="rook")
-glmbase <- glm(c(hopkins_part) ~ 1, family="binomial")
-set.seed(123)
-MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
- listw=spdep::nb2listw(hopkins.rook.nb, style="B"), alpha=0.2, verbose=TRUE)
-glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
-#anova(glmME, test="Chisq")
-anova(glmbase, glmME, test="Chisq")
 }
 \keyword{spatial}
 

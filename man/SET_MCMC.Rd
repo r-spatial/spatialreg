@@ -147,26 +147,22 @@ COL.err.Bayes <- spBreg_err(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw,
 print(summary(COL.err.Bayes))
 print(summary(impacts(COL.err.Bayes)))
 print(raftery.diag(COL.err.Bayes, r=0.01))
-}
 set.seed(1)
 COL.sacW.B0 <- spBreg_sac(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw,
  Durbin=FALSE, control=list(ndraw=1500L, nomit=500L))
 print(summary(COL.sacW.B0))
 print(summary(impacts(COL.sacW.B0, tr=trMatc), zstats=TRUE, short=TRUE))
-\dontrun{
 set.seed(1)
 COL.sacW.B1 <- spBreg_sac(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw,
  Durbin=TRUE, control=list(ndraw=1500L, nomit=500L))
 print(summary(COL.sacW.B1))
 print(summary(impacts(COL.sacW.B1, tr=trMatc), zstats=TRUE, short=TRUE))
-}
 set.seed(1)
 COL.lag.Bayes <- spBreg_lag(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw=lw)
 print(summary(COL.lag.Bayes))
 print(summary(impacts(COL.lag.Bayes, tr=trMatc), short=TRUE, zstats=TRUE))
 print(summary(impacts(COL.lag.Bayes, evalues=ev), short=TRUE, zstats=TRUE))
-\dontrun{
 set.seed(1)
 COL.D0.Bayes <- spBreg_lag(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw=lw, Durbin=TRUE)

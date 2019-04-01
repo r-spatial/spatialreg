@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -96,7 +96,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/r-spatial/spatialreg">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -263,7 +268,7 @@ neighbours, if FALSE (default) assign NA</p></td>
 <span class='no'>ev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>lw</span>)
 <span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>lw</span>, <span class='st'>"CsparseMatrix"</span>)
 <span class='no'>trMatc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>coda</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"coda"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
 <span class='no'>COL.err.Bayes</span> <span class='kw'>&lt;-</span> <span class='fu'>spBreg_err</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.err.Bayes</span>))</div><div class='output co'>#&gt; 
@@ -930,16 +935,16 @@ neighbours, if FALSE (default) assign NA</p></td>
 #&gt; rho                    0.5478  0.56578  0.57579  0.58579  0.60480
 #&gt; sige                   0.0132  0.01362  0.01386  0.01408  0.01457
 #&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>el_ml</span>$<span class='no'>timings</span>)</div><div class='output co'>#&gt;           user.self elapsed
-#&gt; set_up        0.014   0.015
+#&gt; set_up        0.013   0.013
 #&gt; LU_set_up     0.003   0.003
-#&gt; LU_opt        0.263   0.265
-#&gt; coefs         0.002   0.001
-#&gt; LU_fdHess     0.350   0.351</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>el_B</span>, <span class='st'>"timings"</span>))</div><div class='output co'>#&gt;                   user.self sys.self elapsed user.child sys.child
-#&gt; set_up                0.012    0.000   0.012          0         0
-#&gt; SE_classic_set_up     3.402    0.004   3.415          0         0
-#&gt; complete_setup        0.001    0.000   0.000          0         0
-#&gt; sampling              1.342    0.000   1.347          0         0
-#&gt; finalise              0.013    0.000   0.013          0         0</div></pre>
+#&gt; LU_opt        0.215   0.219
+#&gt; coefs         0.002   0.002
+#&gt; LU_fdHess     0.314   0.315</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>el_B</span>, <span class='st'>"timings"</span>))</div><div class='output co'>#&gt;                   user.self sys.self elapsed user.child sys.child
+#&gt; set_up                0.010    0.000   0.010          0         0
+#&gt; SE_classic_set_up     3.084    0.012   3.105          0         0
+#&gt; complete_setup        0.000    0.000   0.000          0         0
+#&gt; sampling              1.268    0.001   1.274          0         0
+#&gt; finalise              0.017    0.000   0.017          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

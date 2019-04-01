@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -96,7 +96,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/r-spatial/spatialreg">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -156,7 +161,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>(<span class='kw'>envir</span><span class='kw'>=</span><span class='kw pkg'>spatialreg</span><span class='kw ns'>:::</span><span class='no'>.spatialregOptions</span>)</div><div class='output co'>#&gt; [1] "cluster"    "cores"      "mc"         "verbose"    "zeroPolicy"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>parallel</span>)
 <span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/parallel/topics/detectCores'>detectCores</a></span>(<span class='kw'>logical</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>nc</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'># set nc to 1L here</span>
+<span class='no'>nc</span></div><div class='output co'>#&gt; [1] 4</div><div class='input'><span class='co'># set nc to 1L here</span>
 <span class='kw'>if</span> (<span class='no'>nc</span> <span class='kw'>&gt;</span> <span class='fl'>1L</span>) <span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='fl'>1L</span>
 <span class='co'>#nc &lt;- ifelse(nc &gt; 2L, 2L, nc)</span>
 <span class='no'>coresOpt</span> <span class='kw'>&lt;-</span> <span class='fu'>get.coresOption</span>()

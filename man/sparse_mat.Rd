@@ -44,16 +44,15 @@ powerWeights(W, rho, order=250, X, tol=.Machine$double.eps^(3/5))
 \seealso{\code{\link[spdep]{nb2listw}}}
 
 \examples{
+\dontrun{
 require(sf, quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
 #require(spdep, quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 col.listw <- spdep::nb2listw(col.gal.nb)
-\dontrun{
 if (require("spam", quietly=TRUE)) {
   col.sp <- as.spam.listw(col.listw)
   str(col.sp)
-}
 }
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1])[-1]))
@@ -70,6 +69,7 @@ sum(log(1 - rho * eigenw(listw_NY)))
 nW <- - W_S
 nChol <- Cholesky(nW, Imult=8)
 n * log(rho) + (2 * c(determinant(update(nChol, nW, 1/rho))$modulus))
+}
 nb7rt <- spdep::cell2nb(7, 7, torus=TRUE)
 x <- matrix(sample(rnorm(500*length(nb7rt))), nrow=length(nb7rt))
 lw <- spdep::nb2listw(nb7rt)
@@ -84,11 +84,12 @@ x <- apply(x, 2, function(v) residuals(spautolm(v ~ 1, listw=lw,
 x <- apply(x, 2, scale)
 }
 W <- as(lw, "CsparseMatrix")
-system.time(ee <- powerWeights(W, rho=0.9, X=x))
 system.time(e <- spdep::invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) \%*\% x)
 system.time(ee <- powerWeights(W, rho=0.98, X=x))
 str(attr(ee, "internal"))
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
+\dontrun{
+system.time(ee <- powerWeights(W, rho=0.9, X=x))
 system.time(ee <- powerWeights(W, rho=0.98, order=1000, X=x))
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 nb60rt <- spdep::cell2nb(60, 60, torus=TRUE)
@@ -99,5 +100,6 @@ system.time(ee <- powerWeights(W, rho=0.3, X=x))
 str(as(ee, "matrix"))
 obj <- errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=spdep::nb2listw(nb60rt), method="Matrix")
 coefficients(obj)
+}
 }
 \keyword{spatial}
