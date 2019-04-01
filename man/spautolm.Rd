@@ -129,13 +129,14 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 
 \seealso{\code{\link[stats]{optimize}}, \code{\link{errorsarlm}}, \code{\link{do_ldet}}}
 \examples{
-\dontrun{
 require("sf", quietly=TRUE)
 nydata <- st_read(system.file("shapes/NY8_bna_utm18.gpkg", package="spData")[1], quiet=TRUE)
+\dontrun{
 lm0 <- lm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata)
 summary(lm0)
 lm0w <- lm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata, weights=POP8)
 summary(lm0w)
+}
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1])[-1]))
 suppressMessages(ID <- as.character(names(foreign::read.dbf(system.file(
@@ -144,13 +145,18 @@ identical(substring(ID, 2, 10), substring(as.character(nydata$AREAKEY), 2, 10))
 #require("spdep", quietly=TRUE)
 nyadjlw <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY))
 listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
+eigs <- eigenw(listw_NY)
+\dontrun{
 esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
 summary(esar0)
+}
 system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
- data=nydata, listw=listw_NY, family="SAR", method="eigen"))
+ data=nydata, listw=listw_NY, family="SAR", method="eigen",
+ control=list(pre_eig=eigs)))
 res <- summary(esar1f)
 print(res)
+\dontrun{
 sqrt(diag(res$resvar))
 sqrt(diag(esar1f$fit$imat)*esar1f$fit$s2)
 sqrt(diag(esar1f$fdHess))
@@ -161,9 +167,12 @@ system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix",
  control=list(super=TRUE)))
 summary(esar1M)
+}
 esar1wf <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
- listw=listw_NY, weights=POP8, family="SAR", method="eigen")
+ listw=listw_NY, weights=POP8, family="SAR", method="eigen",
+ control=list(pre_eig=eigs))
 summary(esar1wf)
+\dontrun{
 system.time(esar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="SAR", method="Matrix"))
 summary(esar1wM)
@@ -173,15 +182,21 @@ summary(esar1wlu)
 esar1wch <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8, family="SAR", method="Chebyshev")
 summary(esar1wch)
+}
 ecar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
- listw=listw_NY, family="CAR", method="eigen")
+ listw=listw_NY, family="CAR", method="eigen",
+ control=list(pre_eig=eigs))
 summary(ecar1f)
+\dontrun{
 system.time(ecar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="CAR", method="Matrix"))
 summary(ecar1M)
+}
 ecar1wf <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
- listw=listw_NY, weights=nydata$POP8, family="CAR", method="eigen")
+ listw=listw_NY, weights=POP8, family="CAR", method="eigen",
+ control=list(pre_eig=eigs))
 summary(ecar1wf)
+\dontrun{
 system.time(ecar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="CAR", method="Matrix"))
 summary(ecar1wM)

@@ -31,5 +31,9 @@ get.ZeroPolicyOption()
 
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}}
 
+\examples{
+get.VerboseOption()
+get.ZeroPolicyOption()
+}
  
 \keyword{ spatial }

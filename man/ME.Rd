@@ -49,33 +49,36 @@ An object of class \code{ME_res}:
 \seealso{\code{\link{SpatialFiltering}}, \code{\link[stats]{glm}}}
 
 \examples{
-\dontrun{
 require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
+lw <- spdep::nb2listw(col.gal.nb)
 lmbase <- lm(CRIME ~ INC + HOVAL, data=columbus)
+\dontrun{
 lagcol <- SpatialFiltering(CRIME ~ 1, ~ INC + HOVAL, data=columbus,
  nb=col.gal.nb, style="W", alpha=0.1, verbose=TRUE)
 lagcol
 lmlag <- lm(CRIME ~ INC + HOVAL + fitted(lagcol), data=columbus)
 anova(lmbase, lmlag)
+}
 set.seed(123)
-lagcol1 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
- listw=spdep::nb2listw(col.gal.nb), alpha=0.1, verbose=TRUE)
+system.time(lagcol1 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
+ listw=lw, alpha=0.1, verbose=TRUE))
 lagcol1
 lmlag1 <- lm(CRIME ~ INC + HOVAL + fitted(lagcol1), data=columbus)
 anova(lmbase, lmlag1)
+\dontrun{
 set.seed(123)
 lagcol2 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
- listw=spdep::nb2listw(col.gal.nb), alpha=0.1, stdev=TRUE, verbose=TRUE)
+ listw=lw, alpha=0.1, stdev=TRUE, verbose=TRUE)
 lagcol2
 lmlag2 <- lm(CRIME ~ INC + HOVAL + fitted(lagcol2), data=columbus)
 anova(lmbase, lmlag2)
 NA.columbus <- columbus
 NA.columbus$CRIME[20:25] <- NA
 COL.ME.NA <- ME(CRIME ~ INC + HOVAL, data=NA.columbus, family="gaussian",
- listw=spdep::nb2listw(col.gal.nb), alpha=0.1, stdev=TRUE, verbose=TRUE,
+ listw=lw, alpha=0.1, stdev=TRUE, verbose=TRUE,
  na.action=na.exclude)
 COL.ME.NA$na.action
 summary(lm(CRIME ~ INC + HOVAL + fitted(COL.ME.NA), data=NA.columbus,

@@ -29,7 +29,6 @@ MCMCsamp(object, mcmc = 1L, verbose = NULL, ...)
 
 \seealso{\code{\link[LearnBayes]{rwmetrop}}, \code{\link{spautolm}}, \code{\link{lagsarlm}}, \code{\link{errorsarlm}}, \code{\link{sacsarlm}}}
 \examples{
-\dontrun{
 require("sf", quietly=TRUE)
 nydata <- st_read(system.file("shapes/NY8_bna_utm18.gpkg", package="spData")[1], quiet=TRUE)
 suppressMessages(nyadjmat <- as.matrix(foreign::read.dbf(system.file(
@@ -43,8 +42,9 @@ listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
 esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, family="SAR", method="eigen")
 summary(esar1f)
-res <- MCMCsamp(esar1f, mcmc=5000, burnin=500, listw=listw_NY)
+res <- MCMCsamp(esar1f, mcmc=1000, burnin=200, listw=listw_NY)
 summary(res)
+\dontrun{
 esar1fw <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8, family="SAR", method="eigen")
 summary(esar1fw)
@@ -69,7 +69,7 @@ summary(res)
 esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
 summary(esar0)
-res <- MCMCsamp(esar0, mcmc=5000, burnin=500, listw=listw_NY)
+res <- MCMCsamp(esar0, mcmc=1000, burnin=200, listw=listw_NY)
 summary(res)
 \dontrun{
 esar0w <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
