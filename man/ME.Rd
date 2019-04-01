@@ -55,9 +55,10 @@ hopkins_part <- hopkins[21:36,36:21]
 hopkins_part[which(hopkins_part > 0, arr.ind=TRUE)] <- 1
 hopkins.rook.nb <- spdep::cell2nb(16, 16, type="rook")
 glmbase <- glm(c(hopkins_part) ~ 1, family="binomial")
+lw <- spdep::nb2listw(hopkins.rook.nb, style="B")
 set.seed(123)
-MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
- listw=spdep::nb2listw(hopkins.rook.nb, style="B"), alpha=0.2, verbose=TRUE)
+system.time(MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
+ listw=lw, alpha=0.05, verbose=TRUE, nsim=49))
 glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
 #anova(glmME, test="Chisq")
 anova(glmbase, glmME, test="Chisq")
