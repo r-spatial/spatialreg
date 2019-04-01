@@ -240,7 +240,7 @@ neighbours, if FALSE (default) assign NA</p></td>
   <dt>detval</dt><dd><p>default <code>NULL</code>; not yet in use, precomputed matrix of log determinants</p></dd>
   <dt>prior</dt><dd><p>a list with the following components:
     <dl class='dl-horizontal'>
-      <dt>rhoMH</dt><dd><p>default FALSE; use Metropolis or griddy Gibbs</p></dd>
+      <dt>rhoMH, lambdaMH</dt><dd><p>default FALSE; use Metropolis or griddy Gibbs</p></dd>
       <dt>Tbeta</dt><dd><p>default <code>NULL</code>; values of the betas variance-covariance matrix, set to <code>diag(k)*1e+12</code> if <code>NULL</code></p></dd>
       <dt>c_beta</dt><dd><p>default <code>NULL</code>; values of the betas set to 0 if <code>NULL</code></p></dd>
       <dt>rho</dt><dd><p>default <code>0.5</code>; value of the autoregressive coefficient</p></dd>
@@ -937,14 +937,14 @@ neighbours, if FALSE (default) assign NA</p></td>
 #&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>el_ml</span>$<span class='no'>timings</span>)</div><div class='output co'>#&gt;           user.self elapsed
 #&gt; set_up        0.013   0.013
 #&gt; LU_set_up     0.003   0.003
-#&gt; LU_opt        0.215   0.219
-#&gt; coefs         0.002   0.002
-#&gt; LU_fdHess     0.314   0.315</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>el_B</span>, <span class='st'>"timings"</span>))</div><div class='output co'>#&gt;                   user.self sys.self elapsed user.child sys.child
-#&gt; set_up                0.010    0.000   0.010          0         0
-#&gt; SE_classic_set_up     3.084    0.012   3.105          0         0
-#&gt; complete_setup        0.000    0.000   0.000          0         0
-#&gt; sampling              1.268    0.001   1.274          0         0
-#&gt; finalise              0.017    0.000   0.017          0         0</div></pre>
+#&gt; LU_opt        0.217   0.218
+#&gt; coefs         0.001   0.001
+#&gt; LU_fdHess     0.315   0.317</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>el_B</span>, <span class='st'>"timings"</span>))</div><div class='output co'>#&gt;                   user.self sys.self elapsed user.child sys.child
+#&gt; set_up                0.009     0.00   0.009          0         0
+#&gt; SE_classic_set_up     3.087     0.01   3.104          0         0
+#&gt; complete_setup        0.001     0.00   0.000          0         0
+#&gt; sampling              1.293     0.00   1.298          0         0
+#&gt; finalise              0.013     0.00   0.013          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
