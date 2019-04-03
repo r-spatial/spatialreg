@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -216,12 +216,12 @@
 <span class='no'>hopkins_part</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='no'>hopkins_part</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='kw'>arr.ind</span><span class='kw'>=</span><span class='fl'>TRUE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 <span class='no'>hopkins.rook.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/cell2nb'>cell2nb</a></span>(<span class='fl'>16</span>, <span class='fl'>16</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"rook"</span>)
 <span class='no'>glmbase</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>hopkins_part</span>) ~ <span class='fl'>1</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
+<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>hopkins.rook.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='no'>MEbinom1</span> <span class='kw'>&lt;-</span> <span class='fu'>ME</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>hopkins_part</span>) ~ <span class='fl'>1</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>,
- <span class='kw'>listw</span><span class='kw'>=</span><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>hopkins.rook.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>), <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.2</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; eV[,2], I: 0.07978424 ZI: NA, pr(ZI): 0.03
-#&gt; eV[,54], I: 0.05704227 ZI: NA, pr(ZI): 0.1
-#&gt; eV[,8], I: 0.03503459 ZI: NA, pr(ZI): 0.2
-#&gt; eV[,1], I: 0.01965434 ZI: NA, pr(ZI): 0.31</div><div class='input'><span class='no'>glmME</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>hopkins_part</span>) ~ <span class='fl'>1</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/fitted.values'>fitted</a></span>(<span class='no'>MEbinom1</span>), <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>MEbinom1</span> <span class='kw'>&lt;-</span> <span class='fu'>ME</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>hopkins_part</span>) ~ <span class='fl'>1</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>,
+ <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.05</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>nsim</span><span class='kw'>=</span><span class='fl'>49</span>))</div><div class='output co'>#&gt; eV[,2], I: 0.07978424 ZI: NA, pr(ZI): 0.04
+#&gt; eV[,54], I: 0.05704227 ZI: NA, pr(ZI): 0.06</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   1.355   0.000   1.371 </div><div class='input'><span class='no'>glmME</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>hopkins_part</span>) ~ <span class='fl'>1</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/fitted.values'>fitted</a></span>(<span class='no'>MEbinom1</span>), <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
 <span class='co'>#anova(glmME, test="Chisq")</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='no'>glmbase</span>, <span class='no'>glmME</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>"Chisq"</span>)</div><div class='output co'>#&gt; Analysis of Deviance Table
 #&gt; 
@@ -229,7 +229,7 @@
 #&gt; Model 2: c(hopkins_part) ~ 1 + fitted(MEbinom1)
 #&gt;   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
 #&gt; 1       255     292.23                          
-#&gt; 2       251     255.47  4   36.755 2.023e-07 ***
+#&gt; 2       253     266.27  2   25.956 2.311e-06 ***
 #&gt; ---
 #&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
@@ -256,7 +256,7 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>lagcol1</span> <span class='kw'>&lt;-</span> <span class='fu'>ME</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"gaussian"</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; eV[,6], I: 0.1178225 ZI: NA, pr(ZI): 0.07
 #&gt; eV[,4], I: 0.06242664 ZI: NA, pr(ZI): 0.19</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.667   0.000   0.669 </div><div class='input'><span class='no'>lagcol1</span></div><div class='output co'>#&gt;   Eigenvector ZI pr(ZI)
+#&gt;   0.640   0.000   0.647 </div><div class='input'><span class='no'>lagcol1</span></div><div class='output co'>#&gt;   Eigenvector ZI pr(ZI)
 #&gt; 0          NA NA   0.04
 #&gt; 1           6 NA   0.07
 #&gt; 2           4 NA   0.19</div><div class='input'><span class='no'>lmlag1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/fitted.values'>fitted</a></span>(<span class='no'>lagcol1</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)

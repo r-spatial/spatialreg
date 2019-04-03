@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -82,9 +82,13 @@
 <div id="spatialreg" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#spatialreg" class="anchor"></a>spatialreg</h1></div>
-<p>spatialreg: spatial models estimation and testing</p>
+
+<div id="spatialreg-spatial-models-estimation-and-testing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#spatialreg-spatial-models-estimation-and-testing" class="anchor"></a>spatialreg: spatial models estimation and testing</h3>
 <p>A collection of all the estimation functions for spatial cross-sectional models (on lattice/areal data using spatial weights matrices) contained up to now in <strong>spdep</strong>, <strong>sphet</strong> and <strong>spse</strong>. These model fitting functions include maximum likelihood methods for cross-sectional models proposed by Cliff and Ord (1973, ISBN: 0850860369) and (1981, ISBN: 0850860814), fitting methods initially described by Ord (1975) <a href="https://doi.org/10.1080/01621459.1975.10480272" class="uri">https://doi.org/10.1080/01621459.1975.10480272</a>. The models are further described by Anselin (1988) <a href="https://doi.org/10.1007/978-94-015-7799-1" class="uri">https://doi.org/10.1007/978-94-015-7799-1</a>. Spatial two stage least squares and spatial general method of moment models initially proposed by Kelejian and Prucha (1998) <a href="https://doi.org/10.1023/A:1007707430416" class="uri">https://doi.org/10.1023/A:1007707430416</a> and (1999) <a href="https://doi.org/10.1111/1468-2354.00027" class="uri">https://doi.org/10.1111/1468-2354.00027</a> are provided. Impact methods and MCMC fitting methods proposed by LeSage and Pace (2009) <a href="https://doi.org/10.1201/9781420064254" class="uri">https://doi.org/10.1201/9781420064254</a> are implemented for the family of cross-sectional spatial regression models. Methods for fitting the log determinant term in maximum likelihood and MCMC fitting are compared by Bivand et al. (2013) <a href="https://doi.org/10.1111/gean.12008" class="uri">https://doi.org/10.1111/gean.12008</a>, and model fitting methods by Bivand and Piras (2015) <a href="https://doi.org/10.18637/jss.v063.i18" class="uri">https://doi.org/10.18637/jss.v063.i18</a>; both of these articles include extensive lists of references. <strong>spatialreg</strong> &gt;= 1.1-1 corresponds to <strong>spdep</strong> = 1.1-1, in which the model fitting functions are deprecated and pass through to <strong>spatialreg</strong>, but will mask those in <strong>spatialreg</strong>. From versions 1.2-1, the functions will be made defunct in <strong>spdep</strong>.</p>
-<p>For now <strong>spatialreg</strong> only has functions from <strong>spdep</strong>, where they are shown as deprecated. This package only loads the namespace of <strong>spdep</strong>; if you attach it, the same functions in the other package will be masked. Some feed through adequately, others do not (mostly where model.matrix facilities do not like the extra level of passing arguments).</p>
+<p>For now <strong>spatialreg</strong> only has functions from <strong>spdep</strong>, where they are shown as deprecated. This package only loads the namespace of <strong>spdep</strong>; if you attach it, the same functions in the other package will be masked. Some feed through adequately, others do not (mostly where <code><a href="https://www.rdocumentation.org/packages/stats/topics/model.matrix">stats::model.matrix()</a></code> facilities do not like the extra level of passing arguments).</p>
+</div>
 </div>
   </div>
 
@@ -92,6 +96,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=spatialreg">https://​cloud.r-project.org/​package=spatialreg</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/r-spatial/spatialreg">https://​github.com/​r-spatial/​spatialreg</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/r-spatial/spatialreg/issues/">https://​github.com/​r-spatial/​spatialreg/​issues/​</a>
@@ -118,6 +124,7 @@
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
+
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
@@ -125,8 +132,7 @@
 <li><a href="https://cran.r-project.org/package=spatialreg"><img src="http://www.r-pkg.org/badges/version/spatialreg" alt="CRAN"></a></li>
 </ul>
 </div>
-
-  </div>
+</div>
 </div>
 
       <footer><div class="copyright">
