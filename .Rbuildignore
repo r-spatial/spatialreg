@@ -2,5 +2,3 @@ README.md
 ChangeLog
 ^\.travis\.yml$
 ^docs$
-^spatialreg\.Rproj$
-^\.Rproj\.user$
