@@ -20,7 +20,6 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person("Giovanni", "Millo", role = "ctb"),
              person("Kelley", "Pace", role = "ctb"),
              person("Pedro", "Peres-Neto", role = "ctb"),
-             person("Michael", "Tiefelsdorf", role = "ctb"),
              person(given = "Mauricio", family = "Sarrias", role = c("ctb"), email = "mauricio.sarrias@ucn.cl"),
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
