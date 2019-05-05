@@ -3,7 +3,7 @@
 
 errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         Durbin, etype, method="eigen", quiet=NULL, zero.policy=NULL,
-        interval=NULL, tol.solve=1.0e-10, trs=NULL, control=list()) {
+        interval=NULL, tol.solve=.Machine$double.eps, trs=NULL, control=list()) {
         timings <- list()
         .ptime_start <- proc.time()
         con <- list(tol.opt=.Machine$double.eps^0.5, returnHcov=TRUE,
@@ -520,7 +520,7 @@ sar.error.f <- function(lambda, env) {
 
 lagsarlm <- function(formula, data = list(), listw, 
 	na.action, Durbin, type, method="eigen", quiet=NULL, 
-	zero.policy=NULL, interval=NULL, tol.solve=1.0e-10, 
+	zero.policy=NULL, interval=NULL, tol.solve=.Machine$double.eps, 
 	trs=NULL, control=list()) {
         timings <- list()
         .ptime_start <- proc.time()
@@ -870,7 +870,7 @@ sar.lag.mixed.f <- function(rho, env) {
 # Copyright 2010-12 by Roger Bivand
 sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action, 
 	Durbin, type, method="eigen", quiet=NULL, zero.policy=NULL, 
-	tol.solve=1.0e-10, llprof=NULL, interval1=NULL, interval2=NULL,
+	tol.solve=.Machine$double.eps, llprof=NULL, interval1=NULL, interval2=NULL,
         trs1=NULL, trs2=NULL, control=list()) {
         timings <- list()
         .ptime_start <- proc.time()

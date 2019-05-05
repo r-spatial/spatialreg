@@ -41,12 +41,12 @@ where \eqn{\rho}{rho} and \eqn{\lambda}{lambda} are found by \code{nlminb} or \c
 \usage{
 lagsarlm(formula, data = list(), listw, na.action, Durbin, type,
  method="eigen", quiet=NULL, zero.policy=NULL, interval=NULL,
- tol.solve=1.0e-10, trs=NULL, control=list())
+ tol.solve=.Machine$double.eps, trs=NULL, control=list())
 errorsarlm(formula, data=list(), listw, na.action, weights=NULL,
  Durbin, etype, method="eigen", quiet=NULL, zero.policy=NULL,
- interval = NULL, tol.solve=1.0e-10, trs=NULL, control=list())
+ interval = NULL, tol.solve=.Machine$double.eps, trs=NULL, control=list())
 sacsarlm(formula, data = list(), listw, listw2 = NULL, na.action, Durbin, type,
- method = "eigen", quiet = NULL, zero.policy = NULL, tol.solve = 1e-10,
+ method="eigen", quiet=NULL, zero.policy=NULL, tol.solve=.Machine$double.eps,
  llprof=NULL, interval1=NULL, interval2=NULL, trs1=NULL, trs2=NULL,
  control = list())
 \method{summary}{sarlm}(object, correlation = FALSE, Nagelkerke = FALSE,
