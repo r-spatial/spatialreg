@@ -326,9 +326,10 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
             cond <- den <= rnd
             if (any(cond)) {
 #	ind = which(den <= rnd)
-	        idraw = which.min(cond) - 1 #max(ind)
+		idraw <- max(which(cond))
+		#idraw = which.min(cond) - 1 #max(ind)
 #	    if (idraw > 0 & idraw < nrho) 
-                rho = detval1[idraw]#FIXME: This sometimes fail...
+                rho = detval1[idraw]#FIXME: This sometimes fail... #nk027:Tried
             } else {
                 rho_out = rho_out+1
             }
