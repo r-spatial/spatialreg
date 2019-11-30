@@ -82,7 +82,7 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                         oresvar <- object$resvar
                         ctext <- "Correlation of coefficients"
                         if (is.null(oresvar) || is.logical(oresvar) || 
-                            class(oresvar) == "try-error") {
+                            inherits(oresvar, "try-error")) {
                             oresvar <- object$fdHess
                             ctext <- ifelse(object$insert,
                                 "Approximate correlation of coefficients",
@@ -100,7 +100,7 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                         oresvar <- object$resvar
                         ctext <- "Correlation of coefficients"
                         if (is.null(oresvar) || is.logical(oresvar) || 
-                            class(oresvar) == "try-error") {
+                            inherits(oresvar, "try-error")) {
                             oresvar <- object$fdHess
                             ctext <- "Approximate correlation of coefficients"
                         }

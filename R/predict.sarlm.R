@@ -33,7 +33,7 @@ predict.sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
   Xs <- object$X
   B <- object$coefficients
   ys <- object$y
-  if (class(ys) == "AsIs") ys <- c(ys)
+  if (inherits(ys, "AsIs")) ys <- c(ys)
   tarXs <- object$tarX
   tarys <- object$tary
   trends <- Xs %*% B

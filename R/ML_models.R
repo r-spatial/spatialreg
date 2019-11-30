@@ -29,7 +29,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 #        stopifnot(is.logical(con$super))
         stopifnot(is.logical(con$compiled_sse))
         stopifnot(is.character(con$spamPivot))
-        if (class(formula) != "formula") formula <- as.formula(formula)
+        if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
 #	mf <- lm(formula, data, na.action=na.action, method="model.frame")
 #
@@ -97,10 +97,17 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
                         prefix=prefix)
                 } else {
-	            dmf <- lm(Durbin, data, na.action=na.action, 
+                    data1 <- data
+                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
+                        inherits(na.act, "exclude"))) {
+                        data1 <- data1[-c(na.act),]
+                    }
+	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
+#	            dmf <- lm(Durbin, data, na.action=na.action, 
+#		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (class(fx) == "try-error") 
+                    if (inherits(fx, "try-error")) 
                         stop("Durbin variable mis-match")
                     WX <- create_WX(fx, listw, zero.policy=zero.policy,
                         prefix=prefix)
@@ -376,7 +383,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 #		asyvar[3:(p+2),3:(p+2)] <- crossprod(xl)
 		asyvar[3:(p+2),3:(p+2)] <- crossprod(xl)/s2
 		asyvar1 <- try(solve(asyvar, tol=tol.solve), silent=TRUE)
-                if (class(asyvar1) == "try-error") {
+                if (inherits(asyvar1, "try-error")) {
                     timings[["eigen_se"]] <- proc.time() - .ptime_start
                     .ptime_start <- proc.time()
                     con$fdHess <- TRUE
@@ -541,7 +548,7 @@ lagsarlm <- function(formula, data = list(), listw,
         if (is.null(zero.policy))
             zero.policy <- get.ZeroPolicyOption()
         stopifnot(is.logical(zero.policy))
-        if (class(formula) != "formula") formula <- as.formula(formula)
+        if (!inherits(formula, "formula")) formula <- as.formula(formula)
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, 
 		method="model.frame")
@@ -599,10 +606,15 @@ lagsarlm <- function(formula, data = list(), listw,
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
                         prefix=prefix)
                 } else {
-	            dmf <- lm(Durbin, data, na.action=na.action, 
+                    data1 <- data
+                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
+                        inherits(na.act, "exclude"))) {
+                        data1 <- data1[-c(na.act),]
+                    }
+	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (class(fx) == "try-error") 
+                    if (inherits(fx, "try-error")) 
                         stop("Durbin variable mis-match")
                     WX <- create_WX(fx, listw, zero.policy=zero.policy,
                         prefix=prefix)
@@ -750,7 +762,7 @@ lagsarlm <- function(formula, data = list(), listw,
 		inf3 <- rbind(zero, t(xtawxb), xtx)
 		inf <- cbind(inf1, inf2, inf3)
 		varb <- try(solve(inf, tol=tol.solve), silent=TRUE)
-                if (class(varb) == "try-error") {
+                if (inherits(varb, "try-error")) {
                     timings[["eigen_se"]] <- proc.time() - .ptime_start
                     .ptime_start <- proc.time()
                     con$fdHess <- TRUE
@@ -901,7 +913,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
-        if (class(formula) != "formula") formula <- as.formula(formula)
+        if (!inherits(formula, "formula")) formula <- as.formula(formula)
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, method="model.frame")
 	na.act <- attr(mf, "na.action")
@@ -949,10 +961,17 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
                         prefix=prefix)
                 } else {
-	            dmf <- lm(Durbin, data, na.action=na.action, 
+                    data1 <- data
+                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
+                        inherits(na.act, "exclude"))) {
+                        data1 <- data1[-c(na.act),]
+                    }
+	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
+#	            dmf <- lm(Durbin, data, na.action=na.action, 
+#		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (class(fx) == "try-error") 
+                    if (inherits(fx, "try-error")) 
                         stop("Durbin variable mis-match")
                     WX <- create_WX(fx, listw, zero.policy=zero.policy,
                         prefix=prefix)
@@ -1204,7 +1223,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             asyvar[3, 2] <- term1 + term2
             asyvar[2, 3] <- asyvar[3, 2]
             asyvar1 <- try(solve(asyvar, tol.solve=tol.solve), silent=TRUE)
-            if (class(asyvar1) == "try-error") {
+            if (inherits(asyvar1, "try-error")) {
                 timings[["eigen_se"]] <- proc.time() - .ptime_start
                 .ptime_start <- proc.time()
                 con$fdHess <- TRUE

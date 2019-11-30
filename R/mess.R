@@ -10,7 +10,7 @@ lagmess <- function(formula, data = list(), listw, zero.policy=NULL,
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
     if (listw$style != "W") warning("weights should be row-stochastic")
-    if (class(formula) != "formula") formula <- as.formula(formula)
+    if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action=na.action, method="model.frame")
     na.act <- attr(mf, "na.action")

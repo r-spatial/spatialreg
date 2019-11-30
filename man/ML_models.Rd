@@ -111,8 +111,11 @@ Versions of the package from 0.4-38 include numerical Hessian values where asymp
 Note that the fitted() function for the output object assumes that the response 
 variable may be reconstructed as the sum of the trend, the signal, and the
 noise (residuals). Since the values of the response variable are known,
-their spatial lags are used to calculate signal components (Cressie 1993, p. 564). This differs from other software, including GeoDa, which does not use knowledge of the response 
-variable in making predictions for the fitting data.
+their spatial lags are used to calculate signal components (Cressie 1993, 
+p. 564). This differs from other software, including GeoDa, which does not use 
+knowledge of the response variable in making predictions for the fitting data. 
+Refer to the help page of \code{\link{predict.sarlm}} for discussions and 
+references.
 
 Because numerical optimisation is used to find the values of lambda and rho in \code{sacsarlm}, care needs to be shown. It has been found that the surface of the 2D likelihood function often forms a \dQuote{banana trench} from (low rho, high lambda) through (high rho, high lambda) to (high rho, low lambda) values. In addition, sometimes the banana has optima towards both ends, one local, the other global, and conseqently the choice of the starting point for the final optimization becomes crucial. The default approach is not to use just (0, 0) as a starting point, nor the (rho, lambda) values from \code{gstsls}, which lie in a central part of the \dQuote{trench}, but either four values at (low rho, high lambda), (0, 0), (high rho, high lambda), and (high rho, low lambda), and to use the best of these start points for the final optimization. Optionally, nine points can be used spanning the whole (lower, upper) space.
 }
@@ -253,11 +256,16 @@ try(COL.mixed.D1 <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 NA.COL.OLD <- COL.OLD
 NA.COL.OLD$CRIME[20:25] <- NA
 COL.lag.NA <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
- spdep::nb2listw(COL.nb), na.action=na.exclude, 
- control=list(tol.opt=.Machine$double.eps^0.4))
+ listw, na.action=na.exclude)
 COL.lag.NA$na.action
 COL.lag.NA
 resid(COL.lag.NA)
+COL.lag.NA1 <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
+ listw, Durbin=~INC) # https://github.com/r-spatial/spatialreg/issues/10
+COL.lag.NA1$na.action
+COL.lag.NA2 <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
+ listw, Durbin=~INC, na.action=na.exclude)
+COL.lag.NA2$na.action
 \dontrun{
 data(boston, package="spData")
 gp2mM <- lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 

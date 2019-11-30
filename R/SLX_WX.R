@@ -4,7 +4,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
-        if (class(formula) != "formula") formula <- as.formula(formula)
+        if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
 #	mf <- lm(formula, data, na.action=na.action, weights=weights,
 #            method="model.frame")
@@ -44,10 +44,17 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                prefix=prefix)
         } else if (is.formula(Durbin)) {
-	    dmf <- lm(Durbin, data, na.action=na.action, 
-	         method="model.frame")
+            data1 <- data
+            if (!is.null(na.act) && (inherits(na.act, "omit") ||
+                inherits(na.act, "exclude"))) {
+                data1 <- data1[-c(na.act),]
+            }
+            dmf <- lm(Durbin, data1, na.action=na.fail, 
+	        method="model.frame")
+#	    dmf <- lm(Durbin, data, na.action=na.action, 
+#	         method="model.frame")
             fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-            if (class(fx) == "try-error") 
+            if (inherits(fx, "try-error")) 
                  stop("Durbin variable mis-match")
             WX <- create_WX(fx, listw, zero.policy=zero.policy,
                 prefix=prefix)

@@ -113,7 +113,7 @@ Hausman.test.sarlm <- function(object, ..., tol=NULL) {
     d <- object$coef_lm.model - object$coefficients
     if (!is.null(tol)) VV <- try(solve((Vo - Vs), tol=tol))
     else VV <- try(solve(Vo - Vs))
-    if (class(VV) == "try.error") {
+    if (inherits(VV, "try.error")) {
         warning("(Vo - Vs) inversion failure")
         return(NULL)
     }
@@ -283,6 +283,8 @@ vcov.sarlm <- function(object, ...) {
 
 
 fitted.sarlm <- function(object, ...) {
+  message("This method assumes the response is known - see manual page")
+# thanks to Philipp Otto, email 2019-11-29
   if (is.null(object$na.action))
     object$fitted.values
   else napredict(object$na.action, object$fitted.values)

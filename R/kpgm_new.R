@@ -30,7 +30,7 @@ GMerrorsar <- function(#W, y, X,
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
-        if (class(formula) != "formula") formula <- as.formula(formula)
+        if (!inherits(formula, "formula")) formula <- as.formula(formula)
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, method="model.frame")
 	na.act <- attr(mf, "na.action")
@@ -363,7 +363,7 @@ Hausman.test.gmsar <- function(object, ..., tol=NULL) {
     d <- coef(object$lm.model) - coef(object$lm.target)
     if (!is.null(tol)) VV <- try(solve((Vo - Vs), tol=tol))
     else VV <- try(solve(Vo - Vs))
-    if (class(VV) == "try.error") {
+    if (inherits(VV, "try.error")) {
         warning("(Vo - Vs) inversion failure")
         return(NULL)
     }
@@ -539,7 +539,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
     else if (!inherits(listw2, "listw")) 
         stop("No 2nd neighbourhood list")
 
-    if (class(formula) != "formula") formula <- as.formula(formula)
+    if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action = na.fail, method = "model.frame")
     na.act <- attr(mf, "na.action")

@@ -46,7 +46,7 @@ SpatialFiltering <- function (formula, lagformula=NULL, data=list(), na.action=n
 
 # Generate Eigenvectors if eigen vectors are not given
 # (M1 for no SAR, MX for SAR)
-    if (class(formula) != "formula") formula <- as.formula(formula)
+    if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #    if (missing(data)) data <- environment(formula)
     mf <- match.call(expand.dots = FALSE)
     m <- match(c("formula", "data", "na.action"), names(mf), 0)
