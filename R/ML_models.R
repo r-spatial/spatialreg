@@ -45,6 +45,10 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
+            if (!is.null(con$pre_eig)) {
+                warning("NAs found, precomputed eigenvalues ignored")
+                con$pre_eig <- NULL
+            }
 	}
         if (missing(etype))etype <- "error"
         if (etype == "Durbin") etype <- "emixed"
@@ -560,8 +564,12 @@ lagsarlm <- function(formula, data = list(), listw,
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
+            if (!is.null(con$pre_eig)) {
+                warning("NAs found, precomputed eigenvalues ignored")
+                con$pre_eig <- NULL
+            }
 	}
-#FIXME
+
         if (missing(type)) type <- "lag"
         if (type == "Durbin") type <- "mixed"
         if (missing(Durbin)) Durbin <- ifelse(type == "lag", FALSE, TRUE)
@@ -936,6 +944,10 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
+            if (!is.null(con$pre_eig1)) {
+                warning("NAs found, precomputed eigenvalues ignored")
+                con$pre_eig1 <- NULL
+            }
 	}
 	can.sim2 <- FALSE
 	if (listw2$style %in% c("W", "S")) 
@@ -943,6 +955,10 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw2$neighbours) %in% na.act)
 	    listw2 <- subset(listw2, subset, zero.policy=zero.policy)
+            if (!is.null(con$pre_eig2)) {
+                warning("NAs found, precomputed eigenvalues ignored")
+                con$pre_eig2 <- NULL
+            }
 	}
 	y <- model.response(mf, "numeric")
 	if (any(is.na(y))) stop("NAs in dependent variable")

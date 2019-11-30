@@ -45,6 +45,10 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
     if (!is.null(na.act)) {
         subset <- !(1:length(listw$neighbours) %in% na.act)
         listw <- subset(listw, subset, zero.policy=zero.policy)
+        if (!is.null(con$pre_eig)) {
+            warning("NAs found, precomputed eigenvalues ignored")
+            con$pre_eig <- NULL
+        }
     }
     y <- model.extract(mf, "response")
 #MatrixModels::model.Matrix()
@@ -524,6 +528,10 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     if (!is.null(na.act)) {
         subset <- !(1:length(listw$neighbours) %in% na.act)
         listw <- subset(listw, subset, zero.policy=zero.policy)
+        if (!is.null(con$pre_eig)) {
+            warning("NAs found, precomputed eigenvalues ignored")
+            con$pre_eig <- NULL
+        }
     }
     y <- model.extract(mf, "response")
 #MatrixModels::model.Matrix()
@@ -1003,6 +1011,18 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
     if (!is.null(na.act)) {
         subset <- !(1:length(listw$neighbours) %in% na.act)
         listw <- subset(listw, subset, zero.policy=zero.policy)
+        if (!is.null(con$pre_eig1)) {
+            warning("NAs found, precomputed eigenvalues ignored")
+            con$pre_eig1 <- NULL
+        }
+    }
+    if (!is.null(na.act)) {
+        subset <- !(1:length(listw2$neighbours) %in% na.act)
+        listw2 <- subset(listw2, subset, zero.policy=zero.policy)
+        if (!is.null(con$pre_eig2)) {
+            warning("NAs found, precomputed eigenvalues ignored")
+            con$pre_eig2 <- NULL
+        }
     }
     y <- model.extract(mf, "response")
     x <- model.matrix(mt, mf)

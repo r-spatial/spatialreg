@@ -41,6 +41,10 @@ spautolm <- function(formula, data = list(), listw, weights,
     if (!is.null(na.act)) {
         subset <- !(1:length(listw$neighbours) %in% na.act)
         listw <- subset(listw, subset, zero.policy=zero.policy)
+        if (!is.null(con$pre_eig)) {
+            warning("NAs found, precomputed eigenvalues ignored")
+           con$pre_eig <- NULL
+        }
     }
 
     Y <- model.extract(mf, "response")

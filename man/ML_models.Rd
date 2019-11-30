@@ -266,6 +266,11 @@ COL.lag.NA1$na.action
 COL.lag.NA2 <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
  listw, Durbin=~INC, na.action=na.exclude)
 COL.lag.NA2$na.action
+# https://github.com/r-spatial/spatialreg/issues/11
+COL.lag.NA3 <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
+ listw, control=list(pre_eig=ev))
+COL.lag.NA3$na.action
+
 \dontrun{
 data(boston, package="spData")
 gp2mM <- lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
