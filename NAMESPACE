@@ -182,3 +182,5 @@ S3method(print, summary.WXImpact)
 S3method(impacts, SLX)
 S3method(predict, SLX)
 
+S3method(impacts, splm)
+
