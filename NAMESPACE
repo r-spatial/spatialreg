@@ -94,8 +94,6 @@ export(print.sarlm, summary.sarlm, residuals.sarlm, deviance.sarlm,
 	predict.sarlm, print.summary.sarlm, print.sarlm.pred,
         as.data.frame.sarlm.pred, bptest.sarlm, impacts.sarlm)
 
-#export(impacts.splm)
-
 export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
         set.ClusterOption, get.ClusterOption)
 
@@ -182,5 +180,4 @@ S3method(print, summary.WXImpact)
 S3method(impacts, SLX)
 S3method(predict, SLX)
 
-S3method(impacts, splm)
 
