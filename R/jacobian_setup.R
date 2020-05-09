@@ -175,6 +175,8 @@ jacobianSetup <- function(method, env, con, pre_eig=NULL, trs=NULL, interval=NUL
 
 can.be.simmed <- function(listw) {
 	res <- is.symmetric.nb(listw$neighbours, FALSE)
+        if (is.null(attr(listw$weights, "comp")))
+            stop("non-compliant listw object, re-build using spdep::nb2listw()")
 	if (res) {
 		if (attr(listw$weights, "mode") == "general")
 			res <- attr(listw$weights, "glistsym")
