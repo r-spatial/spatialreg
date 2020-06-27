@@ -20,7 +20,9 @@ vignette: >
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
-## Introduction
+## Introduction [^1]
+
+[^1]: This vignette formed pp. 302–305 of the first edition of Bivand, R. S., Pebesma, E. and Gómez-Rubio V. (2008) Applied Spatial Data Analysis with R, Springer-Verlag, New York. It was retired from the second edition (2013) to accommodate material on other topics, and is made available in this form with the understanding of the publishers.
 
 The Moran eigenvector approach
 [@dray+legendre+peres-neto:06; @griffith+peres-neto:06] involved the
@@ -125,9 +127,4 @@ in the north without TCE sites in this data set.
 
 ## References
 
-[^1]: This vignette formed pp. 302–305 of the first edition of Bivand,
-    R. S., Pebesma, E. and Gómez-Rubio V. (2008) Applied Spatial Data
-    Analysis with R, Springer-Verlag, New York. It was retired from the
-    second edition (2013) to accommodate material on other topics, and
-    is made available in this form with the understanding of the
-    publishers.
+

@@ -8,21 +8,29 @@
 
 <title>Spatial regression model Jacobian computations — do_ldet • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Spatial regression model Jacobian computations — do_ldet" />
 
+<meta property="og:title" content="Spatial regression model Jacobian computations — do_ldet" />
 <meta property="og:description" content="These functions are made available in the package namespace for other developers, and are not intended for users. They provide a shared infrastructure for setting up data for Jacobian computation, and then for caclulating the Jacobian, either exactly or approximately, in maximum likelihood fitting of spatial regression models. The techniques used are the exact eigenvalue, Cholesky decompositions (Matrix, spam), and LU ones, with Chebyshev and Monte Carlo approximations; moments use the methods due to Martin and Smirnov/Anselin." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,9 +129,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>These functions are made available in the package namespace for other developers, and are not intended for users. They provide a shared infrastructure for setting up data for Jacobian computation, and then for caclulating the Jacobian, either exactly or approximately, in maximum likelihood fitting of spatial regression models. The techniques used are the exact eigenvalue, Cholesky decompositions (Matrix, spam), and LU ones, with Chebyshev and Monte Carlo approximations; moments use the methods due to Martin and Smirnov/Anselin.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>do_ldet</span>(<span class='no'>coef</span>, <span class='no'>env</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
@@ -133,19 +140,19 @@
 <span class='fu'>eigen_pre_setup</span>(<span class='no'>env</span>, <span class='no'>pre_eig</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>spam_setup</span>(<span class='no'>env</span>, <span class='kw'>pivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>spam_update_setup</span>(<span class='no'>env</span>, <span class='kw'>in_coef</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>pivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>Matrix_setup</span>(<span class='no'>env</span>, <span class='no'>Imult</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/logical'>as.logical</a></span>(<span class='fl'>NA</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
+<span class='fu'>Matrix_setup</span>(<span class='no'>env</span>, <span class='no'>Imult</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>(<span class='fl'>NA</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>Matrix_J_setup</span>(<span class='no'>env</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>LU_setup</span>(<span class='no'>env</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>LU_prepermutate_setup</span>(<span class='no'>env</span>, <span class='kw'>coef</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>order</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>moments_setup</span>(<span class='no'>env</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='no'>m</span>, <span class='no'>p</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"MC"</span>, <span class='kw'>correct</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>trunc</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>eq7</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>SE_classic_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>interpn</span><span class='kw'>=</span><span class='fl'>2000</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
+ <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>SE_whichMin_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>interpn</span><span class='kw'>=</span><span class='fl'>2000</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
+ <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>SE_interp_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
+ <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='fu'>can.be.simmed</span>(<span class='no'>listw</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -195,11 +202,11 @@
     </tr>
     <tr>
       <th>Imult</th>
-      <td><p>see <code><a href='https://www.rdocumentation.org/packages/Matrix/topics/Cholesky'>Cholesky</a></code>; numeric scalar which defaults to zero. The matrix that is decomposed is A+m*I where m is the value of Imult and I is the identity matrix of order ncol(A). Default in calling spdep functions is 2, here it cannot be missing and does not have a default, but is rescaled for binary weights matrices in proportion to the maximim row sum in those calling functions</p></td>
+      <td><p>see <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code>; numeric scalar which defaults to zero. The matrix that is decomposed is A+m*I where m is the value of Imult and I is the identity matrix of order ncol(A). Default in calling spdep functions is 2, here it cannot be missing and does not have a default, but is rescaled for binary weights matrices in proportion to the maximim row sum in those calling functions</p></td>
     </tr>
     <tr>
       <th>super</th>
-      <td><p>see <code><a href='https://www.rdocumentation.org/packages/Matrix/topics/Cholesky'>Cholesky</a></code>; logical scalar indicating is a supernodal decomposition should be created.  The alternative is a simplicial decomposition. Default in calling spdep functions is FALSE for &#8220;Matrix_J&#8221; and <code><a href='https://www.rdocumentation.org/packages/base/topics/logical'>as.logical(NA)</a></code> for &#8220;Matrix&#8221;.  Setting it to NA leaves the choice to a CHOLMOD-internal heuristic</p></td>
+      <td><p>see <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code>; logical scalar indicating is a supernodal decomposition should be created.  The alternative is a simplicial decomposition. Default in calling spdep functions is FALSE for &#8220;Matrix_J&#8221; and <code><a href='https://rdrr.io/r/base/logical.html'>as.logical(NA)</a></code> for &#8220;Matrix&#8221;.  Setting it to NA leaves the choice to a CHOLMOD-internal heuristic</p></td>
     </tr>
     <tr>
       <th>order</th>
@@ -250,266 +257,224 @@
       <td><p>a spatial weights object</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Since environments are containers in the R workspace passed by reference rather than by value, they are useful for passing objects to functions called in numerical optimisation, here for the maximum likelihood estimation of spatial regression models. This technique can save a little time on each function call, balanced against the need to access the objects in the environment inside the function. The environment should contain a <code>family</code> string object either &#8220;SAR&#8221;, &#8220;CAR&#8221; or &#8220;SMA&#8221; (used in <code>do_ldet</code> to choose spatial moving average in <code>spautolm</code>, and these specific objects before calling the set-up functions:</p>
-<dl class='dl-horizontal'>
+<dl'>
   <dt>eigen</dt><dd><p>Classical Ord eigenvalue computations - either:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-    <dt>verbose</dt><dd><p>logical scalar: legacy report print control, for historical reasons only</p></dd>
-  </dl> or:
-  <dl class='dl-horizontal'>
-    <dt>pre_eig</dt><dd><p>pre-computed eigenvalues</p></dd>
-  </dl>
+    <dt>verbose</dt><dd><p>logical scalar: legacy report print control, for historical reasons only</p></dd></dl> or:
+  <dl'>
+    <dt>pre_eig</dt><dd><p>pre-computed eigenvalues</p></dd></dl>
   and assigns to the environment:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>eig</dt><dd><p>a vector of eigenvalues</p></dd>
     <dt>eig.range</dt><dd><p>the search interval for the spatial coefficient</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;eigen&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;eigen&#8221;</p></dd></dl></p></dd>
   <dt>Matrix</dt><dd><p>Sparse matrix pre-computed Cholesky decomposition with fast updating:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>nW</dt><dd><p>negative sparse spatial weights matrix</p></dd>
-    <dt>pChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>csrw</code> with <code><a href='https://www.rdocumentation.org/packages/Matrix/topics/Cholesky'>Cholesky</a></code></p></dd>
-    <dt>nChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>nW</code> with <code><a href='https://www.rdocumentation.org/packages/Matrix/topics/Cholesky'>Cholesky</a></code></p></dd>
-    <dt>method</dt><dd><p>string: &#8220;Matrix&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>pChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>csrw</code> with <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></dd>
+    <dt>nChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>nW</code> with <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;Matrix&#8221;</p></dd></dl></p></dd>
   <dt>Matrix_J</dt><dd><p>Standard Cholesky decomposition without updating:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>super</dt><dd><p>the value of the <code>super</code> argument</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;Matrix_J&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;Matrix_J&#8221;</p></dd></dl></p></dd>
   <dt>spam</dt><dd><p>Standard Cholesky decomposition without updating:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>pivot</dt><dd><p>string --- pivot method</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd></dl></p></dd>
   <dt>spam_update</dt><dd><p>Pre-computed Cholesky decomposition with updating:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>csrwchol</dt><dd><p>A Cholesky decomposition for updating</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd></dl></p></dd>
   <dt>LU</dt><dd><p>Standard LU decomposition without updating:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd></dl></p></dd>
   <dt>LU_prepermutate</dt><dd><p>Standard LU decomposition with updating (pre-computed fill-reducing permutation):
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>lu_order</dt><dd><p>order argument to lu</p></dd>
     <dt>pq</dt><dd><p>2-column matrix for row and column permutation for fill-reduction</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd></dl></p></dd>
   <dt>MC</dt><dd><p>Monte Carlo approximation:
-  <dl class='dl-horizontal'>
-    <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+  <dl'>
+    <dt>listw</dt><dd><p>A listw spatial weights object</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>clx</dt><dd><p>list of Monte Carlo approximation terms  (the first two simulated traces are replaced by their analytical equivalents)</p></dd>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;MC&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>cheb</dt><dd><p>Chebyshev approximation:
-  <dl class='dl-horizontal'>
-    <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+  <dl'>
+    <dt>listw</dt><dd><p>A listw spatial weights object</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>trT</dt><dd><p>vector of Chebyshev approximation terms</p></dd>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;Chebyshev&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;Chebyshev&#8221;</p></dd></dl></p></dd>
   <dt>moments</dt><dd><p>moments approximation:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>trs</dt><dd><p>vector of traces, possibly approximated</p></dd>
     <dt>q12</dt><dd><p>integer vector of length 2, unit roots terms, ignored until 0.5-52</p></dd>
     <dt>eq7</dt><dd><p>logical scalar: use equation 7</p></dd>
     <dt>correct</dt><dd><p>logical scalar: use Smirnov correction term</p></dd>
     <dt>trunc</dt><dd><p>logical scalar: truncate Smirnov correction term</p></dd>
-    <dt>method</dt><dd><p>string: &#8220;moments&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>method</dt><dd><p>string: &#8220;moments&#8221;</p></dd></dl></p></dd>
   <dt>SE_classic</dt><dd><p>:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>detval</dt><dd><p>two column matrix of lndet grid values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_classic&#8221;</p></dd>
-    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>SE_whichMin</dt><dd><p>:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>detval</dt><dd><p>two column matrix of lndet grid values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_whichMin&#8221;</p></dd>
-    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>SE_interp</dt><dd><p>:
-  <dl class='dl-horizontal'>
+  <dl'>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
-    <dt>n</dt><dd><p>number of spatial objects</p></dd>
-  </dl> and assigns to the environment:
-  <dl class='dl-horizontal'>
+    <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
+  <dl'>
     <dt>fit</dt><dd><p>fitted spline object from which to predict lndet values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_interp&#8221;</p></dd>
-    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd>
-  </dl></p></dd>
+    <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
+
 </dl>
-    <p>Some set-up functions may also assign <code>similar</code> to the environment if the weights were made symmetric by similarity.</p>
+
+<p>Some set-up functions may also assign <code>similar</code> to the environment if the weights were made symmetric by similarity.</p>
 <p>Three set-up functions emulate the behaviour of the Spatial Econometrics toolbox (March 2010) maximum likelihood lndet grid performance. The toolbox lndet functions compute a smaller number of lndet values for a grid of coefficient values (spacing 0.01), and then interpolate to a finer grid of values (spacing 0.001). &#8220;SE_classic&#8221;, which is an implementation of the SE toolbox code, for example in f_sar.m, appears to have selected a row in the grid matrix one below the correct row when the candidate coefficient value was between 0.005 and 0.01-fuzz, always rounding the row index down. A possible alternative is to choose the index that is closest to the candidate coefficient value (&#8220;SE_whichMin&#8221;). Another alternative is to fit a spline model to the first stage coarser grid, and pass this fitted model to the log likelihood function to make a point prediction using the candidate coefficient value, rather than finding the grid index (&#8220;SE_interp&#8221;).</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>do_ldet</code> returns the value of the Jacobian for the calculation method recorded in the environment argument, and for the Monte Carlo approximation, returns a measure of the spread of the approximation as an &#8220;sd&#8221; attribute; the remaining functions modify the environment in place as a side effect and return nothing.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 77--110.</p>
 <p>Bivand, R. S., Hauke, J., and Kossowski, T. (2013). Computing the Jacobian in Gaussian spatial autoregressive models: An illustrated comparison of available methods. <em>Geographical Analysis</em>, 45(2), 150-179.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='spautolm.html'>spautolm</a></code>, <code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code>, <code><a href='https://www.rdocumentation.org/packages/Matrix/topics/Cholesky'>Cholesky</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='spautolm.html'>spautolm</a></code>, <code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code>, <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
 <span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>boston.soi</span>)
+<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>)
 <span class='no'>can.sim</span> <span class='kw'>&lt;-</span> <span class='fu'>can.be.simmed</span>(<span class='no'>lw</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>eigen_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>eigen_pre_setup</span>(<span class='no'>env</span>, <span class='kw'>pre_eig</span><span class='kw'>=</span><span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>lw</span>)))
-<span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>Matrix_setup</span>(<span class='no'>env</span>, <span class='kw'>Imult</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>spam_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702
 #&gt; attr(,"logarithm")
-#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>LU_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>LU_prepermutate_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
 <span class='fu'>cheb_setup</span>(<span class='no'>env</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26176</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>globalenv</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>12345</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26176</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
+<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>12345</span>)
 <span class='fu'>mcdet_setup</span>(<span class='no'>env</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.38606
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.38606
 #&gt; attr(,"sd")
-#&gt; [1] 0.2045107</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rm'>rm</a></span>(<span class='no'>env</span>)</div></pre>
+#&gt; [1] 0.2045107</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -517,13 +482,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -8,21 +8,29 @@
 
 <title>Generalized spatial two stage least squares — stsls • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Generalized spatial two stage least squares — stsls" />
 
+<meta property="og:title" content="Generalized spatial two stage least squares — stsls" />
 <meta property="og:description" content="The function fits a spatial lag model by two stage least squares, with the option of adjusting the results for heteroskedasticity." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,24 +129,22 @@
     </div>
 
     <div class="ref-description">
-    
     <p>The function fits a spatial lag model by two stage least squares, with the option of adjusting the results for heteroskedasticity.</p>
-    
     </div>
 
-    <pre class="usage">stsls(formula, data = list(), listw, zero.policy = NULL,
- na.action = na.fail, robust = FALSE, HC=NULL, legacy=FALSE, W2X = TRUE)
-# S3 method for stsls
-impacts(obj, &#8230;, tr, R = NULL, listw = NULL, evalues=NULL,
- tol = 1e-06, empirical = FALSE, Q=NULL)</pre>
-    
+    <pre class="usage"><span class='fu'>stsls</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='kw'>zero.policy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+ <span class='kw'>na.action</span> <span class='kw'>=</span> <span class='no'>na.fail</span>, <span class='kw'>robust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>HC</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>legacy</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>W2X</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># S3 method for stsls</span>
+<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>obj</span>, <span class='no'>...</span>, <span class='no'>tr</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>listw</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>evalues</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+ <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Q</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>formula</th>
       <td><p>a symbolic description of the model to be fit. The details 
-of model specification are given for <code><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm()</a></code></p></td>
+of model specification are given for <code><a href='https://rdrr.io/r/stats/lm.html'>lm()</a></code></p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -179,7 +186,7 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='ML_models.html
       <td><p>A spatial regression object created by <code>lagsarlm</code>, <code>lagmess</code> or by <code>lmSLX</code>; in <code>HPDinterval.lagImpact</code>, a lagImpact object</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Arguments passed through to methods in the <span class="pkg">coda</span> package</p></td>
     </tr>
     <tr>
@@ -207,13 +214,12 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='ML_models.html
       <td><p>default NULL, else an integer number of cumulative power series impacts to calculate if <code>tr</code> is given</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The fitting implementation fits a spatial lag model:</p>
 <p>$$y = \rho W y + X \beta + \varepsilon$$</p>
 <p>by using spatially lagged X variables as instruments for the spatially lagged dependent variable.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>an object of class "stsls" containing:</p>
@@ -223,7 +229,6 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='ML_models.html
   <dt>residuals</dt><dd><p>model residuals</p></dd>
   <dt>df</dt><dd><p>degrees of freedom</p></dd>
 
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Kelejian, H.H. and I.R. Prucha (1998). A generalized spatial two
@@ -231,18 +236,16 @@ stage least squares procedure for estimating a spatial autoregressive
 model with autoregressive disturbances. <em>Journal of Real Estate
 Finance and Economics</em> 17, 99-121.</p>
 <p>Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. <em>Journal of Statistical Software</em>, 63(18), 1-36. <a href='https://www.jstatsoft.org/v63/i18/'>https://www.jstatsoft.org/v63/i18/</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ML_models.html'>lagsarlm</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
 <span class='co'>#require(spdep, quietly=TRUE)</span>
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>)
+<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>)
 <span class='no'>COL.lag.eig</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>lw</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.lag.eig</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.eig</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw)
 #&gt; 
 #&gt; Residuals:
@@ -276,7 +279,7 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; INC         -0.05  0.35 -0.61            
 #&gt; HOVAL       -0.01  0.08 -0.25       -0.44
 #&gt; </div><div class='input'><span class='no'>COL.lag.stsls</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>lw</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.lag.stsls</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.stsls</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:stsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw)
 #&gt; 
 #&gt; Residuals:
@@ -300,29 +303,7 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; </div><div class='input'><span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>lw</span>, <span class='st'>"CsparseMatrix"</span>)
 <span class='no'>trMatc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
 <span class='no'>loobj1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.lag.stsls</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMatc</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>loobj1</span>, <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (lag, trace):
-#&gt;           Direct   Indirect     Total
-#&gt; INC   -1.0607411 -0.7739768 -1.834718
-#&gt; HOVAL -0.2814136 -0.2053354 -0.486749
-#&gt; ========================================================
-#&gt; Simulation results (asymptotic IV variance matrix):
-#&gt; ========================================================
-#&gt; Simulated standard errors
-#&gt;           Direct  Indirect     Total
-#&gt; INC   0.39668006 0.9695180 1.0529050
-#&gt; HOVAL 0.09757127 0.3123932 0.3649017
-#&gt; 
-#&gt; Simulated z-values:
-#&gt;          Direct   Indirect     Total
-#&gt; INC   -2.768354 -0.8583926 -1.833383
-#&gt; HOVAL -2.954457 -0.8425926 -1.511339
-#&gt; 
-#&gt; Simulated p-values:
-#&gt;       Direct    Indirect Total   
-#&gt; INC   0.0056340 0.39068  0.066746
-#&gt; HOVAL 0.0031322 0.39946  0.130702</div><div class='input'><span class='no'>ev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>lw</span>)
-<span class='no'>loobj2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.lag.stsls</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>evalues</span><span class='kw'>=</span><span class='no'>ev</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>loobj2</span>, <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (lag, evalues):
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>loobj1</span>, <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (lag, trace):
 #&gt;           Direct   Indirect     Total
 #&gt; INC   -1.0607411 -0.7739768 -1.834718
 #&gt; HOVAL -0.2814136 -0.2053354 -0.486749
@@ -331,24 +312,46 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; ========================================================
 #&gt; Simulated standard errors
 #&gt;          Direct  Indirect     Total
-#&gt; INC   0.3938173 0.7767898 0.8495447
-#&gt; HOVAL 0.1056870 1.5965495 1.5811775
+#&gt; INC   0.3988322 0.7289904 0.8606676
+#&gt; HOVAL 0.1042962 0.2870540 0.3447963
 #&gt; 
 #&gt; Simulated z-values:
-#&gt;          Direct    Indirect      Total
-#&gt; INC   -2.808040 -1.09738179 -2.3051048
-#&gt; HOVAL -2.639696 -0.08842253 -0.2657213
+#&gt;          Direct   Indirect     Total
+#&gt; INC   -2.617063 -1.2032733 -2.231923
+#&gt; HOVAL -2.827662 -0.9973285 -1.685638
 #&gt; 
 #&gt; Simulated p-values:
 #&gt;       Direct    Indirect Total   
-#&gt; INC   0.0049844 0.27247  0.021161
-#&gt; HOVAL 0.0082980 0.92954  0.790454</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='no'>coda</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/coda/topics/HPDinterval'>HPDinterval</a></span>(<span class='no'>loobj1</span>)</div><div class='output co'>#&gt;            lower       upper
-#&gt; INC   -1.7799556 -0.35225230
-#&gt; HOVAL -0.4587508 -0.09515137
+#&gt; INC   0.0088690 0.22887  0.025620
+#&gt; HOVAL 0.0046889 0.31861  0.091866</div><div class='input'><span class='no'>ev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>lw</span>)
+<span class='no'>loobj2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.lag.stsls</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>evalues</span><span class='kw'>=</span><span class='no'>ev</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>loobj2</span>, <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (lag, evalues):
+#&gt;           Direct   Indirect     Total
+#&gt; INC   -1.0607411 -0.7739768 -1.834718
+#&gt; HOVAL -0.2814136 -0.2053354 -0.486749
+#&gt; ========================================================
+#&gt; Simulation results (asymptotic IV variance matrix):
+#&gt; ========================================================
+#&gt; Simulated standard errors
+#&gt;          Direct  Indirect     Total
+#&gt; INC   0.3448189 0.7365538 0.8296235
+#&gt; HOVAL 0.1090639 0.4779261 0.5403720
+#&gt; 
+#&gt; Simulated z-values:
+#&gt;          Direct   Indirect     Total
+#&gt; INC   -3.073358 -1.1467527 -2.295495
+#&gt; HOVAL -2.734421 -0.5616689 -1.048653
+#&gt; 
+#&gt; Simulated p-values:
+#&gt;       Direct    Indirect Total   
+#&gt; INC   0.0021166 0.25148  0.021705
+#&gt; HOVAL 0.0062490 0.57434  0.294338</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>coda</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/coda/man/HPDinterval.html'>HPDinterval</a></span>(<span class='no'>loobj1</span>)</div><div class='output co'>#&gt;            lower      upper
+#&gt; INC   -1.8623648 -0.3785672
+#&gt; HOVAL -0.5223918 -0.1163665
 #&gt; attr(,"Probability")
 #&gt; [1] 0.95</div><div class='input'><span class='no'>COL.lag.stslsW</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>lw</span>, <span class='kw'>W2X</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.lag.stslsW</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.stslsW</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:stsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
 #&gt;     W2X = FALSE)
 #&gt; 
@@ -372,7 +375,7 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; [3,]  0.04 -0.16 -0.36
 #&gt; </div><div class='input'><span class='no'>COL.lag.stslsR</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>lw</span>,
 <span class='kw'>robust</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>W2X</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.lag.stslsR</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.stslsR</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:stsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
 #&gt;     robust = TRUE, W2X = FALSE)
 #&gt; 
@@ -396,7 +399,7 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; [3,]  0.24 -0.24 -0.83
 #&gt; </div><div class='input'><span class='no'>COL.lag.stslsRl</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>lw</span>,
 <span class='kw'>robust</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>legacy</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>W2X</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.lag.stslsRl</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.stslsRl</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:stsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
 #&gt;     robust = TRUE, legacy = TRUE, W2X = FALSE)
 #&gt; 
@@ -418,11 +421,11 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; (Intercept) -0.89                  
 #&gt; INC          0.12 -0.26            
 #&gt; HOVAL        0.25 -0.26       -0.83
-#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
-<span class='no'>gp2a</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>CMEDV</span>) ~ <span class='no'>CRIM</span> + <span class='no'>ZN</span> + <span class='no'>INDUS</span> + <span class='no'>CHAS</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>NOX</span>^<span class='fl'>2</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>RM</span>^<span class='fl'>2</span>) +
-  <span class='no'>AGE</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>DIS</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>RAD</span>) + <span class='no'>TAX</span> + <span class='no'>PTRATIO</span> + <span class='no'>B</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>LSTAT</span>),
- <span class='kw'>data</span><span class='kw'>=</span><span class='no'>boston.c</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>boston.soi</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>gp2a</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
+<span class='no'>gp2a</span> <span class='kw'>&lt;-</span> <span class='fu'>stsls</span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>CMEDV</span>) ~ <span class='no'>CRIM</span> + <span class='no'>ZN</span> + <span class='no'>INDUS</span> + <span class='no'>CHAS</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>NOX</span>^<span class='fl'>2</span>) + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>RM</span>^<span class='fl'>2</span>) +
+  <span class='no'>AGE</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>DIS</span>) + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>RAD</span>) + <span class='no'>TAX</span> + <span class='no'>PTRATIO</span> + <span class='no'>B</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>LSTAT</span>),
+ <span class='kw'>data</span><span class='kw'>=</span><span class='no'>boston.c</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>gp2a</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:stsls(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
 #&gt;     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + 
 #&gt;     log(LSTAT), data = boston.c, listw = spdep::nb2listw(boston.soi))
@@ -452,26 +455,13 @@ Finance and Economics</em> 17, 99-121.</p>
 #&gt; Residual variance (sigma squared): 0.020054, (sigma: 0.14161)
 #&gt; </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Luc Anselin, Gianfranco Piras and Roger Bivand</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -479,13 +469,16 @@ Finance and Economics</em> 17, 99-121.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

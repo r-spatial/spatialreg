@@ -8,21 +8,29 @@
 
 <title>Likelihood ratio test — LR.sarlm • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Likelihood ratio test — LR.sarlm" />
 
+<meta property="og:title" content="Likelihood ratio test — LR.sarlm" />
 <meta property="og:description" content="The LR.sarlm() function provides a likelihood ratio test for objects for which a logLik() function exists for their class, or for objects of class logLik. LR1.sarlm() and Wald1.sarlm() are used internally in summary.sarlm(), but may be accessed directly; they report the values respectively of LR and Wald tests for the absence of spatial dependence in spatial lag or error models. The spatial Hausman test is available for models fitted with errorsarlm and GMerrorsar." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,42 +129,40 @@
     </div>
 
     <div class="ref-description">
-    
-    <p>The <code>LR.sarlm()</code> function provides a likelihood ratio test for objects for which a <code><a href='https://www.rdocumentation.org/packages/stats/topics/logLik'>logLik()</a></code> function exists for their class, or for objects of class <code>logLik</code>. <code>LR1.sarlm()</code> and <code>Wald1.sarlm()</code> are used internally in <code><a href='ML_models.html'>summary.sarlm()</a></code>, but may be accessed directly; they report the values respectively of LR and Wald tests for the absence of spatial dependence in spatial lag or error models. The spatial Hausman test is available for models fitted with <code>errorsarlm</code> and <code>GMerrorsar</code>.</p>
-    
+    <p>The <code>LR.sarlm()</code> function provides a likelihood ratio test for objects for which a <code><a href='https://rdrr.io/r/stats/logLik.html'>logLik()</a></code> function exists for their class, or for objects of class <code>logLik</code>. <code>LR1.sarlm()</code> and <code>Wald1.sarlm()</code> are used internally in <code><a href='ML_models.html'>summary.sarlm()</a></code>, but may be accessed directly; they report the values respectively of LR and Wald tests for the absence of spatial dependence in spatial lag or error models. The spatial Hausman test is available for models fitted with <code>errorsarlm</code> and <code>GMerrorsar</code>.</p>
     </div>
 
-    <pre class="usage">LR.sarlm(x, y)
-# S3 method for sarlm
-logLik(object, ...)
-LR1.sarlm(object)
-Wald1.sarlm(object)
-# S3 method for sarlm
-Hausman.test(object, ..., tol=NULL)
-# S3 method for sarlm
-anova(object, ...)
-bptest.sarlm(object, varformula=NULL, studentize = TRUE, data=list())
-# S3 method for sarlm
-impacts(obj, &#8230;, tr, R = NULL, listw = NULL, evalues=NULL,
- useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)</pre>
-    
+    <pre class="usage"><span class='fu'>LR.sarlm</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='co'># S3 method for sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/logLik.html'>logLik</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>LR1.sarlm</span>(<span class='no'>object</span>)
+<span class='fu'>Wald1.sarlm</span>(<span class='no'>object</span>)
+<span class='co'># S3 method for sarlm</span>
+<span class='fu'>Hausman.test</span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>tol</span><span class='kw'>=</span><span class='kw'>NULL</span>)
+<span class='co'># S3 method for sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>bptest.sarlm</span>(<span class='no'>object</span>, <span class='kw'>varformula</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>studentize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
+<span class='co'># S3 method for sarlm</span>
+<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>obj</span>, <span class='no'>...</span>, <span class='no'>tr</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>listw</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>evalues</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+ <span class='kw'>useHESS</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Q</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>logLik</code> object or an object for which a <code><a href='https://www.rdocumentation.org/packages/stats/topics/logLik'>logLik()</a></code> function exists</p></td>
+      <td><p>a <code>logLik</code> object or an object for which a <code><a href='https://rdrr.io/r/stats/logLik.html'>logLik()</a></code> function exists</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>a <code>logLik</code> object or an object for which a <code><a href='https://www.rdocumentation.org/packages/stats/topics/logLik'>logLik()</a></code> function exists</p></td>
+      <td><p>a <code>logLik</code> object or an object for which a <code><a href='https://rdrr.io/r/stats/logLik.html'>logLik()</a></code> function exists</p></td>
     </tr>
     <tr>
       <th>object, obj</th>
       <td><p>a <code>sarlm</code> object</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>further arguments passed to or from other methods</p></td>
     </tr>
     <tr>
@@ -204,7 +211,7 @@ impacts(obj, &#8230;, tr, R = NULL, listw = NULL, evalues=NULL,
       <td><p>default NULL, else an integer number of cumulative power series impacts to calculate if <code>tr</code> is given</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The tests return objects of class <code>htest</code> with:</p>
@@ -217,11 +224,9 @@ impacts(obj, &#8230;, tr, R = NULL, listw = NULL, evalues=NULL,
   logLik.sarlm() returns an object of class logLik
   LR1.sarlm, Hausman.sarlm and Wald1.sarlm returm objects of class htest
 
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The numbers of degrees of freedom returned by <code>logLik.sarlm()</code> include nuisance parameters, that is the number of regression coefficients, plus sigma, plus spatial parameter esitmate(s).</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 61--63; Pace RK and LeSage J (2008) A spatial Hausman test. <em>Economics Letters</em> 101, 282--284.
@@ -232,21 +237,19 @@ A Simple Test for Heteroscedasticity and Random Coefficient Variation.
 <em>The Linear Regression Model under Test</em>. Heidelberg: Physica.</p>
 <p>L. Anselin (1988) <em>Spatial econometrics: methods and models.</em>
 Dordrecht: Kluwer, pp. 121--122.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/stats/topics/logLik'>logLik.lm</a></code>, <code>anova.sarlm</code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/logLik.html'>logLik.lm</a></code>, <code>anova.sarlm</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='no'>col.gal.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/read.gal'>read.gal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"weights/columbus.gal"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])
-<span class='no'>lm.mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)
-<span class='no'>lag</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))
-<span class='no'>mixed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>)
-<span class='no'>error</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))
+<span class='no'>col.gal.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"weights/columbus.gal"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])
+<span class='no'>lm.mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)
+<span class='no'>lag</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))
+<span class='no'>mixed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>)
+<span class='no'>error</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>HOVAL</span> + <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))
 <span class='fu'>Hausman.test</span>(<span class='no'>error</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Spatial Hausman test (asymptotic)
 #&gt; 
@@ -260,12 +263,12 @@ Dordrecht: Kluwer, pp. 121--122.</p>
 #&gt; sample estimates:
 #&gt; Log likelihood of mixed Log likelihood of error 
 #&gt;               -182.0161               -184.1552 
-#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='no'>lag</span>, <span class='no'>lm.mod</span>)</div><div class='output co'>#&gt;        Model df    AIC  logLik Test L.Ratio   p-value
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>lag</span>, <span class='no'>lm.mod</span>)</div><div class='output co'>#&gt;        Model df    AIC  logLik Test L.Ratio   p-value
 #&gt; lag        1  5 376.34 -183.17    1                  
-#&gt; lm.mod     2  4 382.75 -187.38    2  8.4179 0.0037154</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='no'>lag</span>, <span class='no'>error</span>, <span class='no'>mixed</span>)</div><div class='output co'>#&gt;       Model df    AIC  logLik Test L.Ratio p-value
+#&gt; lm.mod     2  4 382.75 -187.38    2  8.4179 0.0037154</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>lag</span>, <span class='no'>error</span>, <span class='no'>mixed</span>)</div><div class='output co'>#&gt;       Model df    AIC  logLik Test L.Ratio p-value
 #&gt; lag       1  5 376.34 -183.17    1                
 #&gt; error     2  5 378.31 -184.16    1                
-#&gt; mixed     3  7 378.03 -182.02    2  4.2782 0.11776</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/AIC'>AIC</a></span>(<span class='no'>lag</span>, <span class='no'>error</span>, <span class='no'>mixed</span>)</div><div class='output co'>#&gt;       df      AIC
+#&gt; mixed     3  7 378.03 -182.02    2  4.2782 0.11776</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span>(<span class='no'>lag</span>, <span class='no'>error</span>, <span class='no'>mixed</span>)</div><div class='output co'>#&gt;       df      AIC
 #&gt; lag    5 376.3366
 #&gt; error  5 378.3104
 #&gt; mixed  7 378.0322</div><div class='input'><span class='fu'>bptest.sarlm</span>(<span class='no'>error</span>)</div><div class='output co'>#&gt; 
@@ -278,47 +281,20 @@ Dordrecht: Kluwer, pp. 121--122.</p>
 #&gt; 
 #&gt; data:  
 #&gt; BP = 16.285, df = 2, p-value = 0.0002908
-#&gt; </div><div class='input'><span class='no'>lm.target</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>error</span>$<span class='no'>tary</span> ~ <span class='no'>error</span>$<span class='no'>tarX</span> - <span class='fl'>1</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='no'>lmtest</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='no'>sandwich</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/lmtest/topics/coeftest'>coeftest</a></span>(<span class='no'>lm.target</span>, <span class='kw'>vcov</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sandwich/topics/vcovHC'>vcovHC</a></span>(<span class='no'>lm.target</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"HC0"</span>), <span class='kw'>df</span><span class='kw'>=</span><span class='fl'>Inf</span>))
-}</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘zoo’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    as.Date, as.Date.numeric</span></div><div class='output co'>#&gt; 
-#&gt; z test of coefficients:
-#&gt; 
-#&gt;                                         Estimate Std. Error z value Pr(&gt;|z|)
-#&gt; error$tarXI(x - lambda * WX)(Intercept) 61.05362    4.69780 12.9962  &lt; 2e-16
-#&gt; error$tarXI(x - lambda * WX)HOVAL       -0.30798    0.16434 -1.8740  0.06093
-#&gt; error$tarXI(x - lambda * WX)INC         -0.99547    0.44404 -2.2418  0.02497
-#&gt;                                            
-#&gt; error$tarXI(x - lambda * WX)(Intercept) ***
-#&gt; error$tarXI(x - lambda * WX)HOVAL       .  
-#&gt; error$tarXI(x - lambda * WX)INC         *  
-#&gt; ---
-#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-#&gt; </div></pre>
+#&gt; </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>lm.target</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>error</span>$<span class='no'>tary</span> ~ <span class='no'>error</span>$<span class='no'>tarX</span> - <span class='fl'>1</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>lmtest</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>sandwich</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/lmtest/man/coeftest.html'>coeftest</a></span>(<span class='no'>lm.target</span>, <span class='kw'>vcov</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/pkg/sandwich/man/vcovHC.html'>vcovHC</a></span>(<span class='no'>lm.target</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"HC0"</span>), <span class='kw'>df</span><span class='kw'>=</span><span class='fl'>Inf</span>))
+}
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a>, <code>bptest</code>: Torsten Hothorn and Achim Zeileis, modified by Roger Bivand</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -326,13 +302,16 @@ Dordrecht: Kluwer, pp. 121--122.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

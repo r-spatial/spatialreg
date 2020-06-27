@@ -8,21 +8,29 @@
 
 <title>Spatial simultaneous autoregressive SAC model estimation by GMM — gstsls • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +38,11 @@
 
 
 
-<meta property="og:title" content="Spatial simultaneous autoregressive SAC model estimation by GMM — gstsls" />
 
+<meta property="og:title" content="Spatial simultaneous autoregressive SAC model estimation by GMM — gstsls" />
 <meta property="og:description" content="An implementation of Kelejian and Prucha's generalised moments estimator for the autoregressive parameter in a spatial model
   with a spatially lagged dependent variable." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,9 +56,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -72,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,11 +104,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -110,6 +118,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -121,26 +130,24 @@
     </div>
 
     <div class="ref-description">
-    
     <p>An implementation of Kelejian and Prucha's generalised moments estimator for the autoregressive parameter in a spatial model
   with a spatially lagged dependent variable.</p>
-    
     </div>
 
-    <pre class="usage">gstsls(formula, data = list(), listw, listw2 = NULL, na.action = na.fail, 
-    zero.policy = NULL, pars=NULL, scaleU=FALSE, control = list(), 
-    verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE) 
-# S3 method for gmsar
-impacts(obj, &#8230;, n = NULL, tr = NULL, R = NULL,
- listw = NULL, evalues=NULL, tol = 1e-06, empirical = FALSE, Q=NULL)</pre>
-    
+    <pre class="usage"><span class='fu'>gstsls</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='kw'>listw2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>na.action</span> <span class='kw'>=</span> <span class='no'>na.fail</span>,
+    <span class='kw'>zero.policy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>scaleU</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+    <span class='kw'>verbose</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"nlminb"</span>, <span class='kw'>robust</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>legacy</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>W2X</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='co'># S3 method for gmsar</span>
+<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>obj</span>, <span class='no'>...</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+ <span class='kw'>listw</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>evalues</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>empirical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Q</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>formula</th>
       <td><p>a symbolic description of the model to be fit. The details 
-of model specification are given for <code><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm()</a></code></p></td>
+of model specification are given for <code><a href='https://rdrr.io/r/stats/lm.html'>lm()</a></code></p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -177,7 +184,7 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
     </tr>
     <tr>
       <th>control</th>
-      <td><p>A list of control parameters. See details in <a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a> or <a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></p></td>
+      <td><p>A list of control parameters. See details in <a href='https://rdrr.io/r/stats/optim.html'>optim</a> or <a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -185,7 +192,7 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
     </tr>
     <tr>
       <th>method</th>
-      <td><p>default <a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a>, or optionally a method passed to <a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a> to use an alternative optimizer</p></td>
+      <td><p>default <a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a>, or optionally a method passed to <a href='https://rdrr.io/r/stats/optim.html'>optim</a> to use an alternative optimizer</p></td>
     </tr>
     <tr>
       <th>robust</th>
@@ -204,7 +211,7 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
       <td><p>A spatial regression object created by <code>lagsarlm</code>, <code>lagmess</code> or by <code>lmSLX</code>; in <code>HPDinterval.lagImpact</code>, a lagImpact object</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Arguments passed through to methods in the <span class="pkg">coda</span> package</p></td>
     </tr>
     <tr>
@@ -233,15 +240,14 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
     </tr>
     <tr>
       <th>n</th>
-      <td><p>defaults to <code><a href='https://www.rdocumentation.org/packages/base/topics/length'>length(obj$residuals)</a></code>; in the method for <code>gmsar</code> objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti</p></td>
+      <td><p>defaults to <code><a href='https://rdrr.io/r/base/length.html'>length(obj$residuals)</a></code>; in the method for <code>gmsar</code> objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>When the control list is set with care, the function will converge to values close to the ML estimator 
   without requiring computation of the Jacobian, the most resource-intensive part of ML estimation.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list object of class <code>gmsar</code></p>
@@ -266,22 +272,19 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
   <dt>Hcov</dt><dd><p>NULL</p></dd>
   <dt>na.action</dt><dd><p>(possibly) named vector of excluded or omitted observations if non-default na.action argument used</p></dd>
 
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Kelejian, H. H., and Prucha, I. R., 1999. A Generalized Moments Estimator for the Autoregressive Parameter in a Spatial Model. International Economic Review, 40, pp. 509--533; Cressie, N. A. C. 1993 <em>Statistics for spatial data</em>, Wiley, New York.</p>
 <p>Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. <em>Journal of Statistical Software</em>, 63(18), 1-36. <a href='https://www.jstatsoft.org/v63/i18/'>https://www.jstatsoft.org/v63/i18/</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>, <code><a href='GMerrorsar.html'>GMerrorsar</a></code>, <code><a href='GMerrorsar.html'>GMargminImage</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='GMerrorsar.html'>GMerrorsar</a></code>, <code><a href='GMerrorsar.html'>GMargminImage</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#require("spdep", quietly=TRUE) </span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
-<span class='no'>COL.errW.GM</span> <span class='kw'>&lt;-</span> <span class='fu'>gstsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.errW.GM</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
+<span class='no'>COL.errW.GM</span> <span class='kw'>&lt;-</span> <span class='fu'>gstsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errW.GM</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; gstsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
 #&gt;     style = "W"))
@@ -304,10 +307,10 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 6 
 #&gt; </div><div class='input'><span class='no'>aa</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='GMerrorsar.html'>GMargminImage</a></span>(<span class='no'>COL.errW.GM</span>)
-<span class='no'>levs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/quantile'>quantile</a></span>(<span class='no'>aa</span>$<span class='no'>z</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>/<span class='fl'>12</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/image'>image</a></span>(<span class='no'>aa</span>, <span class='kw'>breaks</span><span class='kw'>=</span><span class='no'>levs</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"lambda"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"s2"</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/points'>points</a></span>(<span class='no'>COL.errW.GM</span>$<span class='no'>lambda</span>, <span class='no'>COL.errW.GM</span>$<span class='no'>s2</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/contour'>contour</a></span>(<span class='no'>aa</span>, <span class='kw'>levels</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>signif</a></span>(<span class='no'>levs</span>, <span class='fl'>4</span>), <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='gstsls-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>COL.errW.GM</span> <span class='kw'>&lt;-</span> <span class='fu'>gstsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>), <span class='kw'>scaleU</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>COL.errW.GM</span>)</div><div class='output co'>#&gt; 
+<span class='no'>levs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>aa</span>$<span class='no'>z</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>/<span class='fl'>12</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span>(<span class='no'>aa</span>, <span class='kw'>breaks</span><span class='kw'>=</span><span class='no'>levs</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"lambda"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"s2"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>COL.errW.GM</span>$<span class='no'>lambda</span>, <span class='no'>COL.errW.GM</span>$<span class='no'>s2</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span>(<span class='no'>aa</span>, <span class='kw'>levels</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>signif</a></span>(<span class='no'>levs</span>, <span class='fl'>4</span>), <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='gstsls-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>COL.errW.GM</span> <span class='kw'>&lt;-</span> <span class='fu'>gstsls</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
+ <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>), <span class='kw'>scaleU</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errW.GM</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; gstsls(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
 #&gt;     style = "W"), scaleU = TRUE)
@@ -329,7 +332,7 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
 #&gt; (scaled) GM argmin sigma squared: 0.96653
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 6 
-#&gt; </div><div class='input'><span class='no'>listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>)
+#&gt; </div><div class='input'><span class='no'>listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>)
 <span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>listw</span>, <span class='st'>"CsparseMatrix"</span>)
 <span class='no'>trMat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
 <span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.errW.GM</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMat</span>)</div><div class='output co'>#&gt; Impact measures (lag, trace):
@@ -337,26 +340,13 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
 #&gt; INC   -1.0543769 -0.7682309 -1.8226078
 #&gt; HOVAL -0.2830618 -0.2062420 -0.4893038</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Gianfranco Piras and Roger Bivand</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -364,13 +354,16 @@ neighbours, if FALSE (default) assign NA - causing <code><a href='GMerrorsar.htm
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -8,21 +8,29 @@
 
 <title>Spatial weights matrix eigenvalues — griffith_sone • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Spatial weights matrix eigenvalues — griffith_sone" />
 
+<meta property="og:title" content="Spatial weights matrix eigenvalues — griffith_sone" />
 <meta property="og:description" content="The eigenw function returns a numeric vector of eigenvalues of 
 the weights matrix generated from the spatial weights object listw. 
 The eigenvalues are used to speed the computation of the Jacobian in 
@@ -39,7 +47,7 @@ spatial model estimation:
 $$\log(\det[I - \rho W]) = \sum_{i=1}^{n}\log(1 - \rho \lambda_i)$$
 where \(W\) is the n by n spatial weights matrix, and \(\lambda_i\) are the
 eigenvalues of \(W\)." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -53,9 +61,10 @@ eigenvalues of \(W\)." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +78,7 @@ eigenvalues of \(W\)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -77,7 +86,7 @@ eigenvalues of \(W\)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -100,11 +109,10 @@ eigenvalues of \(W\)." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -115,6 +123,7 @@ eigenvalues of \(W\)." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -126,7 +135,6 @@ eigenvalues of \(W\)." />
     </div>
 
     <div class="ref-description">
-    
     <p>The <code>eigenw</code> function returns a numeric vector of eigenvalues of 
 the weights matrix generated from the spatial weights object <code>listw</code>. 
 The eigenvalues are used to speed the computation of the Jacobian in 
@@ -134,13 +142,12 @@ spatial model estimation:</p>
 <p>$$\log(\det[I - \rho W]) = \sum_{i=1}^{n}\log(1 - \rho \lambda_i)$$</p>
 <p>where \(W\) is the n by n spatial weights matrix, and \(\lambda_i\) are the
 eigenvalues of \(W\).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>eigenw</span>(<span class='no'>listw</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='kw'>NULL</span>)
 <span class='fu'>griffith_sone</span>(<span class='no'>P</span>, <span class='no'>Q</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"rook"</span>)
 <span class='fu'>subgraph_eigenw</span>(<span class='no'>nb</span>, <span class='kw'>glist</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -181,107 +188,94 @@ eigenvalues of \(W\).</p>
       <td><p>default NULL, use global option value; if FALSE stop with error for any empty neighbour sets, if TRUE permit the weights list to be formed with zero-length weights vectors</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><!-- %The \code{eigenw} function computes the eigenvalues of a single spatial weights object.  -->
 The <code>griffith_sone</code> function function may be used, following Ord and Gasim (for references see Griffith and Sone (1995)), to calculate analytical eigenvalues for binary rook or queen contiguous neighbours where the data are arranged as a regular P times Q grid. The <code>subgraph_eigenw</code> function may be used when there are multiple graph components, of which the largest may be handled as a dense matrix. Here the eigenvalues are computed for each subgraph in turn, and catenated to reconstruct the complete set. The functions may be used to provide pre-computed eigenvalues for spatial regression functions.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a numeric or complex vector of eigenvalues of the weights matrix generated from the spatial weights object.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Cliff, A. D., Ord, J. K. 1981 Spatial processes, Pion, p. 155;
 Ord, J. K. 1975 Estimation methods for models of spatial interaction, Journal
 of the American Statistical Association, 70, 120-126.; Griffith, D. A. and Sone, A. (1995). Trade-offs associated with normalizing constant computational simplifications for estimating spatial statistical models. Journal of Statistical Computation and Simulation, 51, 165-183.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/base/topics/eigen'>eigen</a></code><!-- %, \code{\link{logSpwdet}} --></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/eigen.html'>eigen</a></code><!-- %, \code{\link{logSpwdet}} --></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#require(spdep)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
-<span class='no'>W.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
-<span class='fl'>1</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span>(<span class='no'>W.eig</span>)</div><div class='output co'>#&gt; [1] -1.536177  1.000000</div><div class='input'><span class='no'>S.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"S"</span>))
-<span class='fl'>1</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span>(<span class='no'>S.eig</span>)</div><div class='output co'>#&gt; [1] -1.7364189  0.8918997</div><div class='input'><span class='no'>B.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
-<span class='fl'>1</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span>(<span class='no'>B.eig</span>)</div><div class='output co'>#&gt; [1] -0.3229290  0.1692726</div><div class='input'><span class='co'># cases for intrinsically asymmetric weights</span>
-<span class='no'>crds</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>COL.OLD</span>$<span class='no'>X</span>, <span class='no'>COL.OLD</span>$<span class='no'>Y</span>)
-<span class='no'>k3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/knn2nb'>knn2nb</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/knearneigh'>knearneigh</a></span>(<span class='no'>crds</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>))
-<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/testnb'>is.symmetric.nb</a></span>(<span class='no'>k3</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='no'>k3eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>k3</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>is.complex</a></span>(<span class='no'>k3eig</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>rho</span> <span class='kw'>&lt;-</span> <span class='fl'>0.5</span>
-<span class='no'>Jc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>k3eig</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
+<span class='no'>W.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
+<span class='fl'>1</span>/<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>W.eig</span>)</div><div class='output co'>#&gt; [1] -1.536177  1.000000</div><div class='input'><span class='no'>S.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"S"</span>))
+<span class='fl'>1</span>/<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>S.eig</span>)</div><div class='output co'>#&gt; [1] -1.7364189  0.8918997</div><div class='input'><span class='no'>B.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
+<span class='fl'>1</span>/<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>B.eig</span>)</div><div class='output co'>#&gt; [1] -0.3229290  0.1692726</div><div class='input'><span class='co'># cases for intrinsically asymmetric weights</span>
+<span class='no'>crds</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>COL.OLD</span>$<span class='no'>X</span>, <span class='no'>COL.OLD</span>$<span class='no'>Y</span>)
+<span class='no'>k3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knn2nb.html'>knn2nb</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knearneigh.html'>knearneigh</a></span>(<span class='no'>crds</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>))
+<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/testnb.html'>is.symmetric.nb</a></span>(<span class='no'>k3</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='no'>k3eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k3</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>is.complex</a></span>(<span class='no'>k3eig</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>rho</span> <span class='kw'>&lt;-</span> <span class='fl'>0.5</span>
+<span class='no'>Jc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>k3eig</span>))
 <span class='co'># complex eigenvalue Jacobian</span>
 <span class='no'>Jc</span></div><div class='output co'>#&gt; [1] -1.749705+0i</div><div class='input'><span class='co'># subgraphs</span>
-<span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/compon'>n.comp.nb</a></span>(<span class='no'>k3</span>)
-<span class='no'>nc</span>$<span class='no'>nc</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>table</a></span>(<span class='no'>nc</span>$<span class='no'>comp.id</span>)</div><div class='output co'>#&gt; 
+<span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/compon.html'>n.comp.nb</a></span>(<span class='no'>k3</span>)
+<span class='no'>nc</span>$<span class='no'>nc</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>nc</span>$<span class='no'>comp.id</span>)</div><div class='output co'>#&gt; 
 #&gt;  1  2 
 #&gt; 43  6 </div><div class='input'><span class='no'>k3eigSG</span> <span class='kw'>&lt;-</span> <span class='fu'>subgraph_eigenw</span>(<span class='no'>k3</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sort'>sort</a></span>(<span class='no'>k3eig</span>), <span class='no'>k3eigSG</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>k3</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diag'>diag</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>k3</span>))
-<span class='no'>Jl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diag'>diag</a></span>(<span class='fu'>slot</span>(<span class='fu'>lu</span>(<span class='no'>I</span> - <span class='no'>rho</span> * <span class='no'>W</span>), <span class='st'>"U"</span>)))))
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='no'>k3eig</span>), <span class='no'>k3eigSG</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k3</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>), <span class='st'>"CsparseMatrix"</span>)
+<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>k3</span>))
+<span class='no'>Jl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='fu'>slot</span>(<span class='fu'>lu</span>(<span class='no'>I</span> - <span class='no'>rho</span> * <span class='no'>W</span>), <span class='st'>"U"</span>)))))
 <span class='co'># LU Jacobian equals complex eigenvalue Jacobian</span>
-<span class='no'>Jl</span></div><div class='output co'>#&gt; [1] -1.749705</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>Jc</span>), <span class='no'>Jl</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># wrong value if only real part used</span>
-<span class='no'>Jr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>k3eig</span>)))
-<span class='no'>Jr</span></div><div class='output co'>#&gt; [1] -1.762734</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>Jr</span>, <span class='no'>Jl</span>)</div><div class='output co'>#&gt; [1] "Mean relative difference: 0.007391147"</div><div class='input'><span class='co'># construction of Jacobian from complex conjugate pairs (Jan Hauke)</span>
-<span class='no'>Rev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>k3eig</span>)[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Im</a></span>(<span class='no'>k3eig</span>) <span class='kw'>==</span> <span class='fl'>0</span>)]
+<span class='no'>Jl</span></div><div class='output co'>#&gt; [1] -1.749705</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>Jc</span>), <span class='no'>Jl</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># wrong value if only real part used</span>
+<span class='no'>Jr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>k3eig</span>)))
+<span class='no'>Jr</span></div><div class='output co'>#&gt; [1] -1.762734</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>Jr</span>, <span class='no'>Jl</span>)</div><div class='output co'>#&gt; [1] "Mean relative difference: 0.007391147"</div><div class='input'><span class='co'># construction of Jacobian from complex conjugate pairs (Jan Hauke)</span>
+<span class='no'>Rev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>k3eig</span>)[<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Im</a></span>(<span class='no'>k3eig</span>) <span class='kw'>==</span> <span class='fl'>0</span>)]
 <span class='co'># real eigenvalues</span>
-<span class='no'>Cev</span> <span class='kw'>&lt;-</span> <span class='no'>k3eig</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Im</a></span>(<span class='no'>k3eig</span>) <span class='kw'>!=</span> <span class='fl'>0</span>)]
-<span class='no'>pCev</span> <span class='kw'>&lt;-</span> <span class='no'>Cev</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Im</a></span>(<span class='no'>Cev</span>) <span class='kw'>&gt;</span> <span class='fl'>0</span>]
+<span class='no'>Cev</span> <span class='kw'>&lt;-</span> <span class='no'>k3eig</span>[<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Im</a></span>(<span class='no'>k3eig</span>) <span class='kw'>!=</span> <span class='fl'>0</span>)]
+<span class='no'>pCev</span> <span class='kw'>&lt;-</span> <span class='no'>Cev</span>[<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Im</a></span>(<span class='no'>Cev</span>) <span class='kw'>&gt;</span> <span class='fl'>0</span>]
 <span class='co'># separate complex conjugate pairs</span>
-<span class='no'>RpCev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>pCev</span>)
-<span class='no'>IpCev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Im</a></span>(<span class='no'>pCev</span>)
+<span class='no'>RpCev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>pCev</span>)
+<span class='no'>IpCev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Im</a></span>(<span class='no'>pCev</span>)
 <span class='co'># reassemble Jacobian</span>
-<span class='no'>Jc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span>*<span class='no'>Rev</span>)) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>RpCev</span>)^<span class='fl'>2</span> + (<span class='no'>rho</span>^<span class='fl'>2</span>)*(<span class='no'>IpCev</span>^<span class='fl'>2</span>)))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>Jc</span>), <span class='no'>Jc1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># impact of omitted complex part term in real part only Jacobian</span>
-<span class='no'>Jc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span>*<span class='no'>Rev</span>)) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>RpCev</span>)^<span class='fl'>2</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>Jr</span>, <span class='no'>Jc2</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># trace of asymmetric (WW) and crossprod of complex eigenvalues for APLE</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diag'>diag</a></span>(<span class='no'>W</span> <span class='kw'>%*%</span> <span class='no'>W</span>))</div><div class='output co'>#&gt; [1] 11.55556</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/crossprod'>crossprod</a></span>(<span class='no'>k3eig</span>)</div><div class='output co'>#&gt;             [,1]
+<span class='no'>Jc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span>*<span class='no'>Rev</span>)) + <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>((<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>RpCev</span>)^<span class='fl'>2</span> + (<span class='no'>rho</span>^<span class='fl'>2</span>)*(<span class='no'>IpCev</span>^<span class='fl'>2</span>)))
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>Jc</span>), <span class='no'>Jc1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># impact of omitted complex part term in real part only Jacobian</span>
+<span class='no'>Jc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span>*<span class='no'>Rev</span>)) + <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>((<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='no'>RpCev</span>)^<span class='fl'>2</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>Jr</span>, <span class='no'>Jc2</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># trace of asymmetric (WW) and crossprod of complex eigenvalues for APLE</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span>(<span class='no'>W</span> <span class='kw'>%*%</span> <span class='no'>W</span>))</div><div class='output co'>#&gt; [1] 11.55556</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/crossprod.html'>crossprod</a></span>(<span class='no'>k3eig</span>)</div><div class='output co'>#&gt;             [,1]
 #&gt; [1,] 11.55556+0i</div><div class='input'><span class='co'># analytical regular grid eigenvalues</span>
-<span class='no'>rg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/cell2nb'>cell2nb</a></span>(<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"rook"</span>)
-<span class='no'>rg_eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
+<span class='no'>rg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/cell2nb.html'>cell2nb</a></span>(<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"rook"</span>)
+<span class='no'>rg_eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
 <span class='no'>rg_GS</span> <span class='kw'>&lt;-</span> <span class='fu'>griffith_sone</span>(<span class='kw'>P</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>Q</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"rook"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>rg_eig</span>, <span class='no'>rg_GS</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>FALSE</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"RSpectra"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) <span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>rg_eig</span>, <span class='no'>rg_GS</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>FALSE</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"RSpectra"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) <span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span>
 <span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/RSpectra/topics/eigs'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>
-<span class='no'>resn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/RSpectra/topics/eigs'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>resn</span>, <span class='no'>res1</span>)))
-}</div><div class='output co'>#&gt; [1] -3.695518  3.695518</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>rg_eig</span>)), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>resn</span>, <span class='no'>res1</span>)))
-}</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
+<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>), <span class='st'>"CsparseMatrix"</span>)
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>
+<span class='no'>resn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>resn</span>, <span class='no'>res1</span>)))
+}
+<span class='kw'>if</span> (<span class='no'>run</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>rg_eig</span>)), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>resn</span>, <span class='no'>res1</span>)))
+}
+<span class='kw'>if</span> (<span class='no'>run</span>) {
+<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>rg</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
 <span class='no'>rg_eig</span> <span class='kw'>&lt;-</span> <span class='fu'>eigenw</span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>lw</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='no'>rg_eig</span>)))
-}</div><div class='output co'>#&gt; [1] -1  1</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='no'>rg_eig</span>)))
+}
+<span class='kw'>if</span> (<span class='no'>run</span>) {
 <span class='no'>W</span>  <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>lw</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/complex'>Re</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/RSpectra/topics/eigs'>eigs</a></span>(<span class='no'>W</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/RSpectra/topics/eigs'>eigs</a></span>(<span class='no'>W</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>)))
-}</div><div class='output co'>#&gt; [1] -1  1</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>W</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>, <span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>W</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>)))
+}}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -289,13 +283,16 @@ of the American Statistical Association, 70, 120-126.; Griffith, D. A. and Sone,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

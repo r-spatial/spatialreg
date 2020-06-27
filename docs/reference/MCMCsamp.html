@@ -8,21 +8,29 @@
 
 <title>MCMC sample from fitted spatial regression — MCMCsamp • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="MCMC sample from fitted spatial regression — MCMCsamp" />
 
+<meta property="og:title" content="MCMC sample from fitted spatial regression — MCMCsamp" />
 <meta property="og:description" content="The MCMCsamp method uses rwmetrop, a random walk Metropolis algorithm, from LearnBayes to make MCMC samples from fitted maximum likelihood spatial regression models." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,19 +129,17 @@
     </div>
 
     <div class="ref-description">
-    
-    <p>The <code>MCMCsamp</code> method uses <code><a href='https://www.rdocumentation.org/packages/LearnBayes/topics/rwmetrop'>rwmetrop</a></code>, a random walk Metropolis algorithm, from <span class="pkg">LearnBayes</span> to make MCMC samples from fitted maximum likelihood spatial regression models.</p>
-    
+    <p>The <code>MCMCsamp</code> method uses <code><a href='https://rdrr.io/pkg/LearnBayes/man/rwmetrop.html'>rwmetrop</a></code>, a random walk Metropolis algorithm, from <span class="pkg">LearnBayes</span> to make MCMC samples from fitted maximum likelihood spatial regression models.</p>
     </div>
 
     <pre class="usage"><span class='fu'>MCMCsamp</span>(<span class='no'>object</span>, <span class='kw'>mcmc</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 <span class='co'># S3 method for spautolm</span>
 <span class='fu'>MCMCsamp</span>(<span class='no'>object</span>, <span class='kw'>mcmc</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
- <span class='kw'>burnin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='no'>listw</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())
+ <span class='kw'>burnin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='no'>listw</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 <span class='co'># S3 method for sarlm</span>
 <span class='fu'>MCMCsamp</span>(<span class='no'>object</span>, <span class='kw'>mcmc</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-    <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>0L</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='no'>listw</span>, <span class='kw'>listw2</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())</pre>
-    
+    <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>0L</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='no'>listw</span>, <span class='kw'>listw2</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -149,7 +156,7 @@
       <td><p>default NULL, use global option value; if TRUE, reports progress</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Arguments passed through</p></td>
     </tr>
     <tr>
@@ -169,37 +176,33 @@
       <td><p>list of extra control arguments - see <code><a href='spautolm.html'>spautolm</a></code></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class &#8220;mcmc&#8221; suited to <span class="pkg">coda</span>, with attributes: &#8220;accept&#8221; acceptance rate; &#8220;type&#8221; input ML fitted model type &#8220;SAR&#8221;, &#8220;CAR&#8221;, &#8220;SMA&#8221;, &#8220;lag&#8221;, &#8220;mixed&#8221;, &#8220;error&#8221;, &#8220;sac&#8221;, &#8220;sacmixed&#8221;; &#8220;timings&#8221; run times</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>If the acceptance rate is below 0.05, a warning will be issued; consider increasing mcmc.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Jim Albert (2007) Bayesian Computation with R, Springer, New York, pp. 104-105.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/LearnBayes/topics/rwmetrop'>rwmetrop</a></code>, <code><a href='spautolm.html'>spautolm</a></code>, <code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code>, <code><a href='ML_models.html'>sacsarlm</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/LearnBayes/man/rwmetrop.html'>rwmetrop</a></code>, <code><a href='spautolm.html'>spautolm</a></code>, <code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code>, <code><a href='ML_models.html'>sacsarlm</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>nydata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shapes/NY8_bna_utm18.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/message'>suppressMessages</a></span>(<span class='no'>nyadjmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/foreign/topics/read.dbf'>read.dbf</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>nydata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shapes/NY8_bna_utm18.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(<span class='no'>nyadjmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
  <span class='st'>"misc/nyadjwts.dbf"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])[-<span class='fl'>1</span>]))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/message'>suppressMessages</a></span>(<span class='no'>ID</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>as.character</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/foreign/topics/read.dbf'>read.dbf</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(<span class='no'>ID</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
  <span class='st'>"misc/nyadjwts.dbf"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>]))[-<span class='fl'>1</span>]))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/identical'>identical</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substring</a></span>(<span class='no'>ID</span>, <span class='fl'>2</span>, <span class='fl'>10</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substring</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>as.character</a></span>(<span class='no'>nydata</span>$<span class='no'>AREAKEY</span>), <span class='fl'>2</span>, <span class='fl'>10</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='no'>nyadjlw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/mat2listw'>mat2listw</a></span>(<span class='no'>nyadjmat</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>as.character</a></span>(<span class='no'>nydata</span>$<span class='no'>AREAKEY</span>))
-<span class='no'>listw_NY</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>nyadjlw</span>$<span class='no'>neighbours</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span>(<span class='no'>ID</span>, <span class='fl'>2</span>, <span class='fl'>10</span>), <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>nydata</span>$<span class='no'>AREAKEY</span>), <span class='fl'>2</span>, <span class='fl'>10</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'>#require("spdep", quietly=TRUE)</span>
+<span class='no'>nyadjlw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/mat2listw.html'>mat2listw</a></span>(<span class='no'>nyadjmat</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>nydata</span>$<span class='no'>AREAKEY</span>))
+<span class='no'>listw_NY</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>nyadjlw</span>$<span class='no'>neighbours</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
 <span class='no'>esar1f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"SAR"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar1f</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar1f</span>)</div><div class='output co'>#&gt; 
 #&gt; Call: 
 #&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
 #&gt;     listw = listw_NY, family = "SAR", method = "eigen")
@@ -216,7 +219,7 @@
 #&gt; PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
 #&gt; 
 #&gt; Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 
-#&gt; Numerical Hessian standard error of lambda: 0.017199 
+#&gt; Numerical Hessian standard error of lambda: 0.017209 
 #&gt; 
 #&gt; Log likelihood: -276.1069 
 #&gt; ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)
@@ -224,7 +227,7 @@
 #&gt; Number of parameters estimated: 6 
 #&gt; AIC: 564.21
 #&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1f</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
 #&gt; Iterations = 1:1000
 #&gt; Thinning interval = 1 
 #&gt; Number of chains = 1 
@@ -234,227 +237,45 @@
 #&gt;    plus standard error of the mean:
 #&gt; 
 #&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.04312 0.01737 0.0005493       0.002192
-#&gt; (Intercept) -0.64877 0.18228 0.0057643       0.023222
-#&gt; PEXPOSURE    0.08481 0.04905 0.0015512       0.006309
-#&gt; PCTAGE65P    3.78227 0.58092 0.0183702       0.066349
-#&gt; PCTOWNHOME  -0.39614 0.22104 0.0069899       0.030286
+#&gt; lambda       0.04312 0.01738 0.0005496       0.002193
+#&gt; (Intercept) -0.64883 0.18254 0.0057724       0.023256
+#&gt; PEXPOSURE    0.08483 0.04913 0.0015537       0.006320
+#&gt; PCTAGE65P    3.78232 0.58084 0.0183678       0.066337
+#&gt; PCTOWNHOME  -0.39612 0.22118 0.0069943       0.030304
 #&gt; 
 #&gt; 2. Quantiles for each variable:
 #&gt; 
-#&gt;                  2.5%      25%      50%     75%     97.5%
-#&gt; lambda       0.008407  0.03208  0.04214  0.0550  0.076114
-#&gt; (Intercept) -1.039136 -0.77560 -0.64408 -0.5121 -0.326820
-#&gt; PEXPOSURE   -0.004862  0.05362  0.08144  0.1151  0.202193
-#&gt; PCTAGE65P    2.626822  3.39970  3.73466  4.1837  4.961710
-#&gt; PCTOWNHOME  -0.819491 -0.56238 -0.39279 -0.2266  0.004246
-#&gt; </div><div class='input'><span class='no'>esar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+#&gt;                  2.5%      25%      50%      75%     97.5%
+#&gt; lambda       0.008390  0.03207  0.04215  0.05501  0.076133
+#&gt; (Intercept) -1.039676 -0.77587 -0.64419 -0.51195 -0.326557
+#&gt; PEXPOSURE   -0.004963  0.05359  0.08142  0.11521  0.202348
+#&gt; PCTAGE65P    2.627258  3.39980  3.73455  4.18334  4.962310
+#&gt; PCTOWNHOME  -0.819651 -0.56246 -0.39274 -0.22634  0.004321
+#&gt; </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>esar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='no'>POP8</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"SAR"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar1fw</span>)</div><div class='output co'>#&gt; 
-#&gt; Call: 
-#&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, weights = POP8, family = "SAR", method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.48488 -0.26823  0.09489  0.46552  4.28343 
-#&gt; 
-#&gt; Coefficients: 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.797063   0.144054 -5.5331 3.146e-08
-#&gt; PEXPOSURE    0.080545   0.028334  2.8428  0.004473
-#&gt; PCTAGE65P    3.816731   0.576037  6.6258 3.453e-11
-#&gt; PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975
-#&gt; 
-#&gt; Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 
-#&gt; Numerical Hessian standard error of lambda: 0.016466 
-#&gt; 
-#&gt; Log likelihood: -251.6017 
-#&gt; ML residual variance (sigma squared): 1104.1, (sigma: 33.229)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 515.2
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.01271 0.01597 0.0002258       0.000835
-#&gt; (Intercept) -0.79589 0.16204 0.0022916       0.009234
-#&gt; PEXPOSURE    0.08135 0.03004 0.0004249       0.001609
-#&gt; PCTAGE65P    3.81344 0.61395 0.0086826       0.035900
-#&gt; PCTOWNHOME  -0.38876 0.17337 0.0024519       0.010405
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                 2.5%      25%      50%      75%    97.5%
-#&gt; lambda      -0.01950  0.00131  0.01365  0.02322  0.04405
-#&gt; (Intercept) -1.11386 -0.90118 -0.79245 -0.68884 -0.47880
-#&gt; PEXPOSURE    0.02468  0.06054  0.08122  0.10113  0.13929
-#&gt; PCTAGE65P    2.58222  3.40881  3.80753  4.22443  4.99183
-#&gt; PCTOWNHOME  -0.74173 -0.49840 -0.38546 -0.27256 -0.05256
-#&gt; </div><div class='input'><span class='no'>ecar1f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar1fw</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>ecar1f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"CAR"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>ecar1f</span>)</div><div class='output co'>#&gt; 
-#&gt; Call: 
-#&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, family = "CAR", method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.539732 -0.384311 -0.030646  0.335126  3.808848 
-#&gt; 
-#&gt; Coefficients: 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.648362   0.181129 -3.5796 0.0003442
-#&gt; PEXPOSURE    0.077899   0.043692  1.7829 0.0745986
-#&gt; PCTAGE65P    3.703830   0.627185  5.9055 3.516e-09
-#&gt; PCTOWNHOME  -0.382789   0.195564 -1.9574 0.0503053
-#&gt; 
-#&gt; Lambda: 0.084123 LR test value: 5.8009 p-value: 0.016018 
-#&gt; Numerical Hessian standard error of lambda: 0.030868 
-#&gt; 
-#&gt; Log likelihood: -275.8283 
-#&gt; ML residual variance (sigma squared): 0.40758, (sigma: 0.63842)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 563.66
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ecar1f</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.08485 0.03006 0.0004252       0.001841
-#&gt; (Intercept) -0.66321 0.21539 0.0030460       0.014590
-#&gt; PEXPOSURE    0.08242 0.04990 0.0007057       0.003038
-#&gt; PCTAGE65P    3.65268 0.64313 0.0090952       0.039343
-#&gt; PCTOWNHOME  -0.35758 0.22527 0.0031859       0.014859
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                  2.5%      25%      50%     75%   97.5%
-#&gt; lambda       0.021082  0.06566  0.08492  0.1070  0.1398
-#&gt; (Intercept) -1.173283 -0.78620 -0.63969 -0.5232 -0.2864
-#&gt; PEXPOSURE   -0.008505  0.04925  0.07835  0.1125  0.1967
-#&gt; PCTAGE65P    2.400072  3.17780  3.65483  4.0905  4.9434
-#&gt; PCTOWNHOME  -0.761276 -0.51653 -0.37306 -0.2167  0.1509
-#&gt; </div><div class='input'><span class='no'>esar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ecar1f</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ecar1f</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>esar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='no'>POP8</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"SAR"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar1fw</span>)</div><div class='output co'>#&gt; 
-#&gt; Call: 
-#&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, weights = POP8, family = "SAR", method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.48488 -0.26823  0.09489  0.46552  4.28343 
-#&gt; 
-#&gt; Coefficients: 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.797063   0.144054 -5.5331 3.146e-08
-#&gt; PEXPOSURE    0.080545   0.028334  2.8428  0.004473
-#&gt; PCTAGE65P    3.816731   0.576037  6.6258 3.453e-11
-#&gt; PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975
-#&gt; 
-#&gt; Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 
-#&gt; Numerical Hessian standard error of lambda: 0.016466 
-#&gt; 
-#&gt; Log likelihood: -251.6017 
-#&gt; ML residual variance (sigma squared): 1104.1, (sigma: 33.229)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 515.2
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.01349 0.01687 0.0002386      0.0009539
-#&gt; (Intercept) -0.78310 0.16153 0.0022843      0.0098285
-#&gt; PEXPOSURE    0.07981 0.03110 0.0004398      0.0018722
-#&gt; PCTAGE65P    3.75766 0.64163 0.0090741      0.0389019
-#&gt; PCTOWNHOME  -0.39515 0.17309 0.0024478      0.0098508
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                 2.5%       25%      50%      75%    97.5%
-#&gt; lambda      -0.01923  0.001626  0.01392  0.02433  0.04500
-#&gt; (Intercept) -1.09907 -0.894216 -0.78133 -0.67539 -0.46521
-#&gt; PEXPOSURE    0.02333  0.057110  0.07880  0.10072  0.14261
-#&gt; PCTAGE65P    2.45223  3.345132  3.76443  4.20398  5.00203
-#&gt; PCTOWNHOME  -0.72512 -0.516227 -0.39431 -0.27794 -0.06093
-#&gt; </div><div class='input'><span class='no'>ecar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar1fw</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>ecar1fw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='no'>POP8</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"CAR"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>ecar1fw</span>)</div><div class='output co'>#&gt; 
-#&gt; Call: 
-#&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, weights = POP8, family = "CAR", method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.491042 -0.270906  0.081435  0.451556  4.198134 
-#&gt; 
-#&gt; Coefficients: 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.790154   0.144862 -5.4545 4.910e-08
-#&gt; PEXPOSURE    0.081922   0.028593  2.8651  0.004169
-#&gt; PCTAGE65P    3.825858   0.577720  6.6223 3.536e-11
-#&gt; PCTOWNHOME  -0.386820   0.157436 -2.4570  0.014010
-#&gt; 
-#&gt; Lambda: 0.022419 LR test value: 0.38785 p-value: 0.53343 
-#&gt; Numerical Hessian standard error of lambda: 0.038543 
-#&gt; 
-#&gt; Log likelihood: -251.5711 
-#&gt; ML residual variance (sigma squared): 1102.9, (sigma: 33.21)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 515.14
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ecar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.03533 0.03881 0.0005488       0.002185
-#&gt; (Intercept) -0.83029 0.16302 0.0023055       0.010457
-#&gt; PEXPOSURE    0.08737 0.03435 0.0004858       0.002162
-#&gt; PCTAGE65P    3.75700 0.56221 0.0079509       0.031835
-#&gt; PCTOWNHOME  -0.34683 0.17576 0.0024856       0.011264
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                 2.5%       25%      50%      75%    97.5%
-#&gt; lambda      -0.04410  0.009632  0.03641  0.06253  0.10672
-#&gt; (Intercept) -1.15205 -0.939630 -0.82682 -0.71785 -0.51312
-#&gt; PEXPOSURE    0.02537  0.063595  0.08462  0.10872  0.16356
-#&gt; PCTAGE65P    2.64044  3.356670  3.76310  4.13533  4.81561
-#&gt; PCTOWNHOME  -0.67554 -0.468450 -0.34818 -0.23379  0.00413
-#&gt; </div><div class='input'><span class='no'>esar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ecar1fw</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ecar1fw</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+}
+<span class='no'>esar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar0</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar0</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:errorsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, 
 #&gt;     data = nydata, listw = listw_NY)
 #&gt; 
@@ -481,7 +302,7 @@
 #&gt; Number of parameters estimated: 6 
 #&gt; AIC: 564.21, (AIC for lm: 567.46)
 #&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar0</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
 #&gt; Iterations = 1:1000
 #&gt; Thinning interval = 1 
 #&gt; Number of chains = 1 
@@ -491,412 +312,60 @@
 #&gt;    plus standard error of the mean:
 #&gt; 
 #&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.04682 0.01895 0.0005993       0.002739
-#&gt; (Intercept) -0.65775 0.21896 0.0069243       0.031633
-#&gt; PEXPOSURE    0.08543 0.05260 0.0016634       0.007626
-#&gt; PCTAGE65P    3.65044 0.57371 0.0181422       0.060983
-#&gt; PCTOWNHOME  -0.36116 0.23745 0.0075089       0.036472
+#&gt; lambda       0.04086 0.01436 0.0004541       0.001639
+#&gt; (Intercept) -0.62555 0.18275 0.0057791       0.024443
+#&gt; PEXPOSURE    0.06900 0.04034 0.0012758       0.004965
+#&gt; PCTAGE65P    3.68791 0.64881 0.0205172       0.077680
+#&gt; PCTOWNHOME  -0.38263 0.19769 0.0062513       0.025188
 #&gt; 
 #&gt; 2. Quantiles for each variable:
 #&gt; 
-#&gt;                   2.5%      25%      50%      75%    97.5%
-#&gt; lambda       0.0109828  0.03340  0.04839  0.05958  0.08139
-#&gt; (Intercept) -1.0771095 -0.81427 -0.62781 -0.51408 -0.23029
-#&gt; PEXPOSURE   -0.0004135  0.04738  0.07927  0.11564  0.20607
-#&gt; PCTAGE65P    2.5911599  3.20769  3.63005  4.09097  4.74100
-#&gt; PCTOWNHOME  -0.8037868 -0.54136 -0.35322 -0.20277  0.17058
-#&gt; </div><div class='input'><span class='no'>esar0w</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+#&gt;                  2.5%      25%      50%      75%     97.5%
+#&gt; lambda       0.014717  0.03100  0.04103  0.05272  0.065715
+#&gt; (Intercept) -0.972641 -0.75486 -0.63637 -0.50400 -0.198074
+#&gt; PEXPOSURE   -0.004903  0.03891  0.06820  0.09560  0.152374
+#&gt; PCTAGE65P    2.382993  3.31371  3.67406  4.12972  4.919868
+#&gt; PCTOWNHOME  -0.779951 -0.49064 -0.38080 -0.25234 -0.003732
+#&gt; </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>esar0w</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='no'>POP8</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar0</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, 
-#&gt;     data = nydata, listw = listw_NY)
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.56754 -0.38239 -0.02643  0.33109  4.01219 
-#&gt; 
-#&gt; Type: error 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.618193   0.176784 -3.4969 0.0004707
-#&gt; PEXPOSURE    0.071014   0.042051  1.6888 0.0912635
-#&gt; PCTAGE65P    3.754200   0.624722  6.0094 1.862e-09
-#&gt; PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
-#&gt; 
-#&gt; Lambda: 0.040487, LR test value: 5.2438, p-value: 0.022026
-#&gt; Asymptotic standard error: 0.016214
-#&gt;     z-value: 2.4971, p-value: 0.01252
-#&gt; Wald statistic: 6.2356, p-value: 0.01252
-#&gt; 
-#&gt; Log likelihood: -276.1069 for error model
-#&gt; ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 564.21, (AIC for lm: 567.46)
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar0w</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; lambda       0.01177 0.01571 0.0002221      0.0008781
-#&gt; (Intercept) -0.79575 0.14274 0.0020186      0.0078442
-#&gt; PEXPOSURE    0.08036 0.02929 0.0004143      0.0017545
-#&gt; PCTAGE65P    3.81500 0.57129 0.0080793      0.0330363
-#&gt; PCTOWNHOME  -0.38426 0.15508 0.0021932      0.0087813
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                 2.5%      25%      50%      75%    97.5%
-#&gt; lambda      -0.01899  0.00175  0.01220  0.02213  0.04328
-#&gt; (Intercept) -1.07330 -0.89063 -0.79366 -0.70020 -0.51399
-#&gt; PEXPOSURE    0.02200  0.06082  0.08123  0.10067  0.13675
-#&gt; PCTAGE65P    2.70738  3.41885  3.80976  4.20150  4.94589
-#&gt; PCTOWNHOME  -0.70906 -0.47931 -0.38839 -0.28703 -0.06345
-#&gt; </div><div class='input'><span class='no'>esar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar0</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar0w</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>esar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>etype</span><span class='kw'>=</span><span class='st'>"emixed"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>esar1</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, 
-#&gt;     data = nydata, listw = listw_NY, etype = "emixed")
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.81562 -0.37641 -0.02224  0.33638  4.00054 
-#&gt; 
-#&gt; Type: error 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;                  Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept)     -1.118019   0.247425 -4.5186 6.225e-06
-#&gt; PEXPOSURE        0.218279   0.079245  2.7545  0.005879
-#&gt; PCTAGE65P        3.416477   0.645587  5.2920 1.210e-07
-#&gt; PCTOWNHOME       0.036593   0.249835  0.1465  0.883551
-#&gt; lag.(Intercept)  0.121515   0.057636  2.1083  0.035003
-#&gt; lag.PEXPOSURE   -0.035075   0.015943 -2.2000  0.027808
-#&gt; lag.PCTAGE65P    0.263096   0.220118  1.1953  0.231989
-#&gt; lag.PCTOWNHOME  -0.155680   0.059213 -2.6291  0.008560
-#&gt; 
-#&gt; Lambda: 0.022723, LR test value: 1.6846, p-value: 0.19432
-#&gt; Asymptotic standard error: 0.017169
-#&gt;     z-value: 1.3235, p-value: 0.18567
-#&gt; Wald statistic: 1.7516, p-value: 0.18567
-#&gt; 
-#&gt; Log likelihood: -269.5398 for error model
-#&gt; ML residual variance (sigma squared): 0.39759, (sigma: 0.63055)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 10 
-#&gt; AIC: 559.08, (AIC for lm: 558.76)
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                     Mean      SD  Naive SE Time-series SE
-#&gt; lambda           0.02676 0.01581 0.0002236       0.001178
-#&gt; (Intercept)     -1.09750 0.25378 0.0035889       0.020707
-#&gt; PEXPOSURE        0.21726 0.08428 0.0011920       0.006773
-#&gt; PCTAGE65P        3.41184 0.64490 0.0091202       0.049637
-#&gt; PCTOWNHOME      -0.01373 0.22966 0.0032479       0.016678
-#&gt; lag.(Intercept)  0.12153 0.06099 0.0008625       0.005121
-#&gt; lag.PEXPOSURE   -0.03594 0.01713 0.0002422       0.001467
-#&gt; lag.PCTAGE65P    0.24843 0.21799 0.0030829       0.016826
-#&gt; lag.PCTOWNHOME  -0.14533 0.06036 0.0008536       0.004839
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                      2.5%      25%      50%      75%     97.5%
-#&gt; lambda          -0.004004  0.01652  0.02646  0.03706  0.058414
-#&gt; (Intercept)     -1.596596 -1.26665 -1.09711 -0.92951 -0.569075
-#&gt; PEXPOSURE        0.060047  0.15783  0.21404  0.27377  0.378642
-#&gt; PCTAGE65P        2.125474  2.99396  3.38901  3.80196  4.759975
-#&gt; PCTOWNHOME      -0.432544 -0.18179 -0.02072  0.14040  0.469260
-#&gt; lag.(Intercept)  0.003745  0.08293  0.12172  0.16425  0.246727
-#&gt; lag.PEXPOSURE   -0.069168 -0.04666 -0.03371 -0.02598 -0.003682
-#&gt; lag.PCTAGE65P   -0.204498  0.09091  0.26104  0.40582  0.663236
-#&gt; lag.PCTOWNHOME  -0.270422 -0.18572 -0.14366 -0.10596 -0.030349
-#&gt; </div><div class='input'><span class='no'>lsar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>esar1</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>esar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>lsar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>lsar0</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:lagsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.586752 -0.391580 -0.022469  0.338017  4.029430 
-#&gt; 
-#&gt; Type: lag 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.514495   0.156154 -3.2948  0.000985
-#&gt; PEXPOSURE    0.047627   0.034509  1.3801  0.167542
-#&gt; PCTAGE65P    3.648198   0.599046  6.0900 1.129e-09
-#&gt; PCTOWNHOME  -0.414601   0.169554 -2.4453  0.014475
-#&gt; 
-#&gt; Rho: 0.038893, LR test value: 6.9683, p-value: 0.0082967
-#&gt; Asymptotic standard error: 0.015053
-#&gt;     z-value: 2.5837, p-value: 0.0097755
-#&gt; Wald statistic: 6.6754, p-value: 0.0097755
-#&gt; 
-#&gt; Log likelihood: -275.2447 for lag model
-#&gt; ML residual variance (sigma squared): 0.41166, (sigma: 0.6416)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 562.49, (AIC for lm: 567.46)
-#&gt; LM test for residual autocorrelation
-#&gt; test value: 1.4633, p-value: 0.22641
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>lsar0</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; rho          0.03915 0.01459 0.0002064      0.0008488
-#&gt; (Intercept) -0.50125 0.15408 0.0021790      0.0088983
-#&gt; PEXPOSURE    0.04852 0.03298 0.0004664      0.0018774
-#&gt; PCTAGE65P    3.61157 0.63269 0.0089476      0.0392880
-#&gt; PCTOWNHOME  -0.42602 0.17245 0.0024389      0.0101946
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                  2.5%      25%      50%      75%    97.5%
-#&gt; rho          0.009349  0.02961  0.03954  0.04917  0.06723
-#&gt; (Intercept) -0.802174 -0.60725 -0.50419 -0.40635 -0.20369
-#&gt; PEXPOSURE   -0.015802  0.02608  0.04816  0.07157  0.10954
-#&gt; PCTAGE65P    2.432746  3.19362  3.62072  4.02246  4.87609
-#&gt; PCTOWNHOME  -0.768748 -0.53969 -0.42812 -0.31526 -0.06927
-#&gt; </div><div class='input'><span class='no'>lsar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>lsar0</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>lsar0</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>lsar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>lsar1</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:lagsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, type = "mixed")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.799308 -0.390125 -0.021371  0.346128  3.965251 
-#&gt; 
-#&gt; Type: mixed 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;                  Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept)     -1.131233   0.249631 -4.5316 5.853e-06
-#&gt; PEXPOSURE        0.218364   0.079301  2.7536  0.005894
-#&gt; PCTAGE65P        3.361158   0.654123  5.1384 2.771e-07
-#&gt; PCTOWNHOME       0.071903   0.253967  0.2831  0.777085
-#&gt; lag.(Intercept)  0.132544   0.056175  2.3595  0.018300
-#&gt; lag.PEXPOSURE   -0.035239   0.015536 -2.2681  0.023322
-#&gt; lag.PCTAGE65P    0.161685   0.223690  0.7228  0.469798
-#&gt; lag.PCTOWNHOME  -0.140681   0.058529 -2.4036  0.016234
-#&gt; 
-#&gt; Rho: 0.026981, LR test value: 2.558, p-value: 0.10974
-#&gt; Asymptotic standard error: 0.016766
-#&gt;     z-value: 1.6093, p-value: 0.10755
-#&gt; Wald statistic: 2.5899, p-value: 0.10755
-#&gt; 
-#&gt; Log likelihood: -269.1031 for mixed model
-#&gt; ML residual variance (sigma squared): 0.39587, (sigma: 0.62918)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 10 
-#&gt; AIC: 558.21, (AIC for lm: 558.76)
-#&gt; LM test for residual autocorrelation
-#&gt; test value: 4.908, p-value: 0.026732
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>lsar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                     Mean      SD  Naive SE Time-series SE
-#&gt; rho              0.02682 0.01653 0.0002338       0.001224
-#&gt; (Intercept)     -1.12343 0.25876 0.0036595       0.020136
-#&gt; PEXPOSURE        0.21335 0.08094 0.0011446       0.006299
-#&gt; PCTAGE65P        3.36142 0.68400 0.0096733       0.052746
-#&gt; PCTOWNHOME       0.09177 0.26971 0.0038143       0.021966
-#&gt; lag.(Intercept)  0.14090 0.06108 0.0008638       0.005038
-#&gt; lag.PEXPOSURE   -0.03547 0.01604 0.0002268       0.001230
-#&gt; lag.PCTAGE65P    0.13664 0.23180 0.0032781       0.018428
-#&gt; lag.PCTOWNHOME  -0.15042 0.05940 0.0008400       0.004528
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                      2.5%      25%      50%      75%     97.5%
-#&gt; rho             -0.005181  0.01542  0.02730  0.03756  0.059973
-#&gt; (Intercept)     -1.618594 -1.29277 -1.12902 -0.95147 -0.583037
-#&gt; PEXPOSURE        0.060313  0.15941  0.21675  0.26835  0.378858
-#&gt; PCTAGE65P        2.091132  2.87639  3.37081  3.84396  4.618430
-#&gt; PCTOWNHOME      -0.439832 -0.09099  0.09702  0.28782  0.615503
-#&gt; lag.(Intercept)  0.016612  0.10280  0.14452  0.18005  0.256387
-#&gt; lag.PEXPOSURE   -0.066728 -0.04674 -0.03593 -0.02417 -0.006011
-#&gt; lag.PCTAGE65P   -0.306106 -0.02674  0.12948  0.29697  0.606519
-#&gt; lag.PCTOWNHOME  -0.270533 -0.18772 -0.14938 -0.11312 -0.041099
-#&gt; </div><div class='input'><span class='no'>ssar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>sacsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>lsar1</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>lsar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>ssar0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>sacsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>ssar0</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:sacsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.468382 -0.375687 -0.034996  0.314714  3.833950 
-#&gt; 
-#&gt; Type: sac 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.386572   0.123188 -3.1381  0.001701
-#&gt; PEXPOSURE    0.026684   0.024013  1.1112  0.266479
-#&gt; PCTAGE65P    3.089824   0.562851  5.4896 4.029e-08
-#&gt; PCTOWNHOME  -0.323052   0.137449 -2.3503  0.018756
-#&gt; 
-#&gt; Rho: 0.089451
-#&gt; Asymptotic standard error: 0.019427
-#&gt;     z-value: 4.6046, p-value: 4.1325e-06
-#&gt; Lambda: -0.08192
-#&gt; Asymptotic standard error: 0.033201
-#&gt;     z-value: -2.4674, p-value: 0.01361
-#&gt; 
-#&gt; LR test value: 10.114, p-value: 0.0063661
-#&gt; 
-#&gt; Log likelihood: -273.672 for sac model
-#&gt; ML residual variance (sigma squared): 0.3766, (sigma: 0.61368)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 7 
-#&gt; AIC: 561.34, (AIC for lm: 567.46)
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ssar0</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                 Mean      SD  Naive SE Time-series SE
-#&gt; rho         -0.09328 0.02549 0.0003605       0.002807
-#&gt; lambda       0.11428 0.01584 0.0002240       0.001540
-#&gt; (Intercept) -0.94694 0.23887 0.0033782       0.030263
-#&gt; PEXPOSURE    0.16912 0.06891 0.0009745       0.011881
-#&gt; PCTAGE65P    3.22440 0.63892 0.0090357       0.053036
-#&gt; PCTOWNHOME  -0.15911 0.21919 0.0030998       0.022289
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                 2.5%     25%      50%      75%    97.5%
-#&gt; rho         -0.13825 -0.1107 -0.09389 -0.07871 -0.03551
-#&gt; lambda       0.07682  0.1072  0.11634  0.12503  0.13925
-#&gt; (Intercept) -1.39958 -1.1172 -0.93272 -0.77853 -0.51855
-#&gt; PEXPOSURE    0.03267  0.1221  0.17214  0.21368  0.30463
-#&gt; PCTAGE65P    2.07593  2.7990  3.21875  3.63317  4.55371
-#&gt; PCTOWNHOME  -0.57334 -0.3151 -0.15804 -0.01052  0.28834
-#&gt; </div><div class='input'><span class='no'>ssar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>sacsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ssar0</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ssar0</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+<span class='no'>ssar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>sacsarlm</a></span>(<span class='no'>Z</span> ~ <span class='no'>PEXPOSURE</span> + <span class='no'>PCTAGE65P</span> + <span class='no'>PCTOWNHOME</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>nydata</span>,
  <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"sacmixed"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>ssar1</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:sacsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, type = "sacmixed")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.633958 -0.363826 -0.019927  0.348238  3.655509 
-#&gt; 
-#&gt; Type: sacmixed 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;                  Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept)     -1.133298   0.247495 -4.5791 4.670e-06
-#&gt; PEXPOSURE        0.206963   0.074480  2.7788  0.005456
-#&gt; PCTAGE65P        3.083983   0.671081  4.5955 4.316e-06
-#&gt; PCTOWNHOME       0.174800   0.256280  0.6821  0.495196
-#&gt; lag.(Intercept)  0.153427   0.050817  3.0192  0.002534
-#&gt; lag.PEXPOSURE   -0.033400   0.013817 -2.4173  0.015634
-#&gt; lag.PCTAGE65P   -0.079738   0.222144 -0.3589  0.719634
-#&gt; lag.PCTOWNHOME  -0.102502   0.056760 -1.8059  0.070940
-#&gt; 
-#&gt; Rho: 0.092495
-#&gt; Asymptotic standard error: 0.023829
-#&gt;     z-value: 3.8817, p-value: 0.00010375
-#&gt; Lambda: -0.091069
-#&gt; Asymptotic standard error: 0.038431
-#&gt;     z-value: -2.3697, p-value: 0.017804
-#&gt; 
-#&gt; LR test value: 22.379, p-value: 0.0010335
-#&gt; 
-#&gt; Log likelihood: -267.5392 for sacmixed model
-#&gt; ML residual variance (sigma squared): 0.35617, (sigma: 0.5968)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 11 
-#&gt; AIC: 557.08, (AIC for lm: 567.46)
-#&gt; </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ssar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; 
-#&gt; Iterations = 1:5000
-#&gt; Thinning interval = 1 
-#&gt; Number of chains = 1 
-#&gt; Sample size per chain = 5000 
-#&gt; 
-#&gt; 1. Empirical mean and standard deviation for each variable,
-#&gt;    plus standard error of the mean:
-#&gt; 
-#&gt;                      Mean      SD  Naive SE Time-series SE
-#&gt; rho              0.007638 0.06310 0.0008924       0.012083
-#&gt; lambda           0.010881 0.06297 0.0008905       0.011265
-#&gt; (Intercept)     -1.104056 0.24469 0.0034604       0.017333
-#&gt; PEXPOSURE        0.215041 0.07676 0.0010855       0.005712
-#&gt; PCTAGE65P        3.368310 0.66683 0.0094303       0.049312
-#&gt; PCTOWNHOME       0.063564 0.25724 0.0036379       0.018881
-#&gt; lag.(Intercept)  0.117444 0.05966 0.0008437       0.004982
-#&gt; lag.PEXPOSURE   -0.033177 0.01658 0.0002345       0.001498
-#&gt; lag.PCTAGE65P    0.204594 0.28989 0.0040997       0.028322
-#&gt; lag.PCTOWNHOME  -0.142960 0.06371 0.0009011       0.005254
-#&gt; 
-#&gt; 2. Quantiles for each variable:
-#&gt; 
-#&gt;                      2.5%       25%      50%      75%     97.5%
-#&gt; rho             -0.114019 -0.045907  0.01171  0.06298  0.104308
-#&gt; lambda          -0.103577 -0.041704  0.01586  0.06374  0.111342
-#&gt; (Intercept)     -1.591350 -1.261629 -1.11569 -0.93784 -0.600490
-#&gt; PEXPOSURE        0.070314  0.162090  0.21453  0.26415  0.368288
-#&gt; PCTAGE65P        2.077900  2.926809  3.39183  3.81345  4.637470
-#&gt; PCTOWNHOME      -0.396024 -0.121030  0.05620  0.24993  0.554589
-#&gt; lag.(Intercept) -0.005675  0.082040  0.11754  0.15804  0.234216
-#&gt; lag.PEXPOSURE   -0.064986 -0.045013 -0.03387 -0.02116 -0.003128
-#&gt; lag.PCTAGE65P   -0.325625 -0.004242  0.19177  0.39492  0.755637
-#&gt; lag.PCTOWNHOME  -0.268095 -0.182600 -0.14094 -0.09725 -0.026733
-#&gt; </div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ssar1</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>MCMCsamp</span>(<span class='no'>ssar1</span>, <span class='kw'>mcmc</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>burnin</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw_NY</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>)
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -904,13 +373,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

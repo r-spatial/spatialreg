@@ -8,21 +8,29 @@
 
 <title>Spatial neighbour sparse representation — as.spam.listw • spatialreg</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Spatial neighbour sparse representation — as.spam.listw" />
 
+<meta property="og:title" content="Spatial neighbour sparse representation — as.spam.listw" />
 <meta property="og:description" content="Interface between Matrix class objects and weights lists. The as.spam.listw method converts a &quot;listw&quot; object to a sparse matrix as defined in the spam package." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-spatial/spatialreg">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-spatial/spatialreg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,9 +129,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Interface between Matrix class objects and weights lists. The <code>as.spam.listw</code> method converts a <code>"listw"</code> object to a sparse matrix as defined in the <span class="pkg">spam</span> package.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>as.spam.listw</span>(<span class='no'>listw</span>)
@@ -134,7 +141,7 @@
 <span class='fu'>as_dsCMatrix_IrW</span>(<span class='no'>W</span>, <span class='no'>rho</span>)
 <span class='fu'>Jacobian_W</span>(<span class='no'>W</span>, <span class='no'>rho</span>)
 <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='no'>rho</span>, <span class='kw'>order</span><span class='kw'>=</span><span class='fl'>250</span>, <span class='no'>X</span>, <span class='kw'>tol</span><span class='kw'>=</span><span class='no'>.Machine</span>$<span class='no'>double.eps</span>^(<span class='fl'>3</span>/<span class='fl'>5</span>))</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -167,95 +174,80 @@
       <td><p>Tolerance for convergence of power series</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='no'>sf</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>sf</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='co'>#require(spdep, quietly=TRUE)</span>
-<span class='no'>col.gal.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/read.gal'>read.gal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"weights/columbus.gal"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])
-<span class='no'>col.listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"spam"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+<span class='no'>col.gal.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"weights/columbus.gal"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])
+<span class='no'>col.listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"spam"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
   <span class='no'>col.sp</span> <span class='kw'>&lt;-</span> <span class='fu'>as.spam.listw</span>(<span class='no'>col.listw</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>col.sp</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Spam version 2.2-2 (2019-03-07) is loaded.</span>
-#&gt; <span class='message'>Type 'help( Spam)' or 'demo( spam)' for a short introduction </span>
-#&gt; <span class='message'>and overview of this package.</span>
-#&gt; <span class='message'>Help for individual functions is also obtained by adding the</span>
-#&gt; <span class='message'>suffix '.spam' to the function name, e.g. 'help( chol.spam)'.</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘spam’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:Matrix’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    det</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    backsolve, forwardsolve</span></div><div class='output co'>#&gt; Formal class 'spam' [package "spam"] with 4 slots
-#&gt;   ..@ entries    : num [1:230] 0.5 0.5 0.333 0.333 0.333 ...
-#&gt;   ..@ colindices : int [1:230] 2 3 1 3 4 1 2 4 5 2 ...
-#&gt;   ..@ rowpointers: int [1:50] 1 3 6 10 14 21 23 27 33 41 ...
-#&gt;   ..@ dimension  : int [1:2] 49 49</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/message'>suppressMessages</a></span>(<span class='no'>nyadjmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/foreign/topics/read.dbf'>read.dbf</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(
+  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>col.sp</span>)
+}
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(<span class='no'>nyadjmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw pkg'>foreign</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
  <span class='st'>"misc/nyadjwts.dbf"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])[-<span class='fl'>1</span>]))
-<span class='no'>nyadjlw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/mat2listw'>mat2listw</a></span>(<span class='no'>nyadjmat</span>)
-<span class='no'>listw_NY</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>nyadjlw</span>$<span class='no'>neighbours</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
-<span class='no'>W_C</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>W_R</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"RsparseMatrix"</span>)
-<span class='no'>W_S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"symmetricMatrix"</span>)
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>W_S</span>)
+<span class='no'>nyadjlw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/mat2listw.html'>mat2listw</a></span>(<span class='no'>nyadjmat</span>)
+<span class='no'>listw_NY</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>nyadjlw</span>$<span class='no'>neighbours</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
+<span class='no'>W_C</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"CsparseMatrix"</span>)
+<span class='no'>W_R</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"RsparseMatrix"</span>)
+<span class='no'>W_S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>listw_NY</span>, <span class='st'>"symmetricMatrix"</span>)
+<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>W_S</span>)
 <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'>Diagonal</span>(<span class='no'>n</span>)
 <span class='no'>rho</span> <span class='kw'>&lt;-</span> <span class='fl'>0.1</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.math.uzh.ch/pages/spam//reference/det.html'>determinant</a></span>(<span class='no'>I</span> - <span class='no'>rho</span> * <span class='no'>W_S</span>, <span class='kw'>logarithm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)$<span class='no'>modulus</span>)</div><div class='output co'>#&gt; [1] -9.587255</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>listw_NY</span>)))</div><div class='output co'>#&gt; [1] -9.587255</div><div class='input'><span class='no'>nW</span> <span class='kw'>&lt;-</span> - <span class='no'>W_S</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://www.math.uzh.ch/pages/spam//reference/det.html'>determinant</a></span>(<span class='no'>I</span> - <span class='no'>rho</span> * <span class='no'>W_S</span>, <span class='kw'>logarithm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)$<span class='no'>modulus</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='no'>rho</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>listw_NY</span>)))
+<span class='no'>nW</span> <span class='kw'>&lt;-</span> - <span class='no'>W_S</span>
 <span class='no'>nChol</span> <span class='kw'>&lt;-</span> <span class='fu'>Cholesky</span>(<span class='no'>nW</span>, <span class='kw'>Imult</span><span class='kw'>=</span><span class='fl'>8</span>)
-<span class='no'>n</span> * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>rho</span>) + (<span class='fl'>2</span> * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.math.uzh.ch/pages/spam//reference/det.html'>determinant</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/update'>update</a></span>(<span class='no'>nChol</span>, <span class='no'>nW</span>, <span class='fl'>1</span>/<span class='no'>rho</span>))$<span class='no'>modulus</span>))</div><div class='output co'>#&gt; [1] -9.587255</div><div class='input'><span class='no'>nb7rt</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/cell2nb'>cell2nb</a></span>(<span class='fl'>7</span>, <span class='fl'>7</span>, <span class='kw'>torus</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>500</span>*<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>nb7rt</span>))), <span class='kw'>nrow</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>nb7rt</span>))
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>nb7rt</span>)
+<span class='no'>n</span> * <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>rho</span>) + (<span class='fl'>2</span> * <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://www.math.uzh.ch/pages/spam//reference/det.html'>determinant</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/update.html'>update</a></span>(<span class='no'>nChol</span>, <span class='no'>nW</span>, <span class='fl'>1</span>/<span class='no'>rho</span>))$<span class='no'>modulus</span>))
+}
+<span class='no'>nb7rt</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/cell2nb.html'>cell2nb</a></span>(<span class='fl'>7</span>, <span class='fl'>7</span>, <span class='kw'>torus</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>*<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>nb7rt</span>))), <span class='kw'>nrow</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>nb7rt</span>))
+<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>nb7rt</span>)
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Only needed in some simulation settings where the input and</span>
 <span class='co'># output distributions must agree in all but autocorrelation</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='no'>scale</span>)
-<span class='no'>st</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/shapiro.test'>shapiro.test</a></span>(<span class='no'>x</span>)$<span class='no'>p.value</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='no'>scale</span>)
+<span class='no'>st</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/stats/shapiro.test.html'>shapiro.test</a></span>(<span class='no'>x</span>)$<span class='no'>p.value</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>[, (<span class='no'>st</span> <span class='kw'>&gt;</span> <span class='fl'>0.2</span> <span class='kw'>&amp;</span> <span class='no'>st</span> <span class='kw'>&lt;</span> <span class='fl'>0.8</span>)]
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>v</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/residuals'>residuals</a></span>(<span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>v</span> ~ <span class='fl'>1</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>,
- <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>e</span>, <span class='kw'>fdHess</span><span class='kw'>=</span><span class='fl'>FALSE</span>))))
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='no'>scale</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>v</span>) <span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>residuals</a></span>(<span class='fu'><a href='spautolm.html'>spautolm</a></span>(<span class='no'>v</span> ~ <span class='fl'>1</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>,
+ <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>e</span>, <span class='kw'>fdHess</span><span class='kw'>=</span><span class='fl'>FALSE</span>))))
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='no'>scale</span>)
 }
-<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>lw</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>e</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/invIrM'>invIrM</a></span>(<span class='no'>nb7rt</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"solve"</span>, <span class='kw'>feasible</span><span class='kw'>=</span><span class='kw'>NULL</span>) <span class='kw'>%*%</span> <span class='no'>x</span>)</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.003   0.000   0.003 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: not converged within order iterations</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.207   0.017   0.225 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>ee</span>, <span class='st'>"internal"</span>))</div><div class='output co'>#&gt; List of 5
-#&gt;  $ series: num [1:250] 0.291 0.238 0.205 0.181 0.163 ...
+<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>lw</span>, <span class='st'>"CsparseMatrix"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>e</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/invIrM.html'>invIrM</a></span>(<span class='no'>nb7rt</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"solve"</span>, <span class='kw'>feasible</span><span class='kw'>=</span><span class='kw'>NULL</span>) <span class='kw'>%*%</span> <span class='no'>x</span>)</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.003   0.000   0.003 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: not converged within order iterations</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.188   0.002   0.209 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>ee</span>, <span class='st'>"internal"</span>))</div><div class='output co'>#&gt; List of 5
+#&gt;  $ series: num [1:250] 0.284 0.232 0.2 0.176 0.159 ...
 #&gt;  $ order : num 250
 #&gt;  $ tol   : num 4.05e-10
 #&gt;  $ iter  : num 250
-#&gt;  $ conv  : logi FALSE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>e</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>), <span class='kw'>check.attributes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "Mean relative difference: 0.006091146"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.9</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.141   0.002   0.143 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>order</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.751   0.008   0.762 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>e</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>), <span class='kw'>check.attributes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>nb60rt</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/cell2nb'>cell2nb</a></span>(<span class='fl'>60</span>, <span class='fl'>60</span>, <span class='kw'>torus</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>nb60rt</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>W</span>)[<span class='fl'>1</span>]), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.time'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.3</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.012   0.000   0.011 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>))</div><div class='output co'>#&gt;  num [1:3600, 1] -0.383 0.207 -0.731 1.552 0.32 ...
-#&gt;  - attr(*, "dimnames")=List of 2
-#&gt;   ..$ : chr [1:3600] "1:1" "2:1" "3:1" "4:1" ...
-#&gt;   ..$ : NULL</div><div class='input'><span class='no'>obj</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/coerce-methods'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>)[,<span class='fl'>1</span>] ~ <span class='fl'>1</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/spdep/topics/nb2listw'>nb2listw</a></span>(<span class='no'>nb60rt</span>), <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/coef'>coefficients</a></span>(<span class='no'>obj</span>)</div><div class='output co'>#&gt;      lambda (Intercept) 
-#&gt;  0.30639880  0.01380415 </div></pre>
+#&gt;  $ conv  : logi FALSE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>e</span>, <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>), <span class='kw'>check.attributes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "Mean relative difference: 0.006086855"</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.9</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.98</span>, <span class='kw'>order</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>e</span>, <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>), <span class='kw'>check.attributes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+<span class='no'>nb60rt</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/cell2nb.html'>cell2nb</a></span>(<span class='fl'>60</span>, <span class='fl'>60</span>, <span class='kw'>torus</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>nb60rt</span>), <span class='st'>"CsparseMatrix"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>W</span>)[<span class='fl'>1</span>]), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>ee</span> <span class='kw'>&lt;-</span> <span class='fu'>powerWeights</span>(<span class='no'>W</span>, <span class='kw'>rho</span><span class='kw'>=</span><span class='fl'>0.3</span>, <span class='kw'>X</span><span class='kw'>=</span><span class='no'>x</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>))
+<span class='no'>obj</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/coerce-methods.html'>as</a></span>(<span class='no'>ee</span>, <span class='st'>"matrix"</span>)[,<span class='fl'>1</span>] ~ <span class='fl'>1</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>nb60rt</span>), <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>)
+<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>obj</span>)
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -263,13 +255,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
