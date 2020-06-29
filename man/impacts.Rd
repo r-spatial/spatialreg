@@ -157,23 +157,23 @@ data=boston.c, spdep::nb2listw(boston.soi), type="mixed", method="Matrix",
 control=list(fdHess=TRUE), trs=trMatb)
 summary(gp2mMi)
 summary(impacts(gp2mMi, tr=trMatb, R=1000), zstats=TRUE, short=TRUE)
-data(house, package="spData")
-lw <- spdep::nb2listw(LO_nb)
-form <- formula(log(price) ~ age + I(age^2) + I(age^3) + log(lotsize) +
-   rooms + log(TLA) + beds + syear)
-lobj <- lagsarlm(form, house, lw, method="Matrix",
- control=list(fdHess=TRUE), trs=trMat)
-summary(lobj)
-loobj <- impacts(lobj, tr=trMat, R=1000)
-summary(loobj, zstats=TRUE, short=TRUE)
-lobj1 <- stsls(form, house, lw)
-loobj1 <- impacts(lobj1, tr=trMat, R=1000)
-summary(loobj1, zstats=TRUE, short=TRUE)
-mobj <- lagsarlm(form, house, lw, type="mixed",
- method="Matrix", control=list(fdHess=TRUE), trs=trMat)
-summary(mobj)
-moobj <- impacts(mobj, tr=trMat, R=1000)
-summary(moobj, zstats=TRUE, short=TRUE)
+#data(house, package="spData")
+#lw <- spdep::nb2listw(LO_nb)
+#form <- formula(log(price) ~ age + I(age^2) + I(age^3) + log(lotsize) +
+#   rooms + log(TLA) + beds + syear)
+#lobj <- lagsarlm(form, house, lw, method="Matrix",
+# control=list(fdHess=TRUE), trs=trMat)
+#summary(lobj)
+#loobj <- impacts(lobj, tr=trMat, R=1000)
+#summary(loobj, zstats=TRUE, short=TRUE)
+#lobj1 <- stsls(form, house, lw)
+#loobj1 <- impacts(lobj1, tr=trMat, R=1000)
+#summary(loobj1, zstats=TRUE, short=TRUE)
+#mobj <- lagsarlm(form, house, lw, type="mixed",
+# method="Matrix", control=list(fdHess=TRUE), trs=trMat)
+#summary(mobj)
+#moobj <- impacts(mobj, tr=trMat, R=1000)
+#summary(moobj, zstats=TRUE, short=TRUE)
 }
 }
 \keyword{spatial}
