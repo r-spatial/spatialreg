@@ -113,11 +113,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 } else {
                     rownames(cm) <- nclt[1:m2]
                 }
-                for (i in 1:m2) cm[i, c(i+1, i+(m2+1))] <- 1
+                LI <- ifelse(!(listw$style == "W"), 1, 0) #TR: lagged intercept
+                for (i in 1:m2) cm[i, c(i+1, i+(m2+1 + LI)) ] <- 1 #TR: Add to index
 # drop bug fix 2016-09-21 Philipp Hunziker
                 dirImps <- sum_lm_model$coefficients[2:(m2+1), 1:2, drop=FALSE]
                 rownames(dirImps) <- rownames(cm)
-                indirImps <- sum_lm_model$coefficients[(m2+2):m, 1:2, drop=FALSE]
+                indirImps <- sum_lm_model$coefficients[((m2 + 2):m + LI), 1:2, drop=FALSE] #TR: Add to index
                 rownames(indirImps) <- rownames(cm)
             } else {
                 rownames(cm) <- nclt[1:m2] # FIXME
