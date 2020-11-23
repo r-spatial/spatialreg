@@ -1,5 +1,6 @@
 # spatialreg
 
+[![Actions Status](https://github.com/r-spatial/spatialreg/workflows/R-CMD-check/badge.svg)](https://github.com/r-spatial/spatialreg/actions)
 [![CRAN](http://www.r-pkg.org/badges/version/spatialreg)](https://cran.r-project.org/package=spatialreg)
 
 ### spatialreg: spatial models estimation and testing
