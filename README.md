@@ -1,6 +1,5 @@
 # spatialreg
 
-[![Build Status](https://travis-ci.org/r-spatial/spatialreg.png?branch=master)](https://travis-ci.org/r-spatial/spatialreg)
 [![CRAN](http://www.r-pkg.org/badges/version/spatialreg)](https://cran.r-project.org/package=spatialreg)
 
 ### spatialreg: spatial models estimation and testing
