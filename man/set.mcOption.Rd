@@ -55,7 +55,7 @@ if (!is.na(nc)) {
   set.ClusterOption(cl)
   clusterEvalQ(get.ClusterOption(), status <- require(spatialreg, quietly=TRUE))
   print(clusterEvalQ(cl, ifelse(status, exists("mom_calc"), NA)))
-  clusterEvalQ(get.ClusterOption(), ifelse(status, detach(package:spatialreg, NA)))
+  clusterEvalQ(get.ClusterOption(), ifelse(status, detach(package:spatialreg), NA))
   set.ClusterOption(NULL)
   print(clusterEvalQ(cl, exists("mom_calc")))
   stopCluster(cl)
