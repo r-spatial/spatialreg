@@ -127,7 +127,6 @@ impacts <- function(obj, ...)
 
 
 impactSDEM <- function(obj) { 
-  # print("2")
   n <- nrow(obj$tarX)
   k <- ncol(obj$tarX)
   impactsWX(obj$emixedImps, n, k, type="SDEM", method="estimable")
@@ -179,7 +178,9 @@ processSample <- function(x, irho, drop2beta, type, iicept, icept, zero_fill,
                           dvars, T, Q, q, evalues) {
   # print("2")
   g <- x[irho]^(0:q)
+
   beta <- x[-drop2beta]
+
   if (type == "lag" || type == "sac") {
     if (iicept) {
       P <- matrix(beta[-icept], ncol=1)
@@ -202,6 +203,8 @@ processSample <- function(x, irho, drop2beta, type, iicept, icept, zero_fill,
       if(attr(zero_fill, "l_zero_fill") == 6)    b1_l <- c(b1[zero_fill[[1]]], b1[zero_fill[[2]]], rep(0, zero_fill[[3]]), rep(0, zero_fill[[4]]), b1[zero_fill[[5]]], b1[zero_fill[[6]]])
       if(attr(zero_fill, "l_zero_fill") == 5)    b1_l <- c(b1[zero_fill[[1]]], b1[zero_fill[[2]]], rep(0, zero_fill[[3]]), b1[zero_fill[[4]]])
       if(attr(zero_fill, "l_zero_fill") == 4)    b1_l <- c(b1[zero_fill[[1]]], rep(0, zero_fill[[2]]), b1[zero_fill[[3]]], b1[zero_fill[[4]]])
+      if(attr(zero_fill, "l_zero_fill") == 3)    b1_l <- c(b1[zero_fill[[1]]], rep(0, zero_fill[[2]]), rep(0, zero_fill[[3]]), b1[zero_fill[[4]]])
+#      if(attr(zero_fill, "l_zero_fill") == 2)    b1_l <- c(rep(0, zero_fill[[1]]), b1[zero_fill[[2]]])
       
       p <- length(b1_l)
       if (p %% 2 != 0) stop("non-matched coefficient pairs")
@@ -275,8 +278,10 @@ processXSample <- function(x, drop2beta, type, iicept, icept, n, listw,
     if(attr(zero_fill, "l_zero_fill") == 6)    b1_l <- c(b1[zero_fill[[1]]], b1[zero_fill[[2]]], rep(0, zero_fill[[3]]), rep(0, zero_fill[[4]]), b1[zero_fill[[5]]], b1[zero_fill[[6]]])
     if(attr(zero_fill, "l_zero_fill") == 5)    b1_l <- c(b1[zero_fill[[1]]], b1[zero_fill[[2]]], rep(0, zero_fill[[3]]), b1[zero_fill[[4]]])
     if(attr(zero_fill, "l_zero_fill") == 4)    b1_l <- c(b1[zero_fill[[1]]], rep(0, zero_fill[[2]]), b1[zero_fill[[3]]], b1[zero_fill[[4]]])
-    
-    p <- length(b1_l)
+    if(attr(zero_fill, "l_zero_fill") == 3)    b1_l <- c(b1[zero_fill[[1]]], rep(0, zero_fill[[2]]), rep(0, zero_fill[[3]]), b1[zero_fill[[4]]])
+   # if(attr(zero_fill, "l_zero_fill") == 2)    b1_l <- c(rep(0, zero_fill[[1]]), b1[zero_fill[[2]]])
+   
+     p <- length(b1_l)
     if (p %% 2 != 0) stop("non-matched coefficient pairs")
     P <- cbind(b1_l[1:(p/2)], b1_l[((p/2)+1):p])
     
