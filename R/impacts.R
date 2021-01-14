@@ -1,4 +1,4 @@
-# Copyright 2009-2017 by Roger Bivand
+# Copyright 2009-2021 by Roger Bivand and Gianfranco Piras
 trW <- function(W=NULL, m=30, p=16, type="mult", listw=NULL, momentsSymmetry=TRUE) {
   # returns traces
   timings <- list()
