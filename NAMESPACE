@@ -30,7 +30,6 @@ importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
 importFrom(gmodels, estimable)
 
-
 ##################
 
 export(lextrB, lextrW, lextrS, l_max)
