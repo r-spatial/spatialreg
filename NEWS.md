@@ -1,4 +1,8 @@
-# Version 1.1-5 (development)
+# Version 1.1-7 (development)
+
+* #18 standardize use of `coef()` methods for (some) fitted model summary objects
+
+# Version 1.1-5 (2019-12-01)
 
 * #6, #11 na.action and precomputed eigenvalue bug
 

@@ -94,15 +94,15 @@ print.stsls <- function(x, ...) {
 
 summary.stsls <- function(object, correlation = FALSE, ...) {
 	rest.se <- sqrt(diag(object$var))
-	object$Coef <- cbind(object$coefficients, rest.se, 
+	object$coefficients <- cbind(object$coefficients, rest.se, 
 		object$coefficients/rest.se,
 		2*(1-pnorm(abs(object$coefficients/rest.se))))
-	if (object$robust) colnames(object$Coef) <- c("Estimate", 
+	if (object$robust) colnames(object$coefficients) <- c("Estimate", 
 		paste(object$HC, "std. Error"), "z value", "Pr(>|z|)")
-	else colnames(object$Coef) <- c("Estimate", "Std. Error", 
+	else colnames(object$coefficients) <- c("Estimate", "Std. Error", 
 		"t value", "Pr(>|t|)")
 
-	rownames(object$Coef) <- names(object$coefficients)
+	rownames(object$coefficients) <- names(object$coefficients)
 	if (correlation) {
 		object$correlation <- diag((diag(object$var))
 			^(-1/2)) %*% object$var %*% 
@@ -130,7 +130,7 @@ print.summary.stsls <- function(x, digits = max(5, .Options$digits - 3),
 			zero.regs, "\n")
 	}
 	cat("\nCoefficients:", x$coeftitle, "\n")
-	coefs <- x$Coef
+	coefs <- x$coefficients
 	printCoefmat(coefs, signif.stars=signif.stars, digits=digits,
 		na.print="NA")
     	correl <- x$correlation

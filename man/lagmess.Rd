@@ -76,7 +76,8 @@ obj1 <- lm(log(PRICE) ~ PATIO + log(AGE) + log(SQFT),
 spdep::lm.morantest(obj1, lw)
 spdep::lm.LMtests(obj1, lw, test="all")
 system.time(obj2 <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw))
-summary(obj2)
+(x <- summary(obj2))
+coef(x)
 system.time(obj2a <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw,
  use_expm=TRUE))
 summary(obj2a)

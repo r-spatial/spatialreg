@@ -44,10 +44,10 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                     adj <- N/(N-(length(object$coefficients)))
                     SE <- sqrt((SE^2) * adj)
                 }
-		object$Coef <- cbind(object$coefficients, SE, 
+		object$coefficients <- cbind(object$coefficients, SE, 
 			object$coefficients/SE,
 			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$Coef) <- c("Estimate", "Std. Error", 
+		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
 			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
 	} else {
 	    # intercept-only bug fix Larry Layne 20060404
@@ -59,12 +59,12 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                     adj <- N/(N-(length(object$coefficients)))
                     SE <- sqrt((SE^2) * adj)
                 }
-		object$Coef <- cbind(object$coefficients, SE, 
+		object$coefficients <- cbind(object$coefficients, SE, 
 			object$coefficients/SE,
 			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$Coef) <- c("Estimate", "Std. Error", 
+		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
 			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
-	        rownames(object$Coef) <- names(object$coefficients)
+	        rownames(object$coefficients) <- names(object$coefficients)
               }
 	}
         object$adj.se <- adj
@@ -144,14 +144,14 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
 	}
         if (!is.null(x$coeftitle)) {
 	    cat("Coefficients:", x$coeftitle, "\n")
-	    coefs <- x$Coef
+	    coefs <- x$coefficients
 	    if (!is.null(aliased <- x$aliased) && any(x$aliased)){
 		cat("    (", table(aliased)["TRUE"], 
 			" not defined because of singularities)\n", sep = "")
 		cn <- names(aliased)
 		coefs <- matrix(NA, length(aliased), 4, dimnames = list(cn, 
-                	colnames(x$Coef)))
-            	coefs[!aliased, ] <- x$Coef
+                	colnames(x$coefficients)))
+            	coefs[!aliased, ] <- x$coefficients
 	    }
 	    printCoefmat(coefs, signif.stars=signif.stars, digits=digits,
 		na.print="NA")

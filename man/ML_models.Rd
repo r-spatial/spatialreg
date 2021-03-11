@@ -185,7 +185,8 @@ W <- as(listw, "CsparseMatrix")
 trMatc <- trW(W, type="mult")
 COL.lag.eig <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, listw=listw,
  method="eigen", quiet=FALSE, control=list(pre_eig=ev, OrdVsign=1))
-summary(COL.lag.eig, correlation=TRUE)
+(x <- summary(COL.lag.eig, correlation=TRUE))
+coef(x)
 \dontrun{
 COL.lag.eig$fdHess
 COL.lag.eig$resvar

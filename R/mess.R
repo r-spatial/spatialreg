@@ -203,6 +203,8 @@ coef.lagmess <- function(object, ...) {
     ret
 }
 
+coef.summary.lagmess <- function(object, ...) coef(object$lmsum)
+
 fitted.lagmess <- function(object, ...) {
     object$lmobj$fitted.values
 }

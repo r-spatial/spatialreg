@@ -63,7 +63,8 @@ sarcol <- SpatialFiltering(CRIME ~ INC + HOVAL, data=columbus,
  nb=col.gal.nb, style="W", ExactEV=TRUE)
 sarcol
 lmsar <- lm(CRIME ~ INC + HOVAL + fitted(sarcol), data=columbus)
-lmsar
+(x <- summary(lmsar))
+coef(x)
 anova(lmbase, lmsar)
 spdep::lm.morantest(lmsar, spdep::nb2listw(col.gal.nb))
 lagcol <- SpatialFiltering(CRIME ~ 1, ~ INC + HOVAL - 1, data=columbus,

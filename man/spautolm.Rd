@@ -156,6 +156,7 @@ system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  control=list(pre_eig=eigs)))
 res <- summary(esar1f)
 print(res)
+coef(res)
 \dontrun{
 sqrt(diag(res$resvar))
 sqrt(diag(esar1f$fit$imat)*esar1f$fit$s2)

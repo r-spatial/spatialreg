@@ -104,10 +104,12 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 data(oldcol, package="spdep")
 COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"), method="eigen")
-summary(COL.errW.eig, Hausman=TRUE)
+(x <- summary(COL.errW.eig, Hausman=TRUE))
+coef(x)
 COL.errW.GM <- GMerrorsar(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="W"), returnHcov=TRUE)
-summary(COL.errW.GM, Hausman=TRUE)
+(x <- summary(COL.errW.GM, Hausman=TRUE))
+coef(x)
 aa <- GMargminImage(COL.errW.GM)
 levs <- quantile(aa$z, seq(0, 1, 1/12))
 image(aa, breaks=levs, xlab="lambda", ylab="s2")

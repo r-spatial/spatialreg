@@ -61,6 +61,7 @@ system.time(MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
  listw=lw, alpha=0.05, verbose=TRUE, nsim=49))
 glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
 #anova(glmME, test="Chisq")
+coef(summary(glmME))
 anova(glmbase, glmME, test="Chisq")
 \dontrun{
 require("sf", quietly=TRUE)
