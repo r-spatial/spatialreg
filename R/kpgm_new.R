@@ -275,12 +275,13 @@ print.gmsar <- function(x, ...)
 summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
 {
 	object$coeftitle <- "(GM standard errors)"
+        varnames <- names(object$coefficients)
 	object$coefficients <- cbind(object$coefficients, object$rest.se, 
 		object$coefficients/object$rest.se,
 		2*(1-pnorm(abs(object$coefficients/object$rest.se))))
 	colnames(object$coefficients) <- c("Estimate", "Std. Error", 
 		"z value", "Pr(>|z|)")
-	rownames(object$coefficients) <- names(object$coefficients)
+	rownames(object$coefficients) <- varnames
         if (Hausman && !is.null(object$Hcov)) {
                 object$Haus <- Hausman.test(object)
         }
@@ -288,7 +289,7 @@ summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
 	structure(object, class=c("summary.gmsar", class(object)))
 }
 
-
+coef.summary.gmsar <- function(object, ...) object$coefficients
 
 
 

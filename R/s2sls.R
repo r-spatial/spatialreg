@@ -94,6 +94,7 @@ print.stsls <- function(x, ...) {
 
 summary.stsls <- function(object, correlation = FALSE, ...) {
 	rest.se <- sqrt(diag(object$var))
+        varnames <- names(object$coefficients)
 	object$coefficients <- cbind(object$coefficients, rest.se, 
 		object$coefficients/rest.se,
 		2*(1-pnorm(abs(object$coefficients/rest.se))))
@@ -102,7 +103,7 @@ summary.stsls <- function(object, correlation = FALSE, ...) {
 	else colnames(object$coefficients) <- c("Estimate", "Std. Error", 
 		"t value", "Pr(>|t|)")
 
-	rownames(object$coefficients) <- names(object$coefficients)
+	rownames(object$coefficients) <- varnames
 	if (correlation) {
 		object$correlation <- diag((diag(object$var))
 			^(-1/2)) %*% object$var %*% 
@@ -163,6 +164,8 @@ residuals.stsls <- function(object, ...) {
 }
 
 coef.stsls <- function(object, ...) object$coefficients
+
+coef.summary.stsls <- function(object, ...) object$coefficients
 
 deviance.stsls <- function(object, ...) object$sse
 

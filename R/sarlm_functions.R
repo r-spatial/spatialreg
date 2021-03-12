@@ -33,46 +33,6 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
  Hausman=FALSE, adj.se=FALSE, ...)
 {
 #FIXME
-	adj <- NULL
-	if (object$type == "error" || ((object$type == "lag" || 
-		object$type == "mixed" || object$type == "sac" || 
-                object$type == "sacmixed") && object$ase)) {
-		object$coeftitle <- "(asymptotic standard errors)"
-                SE <- object$rest.se
-                if (adj.se) {
-                    N <- length(residuals(object))
-                    adj <- N/(N-(length(object$coefficients)))
-                    SE <- sqrt((SE^2) * adj)
-                }
-		object$coefficients <- cbind(object$coefficients, SE, 
-			object$coefficients/SE,
-			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
-			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
-	} else {
-	    # intercept-only bug fix Larry Layne 20060404
-            if (!is.null(object$rest.se)) {
-		object$coeftitle <- "(numerical Hessian approximate standard errors)"
-                SE <- object$rest.se
-                if (adj.se) {
-                    N <- length(residuals(object))
-                    adj <- N/(N-(length(object$coefficients)))
-                    SE <- sqrt((SE^2) * adj)
-                }
-		object$coefficients <- cbind(object$coefficients, SE, 
-			object$coefficients/SE,
-			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
-			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
-	        rownames(object$coefficients) <- names(object$coefficients)
-              }
-	}
-        object$adj.se <- adj
-
-        if (Nagelkerke) {
-            nk <- NK.sarlm(object)
-            if (!is.null(nk)) object$NK <- nk
-        }
         if (Hausman && object$type == "error" && !is.null(object$Hcov)) {
                 object$Haus <- Hausman.test(object)
         }
@@ -113,6 +73,51 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
         }
 	object$LR1 <- LR1.sarlm(object)
 
+	adj <- NULL
+	if (object$type == "error" || ((object$type == "lag" || 
+		object$type == "mixed" || object$type == "sac" || 
+                object$type == "sacmixed") && object$ase)) {
+		object$coeftitle <- "(asymptotic standard errors)"
+                SE <- object$rest.se
+                if (adj.se) {
+                    N <- length(residuals(object))
+                    adj <- N/(N-(length(object$coefficients)))
+                    SE <- sqrt((SE^2) * adj)
+                }
+                varnames <- names(object$coefficients)
+		object$coefficients <- cbind(object$coefficients, SE, 
+			object$coefficients/SE,
+			2*(1-pnorm(abs(object$coefficients/SE))))
+		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
+	        rownames(object$coefficients) <- varnames
+	} else {
+	    # intercept-only bug fix Larry Layne 20060404
+            if (!is.null(object$rest.se)) {
+		object$coeftitle <- "(numerical Hessian approximate standard errors)"
+                SE <- object$rest.se
+                if (adj.se) {
+                    N <- length(residuals(object))
+                    adj <- N/(N-(length(object$coefficients)))
+                    SE <- sqrt((SE^2) * adj)
+                }
+                varnames <- names(object$coefficients)
+		object$coefficients <- cbind(object$coefficients, SE, 
+			object$coefficients/SE,
+			2*(1-pnorm(abs(object$coefficients/SE))))
+		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
+	        rownames(object$coefficients) <- varnames
+              }
+	}
+# temporary fix for broom 210312
+        object$Coef <- object$coefficients
+        object$adj.se <- adj
+
+        if (Nagelkerke) {
+            nk <- NK.sarlm(object)
+            if (!is.null(nk)) object$NK <- nk
+        }
 	structure(object, class=c("summary.sarlm", class(object)))
 }
 
@@ -279,6 +284,8 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
     	cat("\n")
         invisible(x)
 }
+
+coef.summary.sarlm <- function(object, ...) object$coefficients
 
 getVmate <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
     optimM="optimHess") {

@@ -268,6 +268,7 @@ coef.spautolm <- function(object, ...) {
 	c(object$fit$coefficients, object$lambda)
 }
 
+coef.summary.spautolm <- function(object, ...) object$coefficients
 
 logLik.spautolm <- function(object, ...) {
 	LL <- c(object$LL)
