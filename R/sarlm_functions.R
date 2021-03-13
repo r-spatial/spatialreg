@@ -84,13 +84,13 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                     adj <- N/(N-(length(object$coefficients)))
                     SE <- sqrt((SE^2) * adj)
                 }
-                varnames <- names(object$coefficients)
-		object$coefficients <- cbind(object$coefficients, SE, 
+#                varnames <- names(object$coefficients)
+		object$Coef <- cbind(object$coefficients, SE, 
 			object$coefficients/SE,
 			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+		colnames(object$Coef) <- c("Estimate", "Std. Error", 
 			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
-	        rownames(object$coefficients) <- varnames
+	        rownames(object$Coef) <- names(object$coefficients)
 	} else {
 	    # intercept-only bug fix Larry Layne 20060404
             if (!is.null(object$rest.se)) {
@@ -101,17 +101,17 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                     adj <- N/(N-(length(object$coefficients)))
                     SE <- sqrt((SE^2) * adj)
                 }
-                varnames <- names(object$coefficients)
-		object$coefficients <- cbind(object$coefficients, SE, 
+#                varnames <- names(object$coefficients)
+		object$Coef <- cbind(object$coefficients, SE, 
 			object$coefficients/SE,
 			2*(1-pnorm(abs(object$coefficients/SE))))
-		colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+		colnames(object$Coef) <- c("Estimate", "Std. Error", 
 			ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
-	        rownames(object$coefficients) <- varnames
+	        rownames(object$Coef) <- names(object$coefficients)
               }
 	}
 # temporary fix for broom 210312
-        object$Coef <- object$coefficients
+#        object$Coef <- object$coefficients
         object$adj.se <- adj
 
         if (Nagelkerke) {
@@ -149,14 +149,14 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
 	}
         if (!is.null(x$coeftitle)) {
 	    cat("Coefficients:", x$coeftitle, "\n")
-	    coefs <- x$coefficients
+	    coefs <- x$Coef
 	    if (!is.null(aliased <- x$aliased) && any(x$aliased)){
 		cat("    (", table(aliased)["TRUE"], 
 			" not defined because of singularities)\n", sep = "")
 		cn <- names(aliased)
 		coefs <- matrix(NA, length(aliased), 4, dimnames = list(cn, 
-                	colnames(x$coefficients)))
-            	coefs[!aliased, ] <- x$coefficients
+                	colnames(x$Coef)))
+            	coefs[!aliased, ] <- x$Coef
 	    }
 	    printCoefmat(coefs, signif.stars=signif.stars, digits=digits,
 		na.print="NA")
@@ -285,7 +285,7 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
         invisible(x)
 }
 
-coef.summary.sarlm <- function(object, ...) object$coefficients
+coef.summary.sarlm <- function(object, ...) object$Coef
 
 getVmate <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
     optimM="optimHess") {

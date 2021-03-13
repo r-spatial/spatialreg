@@ -275,13 +275,13 @@ print.gmsar <- function(x, ...)
 summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
 {
 	object$coeftitle <- "(GM standard errors)"
-        varnames <- names(object$coefficients)
-	object$coefficients <- cbind(object$coefficients, object$rest.se, 
+#        varnames <- names(object$coefficients)
+	object$Coef <- cbind(object$coefficients, object$rest.se, 
 		object$coefficients/object$rest.se,
 		2*(1-pnorm(abs(object$coefficients/object$rest.se))))
-	colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+	colnames(object$Coef) <- c("Estimate", "Std. Error", 
 		"z value", "Pr(>|z|)")
-	rownames(object$coefficients) <- varnames
+	rownames(object$Coef) <- names(object$coefficients)
         if (Hausman && !is.null(object$Hcov)) {
                 object$Haus <- Hausman.test(object)
         }
@@ -289,7 +289,7 @@ summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
 	structure(object, class=c("summary.gmsar", class(object)))
 }
 
-coef.summary.gmsar <- function(object, ...) object$coefficients
+coef.summary.gmsar <- function(object, ...) object$Coef
 
 
 
@@ -318,14 +318,14 @@ print.summary.gmsar<-function (x, digits = max(5, .Options$digits - 3), signif.s
                 "\n")
     }
     cat("Coefficients:", x$coeftitle, "\n")
-    coefs <- x$coefficients
+    coefs <- x$Coef
     if (!is.null(aliased <- x$aliased) && any(x$aliased)) {
         cat("    (", table(aliased)["TRUE"], " not defined because of singularities)\n", 
             sep = "")
         cn <- names(aliased)
         coefs <- matrix(NA, length(aliased), 4, dimnames = list(cn, 
-            colnames(x$coefficients)))
-        coefs[!aliased, ] <- x$coefficients
+            colnames(x$Coef)))
+        coefs[!aliased, ] <- x$Coef
     }
     printCoefmat(coefs, signif.stars = signif.stars, digits = digits, 
         na.print = "NA")

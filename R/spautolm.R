@@ -268,7 +268,7 @@ coef.spautolm <- function(object, ...) {
 	c(object$fit$coefficients, object$lambda)
 }
 
-coef.summary.spautolm <- function(object, ...) object$coefficients
+coef.summary.spautolm <- function(object, ...) object$Coef
 
 logLik.spautolm <- function(object, ...) {
 	LL <- c(object$LL)
@@ -311,10 +311,10 @@ summary.spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
 	object$adj.se <- adj.se
 
 	object$rest.se <- sqrt(diag(object$resvar))
-	object$coefficients <- cbind(object$fit$coefficients, object$rest.se, 
+	object$Coef <- cbind(object$fit$coefficients, object$rest.se, 
 		object$fit$coefficients/object$rest.se,
 		2*(1-pnorm(abs(object$fit$coefficients/object$rest.se))))
-	colnames(object$coefficients) <- c("Estimate", "Std. Error", 
+	colnames(object$Coef) <- c("Estimate", "Std. Error", 
 		ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
         if (Nagelkerke) {
             nk <- NK.sarlm(object)
@@ -327,7 +327,7 @@ summary.spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
 		dimnames(object$correlation) <- dimnames(object$resvar)
 	}
 	object$LR1 <- LR1.spautolm(object)
-	rownames(object$coefficients) <- names(object$fit$coefficients)
+	rownames(object$Coef) <- names(object$fit$coefficients)
 	structure(object, class=c("summary.spautolm", class(object)))
 }
 
@@ -353,14 +353,14 @@ print.summary.spautolm <- function(x, digits = max(5, .Options$digits - 3),
 			zero.regs, "\n")
 	}
 	cat("\nCoefficients:", x$coeftitle, "\n")
-	coefs <- x$coefficients
+	coefs <- x$Coef
 	if (!is.null(aliased <- x$aliased) && any(x$aliased)){
 		cat("    (", table(aliased)["TRUE"], 
 			" not defined because of singularities)\n", sep = "")
 		cn <- names(aliased)
 		coefs <- matrix(NA, length(aliased), 4, dimnames = list(cn, 
-                	colnames(x$coefficients)))
-            	coefs[!aliased, ] <- x$coefficients
+                	colnames(x$Coef)))
+            	coefs[!aliased, ] <- x$Coef
 	}
 	printCoefmat(coefs, signif.stars=signif.stars, digits=digits,
 		na.print="NA")
