@@ -1,14 +1,14 @@
 \name{spautolm}
 \alias{spautolm}
-\alias{residuals.spautolm}
-\alias{deviance.spautolm}
-\alias{coef.spautolm}
-\alias{fitted.spautolm}
-\alias{print.spautolm}
-\alias{summary.spautolm}
-\alias{LR1.spautolm}
-\alias{logLik.spautolm}
-\alias{print.summary.spautolm}
+\alias{residuals.Spautolm}
+\alias{deviance.Spautolm}
+\alias{coef.Spautolm}
+\alias{fitted.Spautolm}
+\alias{print.Spautolm}
+\alias{summary.Spautolm}
+\alias{LR1.Spautolm}
+\alias{logLik.Spautolm}
+\alias{print.summary.Spautolm}
 %\alias{CAR}
 %\alias{SAR}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -21,7 +21,7 @@ spautolm(formula, data = list(), listw, weights,
  na.action, family = "SAR", method="eigen", verbose = NULL, trs=NULL,
  interval=NULL, zero.policy = NULL, tol.solve=.Machine$double.eps,
  llprof=NULL, control=list())
-\method{summary}{spautolm}(object, correlation = FALSE, adj.se=FALSE,
+\method{summary}{Spautolm}(object, correlation = FALSE, adj.se=FALSE,
  Nagelkerke=FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -43,7 +43,7 @@ is called.}
   \item{tol.solve}{the tolerance for detecting linear dependencies in the columns of matrices to be inverted - passed to \code{solve()} (default=double precision machine tolerance). Errors in \code{solve()} may constitute indications of poorly scaled variables: if the variables have scales differing much from the autoregressive coefficient, the values in this matrix may be very different in scale, and inverting such a matrix is analytically possible by definition, but numerically unstable; rescaling the RHS variables alleviates this better than setting tol.solve to a very small value}
   \item{llprof}{default NULL, can either be an integer, to divide the feasible range into llprof points, or a sequence of spatial coefficient values, at which to evaluate the likelihood function}
  \item{control}{list of extra control arguments - see section below}
-  \item{object}{\code{spautolm} object from \code{spautolm}}
+  \item{object}{\code{Spautolm} object from \code{spautolm}}
   \item{correlation}{logical; if 'TRUE', the correlation matrix of the estimated parameters is returned and printed (default=FALSE)}
   \item{adj.se}{if TRUE, adjust the coefficient standard errors for the number of fitted coefficients}
   \item{Nagelkerke}{if TRUE, the Nagelkerke pseudo R-squared is reported}
@@ -89,7 +89,7 @@ variable in making predictions for the fitting data.
 
 
 \value{
-  A list object of class \code{spautolm}:
+  A list object of class \code{Spautolm}:
   \item{fit}{a list, with items:
   \describe{
     \item{coefficients}{ML coefficient estimates}

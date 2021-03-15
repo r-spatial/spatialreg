@@ -1,36 +1,36 @@
 % Copyright 2002-9 by Roger S. Bivand
-\name{LR.sarlm}
-\alias{LR.sarlm}
-\alias{LR1.sarlm}
-\alias{Wald1.sarlm}
+\name{LR.Sarlm}
+\alias{LR.Sarlm}
+\alias{LR1.Sarlm}
+\alias{Wald1.Sarlm}
 \alias{Hausman.test}
-\alias{Hausman.test.sarlm}
-\alias{logLik.sarlm}
-\alias{anova.sarlm}
-\alias{bptest.sarlm}
-\alias{impacts.sarlm}
+\alias{Hausman.test.Sarlm}
+\alias{logLik.Sarlm}
+\alias{anova.Sarlm}
+\alias{bptest.Sarlm}
+\alias{impacts.Sarlm}
 
 %- Also NEED an `\alias' for EACH other topic documented here.
 \title{Likelihood ratio test}
 \description{
-  The \code{LR.sarlm()} function provides a likelihood ratio test for objects for which a \code{logLik()} function exists for their class, or for objects of class \code{logLik}. \code{LR1.sarlm()} and \code{Wald1.sarlm()} are used internally in \code{summary.sarlm()}, but may be accessed directly; they report the values respectively of LR and Wald tests for the absence of spatial dependence in spatial lag or error models. The spatial Hausman test is available for models fitted with \code{errorsarlm} and \code{GMerrorsar}.
+  The \code{LR.Sarlm()} function provides a likelihood ratio test for objects for which a \code{logLik()} function exists for their class, or for objects of class \code{logLik}. \code{LR1.Sarlm()} and \code{Wald1.Sarlm()} are used internally in \code{summary.Sarlm()}, but may be accessed directly; they report the values respectively of LR and Wald tests for the absence of spatial dependence in spatial lag or error models. The spatial Hausman test is available for models fitted with \code{errorSarlm} and \code{GMerrorsar}.
 }
 \usage{
-LR.sarlm(x, y)
-\method{logLik}{sarlm}(object, ...)
-LR1.sarlm(object)
-Wald1.sarlm(object)
-\method{Hausman.test}{sarlm}(object, ..., tol=NULL)
-\method{anova}{sarlm}(object, ...)
-bptest.sarlm(object, varformula=NULL, studentize = TRUE, data=list())
-\method{impacts}{sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
+LR.Sarlm(x, y)
+\method{logLik}{Sarlm}(object, ...)
+LR1.Sarlm(object)
+Wald1.Sarlm(object)
+\method{Hausman.test}{Sarlm}(object, ..., tol=NULL)
+\method{anova}{Sarlm}(object, ...)
+bptest.Sarlm(object, varformula=NULL, studentize = TRUE, data=list())
+\method{impacts}{Sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
  useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
   \item{x}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
   \item{y}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
-  \item{object, obj}{a \code{sarlm} object}
+  \item{object, obj}{a \code{Sarlm} object}
   \item{\dots}{further arguments passed to or from other methods}
 %  \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
   \item{varformula}{a formula describing only the potential explanatory variables for the variance (no dependent variable needed). By default the same explanatory variables are taken as in the main regression model}
@@ -53,11 +53,11 @@ bptest.sarlm(object, varformula=NULL, studentize = TRUE, data=list())
   \item{estimate}{varies with test}
   \item{method}{description of test method}
 
-  \code{logLik.sarlm()} returns an object of class \code{logLik}
-  \code{LR1.sarlm}, \code{Hausman.sarlm} and \code{Wald1.sarlm} returm objects of class \code{htest}
+  \code{logLik.Sarlm()} returns an object of class \code{logLik}
+  \code{LR1.Sarlm}, \code{Hausman.Sarlm} and \code{Wald1.Sarlm} returm objects of class \code{htest}
 }
 
-\note{The numbers of degrees of freedom returned by \code{logLik.sarlm()} include nuisance parameters, that is the number of regression coefficients, plus sigma, plus spatial parameter esitmate(s).}
+\note{The numbers of degrees of freedom returned by \code{logLik.Sarlm()} include nuisance parameters, that is the number of regression coefficients, plus sigma, plus spatial parameter esitmate(s).}
 
 \references{LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 61--63; Pace RK and LeSage J (2008) A spatial Hausman test. \emph{Economics Letters} 101, 282--284.
 T.S. Breusch & A.R. Pagan (1979),
@@ -72,7 +72,7 @@ Dordrecht: Kluwer, pp. 121--122.
 }
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}, \code{bptest}: Torsten Hothorn and Achim Zeileis, modified by Roger Bivand}
 
-\seealso{\code{\link{logLik.lm}}, \code{\link{anova.sarlm}}}
+\seealso{\code{\link{logLik.lm}}, \code{\link{anova.Sarlm}}}
 
 \examples{
 require("sf", quietly=TRUE)
@@ -84,12 +84,12 @@ lag <- lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
 mixed <- lagsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb), type="mixed")
 error <- errorsarlm(CRIME ~ HOVAL + INC, data=columbus, spdep::nb2listw(col.gal.nb))
 Hausman.test(error)
-LR.sarlm(mixed, error)
+LR.Sarlm(mixed, error)
 anova(lag, lm.mod)
 anova(lag, error, mixed)
 AIC(lag, error, mixed)
-bptest.sarlm(error)
-bptest.sarlm(error, studentize=FALSE)
+bptest.Sarlm(error)
+bptest.Sarlm(error, studentize=FALSE)
 \dontrun{
 lm.target <- lm(error$tary ~ error$tarX - 1)
 if (require(lmtest, quietly=TRUE) && require(sandwich, quietly=TRUE)) {

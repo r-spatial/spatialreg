@@ -1,15 +1,15 @@
 \name{MCMCsamp}
 \alias{MCMCsamp}
-\alias{MCMCsamp.spautolm}
-\alias{MCMCsamp.sarlm}
+\alias{MCMCsamp.Spautolm}
+\alias{MCMCsamp.Sarlm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{MCMC sample from fitted spatial regression}
 \description{The \code{MCMCsamp} method uses \code{\link[LearnBayes]{rwmetrop}}, a random walk Metropolis algorithm, from \pkg{LearnBayes} to make MCMC samples from fitted maximum likelihood spatial regression models.}
 \usage{
 MCMCsamp(object, mcmc = 1L, verbose = NULL, ...)
-\method{MCMCsamp}{spautolm}(object, mcmc = 1L, verbose = NULL, ...,
+\method{MCMCsamp}{Spautolm}(object, mcmc = 1L, verbose = NULL, ...,
  burnin = 0L, scale=1, listw, control = list())
-\method{MCMCsamp}{sarlm}(object, mcmc = 1L, verbose = NULL, ...,
+\method{MCMCsamp}{Sarlm}(object, mcmc = 1L, verbose = NULL, ...,
     burnin=0L, scale=1, listw, listw2=NULL, control=list())}
 %- maybe also 'usage' for other objects documented here.
 \arguments{

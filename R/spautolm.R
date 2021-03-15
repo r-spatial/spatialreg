@@ -190,7 +190,7 @@ spautolm <- function(formula, data = list(), listw, weights,
 	    attr(res, "zero.regs") <- zero.regs
 	}
 
-    class(res) <- "spautolm"
+    class(res) <- "Spautolm"
     res
 }
 
@@ -235,7 +235,7 @@ spautolm <- function(formula, data = list(), listw, weights,
 
 
 
-print.spautolm <- function(x, ...) {
+print.Spautolm <- function(x, ...) {
         if (isTRUE(all.equal(x$lambda, x$interval[1])) ||
             isTRUE(all.equal(x$lambda, x$interval[2]))) 
             warning("lambda on interval bound - results should not be used")
@@ -248,29 +248,29 @@ print.spautolm <- function(x, ...) {
     
 }
 
-residuals.spautolm <- function(object, ...) {
+residuals.Spautolm <- function(object, ...) {
 	if (is.null(object$na.action))
 		object$fit$residuals
 	else napredict(object$na.action, object$fit$residuals)
 }
 
-fitted.spautolm <- function(object, ...) {
+fitted.Spautolm <- function(object, ...) {
 	if (is.null(object$na.action))
 		object$fit$fitted.values
 	else napredict(object$na.action, object$fit$fitted.values)
 }
 
-deviance.spautolm <- function(object, ...) {
+deviance.Spautolm <- function(object, ...) {
 	object$SSE
 }
 
-coef.spautolm <- function(object, ...) {
+coef.Spautolm <- function(object, ...) {
 	c(object$fit$coefficients, object$lambda)
 }
 
-coef.summary.spautolm <- function(object, ...) object$Coef
+coef.summary.Spautolm <- function(object, ...) object$Coef
 
-logLik.spautolm <- function(object, ...) {
+logLik.Spautolm <- function(object, ...) {
 	LL <- c(object$LL)
 	class(LL) <- "logLik"
 	N <- object$fit$N
@@ -280,9 +280,9 @@ logLik.spautolm <- function(object, ...) {
 	LL
 }
 
-LR1.spautolm <- function(object)
+LR1.Spautolm <- function(object)
 {
-	if (!inherits(object, "spautolm")) stop("Not a spautolm object")
+	if (!inherits(object, "Spautolm")) stop("Not a Spautolm object")
 	LLx <- logLik(object)
 	LLy <- object$LL0
 	statistic <- 2*(LLx - LLy)
@@ -300,7 +300,7 @@ LR1.spautolm <- function(object)
 	res
 }
 
-summary.spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
+summary.Spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
  Nagelkerke=FALSE, ...) {
 	N <- object$fit$N
 	adj <- ifelse (adj.se, N/(N-length(object$fit$coefficients)), 1) 
@@ -317,7 +317,7 @@ summary.spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
 	colnames(object$Coef) <- c("Estimate", "Std. Error", 
 		ifelse(adj.se, "t value", "z value"), "Pr(>|z|)")
         if (Nagelkerke) {
-            nk <- NK.sarlm(object)
+            nk <- NK.Sarlm(object)
             if (!is.null(nk)) object$NK <- nk
         }
 	if (correlation) {
@@ -326,12 +326,12 @@ summary.spautolm <- function(object, correlation = FALSE, adj.se=FALSE,
 			diag((diag(object$resvar))^(-1/2))
 		dimnames(object$correlation) <- dimnames(object$resvar)
 	}
-	object$LR1 <- LR1.spautolm(object)
+	object$LR1 <- LR1.Spautolm(object)
 	rownames(object$Coef) <- names(object$fit$coefficients)
-	structure(object, class=c("summary.spautolm", class(object)))
+	structure(object, class=c("summary.Spautolm", class(object)))
 }
 
-print.summary.spautolm <- function(x, digits = max(5, .Options$digits - 3),
+print.summary.Spautolm <- function(x, digits = max(5, .Options$digits - 3),
 	signif.stars = FALSE, ...)
 {
 	cat("\nCall: ", deparse(x$call),	sep = "", fill=TRUE)

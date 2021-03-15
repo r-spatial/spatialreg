@@ -1,13 +1,13 @@
 \name{GMerrorsar}
 \alias{GMerrorsar}
-\alias{residuals.gmsar}
-\alias{deviance.gmsar}
-\alias{coef.gmsar}
-\alias{fitted.gmsar}
-\alias{print.gmsar}
-\alias{summary.gmsar}
-\alias{print.summary.gmsar}
-\alias{Hausman.test.gmsar}
+\alias{residuals.Gmsar}
+\alias{deviance.Gmsar}
+\alias{coef.Gmsar}
+\alias{fitted.Gmsar}
+\alias{print.Gmsar}
+\alias{summary.Gmsar}
+\alias{print.summary.Gmsar}
+\alias{Hausman.test.Gmsar}
 \alias{GMargminImage}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -20,7 +20,7 @@ GMerrorsar(formula, data = list(), listw, na.action = na.fail,
  zero.policy = NULL, method="nlminb", arnoldWied=FALSE, 
  control = list(), pars, scaleU=FALSE, verbose=NULL, legacy=FALSE,
  se.lambda=TRUE, returnHcov=FALSE, pWOrder=250, tol.Hcov=1.0e-10)
-\method{summary}{gmsar}(object, correlation = FALSE, Hausman=FALSE, ...)
+\method{summary}{Gmsar}(object, correlation = FALSE, Hausman=FALSE, ...)
 GMargminImage(obj, lambdaseq, s2seq)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -45,7 +45,7 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   \item{returnHcov}{default FALSE, return the Vo matrix for a spatial Hausman test}
   \item{tol.Hcov}{the tolerance for computing the Vo matrix (default=1.0e-10)}
   \item{pWOrder}{default 250, if returnHcov=TRUE, pass this order to \code{powerWeights} as the power series maximum limit}
-  \item{object, obj}{\code{gmsar} object from \code{GMerrorsar}}
+  \item{object, obj}{\code{Gmsar} object from \code{GMerrorsar}}
   \item{correlation}{logical; (default=FALSE), TRUE not available}
   \item{Hausman}{if TRUE, the results of the Hausman test for error models are reported}
   \item{\dots}{\code{summary} arguments passed through}
@@ -64,7 +64,7 @@ variable in making predictions for the fitting data.
 The \code{GMargminImage} may be used to visualize the shape of the surface of the argmin function used to find lambda.
 }
 \value{
-  A list object of class \code{gmsar}
+  A list object of class \code{Gmsar}
   \item{type}{"ERROR"}
   \item{lambda}{simultaneous autoregressive error coefficient}
   \item{coefficients}{GMM coefficient estimates}

@@ -84,7 +84,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
 	rm(WX)
 #        WX <- create_WX(x, listw, zero.policy=zero.policy, prefix="lag")
 #        x <- cbind(x, WX)
-# 180128 Mark L. Burkey summary.lm error for SLX object
+# 180128 Mark L. Burkey summary.lm error for SlX object
         colnames(x) <- make.names(colnames(x))
         if (attr(mt, "intercept") == 1L) {
             lm.model <- lm(formula(paste("y ~ ", paste(colnames(x)[-1], collapse="+"))), data=as.data.frame(x), weights=weights)
@@ -179,12 +179,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         
         attr(lm.model, "mixedImps") <- mixedImps
         attr(lm.model, "dvars") <- dvars
-        class(lm.model) <- c("SLX", class(lm.model))
+        class(lm.model) <- c("SlX", class(lm.model))
         lm.model
 }
 
 
-predict.SLX <- function(object, newdata, listw, zero.policy=NULL, ...) {
+predict.SlX <- function(object, newdata, listw, zero.policy=NULL, ...) {
     if (is.null(zero.policy))
         zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
     stopifnot(is.logical(zero.policy))
@@ -212,15 +212,15 @@ predict.SLX <- function(object, newdata, listw, zero.policy=NULL, ...) {
 }
 
 
-impacts.SLX <- function(obj, ...) {
+impacts.SlX <- function(obj, ...) {
     stopifnot(!is.null(attr(obj, "mixedImps")))
     n <- nrow(obj$model)
     k <- obj$qr$rank
-    impactsWX(attr(obj, "mixedImps"), n, k, type="SLX", method="estimable")
+    impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="estimable")
 }
 
 
-impactsWX <- function(obj, n, k, type="SLX", method="estimable") {
+impactsWX <- function(obj, n, k, type="SlX", method="estimable") {
     imps <- lapply(obj, function(x) x[, 1])
     names(imps) <- c("direct", "indirect", "total")
     attr(imps, "bnames") <- rownames(obj[[1]])
@@ -233,12 +233,12 @@ impactsWX <- function(obj, n, k, type="SLX", method="estimable") {
     attr(res, "type") <- type
     attr(res, "method") <- method
     attr(res, "bnames") <- rownames(obj[[1]])
-    class(res) <- "WXImpact"
+    class(res) <- "WXimpact"
     res
 }
 
 
-print.WXImpact <- function(x, ...) {
+print.WXimpact <- function(x, ...) {
     mat <- lagImpactMat(x$impacts)
     cat("Impact measures (", attr(x, "type"), ", ",
         attr(x, "method"), "):\n", sep="")
@@ -248,7 +248,7 @@ print.WXImpact <- function(x, ...) {
 }
 
 
-print.summary.WXImpact <- function(x, ...) {
+print.summary.WXimpact <- function(x, ...) {
     mat <- x$mat
     cat("Impact measures (", attr(x, "type"), ", ",
         attr(x, "method"), "):\n", sep="")
@@ -275,7 +275,7 @@ print.summary.WXImpact <- function(x, ...) {
     invisible(x)
 }
 
-summary.WXImpact <- function(object, ...,
+summary.WXimpact <- function(object, ...,
  adjust_k=(attr(object, "type") == "SDEM")) {
     stopifnot(is.logical(adjust_k))
     stopifnot(length(adjust_k) == 1L)
@@ -292,7 +292,7 @@ summary.WXImpact <- function(object, ...,
     }
     object$zmat <- object$mat/object$semat
     object$pzmat <- 2*(1-pnorm(abs(object$zmat)))
-    class(object) <- c("summary.WXImpact", class(object))
+    class(object) <- c("summary.WXimpact", class(object))
     object
 }
 

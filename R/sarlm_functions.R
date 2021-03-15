@@ -10,7 +10,7 @@ is.formula <- function(x){
 # output of correlations suggested by Michael Tiefelsdorf)
 #
 
-print.sarlm <- function(x, ...)
+print.Sarlm <- function(x, ...)
 {
 #FIXME
        if (x$type == "error") if (isTRUE(all.equal(x$lambda, x$interval[1])) ||
@@ -29,7 +29,7 @@ print.sarlm <- function(x, ...)
 	invisible(x)
 }
 
-summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
+summary.Sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
  Hausman=FALSE, adj.se=FALSE, ...)
 {
 #FIXME
@@ -37,7 +37,7 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                 object$Haus <- Hausman.test(object)
         }
 	if (object$type == "error") {
-		object$Wald1 <- Wald1.sarlm(object)
+		object$Wald1 <- Wald1.Sarlm(object)
 		if (correlation) {
                         oresvar <- object$resvar
                         ctext <- "Correlation of coefficients"
@@ -55,7 +55,7 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                         object$correltext <- ctext
 		}
 	} else if (object$type != "error") {
-		object$Wald1 <- Wald1.sarlm(object)
+		object$Wald1 <- Wald1.Sarlm(object)
 		if (correlation) {
                         oresvar <- object$resvar
                         ctext <- "Correlation of coefficients"
@@ -71,7 +71,7 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
                         object$correltext <- ctext
 		}
         }
-	object$LR1 <- LR1.sarlm(object)
+	object$LR1 <- LR1.Sarlm(object)
 
 	adj <- NULL
 	if (object$type == "error" || ((object$type == "lag" || 
@@ -115,13 +115,13 @@ summary.sarlm <- function(object, correlation = FALSE, Nagelkerke=FALSE,
         object$adj.se <- adj
 
         if (Nagelkerke) {
-            nk <- NK.sarlm(object)
+            nk <- NK.Sarlm(object)
             if (!is.null(nk)) object$NK <- nk
         }
-	structure(object, class=c("summary.sarlm", class(object)))
+	structure(object, class=c("summary.Sarlm", class(object)))
 }
 
-print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
+print.summary.Sarlm <- function(x, digits = max(5, .Options$digits - 3),
 	signif.stars = FALSE, ...)
 {
 	cat("\nCall:", deparse(x$call),	sep = "", fill=TRUE)
@@ -161,7 +161,7 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
 	    printCoefmat(coefs, signif.stars=signif.stars, digits=digits,
 		na.print="NA")
 	}
-#	res <- LR.sarlm(x, x$lm.model)
+
 	res <- x$LR1
         pref <- ifelse(x$ase, "Asymptotic", "Approximate (numerical Hessian)")
 	if (x$type == "error") {
@@ -285,7 +285,7 @@ print.summary.sarlm <- function(x, digits = max(5, .Options$digits - 3),
         invisible(x)
 }
 
-coef.summary.sarlm <- function(object, ...) object$Coef
+coef.summary.Sarlm <- function(object, ...) object$Coef
 
 getVmate <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
     optimM="optimHess") {

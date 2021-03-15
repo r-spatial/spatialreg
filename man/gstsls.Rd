@@ -1,6 +1,6 @@
 \name{gstsls}
 \alias{gstsls}
-\alias{impacts.gmsar}
+\alias{impacts.Gmsar}
 \title{Spatial simultaneous autoregressive SAC model estimation by GMM}
 \description{
   An implementation of Kelejian and Prucha's generalised moments estimator for the autoregressive parameter in a spatial model
@@ -10,7 +10,7 @@
 gstsls(formula, data = list(), listw, listw2 = NULL, na.action = na.fail, 
     zero.policy = NULL, pars=NULL, scaleU=FALSE, control = list(), 
     verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE) 
-\method{impacts}{gmsar}(obj, \dots, n = NULL, tr = NULL, R = NULL,
+\method{impacts}{Gmsar}(obj, \dots, n = NULL, tr = NULL, R = NULL,
  listw = NULL, evalues=NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
 }
 \arguments{
@@ -34,7 +34,7 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   \item{robust}{see \code{stsls}}
   \item{legacy}{see \code{stsls}}
   \item{W2X}{see \code{stsls}}
-  \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.lagImpact}, a lagImpact object}
+  \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{\dots}{Arguments passed through to methods in the \pkg{coda} package}
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
   \item{evalues}{vector of eigenvalues of spatial weights matrix for impacts calculations}
@@ -42,7 +42,7 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   \item{tol}{Argument passed to \code{mvrnorm}: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix}
   \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
   \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
-  \item{n}{defaults to \code{length(obj$residuals)}; in the method for \code{gmsar} objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti}
+  \item{n}{defaults to \code{length(obj$residuals)}; in the method for \code{Gmsar} objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti}
 
 }
 \details{
@@ -50,7 +50,7 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   without requiring computation of the Jacobian, the most resource-intensive part of ML estimation. 
 }
 \value{
-  A list object of class \code{gmsar}
+  A list object of class \code{Gmsar}
   \item{lambda}{simultaneous autoregressive error coefficient}
   \item{coefficients}{GMM coefficient estimates (including the spatial autocorrelation coefficient)}
   \item{rest.se}{GMM coefficient standard errors}

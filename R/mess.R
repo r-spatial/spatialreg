@@ -74,7 +74,7 @@ lagmess <- function(formula, data = list(), listw, zero.policy=NULL,
     res <- list(lmobj=lmobj, alpha=alpha, alphase=alphase, rho=rho,
         bestmess=bestmess, q=q, start=start, na.action=na.act,
         nullLL=nullLL, use_expm=use_expm, mess_hess=mess_hess)
-    class(res) <- "lagmess"
+    class(res) <- "Lagmess"
     res
 }
 
@@ -135,13 +135,13 @@ mymess1 <- function(alpha, env, verbose=FALSE) {
     res
 }
 
-print.lagmess <- function(x, ...) {
+print.Lagmess <- function(x, ...) {
     print(x$lmobj, ...)
     cat("Alpha: ", x$alpha, "\n", sep="")
     invisible(x)
 }
 
-print.summary.lagmess <- function(x, digits = max(5, .Options$digits - 3),
+print.summary.Lagmess <- function(x, digits = max(5, .Options$digits - 3),
     signif.stars = FALSE, ...) {
     cat("Matrix exponential spatial lag model:\n")
     if (x$use_expm) cat("(calculated with expm)\n")
@@ -159,14 +159,14 @@ print.summary.lagmess <- function(x, digits = max(5, .Options$digits - 3),
     invisible(x)
 }
 
-summary.lagmess <- function(object, ...) {
+summary.Lagmess <- function(object, ...) {
     object$lmsum <- summary(object$lmobj, ...)
-    object$LR <- LR1.lagmess(object)
-    class(object) <- "summary.lagmess"
+    object$LR <- LR1.Lagmess(object)
+    class(object) <- "summary.Lagmess"
     object
 }
 
-LR1.lagmess <- function(object) {
+LR1.Lagmess <- function(object) {
     LLx <- logLik(object)
     LLy <- object$nullLL
     statistic <- 2*(LLx - LLy)
@@ -186,15 +186,15 @@ LR1.lagmess <- function(object) {
     res
 }
 
-residuals.lagmess <- function(object, ...) {
+residuals.Lagmess <- function(object, ...) {
     object$lmobj$residuals
 }
 
-deviance.lagmess <- function(object, ...) {
+deviance.Lagmess <- function(object, ...) {
     deviance(object$lmobj)
 }
 
-coef.lagmess <- function(object, ...) {
+coef.Lagmess <- function(object, ...) {
     ret <- NULL
     ap <- object$alpha
     names(ap) <- "alpha"
@@ -203,13 +203,13 @@ coef.lagmess <- function(object, ...) {
     ret
 }
 
-coef.summary.lagmess <- function(object, ...) coef(object$lmsum)
+coef.summary.Lagmess <- function(object, ...) coef(object$lmsum)
 
-fitted.lagmess <- function(object, ...) {
+fitted.Lagmess <- function(object, ...) {
     object$lmobj$fitted.values
 }
 
-logLik.lagmess <- function (object, ...) 
+logLik.Lagmess <- function (object, ...) 
 {
     LL <- c(logLik(object$lmobj))
     class(LL) <- "logLik"
@@ -223,7 +223,7 @@ logLik.lagmess <- function (object, ...)
 #    res <- list(lmobj=lmobj, alpha=alpha, alphase=alphase, rho=rho, bestmess=bestmess, q=q, start=start, na.action=na.act, nullLL=nullLL, use_expm=use_expm, mess_hess=mess_hess)
 
 
-impacts.lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
+impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
     empirical=FALSE) {
     if (!is.null(R)) stopifnot(!is.null(obj$mess_hess))
     stopifnot(!is.null(listw))

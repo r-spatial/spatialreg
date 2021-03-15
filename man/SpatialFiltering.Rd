@@ -1,7 +1,7 @@
 \name{SpatialFiltering}
 \alias{SpatialFiltering}
-\alias{print.SFResult}
-\alias{fitted.SFResult}
+\alias{print.SfResult}
+\alias{fitted.SfResult}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Semi-parametric spatial filtering}
 \description{
@@ -33,7 +33,7 @@ SpatialFiltering(formula, lagformula=NULL, data=list(), na.action=na.fail,
   \item{verbose}{default NULL, use global option value; if TRUE report eigenvectors selected}
 }
 \value{
-  An \code{SFResult} object, with:
+  An \code{SfResult} object, with:
   \item{selection}{a matrix summarising the selection of eigenvectors for inclusion, with columns:
     \describe{
       \item{Step}{Step counter of the selection procedure}

@@ -77,13 +77,13 @@ stsls <- function(formula, data = list(), listw, zero.policy=NULL,
 	result$legacy <- legacy
         result$listw_style <- listw$style
 	result$call <- match.call()
-	class(result) <- "stsls"
+	class(result) <- "Stsls"
 	result
 }
 #	    result <- list(coefficients=biv,var=varb,s2=s2,
 #	          residuals=e)
 
-print.stsls <- function(x, ...) {
+print.Stsls <- function(x, ...) {
 	cat("\nCall:\n")
 	print(x$call)
 	cat("\nCoefficients:\n")
@@ -92,7 +92,7 @@ print.stsls <- function(x, ...) {
 	invisible(x)
 }
 
-summary.stsls <- function(object, correlation = FALSE, ...) {
+summary.Stsls <- function(object, correlation = FALSE, ...) {
 	rest.se <- sqrt(diag(object$var))
 #        varnames <- names(object$coefficients)
 	object$Coef <- cbind(object$coefficients, rest.se, 
@@ -110,10 +110,10 @@ summary.stsls <- function(object, correlation = FALSE, ...) {
 			diag((diag(object$var))^(-1/2))
 		dimnames(object$correlation) <- dimnames(object$var)
 	}
-	structure(object, class=c("summary.stsls", class(object)))
+	structure(object, class=c("summary.Stsls", class(object)))
 }
 
-print.summary.stsls <- function(x, digits = max(5, .Options$digits - 3),
+print.summary.Stsls <- function(x, digits = max(5, .Options$digits - 3),
 	signif.stars = FALSE, ...) {
 	cat("\nCall:", deparse(x$call),	sep = "", fill=TRUE)
 	cat("\nResiduals:\n")
@@ -157,20 +157,20 @@ print.summary.stsls <- function(x, digits = max(5, .Options$digits - 3),
 
 }
 
-residuals.stsls <- function(object, ...) {
+residuals.Stsls <- function(object, ...) {
 	if (is.null(object$na.action))
 		object$residuals
 	else napredict(object$na.action, object$residuals)
 }
 
-coef.stsls <- function(object, ...) object$coefficients
+coef.Stsls <- function(object, ...) object$coefficients
 
-coef.summary.stsls <- function(object, ...) object$Coef
+coef.summary.Stsls <- function(object, ...) object$Coef
 
-deviance.stsls <- function(object, ...) object$sse
+deviance.Stsls <- function(object, ...) object$sse
 
 
-impacts.stsls <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
+impacts.Stsls <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
   tol=1e-6, empirical=FALSE, Q=NULL) {
     if (is.null(listw) && !is.null(obj$listw_style) && 
             obj$listw_style != "W")

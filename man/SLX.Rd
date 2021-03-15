@@ -1,11 +1,11 @@
 \name{lmSLX}
 \alias{lmSLX}
 \alias{create_WX}
-\alias{impacts.SLX}
-\alias{print.WXImpact}
-\alias{summary.WXImpact}
-\alias{print.summary.WXImpact}
-\alias{predict.SLX}
+\alias{impacts.SlX}
+\alias{print.WXimpact}
+\alias{summary.WXimpact}
+\alias{print.summary.WXimpact}
+\alias{predict.SlX}
 
 \title{Spatial Durbin linear (SLX, spatially lagged X) model}
 \description{
@@ -15,10 +15,10 @@
 lmSLX(formula, data = list(), listw, na.action, weights=NULL,
  Durbin=TRUE, zero.policy=NULL)
 create_WX(x, listw, zero.policy=NULL, prefix="")
-\method{impacts}{SLX}(obj, ...)
-\method{print}{WXImpact}(x, ...)
-\method{summary}{WXImpact}(object, ..., adjust_k=(attr(object, "type") == "SDEM"))
-\method{predict}{SLX}(object, newdata, listw, zero.policy=NULL, ...)
+\method{impacts}{SlX}(obj, ...)
+\method{print}{WXimpact}(x, ...)
+\method{summary}{WXimpact}(object, ..., adjust_k=(attr(object, "type") == "SDEM"))
+\method{predict}{SlX}(object, newdata, listw, zero.policy=NULL, ...)
 
 }
 

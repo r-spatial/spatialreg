@@ -1,6 +1,6 @@
 MCMCsamp <- function(object, mcmc = 1L, verbose = NULL, ...) UseMethod("MCMCsamp")
 # from lme4/R/AllGeneric.R
-MCMCsamp.spautolm <- function(object, mcmc = 1L, verbose = NULL, ...,
+MCMCsamp.Spautolm <- function(object, mcmc = 1L, verbose = NULL, ...,
     burnin=0L, scale=1, listw, control=list()) {
     con <- list(Imult=2, cheb_q=5, MC_p=16, MC_m=30, super=NULL,
         spamPivot="MMD", in_coef=0.1, type="MC",
@@ -80,7 +80,7 @@ MCMCsamp.spautolm <- function(object, mcmc = 1L, verbose = NULL, ...,
     res
 }
 
-MCMCsamp.sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
+MCMCsamp.Sarlm <- function(object, mcmc = 1L, verbose = NULL, ...,
     burnin=0L, scale=1, listw, listw2=NULL, control=list()) {
     timings <- list()
     .ptime_start <- proc.time()

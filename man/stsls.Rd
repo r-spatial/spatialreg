@@ -1,12 +1,12 @@
 \name{stsls}
 \alias{stsls}
-\alias{print.stsls}
-\alias{print.summary.stsls}
-\alias{summary.stsls}
-\alias{residuals.stsls}
-\alias{coef.stsls}
-\alias{deviance.stsls}
-\alias{impacts.stsls}
+\alias{print.Stsls}
+\alias{print.summary.Stsls}
+\alias{summary.Stsls}
+\alias{residuals.Stsls}
+\alias{coef.Stsls}
+\alias{deviance.Stsls}
+\alias{impacts.Stsls}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Generalized spatial two stage least squares}
 \description{
@@ -15,7 +15,7 @@
 \usage{
 stsls(formula, data = list(), listw, zero.policy = NULL,
  na.action = na.fail, robust = FALSE, HC=NULL, legacy=FALSE, W2X = TRUE)
-\method{impacts}{stsls}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
+\method{impacts}{Stsls}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
  tol = 1e-06, empirical = FALSE, Q=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -33,7 +33,7 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
   \item{HC}{default NULL, if \code{robust} is TRUE, assigned \dQuote{HC0}, may take values \dQuote{HC0} or \dQuote{HC1} for White estimates or MacKinnon-White estimates respectively}
  \item{legacy}{the argument chooses between two implementations of the robustness correction: default FALSE - use the estimate of Omega only in the White consistent estimator of the variance-covariance matrix, if TRUE, use the original implementation which runs a GLS using the estimate of Omega, and yields different coefficient estimates as well - see example below}
  \item{W2X}{default TRUE, if FALSE only WX are used as instruments in the spatial two stage least squares; until release 0.4-60, only WX were used - see example below }
-  \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.lagImpact}, a lagImpact object}
+  \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{\dots}{Arguments passed through to methods in the \pkg{coda} package}
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
   \item{evalues}{vector of eigenvalues of spatial weights matrix for impacts calculations}
@@ -50,7 +50,7 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
 by using spatially lagged X variables as instruments for the spatially lagged dependent variable.
 }
 \value{
-  an object of class "stsls" containing:
+  an object of class "Stsls" containing:
   \item{coefficients}{coefficient estimates}
   \item{var}{coefficient covariance matrix}
   \item{sse}{sum of squared errors}

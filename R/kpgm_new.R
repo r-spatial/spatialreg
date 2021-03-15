@@ -17,7 +17,7 @@
 #    kpgm as function and plausible starting values to get estimate
 #    for lambda, then finds results with spatially weighted least squares
 # Value:
-# an S3 "gmsar" object
+# an S3 "Gmsar" object
 
 GMerrorsar <- function(#W, y, X, 
 	formula, data = list(), listw, na.action=na.fail, 
@@ -225,7 +225,7 @@ GMerrorsar <- function(#W, y, X,
 		zero.policy=zero.policy, vv=vv, optres=optres,
                 pars=pars, Hcov=Hcov, legacy=legacy, lambda.se=lambda.se,
                 arnoldWied=arnoldWied, GMs2=GMs2, scaleU=scaleU, vcov=vcov),
-                class=c("gmsar"))
+                class=c("Gmsar"))
 	if (zero.policy) {
 		zero.regs <- attr(listw$neighbours, 
 			"region.id")[which(card(listw$neighbours) == 0)]
@@ -239,30 +239,30 @@ GMerrorsar <- function(#W, y, X,
 
 # Copyright 2005 by Roger Bivand
 
-residuals.gmsar <- function(object, ...) {
+residuals.Gmsar <- function(object, ...) {
 	if (is.null(object$na.action))
 		object$residuals
 	else napredict(object$na.action, object$residuals)
 }
 
-deviance.gmsar <- function(object, ...) {
+deviance.Gmsar <- function(object, ...) {
 	deviance(object$lm.target)
 }
 
 
-coef.gmsar <- function(object, ...) {
+coef.Gmsar <- function(object, ...) {
 	ret <- c(object$coefficients, object$lambda)
 	ret
 }
 
-fitted.gmsar <- function(object, ...) {
+fitted.Gmsar <- function(object, ...) {
 	if (is.null(object$na.action))
 		object$fitted.values
 	else napredict(object$na.action, object$fitted.values)
 }
 
 
-print.gmsar <- function(x, ...)
+print.Gmsar <- function(x, ...)
 {
 	cat("\nCall:\n")
 	print(x$call)
@@ -272,7 +272,7 @@ print.gmsar <- function(x, ...)
 	invisible(x)
 }
 
-summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
+summary.Gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
 {
 	object$coeftitle <- "(GM standard errors)"
 #        varnames <- names(object$coefficients)
@@ -286,15 +286,15 @@ summary.gmsar <- function(object, correlation = FALSE, Hausman=FALSE, ...)
                 object$Haus <- Hausman.test(object)
         }
 
-	structure(object, class=c("summary.gmsar", class(object)))
+	structure(object, class=c("summary.Gmsar", class(object)))
 }
 
-coef.summary.gmsar <- function(object, ...) object$Coef
+coef.summary.Gmsar <- function(object, ...) object$Coef
 
 
 
 ###modified to acomodate the SARAR model
-print.summary.gmsar<-function (x, digits = max(5, .Options$digits - 3), signif.stars = FALSE, 
+print.summary.Gmsar<-function (x, digits = max(5, .Options$digits - 3), signif.stars = FALSE, 
     ...) 
 {
     cat("\nCall:", deparse(x$call), sep = "", fill = TRUE)
@@ -354,8 +354,8 @@ print.summary.gmsar<-function (x, digits = max(5, .Options$digits - 3), signif.s
 
 
 
-Hausman.test.gmsar <- function(object, ..., tol=NULL) {
-    if (!inherits(object, "gmsar")) stop("not a gmsar object")
+Hausman.test.Gmsar <- function(object, ..., tol=NULL) {
+    if (!inherits(object, "Gmsar")) stop("not a Gmsar object")
     if (is.null(object$Hcov)) stop("Vo not available")
     fmeth <- "(approximate)"
     s2 <- object$s2
@@ -384,7 +384,7 @@ Hausman.test.gmsar <- function(object, ..., tol=NULL) {
 }
 
 
-impacts.gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
+impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
   evalues=NULL, tol=1e-6, empirical=FALSE, Q=NULL) {
     stopifnot(obj$type == "SARAR") 
     if (is.null(listw) && !is.null(obj$listw_style) && 
@@ -661,7 +661,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
             zero.policy = zero.policy, vv = vv, optres = optres, 
             pars = pars, Hcov = NULL, lambda.se=lambda.se,
             arnoldWied=FALSE, GMs2=GMs2, scaleU=scaleU,
-            secstep_var=secstep$var), class = c("gmsar"))
+            secstep_var=secstep$var), class = c("Gmsar"))
         if (zero.policy) {
         zero.regs <- attr(listw$neighbours,
             "region.id")[which(card(listw$neighbours) == 0)]

@@ -2,9 +2,9 @@
 \alias{spBreg_lag}
 \alias{spBreg_err}
 \alias{spBreg_sac}
-\alias{impacts.MCMC_sar_g}
-\alias{impacts.MCMC_sem_g}
-\alias{impacts.MCMC_sac_g}
+\alias{impacts.MCMC_sar_G}
+\alias{impacts.MCMC_sem_G}
+\alias{impacts.MCMC_sac_G}
 
 \title{Bayesian MCMC spatial simultaneous autoregressive model estimation}
 \description{
@@ -17,9 +17,9 @@ spBreg_sac(formula, data = list(), listw, listw2=NULL, na.action,
     Durbin, type, zero.policy=NULL, control=list())
 spBreg_err(formula, data = list(), listw, na.action, Durbin, etype,
     zero.policy=NULL, control=list())
-\method{impacts}{MCMC_sar_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
-\method{impacts}{MCMC_sem_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
-\method{impacts}{MCMC_sac_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
+\method{impacts}{MCMC_sar_G}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
+\method{impacts}{MCMC_sem_G}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
+\method{impacts}{MCMC_sac_G}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
 }
 
 

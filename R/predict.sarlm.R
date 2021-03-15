@@ -1,5 +1,5 @@
 
-predict.sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.data=FALSE,
+predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.data=FALSE,
                           zero.policy=NULL, legacy=TRUE, legacy.mixed=FALSE, power=NULL, order=250, tol=.Machine$double.eps^(3/5), #pred.se=FALSE, lagImpact=NULL, 
                           spChk=NULL, ...) {
   if (is.null(zero.policy))
@@ -761,7 +761,7 @@ predict.sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
   }
   attr(res, "pred.type") <- pred.type
   attr(res, "call") <- match.call()
-  class(res) <- "sarlm.pred"
+  class(res) <- "Sarlm.pred"
   res
 }
 
@@ -790,14 +790,14 @@ predict.sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
 }
 
 
-print.sarlm.pred <- function(x, ...) {
+print.Sarlm.pred <- function(x, ...) {
   res <- as.data.frame(x)
   print(res, ...)
   invisible(res)
 }
 
 
-as.data.frame.sarlm.pred <- function(x, ...) {
+as.data.frame.Sarlm.pred <- function(x, ...) {
   #    res <- data.frame(fit=as.vector(x), trend=attr(x, "trend"), 
   #        signal=attr(x, "signal"))
   #fix bug when no signal or trend attributes

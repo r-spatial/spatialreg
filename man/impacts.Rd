@@ -2,11 +2,11 @@
 \Rdversion{1.1}
 \alias{impacts}
 %\alias{impacts.lagmess}
-\alias{plot.lagImpact}
-\alias{print.lagImpact}
-\alias{summary.lagImpact}
-\alias{print.summary.lagImpact}
-\alias{HPDinterval.lagImpact}
+\alias{plot.LagImpact}
+\alias{print.LagImpact}
+\alias{summary.LagImpact}
+\alias{print.summary.LagImpact}
+\alias{HPDinterval.LagImpact}
 \alias{intImpacts}
 \title{Impacts in spatial lag models}
 \description{The calculation of impacts for spatial lag and spatial Durbin models is needed in order to interpret the regression coefficients correctly, because of the spillovers between the terms in these data generation processes (unlike the spatial error model). Methods for \dQuote{SLX} and Bayesian fitted models are also provided, the former do not need MC simulations, while the latter pass through MCMC draws.}
@@ -19,19 +19,19 @@
 #\method{impacts}{MCMC_sar_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
 #\method{impacts}{MCMC_sem_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
 #\method{impacts}{MCMC_sac_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
-\method{plot}{lagImpact}(x, ..., choice="direct", trace=FALSE, density=TRUE)
-\method{print}{lagImpact}(x, ..., reportQ=NULL)
-\method{summary}{lagImpact}(object, ..., zstats=FALSE, short=FALSE, reportQ=NULL)
+\method{plot}{LagImpact}(x, ..., choice="direct", trace=FALSE, density=TRUE)
+\method{print}{LagImpact}(x, ..., reportQ=NULL)
+\method{summary}{LagImpact}(object, ..., zstats=FALSE, short=FALSE, reportQ=NULL)
 #\method{print}{WXImpact}(x, ...)
 #\method{summary}{WXImpact}(object, ..., adjust_k=(attr(object, "type") == "SDEM"))
-\method{HPDinterval}{lagImpact}(obj, prob = 0.95, ..., choice="direct")
+\method{HPDinterval}{LagImpact}(obj, prob = 0.95, ..., choice="direct")
 intImpacts(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames, interval,
  type, tr, R, listw, evalues, tol, empirical, Q, icept, iicept, p, mess=FALSE,
  samples=NULL, zero_fill = NULL, dvars = NULL)
 }
 \arguments{
   \item{obj}{A spatial regression object created by \code{lagsarlm}%, \code{lagmess}
-or by \code{lmSLX}; in \code{HPDinterval.lagImpact}, a lagImpact object}
+or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{\dots}{Arguments passed through to methods in the \pkg{coda} package}
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
   \item{listw}{If \code{tr} is not given, a spatial weights object as created by \code{nb2listw}; they must be the same spatial weights as were used in fitting the spatial regression, but do not have to be row-standardised}
@@ -43,7 +43,7 @@ or by \code{lmSLX}; in \code{HPDinterval.lagImpact}, a lagImpact object}
   \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
   \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
   \item{reportQ}{default NULL; if TRUE and \code{Q} given as an argument to \code{impacts}, report impact components}
-  \item{x, object}{lagImpact objects created by \code{impacts} methods}
+  \item{x, object}{LagImpact objects created by \code{impacts} methods}
   \item{zstats}{default FALSE, if TRUE, also return z-values and p-values for the impacts based on the simulations}
   \item{short}{default FALSE, if TRUE passed to the print summary method to omit printing of the mcmc summaries}
   \item{choice}{One of three impacts: direct, indirect, or total}
@@ -69,7 +69,7 @@ The method for \code{gmsar} objects is only for those of \code{type} \code{SARAR
 }
 
 \value{
-An object of class lagImpact.
+An object of class LagImpact.
 
 If no simulation is carried out, the object returned is a list with:
 \item{direct}{numeric vector}

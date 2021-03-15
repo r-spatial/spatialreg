@@ -483,7 +483,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                 f_calls=get("f_calls", envir=env),
                 hf_calls=get("hf_calls", envir=env), intern_classic=iC,
                 pWinternal=pWinternal, weights=weights, emixedImps=emixedImps),
-                class=c("sarlm"))
+                class=c("Sarlm"))
         rm(env)
         GC <- gc()
 	if (zero.policy) {
@@ -855,7 +855,7 @@ lagsarlm <- function(formula, data = list(), listw,
                 timings=do.call("rbind", timings)[, c(1, 3)], 
                 f_calls=get("f_calls", envir=env),
                 hf_calls=get("hf_calls", envir=env), intern_classic=iC),
-                class=c("sarlm"))
+                class=c("Sarlm"))
         rm(env)
         GC <- gc()
 	if (zero.policy) {
@@ -1291,7 +1291,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             fdHess=fdHess, resvar=asyvar1, listw_style=listw$style,
             optimHess=FALSE, insert=FALSE, interval1=interval1,
             interval2=interval2, timings=do.call("rbind", timings)[, c(1, 3)]),
-            class=c("sarlm"))
+            class=c("Sarlm"))
         rm(env)
         GC <- gc()
         if (is.null(llprof)) ret$llprof <- llprof

@@ -2,6 +2,8 @@
 
 * #18 standardize use of `coef()` methods for (some) fitted model summary objects
 
+* https://github.com/tidymodels/broom/issues/1003#issuecomment-798694400 changing **spatialreg** model output class names: **spdep** `sarlm` -> **spatialreg** `Sarlm`, `spautolm` -> `Spautolm`, `stsls` -> `Stsls`, `gmsar` -> `Gmsar`, `lagmess` -> `Lagmess`, `SLX` -> , `SlX`, `MCMC_s*_g` -> `MCMC_s*_G`, `SFResult` -> `SfResult`, `ME_res` -> `Me_res`, `lagImpact` -> `LagImpact`, `WXImpact` -> `WXimpact`
+
 # Version 1.1-5 (2019-12-01)
 
 * #6, #11 na.action and precomputed eigenvalue bug

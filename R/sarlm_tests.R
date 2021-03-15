@@ -1,4 +1,4 @@
-logLik.sarlm <- function(object, ...) {
+logLik.Sarlm <- function(object, ...) {
 	LL <- c(object$LL)
 	class(LL) <- "logLik"
 	N <- length(residuals(object))
@@ -8,7 +8,7 @@ logLik.sarlm <- function(object, ...) {
 	LL
 }
 
-NK.sarlm <- function(obj) {
+NK.Sarlm <- function(obj) {
      n <- length(residuals(obj))
      nullLL <- obj$LLNullLlm
      if (is.null(nullLL)) return(nullLL)
@@ -16,7 +16,7 @@ NK.sarlm <- function(obj) {
 }
 
 
-LR.sarlm <- function(x, y)
+LR.Sarlm <- function(x, y)
 {
 	if (!inherits(x, "logLik")) LLx <- logLik(x)
 	else LLx <- x
@@ -41,9 +41,9 @@ LR.sarlm <- function(x, y)
 }
 
 
-LR1.sarlm <- function(object)
+LR1.Sarlm <- function(object)
 {
-	if (!inherits(object, "sarlm")) stop("Not a sarlm object")
+	if (!inherits(object, "Sarlm")) stop("Not a Sarlm object")
 	LLx <- logLik(object)
 #	LLy <- logLik(object$lm.model)
         LLy <- object$logLik_lm.model
@@ -67,8 +67,8 @@ LR1.sarlm <- function(object)
 	res
 }
 
-Wald1.sarlm <- function(object) {
-	if (!inherits(object, "sarlm")) stop("Not a sarlm object")
+Wald1.Sarlm <- function(object) {
+	if (!inherits(object, "Sarlm")) stop("Not a Sarlm object")
 #	if (!object$ase) 
 #		stop("Cannot compute Wald statistic: parameter a.s.e. missing")
 	LLx <- logLik(object)
@@ -102,8 +102,8 @@ Wald1.sarlm <- function(object) {
 
 }
 
-Hausman.test.sarlm <- function(object, ..., tol=NULL) {
-    if (!inherits(object, "sarlm")) stop("not a sarlm object")
+Hausman.test.Sarlm <- function(object, ..., tol=NULL) {
+    if (!inherits(object, "Sarlm")) stop("not a Sarlm object")
     if (object$type != "error") stop("not a spatial error model")
     fmeth <- ifelse(object$method != "eigen", "(approximate)", "(asymptotic)") 
     if (is.null(object$Hcov)) stop("Vo not available")
@@ -137,9 +137,9 @@ Hausman.test.sarlm <- function(object, ..., tol=NULL) {
 # under GNU General Public License, Version 2 or 3.
 #
 
-bptest.sarlm <- function (object, varformula=NULL, studentize = TRUE, data=list()) 
+bptest.Sarlm <- function (object, varformula=NULL, studentize = TRUE, data=list()) 
 {
-    if(!inherits(object, "sarlm")) stop("not sarlm object")
+    if(!inherits(object, "Sarlm")) stop("not Sarlm object")
     Z <- object$tarX
     if (!is.null(varformula)) Z <- model.matrix(varformula, data = data)
     k <- ncol(Z)
@@ -169,7 +169,7 @@ bptest.sarlm <- function (object, varformula=NULL, studentize = TRUE, data=list(
     return(RVAL)
 }
 
-anova.sarlm <- function(object, ...) {
+anova.Sarlm <- function(object, ...) {
     if (length(list(object, ...)) > 1L) {
         getResponseFormula <- function (object) 
         {
@@ -185,8 +185,8 @@ anova.sarlm <- function(object, ...) {
         nmodels <- length(object)
         if (nmodels == 1) return(anova(object))
         termsClass <- unlist(lapply(object, data.class))
-        if (!all(match(termsClass, c("lm", "sarlm"), 0))) {
-            stop(paste("Objects must inherit from classes \"sarlm\" or \"lm\""))
+        if (!all(match(termsClass, c("lm", "Sarlm"), 0))) {
+            stop(paste("Objects must inherit from classes \"Sarlm\" or \"lm\""))
         }
         resp <- unlist(lapply(object, 
 	    function(el) deparse(getResponseFormula(el)[[2]])))
@@ -230,7 +230,7 @@ anova.sarlm <- function(object, ...) {
     	return(aod)
 
     } else {
-    	if (!inherits(object, "sarlm")) 
+    	if (!inherits(object, "Sarlm")) 
             stop("object not a fitted simultaneous autoregressive model")
         LL <- logLik(object)
         AIC <- AIC(LL)
@@ -244,17 +244,17 @@ anova.sarlm <- function(object, ...) {
 # Copyright 2002-12 by Roger Bivand, 2015 Martin Gubri
 #
 
-residuals.sarlm <- function(object, ...) {
+residuals.Sarlm <- function(object, ...) {
   if (is.null(object$na.action))
     object$residuals
   else napredict(object$na.action, object$residuals)
 }
 
-deviance.sarlm <- function(object, ...) {
+deviance.Sarlm <- function(object, ...) {
   object$SSE
 }
 
-coef.sarlm <- function(object, ...) {
+coef.Sarlm <- function(object, ...) {
   ret <- NULL
   #	ret <- sqrt(object$s2)
   #	names(ret) <- "sigma"
@@ -268,7 +268,7 @@ coef.sarlm <- function(object, ...) {
   ret
 }
 
-vcov.sarlm <- function(object, ...) {
+vcov.Sarlm <- function(object, ...) {
   if (object$ase) res <- object$resvar[-1,-1]
   else {
     if (!is.null(object$fdHess)) {
@@ -282,7 +282,7 @@ vcov.sarlm <- function(object, ...) {
 }
 
 
-fitted.sarlm <- function(object, ...) {
+fitted.Sarlm <- function(object, ...) {
   message("This method assumes the response is known - see manual page")
 # thanks to Philipp Otto, email 2019-11-29
   if (is.null(object$na.action))
@@ -290,7 +290,7 @@ fitted.sarlm <- function(object, ...) {
   else napredict(object$na.action, object$fitted.values)
 }
 
-impacts.sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
+impacts.Sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
   useHESS=NULL, tol=1e-6, empirical=FALSE, Q=NULL) {
     if (obj$type == "error") {
         if (obj$etype == "emixed") {

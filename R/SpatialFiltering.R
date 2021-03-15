@@ -294,15 +294,15 @@ SpatialFiltering <- function (formula, lagformula=NULL, data=list(), na.action=n
     SFResult <- list(selection=out, dataset=selVec)
     if (!is.null(na.act))
 	SFResult$na.action <- na.act
-    class(SFResult) <- "SFResult"
+    class(SFResult) <- "SfResult"
     return(SFResult)
 }
 
-print.SFResult <- function(x, ...) {
+print.SfResult <- function(x, ...) {
 	print(x$selection, ...)
 }
 
-fitted.SFResult <- function(object, ...) {
+fitted.SfResult <- function(object, ...) {
         if (is.null(object$na.action)) {
 	    res <- object$dataset
         } else {

@@ -441,7 +441,7 @@ intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
     attr(res, "bnames") <- bnames
     attr(res, "haveQ") <- !is.null(Q)
     attr(res, "timings") <- do.call("rbind", timings)[, c(1,3)]
-    class(res) <- "lagImpact"
+    class(res) <- "LagImpact"
     res
 }
 
@@ -485,7 +485,7 @@ lagImpactMat <- function(x, reportQ=NULL) {
 }
 
 
-print.lagImpact <- function(x, ..., reportQ=NULL) {
+print.LagImpact <- function(x, ..., reportQ=NULL) {
     mat <- lagImpactMat(x, reportQ=reportQ)
     Qobj <- attr(mat, "Qobj")
     cat("Impact measures (", attr(x, "type"), ", ", attr(x, "method"), "):\n", sep="")
@@ -501,7 +501,7 @@ print.lagImpact <- function(x, ..., reportQ=NULL) {
     invisible(x)
 }
 
-summary.lagImpact <- function(object, ..., zstats=FALSE, short=FALSE, reportQ=NULL) {
+summary.LagImpact <- function(object, ..., zstats=FALSE, short=FALSE, reportQ=NULL) {
     if (is.null(object$sres)) stop("summary method unavailable")
 # pass coda arguments 101006
     direct_sum <- summary(object$sres$direct, ...)
@@ -605,11 +605,11 @@ summary.lagImpact <- function(object, ..., zstats=FALSE, short=FALSE, reportQ=NU
     }
     if ("MCMC_sar_g" %in% attr(object, "iClass")) tp <- "MCMC samples"
     attr(res, "tp") <- tp
-    class(res) <- "summary.lagImpact"
+    class(res) <- "summary.LagImpact"
     res
 }
 
-print.summary.lagImpact <- function(x, ...) {
+print.summary.LagImpact <- function(x, ...) {
     reportQ <- attr(x, "reportQ")
     mat <- lagImpactMat(x, reportQ)
     Qobj <- attr(mat, "Qobj")
@@ -688,14 +688,14 @@ print.summary.lagImpact <- function(x, ...) {
     invisible(x)
 }
 
-plot.lagImpact <- function(x, ..., choice="direct", trace=FALSE,
+plot.LagImpact <- function(x, ..., choice="direct", trace=FALSE,
     density=TRUE) {
     if (is.null(x$sres)) stop("plot method unavailable")
     plot(x$sres[[choice]], trace=trace, density=density, sub=choice)
     invisible(x)
 }
 
-HPDinterval.lagImpact <- function(obj, prob = 0.95, ..., choice="direct") {
+HPDinterval.LagImpact <- function(obj, prob = 0.95, ..., choice="direct") {
     if (is.null(obj$sres)) stop("HPDinterval method unavailable")
     res <- HPDinterval(obj$sres[[choice]], prob=prob)
     res

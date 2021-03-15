@@ -1,15 +1,15 @@
 \name{lagmess}
 \alias{lagmess}
-\alias{print.lagmess}
-\alias{print.summary.lagmess}
-\alias{summary.lagmess}
-\alias{residuals.lagmess}
-\alias{deviance.lagmess}
-\alias{coef.lagmess}
-\alias{fitted.lagmess}
-\alias{logLik.lagmess}
-\alias{LR1.lagmess}
-\alias{impacts.lagmess}
+\alias{print.Lagmess}
+\alias{print.summary.Lagmess}
+\alias{summary.Lagmess}
+\alias{residuals.Lagmess}
+\alias{deviance.Lagmess}
+\alias{coef.Lagmess}
+\alias{fitted.Lagmess}
+\alias{logLik.Lagmess}
+\alias{LR1.Lagmess}
+\alias{impacts.Lagmess}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Matrix exponential spatial lag model}
 \description{The function fits a matrix exponential spatial lag model, using \code{optim} to find the value of \code{alpha}, the spatial coefficient.}
@@ -48,7 +48,7 @@ where \eqn{\rho}{rho} is the spatial parameter may be fitted by maximum likeliho
 we see that in the ML case \eqn{S y = (I - \rho W) y}{S y = (I - rho W) y}. If W is row-stochastic, S may be expressed as a linear combination of row-stochastic matrices. By pre-computing the matrix \eqn{[y Wy, W^2y, ..., W^{q-1}y]}{[y Wy, W^2y, ..., W^{q-1}y]}, the term \eqn{S y (\alpha)}{S y (alpha)} can readily be found by numerical optimization using the matrix exponential approach. \eqn{\alpha}{alpha} and \eqn{\rho}{rho} are related as \eqn{\rho = 1 - \exp{\alpha}}{rho = 1 - exp(alpha)}, conditional on the number of matrix power terms taken \code{q}.}
 
 \value{
-The function returns an object of class \code{lagmess} with components:
+The function returns an object of class \code{Lagmess} with components:
   \item{lmobj}{the \code{lm} object returned after fitting \code{alpha}}
   \item{alpha}{the spatial coefficient}
   \item{alphase}{the standard error of the spatial coefficient using the numerical Hessian}

@@ -176,15 +176,15 @@ ME <- function(formula, data=list(), family = gaussian, weights, offset, na.acti
 	res <- list(selection=tres, vectors=sv)
 	if (!is.null(na.act))
 		res$na.action <- na.act
-	class(res) <- "ME_res"
+	class(res) <- "Me_res"
 	res
 }
 
-print.ME_res <- function(x, ...) {
+print.Me_res <- function(x, ...) {
 	print(x$selection)
 }
 
-fitted.ME_res <- function(object, ...) {
+fitted.Me_res <- function(object, ...) {
         if (is.null(object$na.action)) {
 	    res <- object$vectors
         } else {

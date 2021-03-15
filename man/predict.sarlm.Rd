@@ -1,27 +1,27 @@
 % Copyright 2002 by Roger S. Bivand, 2015 Martin Gubri
-\name{predict.sarlm}
-\alias{predict.sarlm}
-\alias{print.sarlm.pred}
-\alias{as.data.frame.sarlm.pred}
+\name{predict.Sarlm}
+\alias{predict.Sarlm}
+\alias{print.Sarlm.pred}
+\alias{as.data.frame.Sarlm.pred}
 
 \title{Prediction for spatial simultaneous autoregressive linear
 model objects}
 \description{
-  \code{predict.sarlm()} calculates predictions as far as is at present possible for for spatial simultaneous autoregressive linear
+  \code{predict.Sarlm()} calculates predictions as far as is at present possible for for spatial simultaneous autoregressive linear
 model objects, using Haining's terminology for decomposition into
 trend, signal, and noise, or other types of predictors --- see references.  
 }
 \usage{
-\method{predict}{sarlm}(object, newdata = NULL, listw = NULL, pred.type = "TS", all.data = FALSE,
+\method{predict}{Sarlm}(object, newdata = NULL, listw = NULL, pred.type = "TS", all.data = FALSE,
  zero.policy = NULL, legacy = TRUE, legacy.mixed = FALSE, power = NULL, order = 250,
  tol = .Machine$double.eps^(3/5), spChk = NULL, ...)
 #\method{predict}{SLX}(object, newdata, listw, zero.policy=NULL, ...)
-\method{print}{sarlm.pred}(x, ...)
-\method{as.data.frame}{sarlm.pred}(x, ...)
+\method{print}{Sarlm.pred}(x, ...)
+\method{as.data.frame}{Sarlm.pred}(x, ...)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
-  \item{object}{\code{sarlm} object returned by \code{lagsarlm}, 
+  \item{object}{\code{Sarlm} object returned by \code{lagsarlm}, 
 \code{errorsarlm} or \code{sacsarlm}, the method for SLX objects takes the output of \code{lmSLX}}
   \item{newdata}{data frame in which to predict --- if NULL, predictions are
 for the data on which the model was fitted. Should have row names corresponding to region.id. If row names are exactly the same than the ones used for training, it uses in-sample predictors for forecast.  See \sQuote{Details}}
@@ -46,7 +46,7 @@ terminate with an error}
 \details{
 The function supports three types of prediction.  In-sample prediction is the computation of predictors on the data used to fit the model (\code{newdata=NULL}).  Prevision, also called forecast, is the computation of some predictors (\dQuote{trend}, in-sample \dQuote{TC} and out-of-sample \dQuote{TS}) on the same spatial units than the ones used to fit the model, but with different observations of the variables in the model (row names of \code{newdata} should have the same row names than the data frame used to fit the model).  And out-of-sample prediction is the computation of predictors on other spatial units than the ones used to fit the model (\code{newdata} has different row names).  For extensive definitions, see Goulard et al. (2017). % add that warning if out-of-sample with newdata containing one in-sample spatial unit
 
-\code{pred.type} of predictors are available according to the model of \code{object} an to the type of prediction.  In the two following tables, \dQuote{yes} means that the predictor can be used with the model, \dQuote{no} means that \code{predict.sarlm()} will stop with an error, and \dQuote{yes*} means that the predictor is not designed for the specified model, but it can be used with \code{predict.sarlm()}.  In the last case, be careful with the computation of a inappropriate predictor.
+\code{pred.type} of predictors are available according to the model of \code{object} an to the type of prediction.  In the two following tables, \dQuote{yes} means that the predictor can be used with the model, \dQuote{no} means that \code{predict.Sarlm()} will stop with an error, and \dQuote{yes*} means that the predictor is not designed for the specified model, but it can be used with \code{predict.Sarlm()}.  In the last case, be careful with the computation of a inappropriate predictor.
 
 \emph{In-sample predictors by models}
 
@@ -147,11 +147,11 @@ If \code{newdata} has more than one row, leave-one-out predictors (\code{pred.ty
 
 }
 \value{
-  \code{predict.sarlm()} returns a vector of predictions with three attribute 
+  \code{predict.Sarlm()} returns a vector of predictions with three attribute 
 vectors of trend, signal (only for \code{pred.type="TS"}) and region.id values and two other attributes
-of pred.type and call with class \code{sarlm.pred}. 
+of pred.type and call with class \code{Sarlm.pred}. 
 
-  \code{print.sarlm.pred()} is a print function for this class, printing and
+  \code{print.Sarlm.pred()} is a print function for this class, printing and
 returning a data frame with columns: "fit", "trend" and "signal" (when available) and with region.id as row names.
 }
 

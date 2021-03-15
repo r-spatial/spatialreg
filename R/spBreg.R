@@ -381,14 +381,14 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
     attr(res, "acc_rate") <- acc_rate
     attr(res, "dvars") <- dvars
     attr(res, "MH") <- priors$rhoMH
-    class(res) <- c("MCMC_sar_g", class(res))
+    class(res) <- c("MCMC_sar_G", class(res))
     res
 
 #output mcmc object
 }
 
 
-impacts.MCMC_sar_g <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
+impacts.MCMC_sar_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
     Q=NULL) {
     if (is.null(listw) && !is.null(attr(obj, "listw_style")) && 
         attr(obj, "listw_style") != "W")
@@ -938,14 +938,14 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     attr(res, "n") <- n
     attr(res, "k") <- k
     attr(res, "MH") <- priors$lambdaMH
-    class(res) <- c("MCMC_sem_g", class(res))
+    class(res) <- c("MCMC_sem_G", class(res))
     res
 
 #output mcmc object
 
 }
 
-impacts.MCMC_sem_g <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
+impacts.MCMC_sem_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
     Q=NULL) {
     emixedImps <- attr(obj, "emixedImps")
     if (is.null(emixedImps)) {
@@ -1368,14 +1368,14 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
     attr(res, "acc_rate1") <- acc_rate1
     attr(res, "acc_rate2") <- acc_rate2
     attr(res, "dvars") <- dvars
-    class(res) <- c("MCMC_sac_g", class(res))
+    class(res) <- c("MCMC_sac_G", class(res))
     res
 
 #output mcmc object
 }
 
 
-impacts.MCMC_sac_g <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
+impacts.MCMC_sac_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
     Q=NULL) {
     obj_lag <- obj[, -(which(colnames(obj) == "lambda"))]
     attributes(obj_lag) <- c(attributes(obj_lag),
@@ -1385,8 +1385,8 @@ impacts.MCMC_sac_g <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
     } else {
         attr(obj_lag, "type") <- "Durbin"
     }
-    class(obj_lag) <- c("MCMC_sar_g", class(obj_lag))
-    res <- impacts.MCMC_sar_g(obj_lag, tr=tr, listw=listw, evalues=evalues,
+    class(obj_lag) <- c("MCMC_sar_G", class(obj_lag))
+    res <- impacts.MCMC_sar_G(obj_lag, tr=tr, listw=listw, evalues=evalues,
         Q=Q)
     if (attr(obj, "type") == "sac") {
         attr(res, "type") <- "sac"

@@ -3,14 +3,14 @@
 \alias{lagsarlm}
 \alias{errorsarlm}
 \alias{sacsarlm}
-\alias{summary.sarlm}
-\alias{print.sarlm}
-\alias{print.summary.sarlm}
-\alias{residuals.sarlm}
-\alias{deviance.sarlm}
-\alias{coef.sarlm}
-\alias{vcov.sarlm}
-\alias{fitted.sarlm}
+\alias{summary.Sarlm}
+\alias{print.Sarlm}
+\alias{print.summary.Sarlm}
+\alias{residuals.Sarlm}
+\alias{deviance.Sarlm}
+\alias{coef.Sarlm}
+\alias{vcov.Sarlm}
+\alias{fitted.Sarlm}
 
 \title{Spatial simultaneous autoregressive model estimation by maximum likelihood}
 
@@ -49,16 +49,16 @@ sacsarlm(formula, data = list(), listw, listw2 = NULL, na.action, Durbin, type,
  method="eigen", quiet=NULL, zero.policy=NULL, tol.solve=.Machine$double.eps,
  llprof=NULL, interval1=NULL, interval2=NULL, trs1=NULL, trs2=NULL,
  control = list())
-\method{summary}{sarlm}(object, correlation = FALSE, Nagelkerke = FALSE,
+\method{summary}{Sarlm}(object, correlation = FALSE, Nagelkerke = FALSE,
  Hausman=FALSE, adj.se=FALSE, ...)
-\method{print}{sarlm}(x, ...)
-\method{print}{summary.sarlm}(x, digits = max(5, .Options$digits - 3),
+\method{print}{Sarlm}(x, ...)
+\method{print}{summary.Sarlm}(x, digits = max(5, .Options$digits - 3),
  signif.stars = FALSE, ...)
-\method{residuals}{sarlm}(object, ...)
-\method{deviance}{sarlm}(object, ...)
-\method{coef}{sarlm}(object, ...)
-\method{vcov}{sarlm}(object, ...)
-\method{fitted}{sarlm}(object, ...)
+\method{residuals}{Sarlm}(object, ...)
+\method{deviance}{Sarlm}(object, ...)
+\method{coef}{Sarlm}(object, ...)
+\method{vcov}{Sarlm}(object, ...)
+\method{fitted}{Sarlm}(object, ...)
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit. The details 
@@ -85,13 +85,13 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
   \item{interval1, interval2}{default is NULL, search intervals for each weights object for autoregressive parameters}
   \item{trs}{default NULL, if given, a vector of powered spatial weights matrix traces output by \code{trW}; when given, insert the asymptotic analytical values into the numerical Hessian instead of the approximated values; may be used to get around some problems raised when the numerical Hessian is poorly conditioned, generating NaNs in subsequent operations; the use of trs is recommended}
  \item{control}{list of extra control arguments - see section below}
-  \item{object}{\code{sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm}}
+  \item{object}{\code{Sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm}}
   \item{correlation}{logical; if 'TRUE', the correlation matrix of the estimated parameters including sigma is returned and printed (default=FALSE)}
   \item{Nagelkerke}{if TRUE, the Nagelkerke pseudo R-squared is reported}
   \item{Hausman}{if TRUE, the results of the Hausman test for error models are reported}
   \item{adj.se}{if TRUE, adjust the coefficient standard errors for the number of fitted coefficients}
-  \item{x}{\code{sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm} in \code{print.sarlm}, summary object from \code{summary.sarlm} for 
-\code{print.summary.sarlm}}
+  \item{x}{\code{Sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm} in \code{print.Sarlm}, summary object from \code{summary.Sarlm} for 
+\code{print.summary.Sarlm}}
   \item{digits}{the number of significant digits to use when printing}
   \item{signif.stars}{logical. If TRUE, "significance stars" are printed
           for each coefficient.}
@@ -114,7 +114,7 @@ noise (residuals). Since the values of the response variable are known,
 their spatial lags are used to calculate signal components (Cressie 1993, 
 p. 564). This differs from other software, including GeoDa, which does not use 
 knowledge of the response variable in making predictions for the fitting data. 
-Refer to the help page of \code{\link{predict.sarlm}} for discussions and 
+Refer to the help page of \code{\link{predict.Sarlm}} for discussions and 
 references.
 
 Because numerical optimisation is used to find the values of lambda and rho in \code{sacsarlm}, care needs to be shown. It has been found that the surface of the 2D likelihood function often forms a \dQuote{banana trench} from (low rho, high lambda) through (high rho, high lambda) to (high rho, low lambda) values. In addition, sometimes the banana has optima towards both ends, one local, the other global, and conseqently the choice of the starting point for the final optimization becomes crucial. The default approach is not to use just (0, 0) as a starting point, nor the (rho, lambda) values from \code{gstsls}, which lie in a central part of the \dQuote{trench}, but either four values at (low rho, high lambda), (0, 0), (high rho, high lambda), and (high rho, low lambda), and to use the best of these start points for the final optimization. Optionally, nine points can be used spanning the whole (lower, upper) space.
@@ -222,9 +222,8 @@ impacts(COL.lag.M, listw=spdep::nb2listw(COL.nb))
 system.time(COL.lag.sp <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw=listw, method="spam", quiet=FALSE))
 summary(COL.lag.sp)
-}
 COL.lag.B <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- spdep::nb2listw(COL.nb, style="B"))
+ spdep::nb2listw(COL.nb, style="B"), control=list(pre_eig=ev))
 summary(COL.lag.B)
 COL.mixed.B <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="B"), type="mixed", tol.solve=1e-9,
@@ -271,6 +270,7 @@ COL.lag.NA2$na.action
 COL.lag.NA3 <- lagsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
  listw, control=list(pre_eig=ev))
 COL.lag.NA3$na.action
+}
 
 \dontrun{
 data(boston, package="spData")
@@ -304,6 +304,7 @@ summary(COL.errW.M)
 COL.SDEM.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  lw, etype="emixed", control=list(pre_eig=ev))
 summary(COL.SDEM.eig)
+\dontrun{
 COL.SDEM.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  lw, Durbin=TRUE, control=list(pre_eig=ev))
 summary(COL.SDEM.eig)
@@ -318,7 +319,6 @@ COL.err.NA <- errorsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
 COL.err.NA$na.action
 COL.err.NA
 resid(COL.err.NA)
-\dontrun{
 lw <- spdep::nb2listw(COL.nb, style="W")
 print(system.time(ev <- eigenw(similar.listw(lw))))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
