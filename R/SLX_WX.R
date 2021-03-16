@@ -60,9 +60,18 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 prefix=prefix)
             inds <- match(substring(colnames(WX), 5,
 	        nchar(colnames(WX))), colnames(x))
-            if (anyNA(inds)) stop("WX variables not in X: ",
-                paste(substring(colnames(WX), 5,
-                nchar(colnames(WX)))[is.na(inds)], collapse=" "))
+            if (anyNA(inds)) {
+              wna <- which(is.na(inds)) #TR: continue if Durbin has intercept, but formula has not
+              if (length(wna) == 1 && grepl("Intercept", colnames(WX)[wna])
+                 && attr(terms(formula), "intercept") == 0
+                 && attr(terms(Durbin), "intercept") == 1) {
+                inds <- inds[-wna]
+              } else{
+                stop("WX variables not in X: ",
+                     paste(substring(colnames(WX), 5,
+                     nchar(colnames(WX)))[is.na(inds)], collapse=" "))
+              }
+            } 
             icept <- grep("(Intercept)", colnames(x))
             iicept <- length(icept) > 0L
             if (iicept) {
@@ -98,12 +107,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         if (isTRUE(Durbin)) {
           m <- length(coefficients(lm.model))
           odd <- (m%/%2) > 0
-          if (odd) {
+          if (odd && K == 2) { #TR: without intercept and odd use m/2
               m2 <- (m-1)/2
           } else {
               m2 <- m/2
           }
-          if (K == 1 && odd) {
+          if (3 == 4) { #TR: omit condition "(K == 1 && odd)" for now. why issue if no intercept, and odd num coefs?
             warning("model configuration issue: no total impacts")
           } else {
             cm <- matrix(0, ncol=m, nrow=m2)
@@ -113,11 +122,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 } else {
                     rownames(cm) <- nclt[1:m2]
                 }
-                for (i in 1:m2) cm[i, c(i+1, i+(m2+1))] <- 1
+                LI <- ifelse(listw$style != "W", 1, 0) #TR: lagged intercept
+                for (i in 1:m2) cm[i, c(i+1, i+(m2+1 + LI)) ] <- 1 #TR: Add to index
 # drop bug fix 2016-09-21 Philipp Hunziker
                 dirImps <- sum_lm_model$coefficients[2:(m2+1), 1:2, drop=FALSE]
                 rownames(dirImps) <- rownames(cm)
-                indirImps <- sum_lm_model$coefficients[(m2+2):m, 1:2, drop=FALSE]
+                indirImps <- sum_lm_model$coefficients[((m2 + 2):m + LI), 1:2, drop=FALSE] #TR: Add to index
                 rownames(indirImps) <- rownames(cm)
             } else {
                 rownames(cm) <- nclt[1:m2] # FIXME
@@ -131,25 +141,32 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
           } 
       } else if (is.formula(Durbin)) {
 #FIXME
+            LI <- ifelse(listw$style != "W" 
+                         && attr(terms(Durbin), "intercept") == 1, 1, 0) #TR: lagged intercept if not W and in Durbin formula
             m <- sum(dvars)
-            m2 <- dvars[2]
+            KIL <- max((LI - (K - 1)), 0) #TR: KIL = 1 if intercept in lag but not in main formula
+            m2 <- dvars[2] - KIL #TR: no linear combination for intercept if LI but not K
             cm <- matrix(0, ncol=m, nrow=m2)
             for (i in 1:m2) {
-                cm[i, c(inds[i], i+dvars[1])] <- 1
+                cm[i, c(inds[i], i+dvars[1] + KIL)] <- 1 #TR: Add to index, only if intercept != lag.intercept
             }
-            rownames(cm) <- wxn
-            dirImps <- sum_lm_model$coefficients[2:dvars[1], 1:2,
+            if (LI == 1 && K == 1) { #TR: Drop intercept name if in wx but not x
+              rownames(cm) <- wxn[!grepl("Intercept", wxn)]
+            } else {
+              rownames(cm) <- wxn
+            }
+            dirImps <- sum_lm_model$coefficients[K:dvars[1], 1:2, #TR: start at 1 if no intercept
               drop=FALSE]
             rownames(dirImps) <- xn
-            indirImps <- sum_lm_model$coefficients[(dvars[1]+1):m, 1:2,
+            indirImps <- sum_lm_model$coefficients[(dvars[1] + 1 + KIL):m, 1:2,  #TR: Add to index
               drop=FALSE]
             if (!is.null(zero_fill)) {
               if (length(zero_fill) > 0L) {
                lres <- vector(mode="list", length=2L)
                for (j in 1:2) {
-                 jindirImps <- rep(as.numeric(NA), (dvars[1]-1))
+                 jindirImps <- rep(as.numeric(NA), (dvars[1] + (1 - K))) #TR: only -1 if has intercept
                    for (i in seq(along=inds)) {
-                     jindirImps[(inds[i]-1)] <- indirImps[i, j]
+                     jindirImps[(inds[i] + (1 - K))] <- indirImps[i, j] #TR: only -1 if has intercept
                    }
                      lres[[j]] <- jindirImps
                    }
@@ -163,9 +180,9 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                  if (length(zero_fill) > 0L) {
                    lres <- vector(mode="list", length=2L)
                    for (j in 1:2) {
-                     jtotImps <- dirImps[, j]
+                     jtotImps <- dirImps[, j] 
                      for (i in seq(along=inds)) {
-                       jtotImps[(inds[i]-1)] <- totImps[i, j]
+                       jtotImps[(inds[i] + (1 - K))] <- totImps[i, j] #TR: only -1 if has intercept
                      }
                      lres[[j]] <- jtotImps
                    }
