@@ -30,7 +30,6 @@ importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
 importFrom(gmodels, estimable)
 
-
 ##################
 # ML SE
 export(errorsarlm, lagsarlm, sacsarlm)

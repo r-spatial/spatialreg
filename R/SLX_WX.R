@@ -138,6 +138,8 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 rownames(indirImps) <- rownames(cm)
             }
             totImps <- as.matrix(estimable(lm.model, cm)[, 1:2, drop=FALSE])
+            
+            
           } 
       } else if (is.formula(Durbin)) {
 #FIXME
