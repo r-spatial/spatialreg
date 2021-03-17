@@ -215,9 +215,9 @@ COL.lag.eig1$fdHess[1,1]
 COL.lag.eig1a$fdHess[2,2]
 }
 system.time(COL.lag.M <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- spdep::nb2listw(COL.nb), method="Matrix", quiet=FALSE))
+ listw, method="Matrix", quiet=FALSE))
 summary(COL.lag.M)
-impacts(COL.lag.M, listw=spdep::nb2listw(COL.nb))
+impacts(COL.lag.M, listw=listw)
 \dontrun{
 system.time(COL.lag.sp <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw=listw, method="spam", quiet=FALSE))
@@ -286,87 +286,80 @@ data=boston.c, spdep::nb2listw(boston.soi), type="mixed", method="Matrix",
 trs=trMatb)
 summary(gp2mMi)
 }
-lw <- spdep::nb2listw(COL.nb, style="W")
 COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, quiet=FALSE, control=list(pre_eig=ev))
+ listw, quiet=FALSE, control=list(pre_eig=ev))
 summary(COL.errW.eig)
 COL.errW.eig_ev <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, control=list(pre_eig=ev))
+ listw, control=list(pre_eig=ev))
 all.equal(coefficients(COL.errW.eig), coefficients(COL.errW.eig_ev))
 COL.errB.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  spdep::nb2listw(COL.nb, style="B"))
 summary(COL.errB.eig)
-W <- as(spdep::nb2listw(COL.nb), "CsparseMatrix")
-trMatc <- trW(W, type="mult")
 COL.errW.M <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix", quiet=FALSE, trs=trMatc)
+ listw, method="Matrix", quiet=FALSE, trs=trMatc)
 summary(COL.errW.M)
 COL.SDEM.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, etype="emixed", control=list(pre_eig=ev))
+ listw, etype="emixed", control=list(pre_eig=ev))
 summary(COL.SDEM.eig)
 \dontrun{
 COL.SDEM.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, Durbin=TRUE, control=list(pre_eig=ev))
+ listw, Durbin=TRUE, control=list(pre_eig=ev))
 summary(COL.SDEM.eig)
 COL.SDEM.eig <- errorsarlm(CRIME ~ DISCBD + INC + HOVAL, data=COL.OLD,
- lw, Durbin=~INC, control=list(pre_eig=ev))
+ listw, Durbin=~INC, control=list(pre_eig=ev))
 summary(COL.SDEM.eig)
 summary(impacts(COL.SDEM.eig))
 NA.COL.OLD <- COL.OLD
 NA.COL.OLD$CRIME[20:25] <- NA
 COL.err.NA <- errorsarlm(CRIME ~ INC + HOVAL, data=NA.COL.OLD,
- spdep::nb2listw(COL.nb), na.action=na.exclude)
+ listw, na.action=na.exclude)
 COL.err.NA$na.action
 COL.err.NA
 resid(COL.err.NA)
-lw <- spdep::nb2listw(COL.nb, style="W")
-print(system.time(ev <- eigenw(similar.listw(lw))))
+print(system.time(ev <- eigenw(similar.listw(listw))))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="eigen", control=list(pre_eig=ev))))
+ listw, method="eigen", control=list(pre_eig=ev))))
 ocoef <- coefficients(COL.errW.eig)
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="eigen", control=list(pre_eig=ev, LAPACK=FALSE))))
+ listw, method="eigen", control=list(pre_eig=ev, LAPACK=FALSE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="eigen", control=list(pre_eig=ev, compiled_sse=TRUE))))
+ listw, method="eigen", control=list(pre_eig=ev, compiled_sse=TRUE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix_J", control=list(super=TRUE))))
+ listw, method="Matrix_J", control=list(super=TRUE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix_J", control=list(super=FALSE))))
+ listw, method="Matrix_J", control=list(super=FALSE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix_J", control=list(super=as.logical(NA)))))
+ listw, method="Matrix_J", control=list(super=as.logical(NA)))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix", control=list(super=TRUE))))
+ listw, method="Matrix", control=list(super=TRUE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix", control=list(super=FALSE))))
+ listw, method="Matrix", control=list(super=FALSE))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="Matrix", control=list(super=as.logical(NA)))))
+ listw, method="Matrix", control=list(super=as.logical(NA)))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="spam", control=list(spamPivot="MMD"))))
+ listw, method="spam", control=list(spamPivot="MMD"))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="spam", control=list(spamPivot="RCM"))))
+ listw, method="spam", control=list(spamPivot="RCM"))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="spam_update", control=list(spamPivot="MMD"))))
+ listw, method="spam_update", control=list(spamPivot="MMD"))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- lw, method="spam_update", control=list(spamPivot="RCM"))))
+ listw, method="spam_update", control=list(spamPivot="RCM"))))
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 }
-listw <- spdep::nb2listw(COL.nb, style="W")
 COL.sacW.eig <- sacsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, listw,
  control=list(pre_eig1=ev, pre_eig2=ev))
 summary(COL.sacW.eig)
-W <- as(listw, "CsparseMatrix")
-trMatc <- trW(W, type="mult")
 set.seed(1)
 summary(impacts(COL.sacW.eig, tr=trMatc, R=2000), zstats=TRUE, short=TRUE)
 COL.msacW.eig <- sacsarlm(CRIME ~ INC + HOVAL, data=COL.OLD, listw,
@@ -385,10 +378,10 @@ summary(COL.msacW2.eig)
 summary(impacts(COL.msacW2.eig, tr=trMatc, R=2000), zstats=TRUE, short=TRUE)
 \dontrun{
 COL.mix.eig <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- spdep::nb2listw(COL.nb), type="mixed", method="eigen")
+ listw, type="mixed", method="eigen")
 summary(COL.mix.eig, correlation=TRUE, Nagelkerke=TRUE)
 COL.mix.M <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
- spdep::nb2listw(COL.nb), type="mixed", method="Matrix")
+ listw, type="mixed", method="Matrix")
 summary(COL.mix.M, correlation=TRUE, Nagelkerke=TRUE)
 COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
   spdep::nb2listw(COL.nb, style="W"), method="eigen")

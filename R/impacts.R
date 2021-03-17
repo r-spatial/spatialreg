@@ -550,7 +550,7 @@ intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
   attr(res, "bnames") <- bnames
   attr(res, "haveQ") <- !is.null(Q)
   attr(res, "timings") <- do.call("rbind", timings)[, c(1,3)]
-  class(res) <- "lagImpact"
+  class(res) <- "LagImpact"
   res
 #>>>>>>> impacts_sphet
 }
@@ -765,7 +765,7 @@ summary.LagImpact <- function(object, ..., zstats=FALSE, short=FALSE, reportQ=NU
   }
   if ("MCMC_sar_g" %in% attr(object, "iClass")) tp <- "MCMC samples"
   attr(res, "tp") <- tp
-  class(res) <- "summary.lagImpact"
+  class(res) <- "summary.LagImpact"
   res
 }
 
