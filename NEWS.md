@@ -4,6 +4,10 @@
 
 * https://github.com/tidymodels/broom/issues/1003#issuecomment-798694400 changing **spatialreg** model output class names: **spdep** `sarlm` -> **spatialreg** `Sarlm`, `spautolm` -> `Spautolm`, `stsls` -> `Stsls`, `gmsar` -> `Gmsar`, `lagmess` -> `Lagmess`, `SLX` -> , `SlX`, `MCMC_s*_g` -> `MCMC_s*_G`, `SFResult` -> `SfResult`, `ME_res` -> `Me_res`, `lagImpact` -> `LagImpact`, `WXImpact` -> `WXimpact`
 
+* #16 merged coordination of impacts methods (Gianfranco Piras)
+
+* #14 merged correction to SDEM and SLX impacts when a lagged intercept is present (Tobias Rüttenauer).
+
 # Version 1.1-5 (2019-12-01)
 
 * #6, #11 na.action and precomputed eigenvalue bug
