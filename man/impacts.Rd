@@ -126,7 +126,9 @@ impacts(mobj, tr=trMatc)
 impacts(mobj, tr=trMC)
 impacts(mobj1, tr=trMatc)
 impacts(mobj1, listw=listw)
-\dontrun{cat(try(impacts(mobj, evalues=ev), silent=TRUE), "\n")}
+\dontrun{
+try(impacts(mobj, evalues=ev), silent=TRUE)
+}
 summary(impacts(mobj, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
 summary(impacts(mobj1, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
 xobj <- lmSLX(CRIME ~ INC + HOVAL, columbus, listw)

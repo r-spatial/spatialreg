@@ -113,7 +113,7 @@ Hausman.test.Sarlm <- function(object, ..., tol=NULL) {
     d <- object$coef_lm.model - object$coefficients
     if (!is.null(tol)) VV <- try(solve((Vo - Vs), tol=tol))
     else VV <- try(solve(Vo - Vs))
-    if (inherits(VV, "try.error")) {
+    if (inherits(VV, "try-error")) {
         warning("(Vo - Vs) inversion failure")
         return(NULL)
     }

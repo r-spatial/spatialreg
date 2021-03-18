@@ -364,7 +364,7 @@ Hausman.test.Gmsar <- function(object, ..., tol=NULL) {
     d <- coef(object$lm.model) - coef(object$lm.target)
     if (!is.null(tol)) VV <- try(solve((Vo - Vs), tol=tol))
     else VV <- try(solve(Vo - Vs))
-    if (inherits(VV, "try.error")) {
+    if (inherits(VV, "try-error")) {
         warning("(Vo - Vs) inversion failure")
         return(NULL)
     }
