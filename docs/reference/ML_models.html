@@ -84,7 +84,7 @@ where \(\rho\) and \(\lambda\) are found by nlminb or optim() first, and \(\beta
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ where \(\rho\) and \(\lambda\) are found by nlminb or optim() first, and \(\beta
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,11 +114,14 @@ where \(\rho\) and \(\lambda\) are found by nlminb or optim() first, and \(\beta
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -156,34 +159,34 @@ error models of the form:</p>
 
     </div>
 
-    <pre class="usage"><span class='fu'>lagsarlm</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='no'>na.action</span>, <span class='no'>Durbin</span>, <span class='no'>type</span>,
- <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>interval</span><span class='kw'>=</span><span class='kw'>NULL</span>,
- <span class='kw'>tol.solve</span><span class='kw'>=</span><span class='no'>.Machine</span>$<span class='no'>double.eps</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='fu'>errorsarlm</span>(<span class='no'>formula</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='no'>na.action</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='kw'>NULL</span>,
- <span class='no'>Durbin</span>, <span class='no'>etype</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>,
- <span class='kw'>interval</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tol.solve</span><span class='kw'>=</span><span class='no'>.Machine</span>$<span class='no'>double.eps</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='fu'>sacsarlm</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='kw'>listw2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>na.action</span>, <span class='no'>Durbin</span>, <span class='no'>type</span>,
- <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>tol.solve</span><span class='kw'>=</span><span class='no'>.Machine</span>$<span class='no'>double.eps</span>,
- <span class='kw'>llprof</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>interval1</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>interval2</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>trs1</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>trs2</span><span class='kw'>=</span><span class='kw'>NULL</span>,
- <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>correlation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Nagelkerke</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
- <span class='kw'>Hausman</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>adj.se</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for summary.sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fl'>5</span>, <span class='no'>.Options</span>$<span class='no'>digits</span> - <span class='fl'>3</span>),
- <span class='kw'>signif.stars</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>residuals</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/deviance.html'>deviance</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/vcov.html'>vcov</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for sarlm</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>formula</span>, data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>listw</span>, <span class='va'>na.action</span>, <span class='va'>Durbin</span>, <span class='va'>type</span>,
+ method<span class='op'>=</span><span class='st'>"eigen"</span>, quiet<span class='op'>=</span><span class='cn'>NULL</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span>, interval<span class='op'>=</span><span class='cn'>NULL</span>,
+ tol.solve<span class='op'>=</span><span class='va'>.Machine</span><span class='op'>$</span><span class='va'>double.eps</span>, trs<span class='op'>=</span><span class='cn'>NULL</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>formula</span>, data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>listw</span>, <span class='va'>na.action</span>, weights<span class='op'>=</span><span class='cn'>NULL</span>,
+ <span class='va'>Durbin</span>, <span class='va'>etype</span>, method<span class='op'>=</span><span class='st'>"eigen"</span>, quiet<span class='op'>=</span><span class='cn'>NULL</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span>,
+ interval <span class='op'>=</span> <span class='cn'>NULL</span>, tol.solve<span class='op'>=</span><span class='va'>.Machine</span><span class='op'>$</span><span class='va'>double.eps</span>, trs<span class='op'>=</span><span class='cn'>NULL</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>sacsarlm</span><span class='op'>(</span><span class='va'>formula</span>, data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>listw</span>, listw2 <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>na.action</span>, <span class='va'>Durbin</span>, <span class='va'>type</span>,
+ method<span class='op'>=</span><span class='st'>"eigen"</span>, quiet<span class='op'>=</span><span class='cn'>NULL</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span>, tol.solve<span class='op'>=</span><span class='va'>.Machine</span><span class='op'>$</span><span class='va'>double.eps</span>,
+ llprof<span class='op'>=</span><span class='cn'>NULL</span>, interval1<span class='op'>=</span><span class='cn'>NULL</span>, interval2<span class='op'>=</span><span class='cn'>NULL</span>, trs1<span class='op'>=</span><span class='cn'>NULL</span>, trs2<span class='op'>=</span><span class='cn'>NULL</span>,
+ control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, correlation <span class='op'>=</span> <span class='cn'>FALSE</span>, Nagelkerke <span class='op'>=</span> <span class='cn'>FALSE</span>,
+ Hausman<span class='op'>=</span><span class='cn'>FALSE</span>, adj.se<span class='op'>=</span><span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for summary.Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, digits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>.Options</span><span class='op'>$</span><span class='va'>digits</span> <span class='op'>-</span> <span class='fl'>3</span><span class='op'>)</span>,
+ signif.stars <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>residuals</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/deviance.html'>deviance</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/vcov.html'>vcov</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for Sarlm</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -267,7 +270,7 @@ neighbours, if FALSE (default) assign NA - causing <code>lagsarlm()</code> to te
     </tr>
     <tr>
       <th>object</th>
-      <td><p><code>sarlm</code> object from <code>lagsarlm</code>, <code>errorsarlm</code> or <code>sacsarlm</code></p></td>
+      <td><p><code>Sarlm</code> object from <code>lagsarlm</code>, <code>errorsarlm</code> or <code>sacsarlm</code></p></td>
     </tr>
     <tr>
       <th>correlation</th>
@@ -287,8 +290,8 @@ neighbours, if FALSE (default) assign NA - causing <code>lagsarlm()</code> to te
     </tr>
     <tr>
       <th>x</th>
-      <td><p><code>sarlm</code> object from <code>lagsarlm</code>, <code>errorsarlm</code> or <code>sacsarlm</code> in <code>print.sarlm</code>, summary object from <code>summary.sarlm</code> for 
-<code>print.summary.sarlm</code></p></td>
+      <td><p><code>Sarlm</code> object from <code>lagsarlm</code>, <code>errorsarlm</code> or <code>sacsarlm</code> in <code>print.Sarlm</code>, summary object from <code>summary.Sarlm</code> for 
+<code>print.summary.Sarlm</code></p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -321,13 +324,13 @@ noise (residuals). Since the values of the response variable are known,
 their spatial lags are used to calculate signal components (Cressie 1993, 
 p. 564). This differs from other software, including GeoDa, which does not use 
 knowledge of the response variable in making predictions for the fitting data. 
-Refer to the help page of <code><a href='predict.sarlm.html'>predict.sarlm</a></code> for discussions and 
+Refer to the help page of <code><a href='predict.Sarlm.html'>predict.Sarlm</a></code> for discussions and 
 references.</p>
 <p>Because numerical optimisation is used to find the values of lambda and rho in <code>sacsarlm</code>, care needs to be shown. It has been found that the surface of the 2D likelihood function often forms a &#8220;banana trench&#8221; from (low rho, high lambda) through (high rho, high lambda) to (high rho, low lambda) values. In addition, sometimes the banana has optima towards both ends, one local, the other global, and conseqently the choice of the starting point for the final optimization becomes crucial. The default approach is not to use just (0, 0) as a starting point, nor the (rho, lambda) values from <code>gstsls</code>, which lie in a central part of the &#8220;trench&#8221;, but either four values at (low rho, high lambda), (0, 0), (high rho, high lambda), and (high rho, low lambda), and to use the best of these start points for the final optimization. Optionally, nine points can be used spanning the whole (lower, upper) space.</p>
     <h2 class="hasAnchor" id="control-arguments"><a class="anchor" href="#control-arguments"></a>Control arguments</h2>
 
     
-<dl'>
+<dl>
   <dt>tol.opt:</dt><dd><p>the desired accuracy of the optimization - passed to <code><a href='https://rdrr.io/r/stats/optimize.html'>optimize()</a></code> (default=square root of double precision machine tolerance, a larger root may be used needed, see help(boston) for an example)</p></dd>
   <dt>returnHcov:</dt><dd><p>(error model) default TRUE, return the Vo matrix for a spatial Hausman test</p></dd>
   <dt>pWOrder:</dt><dd><p>(error model) default 250, if returnHcov=TRUE and the method is not &#8220;eigen&#8221;, pass this order to <code>powerWeights</code> as the power series maximum limit</p></dd>
@@ -377,18 +380,23 @@ pp. 237-289; Nagelkerke NJD (1991) A note on a general definition of the
 coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em>Statistics for spatial data</em>, Wiley, New York; LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton.</p>
 <p>Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. <em>Journal of Statistical Software</em>, 63(18), 1-36. <a href='https://www.jstatsoft.org/v63/i18/'>https://www.jstatsoft.org/v63/i18/</a>.</p>
 <p>Bivand, R. S., Hauke, J., and Kossowski, T. (2013). Computing the Jacobian in Gaussian spatial autoregressive models: An illustrated comparison of available methods. <em>Geographical Analysis</em>, 45(2), 150-179.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a>, with thanks to Andrew 
+Bernat for contributions to the asymptotic standard error code.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/lm.html'>lm</a></code>, <code><a href='impacts.html'>impacts</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
-<span class='no'>listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>ev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>listw</span>)
-<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>listw</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>trMatc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
-<span class='no'>COL.lag.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw</span>,
- <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>OrdVsign</span><span class='kw'>=</span><span class='fl'>1</span>))</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oldcol</span>, package<span class='op'>=</span><span class='st'>"spdep"</span><span class='op'>)</span>
+<span class='va'>listw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>
+<span class='va'>ev</span> <span class='op'>&lt;-</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='va'>listw</span><span class='op'>)</span>
+<span class='va'>W</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='va'>listw</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='va'>trMatc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span><span class='op'>(</span><span class='va'>W</span>, type<span class='op'>=</span><span class='st'>"mult"</span><span class='op'>)</span>
+<span class='va'>COL.lag.eig</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>listw</span>,
+ method<span class='op'>=</span><span class='st'>"eigen"</span>, quiet<span class='op'>=</span><span class='cn'>FALSE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span>, OrdVsign<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Spatial lag model
 #&gt; Jacobian calculated using neighbourhood matrix eigenvalues
 #&gt; 
@@ -403,7 +411,8 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; rho:	 0.4310232 	function value:	 -182.3904 
 #&gt; rho:	 0.4310232 	function value:	 -182.3904 
 #&gt; rho:	 0.4310232 	function value:	 -182.3904 
-#&gt; rho:	 0.4310232 	function value:	 -182.3904 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.eig</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; rho:	 0.4310232 	function value:	 -182.3904 </div><div class='input'><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.eig</span>, correlation<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     method = "eigen", quiet = FALSE, control = list(pre_eig = ev, 
 #&gt;         OrdVsign = 1))
@@ -438,35 +447,136 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; (Intercept)  0.12 -0.83                  
 #&gt; INC         -0.05  0.35 -0.61            
 #&gt; HOVAL       -0.01  0.08 -0.25       -0.44
-#&gt; </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>COL.lag.eig</span>$<span class='no'>fdHess</span>
-<span class='no'>COL.lag.eig</span>$<span class='no'>resvar</span>
-<span class='co'># using the apparent sign in Ord (1975, equation B.1) </span>
-<span class='no'>COL.lag.eigb</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw</span>,
- <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>OrdVsign</span><span class='kw'>=</span>-<span class='fl'>1</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.eigb</span>)
-<span class='no'>COL.lag.eigb</span>$<span class='no'>fdHess</span>
-<span class='no'>COL.lag.eigb</span>$<span class='no'>resvar</span>
-<span class='co'># force numerical Hessian</span>
-<span class='no'>COL.lag.eig1</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>small</span><span class='kw'>=</span><span class='fl'>25</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.eig1</span>)
-<span class='no'>COL.lag.eig1</span>$<span class='no'>fdHess</span>
-<span class='co'># force LeSage &amp; Pace (2008, p. 57) approximation </span>
-<span class='no'>COL.lag.eig1a</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>small</span><span class='kw'>=</span><span class='fl'>25</span>), <span class='kw'>trs</span><span class='kw'>=</span><span class='no'>trMatc</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.eig1a</span>)
-<span class='no'>COL.lag.eig1a</span>$<span class='no'>fdHess</span>
-<span class='no'>COL.lag.eig</span>$<span class='no'>resvar</span>[<span class='fl'>2</span>,<span class='fl'>2</span>]
-<span class='co'># using the apparent sign in Ord (1975, equation B.1) </span>
-<span class='no'>COL.lag.eigb</span>$<span class='no'>resvar</span>[<span class='fl'>2</span>,<span class='fl'>2</span>]
-<span class='co'># force numerical Hessian</span>
-<span class='no'>COL.lag.eig1</span>$<span class='no'>fdHess</span>[<span class='fl'>1</span>,<span class='fl'>1</span>]
-<span class='co'># force LeSage &amp; Pace (2008, p. 57) approximation </span>
-<span class='no'>COL.lag.eig1a</span>$<span class='no'>fdHess</span>[<span class='fl'>2</span>,<span class='fl'>2</span>]
-}
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.lag.M</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>), <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;               Estimate Std. Error   z value     Pr(&gt;|z|)
+#&gt; (Intercept) 45.0792505 7.17734654  6.280768 3.369041e-10
+#&gt; INC         -1.0316157 0.30514297 -3.380762 7.228517e-04
+#&gt; HOVAL       -0.2659263 0.08849862 -3.004863 2.657002e-03</div><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>COL.lag.eig</span><span class='op'>$</span><span class='va'>fdHess</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='va'>COL.lag.eig</span><span class='op'>$</span><span class='va'>resvar</span>
+</div><div class='output co'>#&gt;                    sigma           rho (Intercept)         INC         HOVAL
+#&gt; sigma       379.77510361 -0.3236306318  16.3015079 -0.29590801 -0.0202478459
+#&gt; rho          -0.32363063  0.0138487533  -0.6975717  0.01266245  0.0008664428
+#&gt; (Intercept)  16.30150788 -0.6975716738  51.5143034 -1.32602704 -0.1616379856
+#&gt; INC          -0.29590801  0.0126624511  -1.3260270  0.09311223 -0.0117959715
+#&gt; HOVAL        -0.02024785  0.0008664428  -0.1616380 -0.01179597  0.0078320057</div><div class='input'><span class='co'># using the apparent sign in Ord (1975, equation B.1) </span>
+<span class='va'>COL.lag.eigb</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>listw</span>,
+ method<span class='op'>=</span><span class='st'>"eigen"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span>, OrdVsign<span class='op'>=</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.eigb</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     method = "eigen", control = list(pre_eig = ev, OrdVsign = -1))
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.68585  -5.35636   0.05421   6.02013  23.20555 
+#&gt; 
+#&gt; Type: lag 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 45.079251   9.617835  4.6870 2.772e-06
+#&gt; INC         -1.031616   0.326524 -3.1594  0.001581
+#&gt; HOVAL       -0.265926   0.088855 -2.9928  0.002764
+#&gt; 
+#&gt; Rho: 0.43102, LR test value: 9.9736, p-value: 0.001588
+#&gt; Asymptotic standard error: 0.17322
+#&gt;     z-value: 2.4884, p-value: 0.012833
+#&gt; Wald statistic: 6.1919, p-value: 0.012833
+#&gt; 
+#&gt; Log likelihood: -182.3904 for lag model
+#&gt; ML residual variance (sigma squared): 95.494, (sigma: 9.7721)
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 5 
+#&gt; AIC: 374.78, (AIC for lm: 382.75)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: -0.93825, p-value: 1
+#&gt; </div><div class='input'><span class='va'>COL.lag.eigb</span><span class='op'>$</span><span class='va'>fdHess</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='va'>COL.lag.eigb</span><span class='op'>$</span><span class='va'>resvar</span>
+</div><div class='output co'>#&gt;                    sigma          rho (Intercept)         INC        HOVAL
+#&gt; sigma       388.59742931 -0.701154266  35.3176451 -0.64109248 -0.043867490
+#&gt; rho          -0.70115427  0.030003688  -1.5113074  0.02743353  0.001877171
+#&gt; (Intercept)  35.31764510 -1.511307358  92.5027556 -2.07005707 -0.212549096
+#&gt; INC          -0.64109248  0.027433533  -2.0700571  0.10661800 -0.010871824
+#&gt; HOVAL        -0.04386749  0.001877171  -0.2125491 -0.01087182  0.007895242</div><div class='input'><span class='co'># force numerical Hessian</span>
+<span class='va'>COL.lag.eig1</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ listw<span class='op'>=</span><span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>small<span class='op'>=</span><span class='fl'>25</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.eig1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     method = "Matrix", control = list(small = 25))
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.68585  -5.35636   0.05421   6.02013  23.20555 
+#&gt; 
+#&gt; Type: lag 
+#&gt; Coefficients: (numerical Hessian approximate standard errors) 
+#&gt;             Estimate Std. Error z value Pr(&gt;|z|)
+#&gt; (Intercept) 45.07925    7.87089  5.7273 1.02e-08
+#&gt; INC         -1.03162    0.32842 -3.1411 0.001683
+#&gt; HOVAL       -0.26593    0.08823 -3.0140 0.002578
+#&gt; 
+#&gt; Rho: 0.43102, LR test value: 9.9736, p-value: 0.001588
+#&gt; Approximate (numerical Hessian) standard error: 0.12362
+#&gt;     z-value: 3.4868, p-value: 0.00048892
+#&gt; Wald statistic: 12.157, p-value: 0.00048892
+#&gt; 
+#&gt; Log likelihood: -182.3904 for lag model
+#&gt; ML residual variance (sigma squared): 95.494, (sigma: 9.7721)
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 5 
+#&gt; AIC: 374.78, (AIC for lm: 382.75)
+#&gt; </div><div class='input'><span class='va'>COL.lag.eig1</span><span class='op'>$</span><span class='va'>fdHess</span>
+</div><div class='output co'>#&gt;                       rho (Intercept)         INC         HOVAL
+#&gt; rho          0.0152812237  -0.8345267  0.02005558  0.0002830225
+#&gt; (Intercept) -0.8345266779  61.9509427 -1.78340176 -0.1334585288
+#&gt; INC          0.0200555771  -1.7834018  0.10786140 -0.0122204417
+#&gt; HOVAL        0.0002830225  -0.1334585 -0.01222044  0.0077846055</div><div class='input'><span class='co'># force LeSage &amp; Pace (2008, p. 57) approximation </span>
+<span class='va'>COL.lag.eig1a</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ listw<span class='op'>=</span><span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>small<span class='op'>=</span><span class='fl'>25</span><span class='op'>)</span>, trs<span class='op'>=</span><span class='va'>trMatc</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.eig1a</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     method = "Matrix", trs = trMatc, control = list(small = 25))
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.68585  -5.35636   0.05421   6.02013  23.20555 
+#&gt; 
+#&gt; Type: lag 
+#&gt; Coefficients: (numerical Hessian approximate standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 45.079249   7.937572  5.6792 1.353e-08
+#&gt; INC         -1.031616   0.329337 -3.1324  0.001734
+#&gt; HOVAL       -0.265926   0.088222 -3.0143  0.002576
+#&gt; 
+#&gt; Rho: 0.43102, LR test value: 9.9736, p-value: 0.001588
+#&gt; Approximate (numerical Hessian) standard error: 0.12503
+#&gt;     z-value: 3.4473, p-value: 0.00056624
+#&gt; Wald statistic: 11.884, p-value: 0.00056624
+#&gt; 
+#&gt; Log likelihood: -182.3904 for lag model
+#&gt; ML residual variance (sigma squared): 95.494, (sigma: 9.7721)
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 5 
+#&gt; AIC: 374.78, (AIC for lm: 382.75)
+#&gt; </div><div class='input'><span class='va'>COL.lag.eig1a</span><span class='op'>$</span><span class='va'>fdHess</span>
+</div><div class='output co'>#&gt;                    sigma2           rho (Intercept)         INC         HOVAL
+#&gt; sigma2      380.749548407 -0.3653290756  19.9519208 -0.47947507 -0.0067851124
+#&gt; rho          -0.365329076  0.0156331058  -0.8537795  0.02051762  0.0002903475
+#&gt; (Intercept)  19.951920812 -0.8537795385  63.0050547 -1.80875071 -0.1338515483
+#&gt; INC          -0.479475072  0.0205176238  -1.8087507  0.10846276 -0.0122071279
+#&gt; HOVAL        -0.006785112  0.0002903475  -0.1338515 -0.01220713  0.0077831895</div><div class='input'><span class='va'>COL.lag.eig</span><span class='op'>$</span><span class='va'>resvar</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; [1] 0.01384875</div><div class='input'><span class='co'># using the apparent sign in Ord (1975, equation B.1) </span>
+<span class='va'>COL.lag.eigb</span><span class='op'>$</span><span class='va'>resvar</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; [1] 0.03000369</div><div class='input'><span class='co'># force numerical Hessian</span>
+<span class='va'>COL.lag.eig1</span><span class='op'>$</span><span class='va'>fdHess</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; [1] 0.01528122</div><div class='input'><span class='co'># force LeSage &amp; Pace (2008, p. 57) approximation </span>
+<span class='va'>COL.lag.eig1a</span><span class='op'>$</span><span class='va'>fdHess</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; [1] 0.01563311</div><div class='input'><span class='co'># }</span>
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.lag.M</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, quiet<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Spatial lag model
 #&gt; Jacobian calculated using sparse matrix Cholesky decomposition
 #&gt; rho:	 -0.2364499 	function value:	 -192.9523 
@@ -483,9 +593,9 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; rho:	 0.4310232 	function value:	 -182.3904 
 #&gt; Computing eigenvalues ...
 #&gt; </div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.186   0.000   0.187 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.M</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb), 
+#&gt;   0.169   0.000   0.169 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.M</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     method = "Matrix", quiet = FALSE)
 #&gt; 
 #&gt; Residuals:
@@ -511,48 +621,94 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 374.78, (AIC for lm: 382.75)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.31954, p-value: 0.57188
-#&gt; </div><div class='input'><span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.lag.M</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>))</div><div class='output co'>#&gt; Impact measures (lag, exact):
+#&gt; </div><div class='input'><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.lag.M</span>, listw<span class='op'>=</span><span class='va'>listw</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (lag, exact):
 #&gt;           Direct   Indirect      Total
 #&gt; INC   -1.0860220 -0.7270848 -1.8131068
-#&gt; HOVAL -0.2799509 -0.1874254 -0.4673763</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.lag.sp</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>listw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"spam"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.sp</span>)
-}
-<span class='no'>COL.lag.B</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.lag.B</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
-#&gt;     style = "B"))
+#&gt; HOVAL -0.2799509 -0.1874254 -0.4673763</div><div class='input'><span class='co'># \dontrun{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.lag.sp</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ listw<span class='op'>=</span><span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"spam"</span>, quiet<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Spatial lag model
+#&gt; Jacobian calculated using sparse matrix Cholesky decomposition
+#&gt; rho:	 -0.2364499 	function value:	 -192.9523 
+#&gt; rho:	 0.2354499 	function value:	 -183.542 
+#&gt; rho:	 0.5271001 	function value:	 -182.7039 
+#&gt; rho:	 0.4455543 	function value:	 -182.3974 
+#&gt; rho:	 0.4267907 	function value:	 -182.391 
+#&gt; rho:	 0.4311986 	function value:	 -182.3904 
+#&gt; rho:	 0.4310114 	function value:	 -182.3904 
+#&gt; rho:	 0.4310231 	function value:	 -182.3904 
+#&gt; rho:	 0.4310232 	function value:	 -182.3904 
+#&gt; rho:	 0.4310232 	function value:	 -182.3904 
+#&gt; rho:	 0.4310232 	function value:	 -182.3904 
+#&gt; rho:	 0.4310232 	function value:	 -182.3904 
+#&gt; Computing eigenvalues ...
+#&gt; </div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.424   0.000   0.426 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.sp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     method = "spam", quiet = FALSE)
 #&gt; 
 #&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -33.6975  -4.7996  -1.4808   5.3648  25.8922 
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.68585  -5.35636   0.05421   6.02013  23.20555 
 #&gt; 
 #&gt; Type: lag 
 #&gt; Coefficients: (asymptotic standard errors) 
 #&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) 52.403878   5.961310  8.7907 &lt; 2.2e-16
-#&gt; INC         -1.175261   0.300473 -3.9114 9.178e-05
-#&gt; HOVAL       -0.252680   0.087613 -2.8840  0.003926
+#&gt; (Intercept) 45.079250   7.177347  6.2808 3.369e-10
+#&gt; INC         -1.031616   0.305143 -3.3808 0.0007229
+#&gt; HOVAL       -0.265926   0.088499 -3.0049 0.0026570
 #&gt; 
-#&gt; Rho: 0.051981, LR test value: 12.764, p-value: 0.00035336
-#&gt; Asymptotic standard error: 0.014428
-#&gt;     z-value: 3.6028, p-value: 0.00031482
-#&gt; Wald statistic: 12.98, p-value: 0.00031482
+#&gt; Rho: 0.43102, LR test value: 9.9736, p-value: 0.001588
+#&gt; Asymptotic standard error: 0.11768
+#&gt;     z-value: 3.6626, p-value: 0.00024962
+#&gt; Wald statistic: 13.415, p-value: 0.00024962
 #&gt; 
-#&gt; Log likelihood: -180.9953 for lag model
-#&gt; ML residual variance (sigma squared): 93.29, (sigma: 9.6587)
+#&gt; Log likelihood: -182.3904 for lag model
+#&gt; ML residual variance (sigma squared): 95.494, (sigma: 9.7721)
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 5 
-#&gt; AIC: 371.99, (AIC for lm: 382.75)
+#&gt; AIC: 374.78, (AIC for lm: 382.75)
 #&gt; LM test for residual autocorrelation
-#&gt; test value: 0.0028047, p-value: 0.95776
-#&gt; </div><div class='input'><span class='no'>COL.mixed.B</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>tol.solve</span><span class='kw'>=</span><span class='fl'>1e-9</span>,
- <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.B</span>)</div><div class='output co'>#&gt; 
+#&gt; test value: 0.31954, p-value: 0.57188
+#&gt; </div><div class='input'><span class='va'>COL.lag.B</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.lag.B</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:
+#&gt; lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
+#&gt;     style = "B"), control = list(pre_eig = ev))
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -33.6620  -4.8615  -1.3576   5.1567  25.7563 
+#&gt; 
+#&gt; Type: lag 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 51.604815   6.075285  8.4942 &lt; 2.2e-16
+#&gt; INC         -1.154463   0.301808 -3.8252 0.0001307
+#&gt; HOVAL       -0.251633   0.087612 -2.8721 0.0040773
+#&gt; 
+#&gt; Rho: 0.054543, LR test value: 13.453, p-value: 0.00024461
+#&gt; Asymptotic standard error: 0.014836
+#&gt;     z-value: 3.6763, p-value: 0.00023662
+#&gt; Wald statistic: 13.515, p-value: 0.00023662
+#&gt; 
+#&gt; Log likelihood: -180.6507 for lag model
+#&gt; ML residual variance (sigma squared): 93.22, (sigma: 9.655)
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 5 
+#&gt; AIC: 371.3, (AIC for lm: 382.75)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: 0.006827, p-value: 0.93415
+#&gt; </div><div class='input'><span class='va'>COL.mixed.B</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, tol.solve<span class='op'>=</span><span class='fl'>1e-9</span>,
+ control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.B</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
 #&gt;     style = "B"), type = "mixed", tol.solve = 1e-09, control = list(pre_eig = ev))
@@ -583,9 +739,10 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 371.54, (AIC for lm: 376.98)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: -26.79, p-value: 1
-#&gt; </div><div class='input'><span class='no'>COL.mixed.W</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.W</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.mixed.W</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.W</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     type = "mixed", control = list(pre_eig = ev))
 #&gt; 
@@ -614,9 +771,10 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 376.79, (AIC for lm: 380.16)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.28919, p-value: 0.59074
-#&gt; </div><div class='input'><span class='no'>COL.mixed.D00</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.D00</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.mixed.D00</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.D00</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = TRUE, control = list(pre_eig = ev))
 #&gt; 
@@ -645,9 +803,10 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 376.79, (AIC for lm: 380.16)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.28919, p-value: 0.59074
-#&gt; </div><div class='input'><span class='no'>COL.mixed.D01</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.D01</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.mixed.D01</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='cn'>FALSE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.D01</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = FALSE, control = list(pre_eig = ev))
 #&gt; 
@@ -674,9 +833,10 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 374.78, (AIC for lm: 382.75)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.31955, p-value: 0.57188
-#&gt; </div><div class='input'><span class='no'>COL.mixed.D1</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.D1</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.mixed.D1</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.D1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = ~INC + HOVAL, control = list(pre_eig = ev))
 #&gt; 
@@ -705,11 +865,12 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 376.79, (AIC for lm: 380.16)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.28919, p-value: 0.59074
-#&gt; </div><div class='input'><span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>
-<span class='no'>COL.mixed.D2</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>f</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>listw</span>,
- <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/delete.response.html'>delete.response</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/terms.html'>terms</a></span>(<span class='no'>f</span>))),
- <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.D2</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>
+<span class='va'>COL.mixed.D2</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>f</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, <span class='va'>listw</span>,
+ Durbin<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/delete.response.html'>delete.response</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/terms.html'>terms</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+ control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.D2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lagsarlm(formula = f, data = COL.OLD, listw = listw, Durbin = as.formula(delete.response(terms(f))), 
 #&gt;     control = list(pre_eig = ev))
@@ -739,9 +900,10 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 376.79, (AIC for lm: 380.16)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 0.28919, p-value: 0.59074
-#&gt; </div><div class='input'><span class='no'>COL.mixed.D1a</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span> ~ <span class='no'>INC</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mixed.D1a</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.mixed.D1a</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span> <span class='op'>~</span> <span class='va'>INC</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mixed.D1a</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = ~INC, control = list(pre_eig = ev))
 #&gt; 
@@ -769,17 +931,21 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; AIC: 376.67, (AIC for lm: 379.17)
 #&gt; LM test for residual autocorrelation
 #&gt; test value: 2.6134, p-value: 0.10596
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='no'>COL.mixed.D1</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span> ~ <span class='no'>inc</span> + <span class='no'>HOVAL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>)))</div><div class='output co'>#&gt; Error in eval(predvars, data, env) : object 'inc' not found</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='no'>COL.mixed.D1</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span> ~ <span class='no'>DISCBD</span> + <span class='no'>HOVAL</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>)))</div><div class='output co'>#&gt; Error in lagsarlm(CRIME ~ INC + HOVAL, data = COL.OLD, listw, Durbin = ~DISCBD +  : 
-#&gt;   WX variables not in X: DISCBD</div><div class='input'><span class='no'>NA.COL.OLD</span> <span class='kw'>&lt;-</span> <span class='no'>COL.OLD</span>
-<span class='no'>NA.COL.OLD</span>$<span class='no'>CRIME</span>[<span class='fl'>20</span>:<span class='fl'>25</span>] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='no'>COL.lag.NA</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.exclude</span>)
-<span class='no'>COL.lag.NA</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
+#&gt; </div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='va'>COL.mixed.D1</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span> <span class='op'>~</span> <span class='va'>inc</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Error in eval(predvars, data, env) : object 'inc' not found</div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='va'>COL.mixed.D1</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span> <span class='op'>~</span> <span class='va'>DISCBD</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Error in lagsarlm(CRIME ~ INC + HOVAL, data = COL.OLD, listw, Durbin = ~DISCBD +  : 
+#&gt;   WX variables not in X: DISCBD</div><div class='input'><span class='va'>NA.COL.OLD</span> <span class='op'>&lt;-</span> <span class='va'>COL.OLD</span>
+<span class='va'>NA.COL.OLD</span><span class='op'>$</span><span class='va'>CRIME</span><span class='op'>[</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>25</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>COL.lag.NA</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.COL.OLD</span>,
+ <span class='va'>listw</span>, na.action<span class='op'>=</span><span class='va'>na.exclude</span><span class='op'>)</span>
+<span class='va'>COL.lag.NA</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
 #&gt;   20   21   22   23   24   25 
 #&gt; attr(,"class")
-#&gt; [1] "exclude"</div><div class='input'><span class='no'>COL.lag.NA</span></div><div class='output co'>#&gt; 
+#&gt; [1] "exclude"</div><div class='input'><span class='va'>COL.lag.NA</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lagsarlm(formula = CRIME ~ INC + HOVAL, data = NA.COL.OLD, listw = listw, 
 #&gt;     na.action = na.exclude)
@@ -789,7 +955,8 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt;         rho (Intercept)         INC       HOVAL 
 #&gt;   0.4537820  43.1054975  -0.9267352  -0.2715541 
 #&gt; 
-#&gt; Log likelihood: -160.8867 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>resid</a></span>(<span class='no'>COL.lag.NA</span>)</div><div class='output co'>#&gt;        1001        1002        1003        1004        1005        1006 
+#&gt; Log likelihood: -160.8867 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>resid</a></span><span class='op'>(</span><span class='va'>COL.lag.NA</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        1001        1002        1003        1004        1005        1006 
 #&gt;  -4.4352945 -13.2750948  -2.9233555 -37.3067542   1.3568011  -3.8828027 
 #&gt;        1007        1008        1009        1010        1011        1012 
 #&gt;   5.9980436 -12.8113318  -4.0482558  18.1813323   5.9714203   1.0035599 
@@ -806,39 +973,150 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt;        1043        1044        1045        1046        1047        1048 
 #&gt;  -7.5727123  -7.5983733  -9.7792620 -10.0870764  -3.1242393   3.4921796 
 #&gt;        1049 
-#&gt;   0.7173251 </div><div class='input'><span class='no'>COL.lag.NA1</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span>~<span class='no'>INC</span>) <span class='co'># https://github.com/r-spatial/spatialreg/issues/10</span>
-<span class='no'>COL.lag.NA1</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
+#&gt;   0.7173251 </div><div class='input'><span class='va'>COL.lag.NA1</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='op'>~</span><span class='va'>INC</span><span class='op'>)</span> <span class='co'># https://github.com/r-spatial/spatialreg/issues/10</span>
+<span class='va'>COL.lag.NA1</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
 #&gt;   20   21   22   23   24   25 
 #&gt; attr(,"class")
-#&gt; [1] "omit"</div><div class='input'><span class='no'>COL.lag.NA2</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span>~<span class='no'>INC</span>, <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.exclude</span>)
-<span class='no'>COL.lag.NA2</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
+#&gt; [1] "omit"</div><div class='input'><span class='va'>COL.lag.NA2</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='op'>~</span><span class='va'>INC</span>, na.action<span class='op'>=</span><span class='va'>na.exclude</span><span class='op'>)</span>
+<span class='va'>COL.lag.NA2</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
 #&gt;   20   21   22   23   24   25 
 #&gt; attr(,"class")
 #&gt; [1] "exclude"</div><div class='input'><span class='co'># https://github.com/r-spatial/spatialreg/issues/11</span>
-<span class='no'>COL.lag.NA3</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs found, precomputed eigenvalues ignored</span></div><div class='input'><span class='no'>COL.lag.NA3</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
+<span class='va'>COL.lag.NA3</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.COL.OLD</span>,
+ <span class='va'>listw</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs found, precomputed eigenvalues ignored</span></div><div class='input'><span class='va'>COL.lag.NA3</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
 #&gt;   20   21   22   23   24   25 
 #&gt; attr(,"class")
-#&gt; [1] "omit"</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
-<span class='no'>gp2mM</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>CMEDV</span>) ~ <span class='no'>CRIM</span> + <span class='no'>ZN</span> + <span class='no'>INDUS</span> + <span class='no'>CHAS</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>NOX</span>^<span class='fl'>2</span>) +
-<span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>RM</span>^<span class='fl'>2</span>) +  <span class='no'>AGE</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>DIS</span>) + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>RAD</span>) + <span class='no'>TAX</span> + <span class='no'>PTRATIO</span> + <span class='no'>B</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>LSTAT</span>),
-<span class='kw'>data</span><span class='kw'>=</span><span class='no'>boston.c</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>gp2mM</span>)
-<span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>trMatb</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
-<span class='no'>gp2mMi</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>CMEDV</span>) ~ <span class='no'>CRIM</span> + <span class='no'>ZN</span> + <span class='no'>INDUS</span> + <span class='no'>CHAS</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>NOX</span>^<span class='fl'>2</span>) +
-<span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>RM</span>^<span class='fl'>2</span>) +  <span class='no'>AGE</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>DIS</span>) + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>RAD</span>) + <span class='no'>TAX</span> + <span class='no'>PTRATIO</span> + <span class='no'>B</span> + <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>LSTAT</span>),
-<span class='kw'>data</span><span class='kw'>=</span><span class='no'>boston.c</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>,
-<span class='kw'>trs</span><span class='kw'>=</span><span class='no'>trMatb</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>gp2mMi</span>)
-}
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))</div><div class='output co'>#&gt; 
+#&gt; [1] "omit"</div><div class='input'><span class='co'># }</span>
+
+<span class='co'># \dontrun{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>boston</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span>
+<span class='va'>gp2mM</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>CMEDV</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>, 
+data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2mM</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
+#&gt;     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + 
+#&gt;     log(LSTAT), data = boston.c, listw = spdep::nb2listw(boston.soi), 
+#&gt;     type = "mixed", method = "Matrix")
+#&gt; 
+#&gt; Residuals:
+#&gt;        Min         1Q     Median         3Q        Max 
+#&gt; -0.6316833 -0.0629790 -0.0090776  0.0682421  0.6991072 
+#&gt; 
+#&gt; Type: mixed 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;                   Estimate  Std. Error  z value  Pr(&gt;|z|)
+#&gt; (Intercept)     1.89816218  0.22759605   8.3400 &lt; 2.2e-16
+#&gt; CRIM           -0.00571021  0.00093504  -6.1069 1.016e-09
+#&gt; ZN              0.00069091  0.00051869   1.3320  0.182851
+#&gt; INDUS          -0.00111343  0.00307354  -0.3623  0.717155
+#&gt; CHAS1          -0.04163225  0.02739364  -1.5198  0.128567
+#&gt; I(NOX^2)       -0.01034950  0.19360214  -0.0535  0.957367
+#&gt; I(RM^2)         0.00794979  0.00102063   7.7891 6.661e-15
+#&gt; AGE            -0.00128789  0.00048920  -2.6326  0.008473
+#&gt; log(DIS)       -0.12404108  0.09510940  -1.3042  0.192168
+#&gt; log(RAD)        0.05863502  0.02257078   2.5978  0.009382
+#&gt; TAX            -0.00049084  0.00012145  -4.0416 5.308e-05
+#&gt; PTRATIO        -0.01319853  0.00595352  -2.2169  0.026628
+#&gt; B               0.00056383  0.00011089   5.0847 3.682e-07
+#&gt; log(LSTAT)     -0.24724454  0.02262033 -10.9302 &lt; 2.2e-16
+#&gt; lag.CRIM       -0.00464215  0.00172935  -2.6843  0.007267
+#&gt; lag.ZN         -0.00037937  0.00070584  -0.5375  0.590940
+#&gt; lag.INDUS       0.00025064  0.00385901   0.0649  0.948215
+#&gt; lag.CHAS1       0.12518252  0.04071559   3.0746  0.002108
+#&gt; lag.I(NOX^2)   -0.38640401  0.22157523  -1.7439  0.081177
+#&gt; lag.I(RM^2)    -0.00451252  0.00153180  -2.9459  0.003220
+#&gt; lag.AGE         0.00149678  0.00068418   2.1877  0.028693
+#&gt; lag.log(DIS)   -0.00453785  0.10046478  -0.0452  0.963973
+#&gt; lag.log(RAD)   -0.00940702  0.03104930  -0.3030  0.761912
+#&gt; lag.TAX         0.00041083  0.00017867   2.2994  0.021481
+#&gt; lag.PTRATIO     0.00060355  0.00788837   0.0765  0.939012
+#&gt; lag.B          -0.00050781  0.00014155  -3.5874  0.000334
+#&gt; lag.log(LSTAT)  0.09846781  0.03399423   2.8966  0.003772
+#&gt; 
+#&gt; Rho: 0.59578, LR test value: 181.68, p-value: &lt; 2.22e-16
+#&gt; Asymptotic standard error: 0.038445
+#&gt;     z-value: 15.497, p-value: &lt; 2.22e-16
+#&gt; Wald statistic: 240.16, p-value: &lt; 2.22e-16
+#&gt; 
+#&gt; Log likelihood: 300.6131 for mixed model
+#&gt; ML residual variance (sigma squared): 0.016011, (sigma: 0.12654)
+#&gt; Number of observations: 506 
+#&gt; Number of parameters estimated: 29 
+#&gt; AIC: -543.23, (AIC for lm: -363.55)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: 29.772, p-value: 4.8604e-08
+#&gt; </div><div class='input'><span class='va'>W</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='va'>trMatb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span><span class='op'>(</span><span class='va'>W</span>, type<span class='op'>=</span><span class='st'>"mult"</span><span class='op'>)</span>
+<span class='va'>gp2mMi</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>CMEDV</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>, 
+data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, 
+trs<span class='op'>=</span><span class='va'>trMatb</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2mMi</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
+#&gt;     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + 
+#&gt;     log(LSTAT), data = boston.c, listw = spdep::nb2listw(boston.soi), 
+#&gt;     type = "mixed", method = "Matrix", trs = trMatb)
+#&gt; 
+#&gt; Residuals:
+#&gt;        Min         1Q     Median         3Q        Max 
+#&gt; -0.6316833 -0.0629790 -0.0090776  0.0682421  0.6991072 
+#&gt; 
+#&gt; Type: mixed 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;                   Estimate  Std. Error  z value  Pr(&gt;|z|)
+#&gt; (Intercept)     1.89816218  0.22759605   8.3400 &lt; 2.2e-16
+#&gt; CRIM           -0.00571021  0.00093504  -6.1069 1.016e-09
+#&gt; ZN              0.00069091  0.00051869   1.3320  0.182851
+#&gt; INDUS          -0.00111343  0.00307354  -0.3623  0.717155
+#&gt; CHAS1          -0.04163225  0.02739364  -1.5198  0.128567
+#&gt; I(NOX^2)       -0.01034950  0.19360214  -0.0535  0.957367
+#&gt; I(RM^2)         0.00794979  0.00102063   7.7891 6.661e-15
+#&gt; AGE            -0.00128789  0.00048920  -2.6326  0.008473
+#&gt; log(DIS)       -0.12404108  0.09510940  -1.3042  0.192168
+#&gt; log(RAD)        0.05863502  0.02257078   2.5978  0.009382
+#&gt; TAX            -0.00049084  0.00012145  -4.0416 5.308e-05
+#&gt; PTRATIO        -0.01319853  0.00595352  -2.2169  0.026628
+#&gt; B               0.00056383  0.00011089   5.0847 3.682e-07
+#&gt; log(LSTAT)     -0.24724454  0.02262033 -10.9302 &lt; 2.2e-16
+#&gt; lag.CRIM       -0.00464215  0.00172935  -2.6843  0.007267
+#&gt; lag.ZN         -0.00037937  0.00070584  -0.5375  0.590940
+#&gt; lag.INDUS       0.00025064  0.00385901   0.0649  0.948215
+#&gt; lag.CHAS1       0.12518252  0.04071559   3.0746  0.002108
+#&gt; lag.I(NOX^2)   -0.38640401  0.22157523  -1.7439  0.081177
+#&gt; lag.I(RM^2)    -0.00451252  0.00153180  -2.9459  0.003220
+#&gt; lag.AGE         0.00149678  0.00068418   2.1877  0.028693
+#&gt; lag.log(DIS)   -0.00453785  0.10046478  -0.0452  0.963973
+#&gt; lag.log(RAD)   -0.00940702  0.03104930  -0.3030  0.761912
+#&gt; lag.TAX         0.00041083  0.00017867   2.2994  0.021481
+#&gt; lag.PTRATIO     0.00060355  0.00788837   0.0765  0.939012
+#&gt; lag.B          -0.00050781  0.00014155  -3.5874  0.000334
+#&gt; lag.log(LSTAT)  0.09846781  0.03399423   2.8966  0.003772
+#&gt; 
+#&gt; Rho: 0.59578, LR test value: 181.68, p-value: &lt; 2.22e-16
+#&gt; Asymptotic standard error: 0.038445
+#&gt;     z-value: 15.497, p-value: &lt; 2.22e-16
+#&gt; Wald statistic: 240.16, p-value: &lt; 2.22e-16
+#&gt; 
+#&gt; Log likelihood: 300.6131 for mixed model
+#&gt; ML residual variance (sigma squared): 0.016011, (sigma: 0.12654)
+#&gt; Number of observations: 506 
+#&gt; Number of parameters estimated: 29 
+#&gt; AIC: -543.23, (AIC for lm: -363.55)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: 29.772, p-value: 4.8604e-08
+#&gt; </div><div class='input'><span class='co'># }</span>
+<span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, quiet<span class='op'>=</span><span class='cn'>FALSE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Spatial autoregressive error model
 #&gt; 
 #&gt; Jacobian calculated using neighbourhood matrix eigenvalues
@@ -855,8 +1133,9 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; lambda: 0.5617902  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 #&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 #&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.151 
-#&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errW.eig</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
+#&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     quiet = FALSE, control = list(pre_eig = ev))
 #&gt; 
 #&gt; Residuals:
@@ -880,11 +1159,13 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 5 
 #&gt; AIC: 376.76, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='no'>COL.errW.eig_ev</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>), <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig_ev</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>COL.errB.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errB.eig</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.errW.eig_ev</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig_ev</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='va'>COL.errB.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errB.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
 #&gt;     style = "B"))
@@ -910,10 +1191,9 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 5 
 #&gt; AIC: 374.1, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>trMatc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
-<span class='no'>COL.errW.M</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='no'>trMatc</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.errW.M</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, quiet<span class='op'>=</span><span class='cn'>FALSE</span>, trs<span class='op'>=</span><span class='va'>trMatc</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Spatial autoregressive error model
 #&gt; 
 #&gt; Jacobian calculated using sparse matrix Cholesky decomposition
@@ -932,8 +1212,9 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; lambda: 0.5617902  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 #&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 #&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.151 
-#&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errW.M</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
+#&gt; lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.M</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     method = "Matrix", quiet = FALSE, trs = trMatc)
 #&gt; 
 #&gt; Residuals:
@@ -957,10 +1238,11 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 5 
 #&gt; AIC: 376.76, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='no'>COL.SDEM.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>etype</span><span class='kw'>=</span><span class='st'>"emixed"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SDEM.eig</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
+#&gt; </div><div class='input'><span class='va'>COL.SDEM.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, etype<span class='op'>=</span><span class='st'>"emixed"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SDEM.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     etype = "emixed", control = list(pre_eig = ev))
 #&gt; 
 #&gt; Residuals:
@@ -986,10 +1268,12 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 7 
 #&gt; AIC: 377.17, (AIC for lm: 380.16)
-#&gt; </div><div class='input'><span class='no'>COL.SDEM.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SDEM.eig</span>)</div><div class='output co'>#&gt; 
-#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = lw, 
+#&gt; </div><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>COL.SDEM.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SDEM.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = TRUE, control = list(pre_eig = ev))
 #&gt; 
 #&gt; Residuals:
@@ -1015,11 +1299,12 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 7 
 #&gt; AIC: 377.17, (AIC for lm: 380.16)
-#&gt; </div><div class='input'><span class='no'>COL.SDEM.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>DISCBD</span> + <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span>~<span class='no'>INC</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SDEM.eig</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.SDEM.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>DISCBD</span> <span class='op'>+</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span><span class='op'>~</span><span class='va'>INC</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SDEM.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:errorsarlm(formula = CRIME ~ DISCBD + INC + HOVAL, data = COL.OLD, 
-#&gt;     listw = lw, Durbin = ~INC, control = list(pre_eig = ev))
+#&gt;     listw = listw, Durbin = ~INC, control = list(pre_eig = ev))
 #&gt; 
 #&gt; Residuals:
 #&gt;       Min        1Q    Median        3Q       Max 
@@ -1044,7 +1329,8 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 7 
 #&gt; AIC: 371.98, (AIC for lm: 371.25)
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.SDEM.eig</span>))</div><div class='output co'>#&gt; Impact measures (SDEM, estimable, n):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.SDEM.eig</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SDEM, estimable, n):
 #&gt;            Direct Indirect      Total
 #&gt; DISCBD -5.4129364       NA -5.4129364
 #&gt; INC    -0.8994250 0.161858 -0.7375670
@@ -1067,24 +1353,27 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; DISCBD 0.0070607 NA       0.0070607
 #&gt; INC    0.0043207 0.78867  0.2749513
 #&gt; HOVAL  0.0244035 NA       0.0244035
-#&gt; </div><div class='input'><span class='no'>NA.COL.OLD</span> <span class='kw'>&lt;-</span> <span class='no'>COL.OLD</span>
-<span class='no'>NA.COL.OLD</span>$<span class='no'>CRIME</span>[<span class='fl'>20</span>:<span class='fl'>25</span>] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='no'>COL.err.NA</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>), <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.exclude</span>)
-<span class='no'>COL.err.NA</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
+#&gt; </div><div class='input'><span class='va'>NA.COL.OLD</span> <span class='op'>&lt;-</span> <span class='va'>COL.OLD</span>
+<span class='va'>NA.COL.OLD</span><span class='op'>$</span><span class='va'>CRIME</span><span class='op'>[</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>25</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>COL.err.NA</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.COL.OLD</span>,
+ <span class='va'>listw</span>, na.action<span class='op'>=</span><span class='va'>na.exclude</span><span class='op'>)</span>
+<span class='va'>COL.err.NA</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 1020 1021 1022 1023 1024 1025 
 #&gt;   20   21   22   23   24   25 
 #&gt; attr(,"class")
-#&gt; [1] "exclude"</div><div class='input'><span class='no'>COL.err.NA</span></div><div class='output co'>#&gt; 
+#&gt; [1] "exclude"</div><div class='input'><span class='va'>COL.err.NA</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; errorsarlm(formula = CRIME ~ INC + HOVAL, data = NA.COL.OLD, 
-#&gt;     listw = spdep::nb2listw(COL.nb), na.action = na.exclude)
+#&gt;     listw = listw, na.action = na.exclude)
 #&gt; Type: error 
 #&gt; 
 #&gt; Coefficients:
 #&gt;      lambda (Intercept)         INC       HOVAL 
 #&gt;   0.5748430  58.2460528  -0.8473028  -0.3024909 
 #&gt; 
-#&gt; Log likelihood: -161.8763 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>resid</a></span>(<span class='no'>COL.err.NA</span>)</div><div class='output co'>#&gt;         1001         1002         1003         1004         1005         1006 
+#&gt; Log likelihood: -161.8763 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>resid</a></span><span class='op'>(</span><span class='va'>COL.err.NA</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         1001         1002         1003         1004         1005         1006 
 #&gt;  -4.18270830 -11.44133842   0.31874928 -34.47163074   2.42244758  -4.32095072 
 #&gt;         1007         1008         1009         1010         1011         1012 
 #&gt;   8.66744165 -13.38669935  -1.92276585  17.85753951  -1.11484596  -2.30434792 
@@ -1101,53 +1390,65 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt;         1043         1044         1045         1046         1047         1048 
 #&gt;  -7.78485976  -6.79207446  -7.94977534 -11.25362117  -5.68994630   5.04837399 
 #&gt;         1049 
-#&gt;   2.22497381 </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>ev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>lw</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>))))
-<span class='no'>ocoef</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>LAPACK</span><span class='kw'>=</span><span class='fl'>FALSE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>compiled_sse</span><span class='kw'>=</span><span class='fl'>TRUE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix_J"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fl'>TRUE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix_J"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix_J"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>(<span class='fl'>NA</span>)))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fl'>TRUE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>super</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>(<span class='fl'>NA</span>)))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"spam"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>spamPivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"spam"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>spamPivot</span><span class='kw'>=</span><span class='st'>"RCM"</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"spam_update"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>spamPivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>lw</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"spam_update"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>spamPivot</span><span class='kw'>=</span><span class='st'>"RCM"</span>))))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span>(<span class='no'>COL.errW.eig</span>)))
-}
-<span class='no'>listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>COL.sacW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>sacsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>listw</span>,
- <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig1</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>pre_eig2</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.sacW.eig</span>)</div><div class='output co'>#&gt; 
+#&gt;   2.22497381 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>ev</span> <span class='op'>&lt;-</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>listw</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.002   0.000   0.001 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"eigen"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.170   0.000   0.171 </div><div class='input'><span class='va'>ocoef</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"eigen"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span>, LAPACK<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.169   0.000   0.170 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"eigen"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig<span class='op'>=</span><span class='va'>ev</span>, compiled_sse<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.168   0.000   0.169 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix_J"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.197   0.000   0.198 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix_J"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.195   0.000   0.196 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix_J"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span><span class='op'>(</span><span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.198   0.000   0.200 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.179   0.000   0.181 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.179   0.000   0.180 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>super<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span><span class='op'>(</span><span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.178   0.000   0.179 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"spam"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>spamPivot<span class='op'>=</span><span class='st'>"MMD"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.181   0.000   0.182 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"spam"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>spamPivot<span class='op'>=</span><span class='st'>"RCM"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.181   0.000   0.182 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"spam_update"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>spamPivot<span class='op'>=</span><span class='st'>"MMD"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.179   0.000   0.181 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, method<span class='op'>=</span><span class='st'>"spam_update"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>spamPivot<span class='op'>=</span><span class='st'>"RCM"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.177   0.000   0.178 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>ocoef</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coefficients</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># }</span>
+<span class='va'>COL.sacW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>sacsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, <span class='va'>listw</span>,
+ control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig1<span class='op'>=</span><span class='va'>ev</span>, pre_eig2<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.sacW.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:sacsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     control = list(pre_eig1 = ev, pre_eig2 = ev))
 #&gt; 
@@ -1158,7 +1459,7 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Type: sac 
 #&gt; Coefficients: (asymptotic standard errors) 
 #&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) 47.783764   9.902659  4.8253 1.398e-06
+#&gt; (Intercept) 47.783766   9.902659  4.8253 1.398e-06
 #&gt; INC         -1.025894   0.326326 -3.1438  0.001668
 #&gt; HOVAL       -0.281651   0.090033 -3.1283  0.001758
 #&gt; 
@@ -1176,15 +1477,14 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 6 
 #&gt; AIC: 376.47, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='no'>W</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>listw</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>trMatc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trW.html'>trW</a></span>(<span class='no'>W</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mult"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.sacW.eig</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMatc</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>2000</span>), <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (sac, trace):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.sacW.eig</span>, tr<span class='op'>=</span><span class='va'>trMatc</span>, R<span class='op'>=</span><span class='fl'>2000</span><span class='op'>)</span>, zstats<span class='op'>=</span><span class='cn'>TRUE</span>, short<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (sac, trace):
 #&gt;           Direct   Indirect      Total
-#&gt; INC   -1.0632723 -0.5601502 -1.6234225
-#&gt; HOVAL -0.2919129 -0.1537848 -0.4456977
+#&gt; INC   -1.0632723 -0.5601501 -1.6234223
+#&gt; HOVAL -0.2919129 -0.1537847 -0.4456977
 #&gt; ========================================================
-#&gt; Simulation results (asymptotic variance matrix):
+#&gt; Simulation results ( variance matrix):
 #&gt; ========================================================
 #&gt; Simulated standard errors
 #&gt;          Direct  Indirect     Total
@@ -1193,15 +1493,16 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; 
 #&gt; Simulated z-values:
 #&gt;          Direct   Indirect     Total
-#&gt; INC   -3.376570 -0.8371025 -1.861677
-#&gt; HOVAL -3.159909 -0.7431010 -1.553156
+#&gt; INC   -3.376570 -0.8371024 -1.861677
+#&gt; HOVAL -3.159909 -0.7431009 -1.553156
 #&gt; 
 #&gt; Simulated p-values:
 #&gt;       Direct     Indirect Total   
-#&gt; INC   0.00073396 0.40253  0.062649
-#&gt; HOVAL 0.00157819 0.45742  0.120386</div><div class='input'><span class='no'>COL.msacW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>sacsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>listw</span>,
- <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"sacmixed"</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig1</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>pre_eig2</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.msacW.eig</span>)</div><div class='output co'>#&gt; 
+#&gt; INC   0.00073396 0.40254  0.062649
+#&gt; HOVAL 0.00157818 0.45742  0.120386</div><div class='input'><span class='va'>COL.msacW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>sacsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, <span class='va'>listw</span>,
+ type<span class='op'>=</span><span class='st'>"sacmixed"</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig1<span class='op'>=</span><span class='va'>ev</span>, pre_eig2<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.msacW.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:sacsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     type = "sacmixed", control = list(pre_eig1 = ev, pre_eig2 = ev))
 #&gt; 
@@ -1212,7 +1513,7 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Type: sacmixed 
 #&gt; Coefficients: (asymptotic standard errors) 
 #&gt;             Estimate Std. Error z value Pr(&gt;|z|)
-#&gt; (Intercept) 50.92026   68.25721  0.7460 0.455664
+#&gt; (Intercept) 50.92025   68.25721  0.7460 0.455664
 #&gt; INC         -0.95072    0.44033 -2.1591 0.030841
 #&gt; HOVAL       -0.28650    0.09994 -2.8667 0.004148
 #&gt; lag.INC     -0.69261    1.69113 -0.4096 0.682132
@@ -1232,30 +1533,32 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 8 
 #&gt; AIC: 378.68, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.msacW.eig</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMatc</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>2000</span>), <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.msacW.eig</span>, tr<span class='op'>=</span><span class='va'>trMatc</span>, R<span class='op'>=</span><span class='fl'>2000</span><span class='op'>)</span>, zstats<span class='op'>=</span><span class='cn'>TRUE</span>, short<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
 #&gt;           Direct   Indirect      Total
 #&gt; INC   -1.0317003 -1.3693141 -2.4010144
 #&gt; HOVAL -0.2768608  0.1629265 -0.1139344
 #&gt; ========================================================
-#&gt; Simulation results (asymptotic variance matrix):
+#&gt; Simulation results ( variance matrix):
 #&gt; ========================================================
 #&gt; Simulated standard errors
 #&gt;          Direct  Indirect     Total
-#&gt; INC   0.3778064 2.1709289 2.3099448
-#&gt; HOVAL 0.1144714 0.7736216 0.8389226
+#&gt; INC   0.3778064 2.1709292 2.3099451
+#&gt; HOVAL 0.1144714 0.7736217 0.8389227
 #&gt; 
 #&gt; Simulated z-values:
 #&gt;          Direct   Indirect       Total
-#&gt; INC   -2.737182 -0.7297008 -1.13347009
-#&gt; HOVAL -2.364129  0.2526689 -0.08958505
+#&gt; INC   -2.737182 -0.7297008 -1.13347001
+#&gt; HOVAL -2.364128  0.2526688 -0.08958504
 #&gt; 
 #&gt; Simulated p-values:
 #&gt;       Direct    Indirect Total  
 #&gt; INC   0.0061968 0.46557  0.25702
-#&gt; HOVAL 0.0180725 0.80052  0.92862</div><div class='input'><span class='no'>COL.msacW1.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>sacsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='no'>listw</span>,
- <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig1</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>pre_eig2</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.msacW1.eig</span>)</div><div class='output co'>#&gt; 
+#&gt; HOVAL 0.0180725 0.80052  0.92862</div><div class='input'><span class='va'>COL.msacW1.eig</span> <span class='op'>&lt;-</span> <span class='fu'>sacsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, <span class='va'>listw</span>,
+ Durbin<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig1<span class='op'>=</span><span class='va'>ev</span>, pre_eig2<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.msacW1.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:sacsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
 #&gt;     Durbin = TRUE, control = list(pre_eig1 = ev, pre_eig2 = ev))
 #&gt; 
@@ -1266,7 +1569,7 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Type: sacmixed 
 #&gt; Coefficients: (asymptotic standard errors) 
 #&gt;             Estimate Std. Error z value Pr(&gt;|z|)
-#&gt; (Intercept) 50.92026   68.25721  0.7460 0.455664
+#&gt; (Intercept) 50.92025   68.25721  0.7460 0.455664
 #&gt; INC         -0.95072    0.44033 -2.1591 0.030841
 #&gt; HOVAL       -0.28650    0.09994 -2.8667 0.004148
 #&gt; lag.INC     -0.69261    1.69113 -0.4096 0.682132
@@ -1286,30 +1589,32 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 8 
 #&gt; AIC: 378.68, (AIC for lm: 382.75)
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.msacW1.eig</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMatc</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>2000</span>), <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.msacW1.eig</span>, tr<span class='op'>=</span><span class='va'>trMatc</span>, R<span class='op'>=</span><span class='fl'>2000</span><span class='op'>)</span>, zstats<span class='op'>=</span><span class='cn'>TRUE</span>, short<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
 #&gt;           Direct   Indirect      Total
 #&gt; INC   -1.0317003 -1.3693141 -2.4010144
 #&gt; HOVAL -0.2768608  0.1629265 -0.1139344
 #&gt; ========================================================
-#&gt; Simulation results (asymptotic variance matrix):
+#&gt; Simulation results ( variance matrix):
 #&gt; ========================================================
 #&gt; Simulated standard errors
 #&gt;          Direct  Indirect     Total
-#&gt; INC   0.3778064 2.1709289 2.3099448
-#&gt; HOVAL 0.1144714 0.7736216 0.8389226
+#&gt; INC   0.3778064 2.1709292 2.3099451
+#&gt; HOVAL 0.1144714 0.7736217 0.8389227
 #&gt; 
 #&gt; Simulated z-values:
 #&gt;          Direct   Indirect       Total
-#&gt; INC   -2.737182 -0.7297008 -1.13347009
-#&gt; HOVAL -2.364129  0.2526689 -0.08958505
+#&gt; INC   -2.737182 -0.7297008 -1.13347001
+#&gt; HOVAL -2.364128  0.2526688 -0.08958504
 #&gt; 
 #&gt; Simulated p-values:
 #&gt;       Direct    Indirect Total  
 #&gt; INC   0.0061968 0.46557  0.25702
-#&gt; HOVAL 0.0180725 0.80052  0.92862</div><div class='input'><span class='no'>COL.msacW2.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>sacsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>DISCBD</span> + <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='no'>listw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span> ~ <span class='no'>INC</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pre_eig1</span><span class='kw'>=</span><span class='no'>ev</span>, <span class='kw'>pre_eig2</span><span class='kw'>=</span><span class='no'>ev</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.msacW2.eig</span>)</div><div class='output co'>#&gt; 
+#&gt; HOVAL 0.0180725 0.80052  0.92862</div><div class='input'><span class='va'>COL.msacW2.eig</span> <span class='op'>&lt;-</span> <span class='fu'>sacsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>DISCBD</span> <span class='op'>+</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, 
+ <span class='va'>listw</span>, Durbin<span class='op'>=</span> <span class='op'>~</span> <span class='va'>INC</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pre_eig1<span class='op'>=</span><span class='va'>ev</span>, pre_eig2<span class='op'>=</span><span class='va'>ev</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.msacW2.eig</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:sacsarlm(formula = CRIME ~ DISCBD + INC + HOVAL, data = COL.OLD, 
 #&gt;     listw = listw, Durbin = ~INC, control = list(pre_eig1 = ev, 
 #&gt;         pre_eig2 = ev))
@@ -1341,41 +1646,156 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 #&gt; Number of observations: 49 
 #&gt; Number of parameters estimated: 8 
 #&gt; AIC: 373.93, (AIC for lm: 369.42)
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.msacW2.eig</span>, <span class='kw'>tr</span><span class='kw'>=</span><span class='no'>trMatc</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>2000</span>), <span class='kw'>zstats</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>short</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.msacW2.eig</span>, tr<span class='op'>=</span><span class='va'>trMatc</span>, R<span class='op'>=</span><span class='fl'>2000</span><span class='op'>)</span>, zstats<span class='op'>=</span><span class='cn'>TRUE</span>, short<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (sacmixed, trace):
 #&gt;            Direct   Indirect      Total
 #&gt; DISCBD -5.7150801 0.41841708 -5.2966631
 #&gt; INC    -0.9031729 0.12421194 -0.7789609
 #&gt; HOVAL  -0.2036631 0.01491075 -0.1887524
 #&gt; ========================================================
-#&gt; Simulation results (asymptotic variance matrix):
+#&gt; Simulation results ( variance matrix):
 #&gt; ========================================================
 #&gt; Simulated standard errors
 #&gt;           Direct  Indirect     Total
-#&gt; DISCBD 3.1446962 5.7201578 5.7574507
-#&gt; INC    0.3621136 1.7150129 1.8763505
-#&gt; HOVAL  0.1090171 0.6360477 0.6988348
+#&gt; DISCBD 3.1420102 5.8423996 5.8501653
+#&gt; INC    0.3651443 1.8447846 2.0077003
+#&gt; HOVAL  0.1088636 0.6010839 0.6599894
 #&gt; 
 #&gt; Simulated z-values:
-#&gt;           Direct    Indirect      Total
-#&gt; DISCBD -1.852002  0.02800199 -0.9837354
-#&gt; INC    -2.461864  0.18611847 -0.3049957
-#&gt; HOVAL  -2.021744 -0.18415433 -0.4829978
+#&gt;           Direct   Indirect      Total
+#&gt; DISCBD -1.854977  0.0193511 -0.9769469
+#&gt; INC    -2.433297  0.1815217 -0.2757565
+#&gt; HOVAL  -2.034012 -0.1886907 -0.5073549
 #&gt; 
 #&gt; Simulated p-values:
 #&gt;        Direct   Indirect Total  
-#&gt; DISCBD 0.064026 0.97766  0.32525
-#&gt; INC    0.013822 0.85235  0.76037
-#&gt; HOVAL  0.043203 0.85389  0.62910</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>COL.mix.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mix.eig</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>Nagelkerke</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>COL.mix.M</span> <span class='kw'>&lt;-</span> <span class='fu'>lagsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
- <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>), <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"mixed"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"Matrix"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.mix.M</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>Nagelkerke</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>COL.errW.eig</span> <span class='kw'>&lt;-</span> <span class='fu'>errorsarlm</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>,
-  <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>), <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"eigen"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.errW.eig</span>, <span class='kw'>correlation</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>Nagelkerke</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>Hausman</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-}</div></pre>
+#&gt; DISCBD 0.063599 0.98456  0.32860
+#&gt; INC    0.014962 0.85596  0.78274
+#&gt; HOVAL  0.041950 0.85034  0.61191</div><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>COL.mix.eig</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mix.eig</span>, correlation<span class='op'>=</span><span class='cn'>TRUE</span>, Nagelkerke<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     type = "mixed", method = "eigen")
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.47829  -6.46731  -0.33835   6.05200  22.62969 
+#&gt; 
+#&gt; Type: mixed 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 42.822415  12.667205  3.3806 0.0007233
+#&gt; INC         -0.914223   0.331094 -2.7612 0.0057586
+#&gt; HOVAL       -0.293738   0.089212 -3.2926 0.0009927
+#&gt; lag.INC     -0.520284   0.565129 -0.9206 0.3572355
+#&gt; lag.HOVAL    0.245640   0.178917  1.3729 0.1697756
+#&gt; 
+#&gt; Rho: 0.42634, LR test value: 5.3693, p-value: 0.020494
+#&gt; Asymptotic standard error: 0.15623
+#&gt;     z-value: 2.7288, p-value: 0.0063561
+#&gt; Wald statistic: 7.4465, p-value: 0.0063561
+#&gt; 
+#&gt; Log likelihood: -181.3935 for mixed model
+#&gt; ML residual variance (sigma squared): 91.791, (sigma: 9.5808)
+#&gt; Nagelkerke pseudo-R-squared: 0.6494 
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 7 
+#&gt; AIC: 376.79, (AIC for lm: 380.16)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: 0.28919, p-value: 0.59074
+#&gt; 
+#&gt;  Correlation of coefficients 
+#&gt;             sigma rho   (Intercept) INC   HOVAL lag.INC
+#&gt; rho         -0.18                                      
+#&gt; (Intercept)  0.16 -0.89                                
+#&gt; INC         -0.03  0.14 -0.19                          
+#&gt; HOVAL        0.02 -0.09  0.03       -0.45              
+#&gt; lag.INC     -0.09  0.49 -0.53       -0.36  0.05        
+#&gt; lag.HOVAL   -0.04  0.19 -0.36        0.19 -0.24 -0.41  
+#&gt; </div><div class='input'><span class='va'>COL.mix.M</span> <span class='op'>&lt;-</span> <span class='fu'>lagsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+ <span class='va'>listw</span>, type<span class='op'>=</span><span class='st'>"mixed"</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.mix.M</span>, correlation<span class='op'>=</span><span class='cn'>TRUE</span>, Nagelkerke<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
+#&gt;     type = "mixed", method = "Matrix")
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -37.47829  -6.46731  -0.33835   6.05200  22.62969 
+#&gt; 
+#&gt; Type: mixed 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 42.822413  12.667204  3.3806 0.0007233
+#&gt; INC         -0.914223   0.331094 -2.7612 0.0057586
+#&gt; HOVAL       -0.293738   0.089212 -3.2926 0.0009927
+#&gt; lag.INC     -0.520283   0.565129 -0.9206 0.3572355
+#&gt; lag.HOVAL    0.245640   0.178917  1.3729 0.1697756
+#&gt; 
+#&gt; Rho: 0.42634, LR test value: 5.3693, p-value: 0.020494
+#&gt; Asymptotic standard error: 0.15623
+#&gt;     z-value: 2.7288, p-value: 0.0063561
+#&gt; Wald statistic: 7.4465, p-value: 0.0063561
+#&gt; 
+#&gt; Log likelihood: -181.3935 for mixed model
+#&gt; ML residual variance (sigma squared): 91.791, (sigma: 9.5808)
+#&gt; Nagelkerke pseudo-R-squared: 0.6494 
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 7 
+#&gt; AIC: 376.79, (AIC for lm: 380.16)
+#&gt; LM test for residual autocorrelation
+#&gt; test value: 0.28919, p-value: 0.59074
+#&gt; 
+#&gt;  Correlation of coefficients 
+#&gt;             sigma rho   (Intercept) INC   HOVAL lag.INC
+#&gt; rho         -0.18                                      
+#&gt; (Intercept)  0.16 -0.89                                
+#&gt; INC         -0.03  0.14 -0.19                          
+#&gt; HOVAL        0.02 -0.09  0.03       -0.45              
+#&gt; lag.INC     -0.09  0.49 -0.53       -0.36  0.05        
+#&gt; lag.HOVAL   -0.04  0.19 -0.36        0.19 -0.24 -0.41  
+#&gt; </div><div class='input'><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'>errorsarlm</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
+  <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span>, correlation<span class='op'>=</span><span class='cn'>TRUE</span>, Nagelkerke<span class='op'>=</span><span class='cn'>TRUE</span>, Hausman<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:
+#&gt; errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
+#&gt;     style = "W"), method = "eigen")
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min        1Q    Median        3Q       Max 
+#&gt; -34.81174  -6.44031  -0.72142   7.61476  23.33626 
+#&gt; 
+#&gt; Type: error 
+#&gt; Coefficients: (asymptotic standard errors) 
+#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
+#&gt; (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16
+#&gt; INC         -0.941312   0.330569 -2.8476 0.0044057
+#&gt; HOVAL       -0.302250   0.090476 -3.3407 0.0008358
+#&gt; 
+#&gt; Lambda: 0.56179, LR test value: 7.9935, p-value: 0.0046945
+#&gt; Asymptotic standard error: 0.13387
+#&gt;     z-value: 4.1966, p-value: 2.7098e-05
+#&gt; Wald statistic: 17.611, p-value: 2.7098e-05
+#&gt; 
+#&gt; Log likelihood: -183.3805 for error model
+#&gt; ML residual variance (sigma squared): 95.575, (sigma: 9.7762)
+#&gt; Nagelkerke pseudo-R-squared: 0.61978 
+#&gt; Number of observations: 49 
+#&gt; Number of parameters estimated: 5 
+#&gt; AIC: 376.76, (AIC for lm: 382.75)
+#&gt; Hausman test: 4.902, df: 3, p-value: 0.17911
+#&gt; 
+#&gt;  Correlation of coefficients 
+#&gt;             sigma lambda (Intercept) INC  
+#&gt; lambda      -0.24                         
+#&gt; (Intercept)  0.00  0.00                   
+#&gt; INC          0.00  0.00  -0.56            
+#&gt; HOVAL        0.00  0.00  -0.26       -0.45
+#&gt; </div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -1391,7 +1811,7 @@ coefficient of determination. Biometrika 78: 691-692; Cressie, N. A. C. 1993 <em
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

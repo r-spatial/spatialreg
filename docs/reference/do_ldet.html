@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,26 +135,26 @@
     <p>These functions are made available in the package namespace for other developers, and are not intended for users. They provide a shared infrastructure for setting up data for Jacobian computation, and then for caclulating the Jacobian, either exactly or approximately, in maximum likelihood fitting of spatial regression models. The techniques used are the exact eigenvalue, Cholesky decompositions (Matrix, spam), and LU ones, with Chebyshev and Monte Carlo approximations; moments use the methods due to Martin and Smirnov/Anselin.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_ldet</span>(<span class='no'>coef</span>, <span class='no'>env</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>jacobianSetup</span>(<span class='no'>method</span>, <span class='no'>env</span>, <span class='no'>con</span>, <span class='kw'>pre_eig</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>interval</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>cheb_setup</span>(<span class='no'>env</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>mcdet_setup</span>(<span class='no'>env</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>eigen_setup</span>(<span class='no'>env</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>eigen_pre_setup</span>(<span class='no'>env</span>, <span class='no'>pre_eig</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>spam_setup</span>(<span class='no'>env</span>, <span class='kw'>pivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>spam_update_setup</span>(<span class='no'>env</span>, <span class='kw'>in_coef</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>pivot</span><span class='kw'>=</span><span class='st'>"MMD"</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>Matrix_setup</span>(<span class='no'>env</span>, <span class='no'>Imult</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>(<span class='fl'>NA</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>Matrix_J_setup</span>(<span class='no'>env</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>LU_setup</span>(<span class='no'>env</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>LU_prepermutate_setup</span>(<span class='no'>env</span>, <span class='kw'>coef</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>order</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>moments_setup</span>(<span class='no'>env</span>, <span class='kw'>trs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='no'>m</span>, <span class='no'>p</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"MC"</span>, <span class='kw'>correct</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>trunc</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>eq7</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>SE_classic_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>interpn</span><span class='kw'>=</span><span class='fl'>2000</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>SE_whichMin_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>interpn</span><span class='kw'>=</span><span class='fl'>2000</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>SElndet</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>SE_interp_setup</span>(<span class='no'>env</span>, <span class='kw'>SE_method</span><span class='kw'>=</span><span class='st'>"LU"</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nrho</span><span class='kw'>=</span><span class='fl'>200</span>,
- <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>0.999</span>), <span class='kw'>which</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>can.be.simmed</span>(<span class='no'>listw</span>)</pre>
+    <pre class="usage"><span class='fu'>do_ldet</span><span class='op'>(</span><span class='va'>coef</span>, <span class='va'>env</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>jacobianSetup</span><span class='op'>(</span><span class='va'>method</span>, <span class='va'>env</span>, <span class='va'>con</span>, pre_eig<span class='op'>=</span><span class='cn'>NULL</span>, trs<span class='op'>=</span><span class='cn'>NULL</span>, interval<span class='op'>=</span><span class='cn'>NULL</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>cheb_setup</span><span class='op'>(</span><span class='va'>env</span>, q<span class='op'>=</span><span class='fl'>5</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>mcdet_setup</span><span class='op'>(</span><span class='va'>env</span>, p<span class='op'>=</span><span class='fl'>16</span>, m<span class='op'>=</span><span class='fl'>30</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>eigen_setup</span><span class='op'>(</span><span class='va'>env</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>eigen_pre_setup</span><span class='op'>(</span><span class='va'>env</span>, <span class='va'>pre_eig</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>spam_setup</span><span class='op'>(</span><span class='va'>env</span>, pivot<span class='op'>=</span><span class='st'>"MMD"</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>spam_update_setup</span><span class='op'>(</span><span class='va'>env</span>, in_coef<span class='op'>=</span><span class='fl'>0.1</span>, pivot<span class='op'>=</span><span class='st'>"MMD"</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>Matrix_setup</span><span class='op'>(</span><span class='va'>env</span>, <span class='va'>Imult</span>, super<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span><span class='op'>(</span><span class='cn'>NA</span><span class='op'>)</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>Matrix_J_setup</span><span class='op'>(</span><span class='va'>env</span>, super<span class='op'>=</span><span class='cn'>FALSE</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>LU_setup</span><span class='op'>(</span><span class='va'>env</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>LU_prepermutate_setup</span><span class='op'>(</span><span class='va'>env</span>, coef<span class='op'>=</span><span class='fl'>0.1</span>, order<span class='op'>=</span><span class='cn'>FALSE</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>moments_setup</span><span class='op'>(</span><span class='va'>env</span>, trs<span class='op'>=</span><span class='cn'>NULL</span>, <span class='va'>m</span>, <span class='va'>p</span>, type<span class='op'>=</span><span class='st'>"MC"</span>, correct<span class='op'>=</span><span class='cn'>TRUE</span>, trunc<span class='op'>=</span><span class='cn'>TRUE</span>, eq7<span class='op'>=</span><span class='cn'>TRUE</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>SE_classic_setup</span><span class='op'>(</span><span class='va'>env</span>, SE_method<span class='op'>=</span><span class='st'>"LU"</span>, p<span class='op'>=</span><span class='fl'>16</span>, m<span class='op'>=</span><span class='fl'>30</span>, nrho<span class='op'>=</span><span class='fl'>200</span>, interpn<span class='op'>=</span><span class='fl'>2000</span>,
+ interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>0.999</span><span class='op'>)</span>, SElndet<span class='op'>=</span><span class='cn'>NULL</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>SE_whichMin_setup</span><span class='op'>(</span><span class='va'>env</span>, SE_method<span class='op'>=</span><span class='st'>"LU"</span>, p<span class='op'>=</span><span class='fl'>16</span>, m<span class='op'>=</span><span class='fl'>30</span>, nrho<span class='op'>=</span><span class='fl'>200</span>, interpn<span class='op'>=</span><span class='fl'>2000</span>,
+ interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>0.999</span><span class='op'>)</span>, SElndet<span class='op'>=</span><span class='cn'>NULL</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>SE_interp_setup</span><span class='op'>(</span><span class='va'>env</span>, SE_method<span class='op'>=</span><span class='st'>"LU"</span>, p<span class='op'>=</span><span class='fl'>16</span>, m<span class='op'>=</span><span class='fl'>30</span>, nrho<span class='op'>=</span><span class='fl'>200</span>,
+ interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>0.999</span><span class='op'>)</span>, which<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>can.be.simmed</span><span class='op'>(</span><span class='va'>listw</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -261,96 +264,96 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Since environments are containers in the R workspace passed by reference rather than by value, they are useful for passing objects to functions called in numerical optimisation, here for the maximum likelihood estimation of spatial regression models. This technique can save a little time on each function call, balanced against the need to access the objects in the environment inside the function. The environment should contain a <code>family</code> string object either &#8220;SAR&#8221;, &#8220;CAR&#8221; or &#8220;SMA&#8221; (used in <code>do_ldet</code> to choose spatial moving average in <code>spautolm</code>, and these specific objects before calling the set-up functions:</p>
-<dl'>
+<dl>
   <dt>eigen</dt><dd><p>Classical Ord eigenvalue computations - either:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
     <dt>verbose</dt><dd><p>logical scalar: legacy report print control, for historical reasons only</p></dd></dl> or:
-  <dl'>
+  <dl>
     <dt>pre_eig</dt><dd><p>pre-computed eigenvalues</p></dd></dl>
   and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>eig</dt><dd><p>a vector of eigenvalues</p></dd>
     <dt>eig.range</dt><dd><p>the search interval for the spatial coefficient</p></dd>
     <dt>method</dt><dd><p>string: &#8220;eigen&#8221;</p></dd></dl></p></dd>
   <dt>Matrix</dt><dd><p>Sparse matrix pre-computed Cholesky decomposition with fast updating:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>nW</dt><dd><p>negative sparse spatial weights matrix</p></dd>
     <dt>pChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>csrw</code> with <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></dd>
     <dt>nChol</dt><dd><p>a &#8220;CHMfactor&#8221; from factorising <code>nW</code> with <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></dd>
     <dt>method</dt><dd><p>string: &#8220;Matrix&#8221;</p></dd></dl></p></dd>
   <dt>Matrix_J</dt><dd><p>Standard Cholesky decomposition without updating:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>super</dt><dd><p>the value of the <code>super</code> argument</p></dd>
     <dt>method</dt><dd><p>string: &#8220;Matrix_J&#8221;</p></dd></dl></p></dd>
   <dt>spam</dt><dd><p>Standard Cholesky decomposition without updating:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>pivot</dt><dd><p>string --- pivot method</p></dd>
     <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd></dl></p></dd>
   <dt>spam_update</dt><dd><p>Pre-computed Cholesky decomposition with updating:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>csrw</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>csrwchol</dt><dd><p>A Cholesky decomposition for updating</p></dd>
     <dt>method</dt><dd><p>string: &#8220;spam&#8221;</p></dd></dl></p></dd>
   <dt>LU</dt><dd><p>Standard LU decomposition without updating:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd></dl></p></dd>
   <dt>LU_prepermutate</dt><dd><p>Standard LU decomposition with updating (pre-computed fill-reducing permutation):
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>lu_order</dt><dd><p>order argument to lu</p></dd>
     <dt>pq</dt><dd><p>2-column matrix for row and column permutation for fill-reduction</p></dd>
     <dt>I</dt><dd><p>sparse identity matrix</p></dd>
     <dt>method</dt><dd><p>string: &#8220;LU&#8221;</p></dd></dl></p></dd>
   <dt>MC</dt><dd><p>Monte Carlo approximation:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>clx</dt><dd><p>list of Monte Carlo approximation terms  (the first two simulated traces are replaced by their analytical equivalents)</p></dd>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>method</dt><dd><p>string: &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>cheb</dt><dd><p>Chebyshev approximation:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>trT</dt><dd><p>vector of Chebyshev approximation terms</p></dd>
     <dt>W</dt><dd><p>sparse spatial weights matrix</p></dd>
     <dt>method</dt><dd><p>string: &#8220;Chebyshev&#8221;</p></dd></dl></p></dd>
   <dt>moments</dt><dd><p>moments approximation:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>can.sim</dt><dd><p>logical scalar: can the spatial weights be made symmetric by similarity</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>trs</dt><dd><p>vector of traces, possibly approximated</p></dd>
     <dt>q12</dt><dd><p>integer vector of length 2, unit roots terms, ignored until 0.5-52</p></dd>
     <dt>eq7</dt><dd><p>logical scalar: use equation 7</p></dd>
@@ -358,26 +361,26 @@
     <dt>trunc</dt><dd><p>logical scalar: truncate Smirnov correction term</p></dd>
     <dt>method</dt><dd><p>string: &#8220;moments&#8221;</p></dd></dl></p></dd>
   <dt>SE_classic</dt><dd><p>:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>detval</dt><dd><p>two column matrix of lndet grid values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_classic&#8221;</p></dd>
     <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>SE_whichMin</dt><dd><p>:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>detval</dt><dd><p>two column matrix of lndet grid values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_whichMin&#8221;</p></dd>
     <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
   <dt>SE_interp</dt><dd><p>:
-  <dl'>
+  <dl>
     <dt>listw</dt><dd><p>A listw spatial weights object</p></dd>
     <dt>n</dt><dd><p>number of spatial objects</p></dd></dl> and assigns to the environment:
-  <dl'>
+  <dl>
     <dt>fit</dt><dd><p>fitted spline object from which to predict lndet values</p></dd>
     <dt>method</dt><dd><p>string: &#8220;SE_interp&#8221;</p></dd>
     <dt>SE_method</dt><dd><p>string: &#8220;LU&#8221; or &#8220;MC&#8221;</p></dd></dl></p></dd>
@@ -393,80 +396,99 @@
 
     <p>LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton, pp. 77--110.</p>
 <p>Bivand, R. S., Hauke, J., and Kossowski, T. (2013). Computing the Jacobian in Gaussian spatial autoregressive models: An illustrated comparison of available methods. <em>Geographical Analysis</em>, 45(2), 150-179.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='spautolm.html'>spautolm</a></code>, <code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code>, <code><a href='https://rdrr.io/pkg/Matrix/man/Cholesky.html'>Cholesky</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>boston</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span>
 <span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>)
-<span class='no'>can.sim</span> <span class='kw'>&lt;-</span> <span class='fu'>can.be.simmed</span>(<span class='no'>lw</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>eigen_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"verbose"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>eigen_pre_setup</span>(<span class='no'>env</span>, <span class='kw'>pre_eig</span><span class='kw'>=</span><span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>lw</span>)))
-<span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>Matrix_setup</span>(<span class='no'>env</span>, <span class='kw'>Imult</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>super</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"can.sim"</span>, <span class='no'>can.sim</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>spam_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702
+<span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>
+<span class='va'>can.sim</span> <span class='op'>&lt;-</span> <span class='fu'>can.be.simmed</span><span class='op'>(</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"can.sim"</span>, <span class='va'>can.sim</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"verbose"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>eigen_setup</span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"can.sim"</span>, <span class='va'>can.sim</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"verbose"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>eigen_pre_setup</span><span class='op'>(</span><span class='va'>env</span>, pre_eig<span class='op'>=</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>lw</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"can.sim"</span>, <span class='va'>can.sim</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>Matrix_setup</span><span class='op'>(</span><span class='va'>env</span>, Imult<span class='op'>=</span><span class='fl'>2</span>, super<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"can.sim"</span>, <span class='va'>can.sim</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>spam_setup</span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702
 #&gt; attr(,"logarithm")
-#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>LU_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>LU_prepermutate_setup</span>(<span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'>cheb_setup</span>(<span class='no'>env</span>, <span class='kw'>q</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.26176</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>(<span class='kw'>parent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"listw"</span>, <span class='no'>lw</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>boston.soi</span>), <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"similar"</span>, <span class='fl'>FALSE</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span>(<span class='st'>"family"</span>, <span class='st'>"SAR"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>12345</span>)
-<span class='fu'>mcdet_setup</span>(<span class='no'>env</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>m</span><span class='kw'>=</span><span class='fl'>30</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"similar"</span>, <span class='kw'>envir</span><span class='kw'>=</span><span class='no'>env</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span>(<span class='fl'>0.5</span>, <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] -18.38606
+#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>LU_setup</span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>LU_prepermutate_setup</span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26702</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'>cheb_setup</span><span class='op'>(</span><span class='va'>env</span>, q<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.26176</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+<span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>parent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>globalenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"listw"</span>, <span class='va'>lw</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"n"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"similar"</span>, <span class='cn'>FALSE</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/assign.html'>assign</a></span><span class='op'>(</span><span class='st'>"family"</span>, <span class='st'>"SAR"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>12345</span><span class='op'>)</span>
+<span class='fu'>mcdet_setup</span><span class='op'>(</span><span class='va'>env</span>, p<span class='op'>=</span><span class='fl'>16</span>, m<span class='op'>=</span><span class='fl'>30</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"similar"</span>, envir<span class='op'>=</span><span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>do_ldet</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='va'>env</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -18.38606
 #&gt; attr(,"sd")
-#&gt; [1] 0.2045107</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>env</span>)</div></pre>
+#&gt; [1] 0.2045107</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -482,7 +504,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

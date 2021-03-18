@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,11 +135,11 @@
     <p>The function selects eigenvectors in a semi-parametric spatial filtering approach to removing spatial dependence from linear models. Selection is by brute force by finding the single eigenvector reducing the standard variate of Moran's I for regression residuals most, and continuing until no candidate eigenvector reduces the value by more than <code>tol</code>. It returns a summary table from the selection process and a matrix of selected eigenvectors for the specified model.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>SpatialFiltering</span>(<span class='no'>formula</span>, <span class='kw'>lagformula</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.fail</span>,
- <span class='kw'>nb</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>glist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
- <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"C"</span>, <span class='kw'>zero.policy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>zerovalue</span> <span class='kw'>=</span> <span class='fl'>1e-04</span>,
- <span class='kw'>ExactEV</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>symmetric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>"two.sided"</span>,
- <span class='kw'>verbose</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>SpatialFiltering</span><span class='op'>(</span><span class='va'>formula</span>, lagformula<span class='op'>=</span><span class='cn'>NULL</span>, data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, na.action<span class='op'>=</span><span class='va'>na.fail</span>,
+ nb<span class='op'>=</span><span class='cn'>NULL</span>, glist <span class='op'>=</span> <span class='cn'>NULL</span>,
+ style <span class='op'>=</span> <span class='st'>"C"</span>, zero.policy <span class='op'>=</span> <span class='cn'>NULL</span>, tol <span class='op'>=</span> <span class='fl'>0.1</span>, zerovalue <span class='op'>=</span> <span class='fl'>1e-04</span>,
+ ExactEV <span class='op'>=</span> <span class='cn'>FALSE</span>, symmetric <span class='op'>=</span> <span class='cn'>TRUE</span>, alpha<span class='op'>=</span><span class='cn'>NULL</span>, alternative<span class='op'>=</span><span class='st'>"two.sided"</span>,
+ verbose<span class='op'>=</span><span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,9 +208,9 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>SFResult</code> object, with:</p>
+    <p>An <code>SfResult</code> object, with:</p>
 <dt>selection</dt><dd><p>a matrix summarising the selection of eigenvectors for inclusion, with columns:
-    <dl'>
+    <dl>
       <dt>Step</dt><dd><p>Step counter of the selection procedure</p></dd>
       <dt>SelEvec</dt><dd><p>number of selected eigenvector (sorted descending)</p></dd>
       <dt>Eval</dt><dd><p>its associated eigenvalue</p></dd>
@@ -222,19 +225,23 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Tiefelsdorf M, Griffith DA. (2007) Semiparametric Filtering of Spatial Autocorrelation: The Eigenvector Approach. Environment and Planning A, 39 (5) 1193 - 1221.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Yongwan Chun, Michael Tiefelsdorf, Roger Bivand</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/lm.html'>lm</a></code>, <code><a href='https://rdrr.io/r/base/eigen.html'>eigen</a></code>, <code>nb2listw</code>, <code>listw2U</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"sf"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>columbus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shapes/columbus.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>], <span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://r-spatial.github.io/sf/'>"sf"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>columbus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"shapes/columbus.shp"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, quiet<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='no'>col.gal.nb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"weights/columbus.gal"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)[<span class='fl'>1</span>])
-<span class='no'>lmbase</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)
-<span class='no'>sarcol</span> <span class='kw'>&lt;-</span> <span class='fu'>SpatialFiltering</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>,
- <span class='kw'>nb</span><span class='kw'>=</span><span class='no'>col.gal.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>, <span class='kw'>ExactEV</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>sarcol</span></div><div class='output co'>#&gt;   Step SelEvec      Eval        MinMi      ZMinMi      Pr(ZI)        R2
+<span class='va'>col.gal.nb</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"weights/columbus.gal"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>lmbase</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>columbus</span><span class='op'>)</span>
+<span class='va'>sarcol</span> <span class='op'>&lt;-</span> <span class='fu'>SpatialFiltering</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>columbus</span>,
+ nb<span class='op'>=</span><span class='va'>col.gal.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span>, ExactEV<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>sarcol</span>
+</div><div class='output co'>#&gt;   Step SelEvec      Eval        MinMi      ZMinMi      Pr(ZI)        R2
 #&gt; 0    0       0 0.0000000  0.212374153  2.68100025 0.007340246 0.5524040
 #&gt; 1    1       5 0.7148326  0.121528166  1.89037770 0.058707464 0.6209393
 #&gt; 2    2       3 0.8408661  0.065848648  1.54064108 0.123404165 0.6481722
@@ -251,21 +258,47 @@
 #&gt; 4  19.19379
 #&gt; 5  22.99586
 #&gt; 6  17.12127
-#&gt; 7  11.66487</div><div class='input'><span class='no'>lmsar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span>(<span class='no'>sarcol</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)
-<span class='no'>lmsar</span></div><div class='output co'>#&gt; 
+#&gt; 7  11.66487</div><div class='input'><span class='va'>lmsar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span><span class='op'>(</span><span class='va'>sarcol</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>columbus</span><span class='op'>)</span>
+<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>lmsar</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = CRIME ~ INC + HOVAL + fitted(sarcol), data = columbus)
 #&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -27.6527  -5.3084   0.0804   5.6844  15.6912 
+#&gt; 
 #&gt; Coefficients:
-#&gt;         (Intercept)                  INC                HOVAL  
-#&gt;             68.6190              -1.5973              -0.2739  
-#&gt;  fitted(sarcol)vec5   fitted(sarcol)vec3   fitted(sarcol)vec1  
-#&gt;             30.3479              19.1301             -18.1223  
-#&gt; fitted(sarcol)vec10  fitted(sarcol)vec14  fitted(sarcol)vec11  
-#&gt;             19.1938              22.9959              17.1213  
-#&gt;  fitted(sarcol)vec2  
-#&gt;             11.6649  
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>lmbase</span>, <span class='no'>lmsar</span>)</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt;                      Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)          68.61896    3.67609  18.666  &lt; 2e-16 ***
+#&gt; INC                  -1.59731    0.25938  -6.158 3.12e-07 ***
+#&gt; HOVAL                -0.27393    0.08011  -3.419  0.00148 ** 
+#&gt; fitted(sarcol)vec5   30.34786    8.87679   3.419  0.00149 ** 
+#&gt; fitted(sarcol)vec3   19.13010    8.87679   2.155  0.03739 *  
+#&gt; fitted(sarcol)vec1  -18.12234    8.87679  -2.042  0.04800 *  
+#&gt; fitted(sarcol)vec10  19.19379    8.87679   2.162  0.03679 *  
+#&gt; fitted(sarcol)vec14  22.99586    8.87679   2.591  0.01341 *  
+#&gt; fitted(sarcol)vec11  17.12127    8.87679   1.929  0.06106 .  
+#&gt; fitted(sarcol)vec2   11.66487    8.87679   1.314  0.19649    
+#&gt; ---
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#&gt; 
+#&gt; Residual standard error: 8.877 on 39 degrees of freedom
+#&gt; Multiple R-squared:  0.7713,	Adjusted R-squared:  0.7185 
+#&gt; F-statistic: 14.62 on 9 and 39 DF,  p-value: 5.579e-10
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                        Estimate Std. Error   t value     Pr(&gt;|t|)
+#&gt; (Intercept)          68.6189611 3.67608656 18.666307 4.802352e-21
+#&gt; INC                  -1.5973108 0.25938068 -6.158172 3.122801e-07
+#&gt; HOVAL                -0.2739315 0.08011158 -3.419374 1.483698e-03
+#&gt; fitted(sarcol)vec5   30.3478552 8.87679493  3.418785 1.486164e-03
+#&gt; fitted(sarcol)vec3   19.1300996 8.87679493  2.155068 3.738943e-02
+#&gt; fitted(sarcol)vec1  -18.1223409 8.87679493 -2.041541 4.800339e-02
+#&gt; fitted(sarcol)vec10  19.1937947 8.87679493  2.162244 3.679422e-02
+#&gt; fitted(sarcol)vec14  22.9958588 8.87679493  2.590559 1.340783e-02
+#&gt; fitted(sarcol)vec11  17.1212741 8.87679493  1.928768 6.106079e-02
+#&gt; fitted(sarcol)vec2   11.6648669 8.87679493  1.314085 1.964945e-01</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lmbase</span>, <span class='va'>lmsar</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Model 1: CRIME ~ INC + HOVAL
 #&gt; Model 2: CRIME ~ INC + HOVAL + fitted(sarcol)
@@ -273,7 +306,8 @@
 #&gt; 1     46 6014.9                                  
 #&gt; 2     39 3073.1  7    2941.8 5.3334 0.0002445 ***
 #&gt; ---
-#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div><div class='input'><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span>(<span class='no'>lmsar</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))</div><div class='output co'>#&gt; 
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div><div class='input'><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span><span class='op'>(</span><span class='va'>lmsar</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; 	Global Moran I for regression residuals
 #&gt; 
 #&gt; data:  
@@ -286,9 +320,10 @@
 #&gt; sample estimates:
 #&gt; Observed Moran I      Expectation         Variance 
 #&gt;     -0.153675621     -0.150918131      0.006336477 
-#&gt; </div><div class='input'><span class='no'>lagcol</span> <span class='kw'>&lt;-</span> <span class='fu'>SpatialFiltering</span>(<span class='no'>CRIME</span> ~ <span class='fl'>1</span>, ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> - <span class='fl'>1</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>,
- <span class='kw'>nb</span><span class='kw'>=</span><span class='no'>col.gal.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>lagcol</span></div><div class='output co'>#&gt;    Step SelEvec      Eval       MinMi      ZMinMi      Pr(ZI)        R2
+#&gt; </div><div class='input'><span class='va'>lagcol</span> <span class='op'>&lt;-</span> <span class='fu'>SpatialFiltering</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='fl'>1</span>, <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>-</span> <span class='fl'>1</span>, data<span class='op'>=</span><span class='va'>columbus</span>,
+ nb<span class='op'>=</span><span class='va'>col.gal.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>
+<span class='va'>lagcol</span>
+</div><div class='output co'>#&gt;    Step SelEvec      Eval       MinMi      ZMinMi      Pr(ZI)        R2
 #&gt; 0     0       0 0.0000000  0.21237415  2.68100025 0.007340246 0.5524040
 #&gt; 1     1       6 0.7161123  0.11782248  1.84511963 0.065020139 0.6038801
 #&gt; 2     2       4 0.8682938  0.06242664  1.49482111 0.134961136 0.6531288
@@ -311,8 +346,9 @@
 #&gt; 7  -16.933168
 #&gt; 8  -20.556931
 #&gt; 9  -18.434534
-#&gt; 10  -2.597572</div><div class='input'><span class='no'>lmlag</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span>(<span class='no'>lagcol</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>columbus</span>)
-<span class='no'>lmlag</span></div><div class='output co'>#&gt; 
+#&gt; 10  -2.597572</div><div class='input'><span class='va'>lmlag</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span><span class='op'>(</span><span class='va'>lagcol</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>columbus</span><span class='op'>)</span>
+<span class='va'>lmlag</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = CRIME ~ INC + HOVAL + fitted(lagcol), data = columbus)
 #&gt; 
@@ -327,7 +363,8 @@
 #&gt;            -16.9332             -20.5569             -18.4345  
 #&gt;  fitted(lagcol)vec7  
 #&gt;             -2.5976  
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>lmbase</span>, <span class='no'>lmlag</span>)</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lmbase</span>, <span class='va'>lmlag</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Model 1: CRIME ~ INC + HOVAL
 #&gt; Model 2: CRIME ~ INC + HOVAL + fitted(lagcol)
@@ -335,7 +372,8 @@
 #&gt; 1     46 6014.9                                  
 #&gt; 2     36 2576.3 10    3438.6 4.8049 0.0002165 ***
 #&gt; ---
-#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div><div class='input'><span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span>(<span class='no'>lmlag</span>, <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>col.gal.nb</span>))</div><div class='output co'>#&gt; 
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div><div class='input'><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span><span class='op'>(</span><span class='va'>lmlag</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; 	Global Moran I for regression residuals
 #&gt; 
 #&gt; data:  
@@ -348,15 +386,17 @@
 #&gt; sample estimates:
 #&gt; Observed Moran I      Expectation         Variance 
 #&gt;     -0.220179195     -0.217083975      0.004061888 
-#&gt; </div><div class='input'><span class='no'>NA.columbus</span> <span class='kw'>&lt;-</span> <span class='no'>columbus</span>
-<span class='no'>NA.columbus</span>$<span class='no'>CRIME</span>[<span class='fl'>20</span>:<span class='fl'>25</span>] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='no'>COL.SF.NA</span> <span class='kw'>&lt;-</span> <span class='fu'>SpatialFiltering</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.columbus</span>,
- <span class='kw'>nb</span><span class='kw'>=</span><span class='no'>col.gal.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>, <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.exclude</span>)
-<span class='no'>COL.SF.NA</span>$<span class='no'>na.action</span></div><div class='output co'>#&gt; 20 21 22 23 24 25 
+#&gt; </div><div class='input'><span class='va'>NA.columbus</span> <span class='op'>&lt;-</span> <span class='va'>columbus</span>
+<span class='va'>NA.columbus</span><span class='op'>$</span><span class='va'>CRIME</span><span class='op'>[</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>25</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>COL.SF.NA</span> <span class='op'>&lt;-</span> <span class='fu'>SpatialFiltering</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>NA.columbus</span>,
+ nb<span class='op'>=</span><span class='va'>col.gal.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span>, na.action<span class='op'>=</span><span class='va'>na.exclude</span><span class='op'>)</span>
+<span class='va'>COL.SF.NA</span><span class='op'>$</span><span class='va'>na.action</span>
+</div><div class='output co'>#&gt; 20 21 22 23 24 25 
 #&gt; 20 21 22 23 24 25 
 #&gt; attr(,"class")
-#&gt; [1] "exclude"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span>(<span class='no'>COL.SF.NA</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>NA.columbus</span>,
- <span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.exclude</span>))</div><div class='output co'>#&gt; 
+#&gt; [1] "exclude"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/fitted.values.html'>fitted</a></span><span class='op'>(</span><span class='va'>COL.SF.NA</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>NA.columbus</span>,
+ na.action<span class='op'>=</span><span class='va'>na.exclude</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = CRIME ~ INC + HOVAL + fitted(COL.SF.NA), data = NA.columbus, 
 #&gt;     na.action = na.exclude)
@@ -396,7 +436,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

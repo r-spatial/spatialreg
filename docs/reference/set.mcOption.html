@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,12 +135,12 @@
     <p>Provides support for the use of parallel computation in the parallel package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set.mcOption</span>(<span class='no'>value</span>)
-<span class='fu'>get.mcOption</span>()
-<span class='fu'>set.coresOption</span>(<span class='no'>value</span>)
-<span class='fu'>get.coresOption</span>()
-<span class='fu'>set.ClusterOption</span>(<span class='no'>cl</span>)
-<span class='fu'>get.ClusterOption</span>()</pre>
+    <pre class="usage"><span class='fu'>set.mcOption</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span>
+<span class='fu'>get.mcOption</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>set.coresOption</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span>
+<span class='fu'>get.coresOption</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>set.ClusterOption</span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+<span class='fu'>get.ClusterOption</span><span class='op'>(</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,48 +164,55 @@
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>An extended example is shown in the documentation of <code><a href='trW.html'>mom_calc</a></code>, including treatment of seeding of RNG for multicore/cluster.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span>(<span class='kw'>envir</span><span class='kw'>=</span><span class='kw pkg'>spatialreg</span><span class='kw ns'>:::</span><span class='no'>.spatialregOptions</span>)</div><div class='output co'>#&gt; [1] "cluster"    "cores"      "mc"         "verbose"    "zeroPolicy"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>parallel</span>)
-<span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span>(<span class='kw'>logical</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='no'>nc</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'># set nc to 1L here</span>
-<span class='kw'>if</span> (<span class='no'>nc</span> <span class='kw'>&gt;</span> <span class='fl'>1L</span>) <span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='fl'>1L</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span>envir<span class='op'>=</span><span class='fu'>spatialreg</span><span class='fu'>:::</span><span class='va'>.spatialregOptions</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "cluster"    "cores"      "mc"         "verbose"    "zeroPolicy"</div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>parallel</span><span class='op'>)</span>
+<span class='va'>nc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span>logical<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>nc</span>
+</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'># set nc to 1L here</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>nc</span> <span class='op'>&gt;</span> <span class='fl'>1L</span><span class='op'>)</span> <span class='va'>nc</span> <span class='op'>&lt;-</span> <span class='fl'>1L</span>
 <span class='co'>#nc &lt;- ifelse(nc &gt; 2L, 2L, nc)</span>
-<span class='no'>coresOpt</span> <span class='kw'>&lt;-</span> <span class='fu'>get.coresOption</span>()
-<span class='no'>coresOpt</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span>(<span class='no'>nc</span>)) {
- <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'>set.coresOption</span>(<span class='no'>nc</span>))
- <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>))
- <span class='kw'>if</span>(<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
+<span class='va'>coresOpt</span> <span class='op'>&lt;-</span> <span class='fu'>get.coresOption</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>coresOpt</span>
+</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>nc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'>set.coresOption</span><span class='op'>(</span><span class='va'>nc</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='kw'>if</span><span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># forking not permitted on Windows - start cluster</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'>get.mcOption</span>())
-  <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span>(<span class='fu'>get.coresOption</span>())
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'>set.ClusterOption</span>(<span class='no'>cl</span>)
-  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='fu'>get.ClusterOption</span>(), <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>spatialreg</span>))
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='fu'>get.ClusterOption</span>(), <span class='fu'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span>(<span class='no'>package</span>:<span class='no'>spatialreg</span>))
-  <span class='fu'>set.ClusterOption</span>(<span class='kw'>NULL</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span>(<span class='no'>cl</span>)
- } <span class='kw'>else</span> {
-  <span class='no'>mcOpt</span> <span class='kw'>&lt;-</span> <span class='fu'>get.mcOption</span>()
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>mcOpt</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/mclapply.html'>mclapply</a></span>(<span class='fl'>1</span>:<span class='fu'>get.coresOption</span>(), <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>),
-   <span class='kw'>mc.cores</span><span class='kw'>=</span><span class='fu'>get.coresOption</span>()))
-  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'>set.mcOption</span>(<span class='fl'>FALSE</span>))
-  <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span>(<span class='no'>nc</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'>set.ClusterOption</span>(<span class='no'>cl</span>)
-  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='fu'>get.ClusterOption</span>(), <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>spatialreg</span>))
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='fu'>get.ClusterOption</span>(), <span class='fu'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span>(<span class='no'>package</span>:<span class='no'>spatialreg</span>))
-  <span class='fu'>set.ClusterOption</span>(<span class='kw'>NULL</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span>(<span class='no'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span>(<span class='st'>"mom_calc"</span>)))
-  <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span>(<span class='no'>cl</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'>set.mcOption</span>(<span class='no'>mcOpt</span>))
- }
- <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'>set.coresOption</span>(<span class='no'>coresOpt</span>))
-}</div><div class='output co'>#&gt; [1] TRUE
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>get.mcOption</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span><span class='op'>(</span><span class='fu'>get.coresOption</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>set.ClusterOption</span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='fu'>get.ClusterOption</span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>status</span> <span class='op'>&lt;-</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-spatial/spatialreg/'>spatialreg</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>status</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='fu'>get.ClusterOption</span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>status</span>, <span class='kw'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span><span class='op'>(</span><span class='va'>package</span><span class='op'>:</span><span class='va'>spatialreg</span><span class='op'>)</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>set.ClusterOption</span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+ <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+  <span class='va'>mcOpt</span> <span class='op'>&lt;-</span> <span class='fu'>get.mcOption</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mcOpt</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/mclapply.html'>mclapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'>get.coresOption</span><span class='op'>(</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span>,
+   mc.cores<span class='op'>=</span><span class='fu'>get.coresOption</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'>set.mcOption</span><span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span><span class='op'>(</span><span class='va'>nc</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>set.ClusterOption</span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='fu'>get.ClusterOption</span><span class='op'>(</span><span class='op'>)</span>, <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-spatial/spatialreg/'>spatialreg</a></span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='fu'>get.ClusterOption</span><span class='op'>(</span><span class='op'>)</span>, <span class='kw'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span><span class='op'>(</span><span class='va'>package</span><span class='op'>:</span><span class='va'>spatialreg</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>set.ClusterOption</span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterEvalQ</a></span><span class='op'>(</span><span class='va'>cl</span>, <span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"mom_calc"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'>set.mcOption</span><span class='op'>(</span><span class='va'>mcOpt</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='op'>}</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'>set.coresOption</span><span class='op'>(</span><span class='va'>coresOpt</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] TRUE
 #&gt; [1] TRUE
 #&gt; [[1]]
 #&gt; [1] TRUE
@@ -231,7 +241,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

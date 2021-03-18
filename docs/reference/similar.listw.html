@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,7 +135,7 @@
     <p>From Ord's 1975 paper, it is known that the Jacobian for SAR models may be found by "symmetrizing" by similarity (the eigenvalues of similar matrices are identical, so the Jacobian is too). This applies only to styles "W" and "S" with underlying symmetric binary neighbour relations or symmetric general neighbour relations (so no k-nearest neighbour relations). The function is invoked automatically within the SAR fitting functions, to call <code>eigen</code> on a symmetric matrix for the default eigen method, or to make it possible to use the Matrix method on weights that can be "symmetrized" in this way.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>similar.listw</span>(<span class='no'>listw</span>)</pre>
+    <pre class="usage"><span class='fu'>similar.listw</span><span class='op'>(</span><span class='va'>listw</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,19 +152,28 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Ord, J. K. 1975 Estimation methods for models of spatial interaction, <em>Journal of the American Statistical Association</em>, 70, 120-126</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
-<span class='no'>COL.W</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>COL.S</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"S"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='fl'>0.5</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>COL.W</span>)))</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='fl'>0.5</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'>similar.listw</span>(<span class='no'>COL.W</span>))))</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='no'>W_J</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='fu'><a href='sparse_mat.html'>as_dsTMatrix_listw</a></span>(<span class='fu'>similar.listw</span>(<span class='no'>COL.W</span>)), <span class='st'>"CsparseMatrix"</span>)
-<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sparse_mat.html'>as_dsCMatrix_I</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>W_J</span>)[<span class='fl'>1</span>])
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/det.html'>determinant</a></span>(<span class='no'>I</span> - <span class='fl'>0.5</span> * <span class='no'>W_J</span>, <span class='kw'>logarithm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)$<span class='no'>modulus</span>)</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='fl'>0.5</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>COL.S</span>)))</div><div class='output co'>#&gt; [1] -1.602757</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>1</span> - <span class='fl'>0.5</span> * <span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'>similar.listw</span>(<span class='no'>COL.S</span>))))</div><div class='output co'>#&gt; [1] -1.602757</div><div class='input'><span class='no'>W_J</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='fu'><a href='sparse_mat.html'>as_dsTMatrix_listw</a></span>(<span class='fu'>similar.listw</span>(<span class='no'>COL.S</span>)), <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/det.html'>determinant</a></span>(<span class='no'>I</span> - <span class='fl'>0.5</span> * <span class='no'>W_J</span>, <span class='kw'>logarithm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)$<span class='no'>modulus</span>)</div><div class='output co'>#&gt; [1] -1.602757</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oldcol</span>, package<span class='op'>=</span><span class='st'>"spdep"</span><span class='op'>)</span>
+<span class='va'>COL.W</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>
+<span class='va'>COL.S</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"S"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='va'>COL.W</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'>similar.listw</span><span class='op'>(</span><span class='va'>COL.W</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='va'>W_J</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='fu'><a href='as.spam.listw.html'>as_dsTMatrix_listw</a></span><span class='op'>(</span><span class='fu'>similar.listw</span><span class='op'>(</span><span class='va'>COL.W</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='va'>I</span> <span class='op'>&lt;-</span> <span class='fu'><a href='as.spam.listw.html'>as_dsCMatrix_I</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>W_J</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/det.html'>determinant</a></span><span class='op'>(</span><span class='va'>I</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='va'>W_J</span>, logarithm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>$</span><span class='va'>modulus</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.62766</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='va'>COL.S</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.602757</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'>similar.listw</span><span class='op'>(</span><span class='va'>COL.S</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.602757</div><div class='input'><span class='va'>W_J</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='fu'><a href='as.spam.listw.html'>as_dsTMatrix_listw</a></span><span class='op'>(</span><span class='fu'>similar.listw</span><span class='op'>(</span><span class='va'>COL.S</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/det.html'>determinant</a></span><span class='op'>(</span><span class='va'>I</span> <span class='op'>-</span> <span class='fl'>0.5</span> <span class='op'>*</span> <span class='va'>W_J</span>, logarithm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>$</span><span class='va'>modulus</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.602757</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -177,7 +189,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

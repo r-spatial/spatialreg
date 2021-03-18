@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,10 +135,10 @@
     <p>The functions find extreme eigenvalues of binary symmetric spatial weights, when these form planar graphs; general weights are not permiited. <code>l_max</code> finds the largest eigenvalue using Rayleigh quotient methods of any &#8220;listw&#8221; object. <code>lextrB</code> first calls <code>l_max</code>, and uses its output to find the smallest eigenvalue in addition for binary symmetric spatial weights. <code>lextrW</code> extends these to find the smallest eigenvalue for intrinsically symmetric row-standardized binary weights matrices (transformed to symmetric through similarity internally). <code>lextrS</code> does the same for variance-stabilized (&#8220;S&#8221; style) intrinsically symmetric binary weights matrices (transformed to symmetric through similarity internally).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lextrB</span>(<span class='no'>lw</span>, <span class='kw'>zero.policy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='fu'>lextrW</span>(<span class='no'>lw</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='fu'>lextrS</span>(<span class='no'>lw</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
-<span class='fu'>l_max</span>(<span class='no'>lw</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>control</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
+    <pre class="usage"><span class='fu'>lextrB</span><span class='op'>(</span><span class='va'>lw</span>, zero.policy <span class='op'>=</span> <span class='cn'>TRUE</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>lextrW</span><span class='op'>(</span><span class='va'>lw</span>, zero.policy<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>lextrS</span><span class='op'>(</span><span class='va'>lw</span>, zero.policy<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>l_max</span><span class='op'>(</span><span class='va'>lw</span>, zero.policy<span class='op'>=</span><span class='cn'>TRUE</span>, control<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,7 +160,7 @@
     <h2 class="hasAnchor" id="control-arguments"><a class="anchor" href="#control-arguments"></a>Control arguments</h2>
 
     
-<dl'>
+<dl>
   <dt>trace</dt><dd><p>report values in while loops, default NULL assuming FALSE; logical</p></dd>
   <dt>tol</dt><dd><p>tolerance for breaking while loops, default <code>.Machine$double.eps^(1/2)</code>; numeric</p></dd>
   <dt>maxiter</dt><dd><p>maximum number of iterations in while loops, default <code>6 * (length(lw$neighbours) - 2</code>; integer</p></dd>
@@ -171,47 +174,65 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Griffith, D. A. (2004). Extreme eigenfunctions of adjacency matrices for planar graphs employed in spatial analyses. <em>Linear Algebra and its Applications</em>, 388:201--219.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand, Yongwan Chun, Daniel Griffith</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>It may be necessary to modify control arguments if warnings about lack of convergence are seen.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>boston</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spData"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>boston</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span>
 <span class='co'>#require(spdep, quietly=TRUE)</span>
-<span class='no'>ab.listb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
-<span class='no'>er</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='no'>ab.listb</span>))
-<span class='no'>er</span></div><div class='output co'>#&gt; [1] -3.039465  5.306204</div><div class='input'><span class='no'>res_1</span> <span class='kw'>&lt;-</span> <span class='fu'>lextrB</span>(<span class='no'>ab.listb</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>res_1</span>)</div><div class='output co'>#&gt;  lambda_n  lambda_1 
-#&gt; -3.039374  5.306203 </div><div class='input'><span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>FALSE</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"RSpectra"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) <span class='no'>run</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span>
-<span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>ab.listb</span>, <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] -3.039465</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] 5.306204</div><div class='input'><span class='no'>k5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knn2nb.html'>knn2nb</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knearneigh.html'>knearneigh</a></span>(<span class='no'>boston.utm</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>5</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'>l_max</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k5</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)))</div><div class='output co'>#&gt; [1] 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k5</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>))))</div><div class='output co'>#&gt; [1] 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'>l_max</span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k5</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"C"</span>)))</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span>(<span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>k5</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"C"</span>))))</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='no'>ab.listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>er</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>ab.listw</span>)))
-<span class='no'>er</span></div><div class='output co'>#&gt; [1] -0.9708644  1.0000000</div><div class='input'><span class='no'>res_1</span> <span class='kw'>&lt;-</span> <span class='fu'>lextrW</span>(<span class='no'>ab.listw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>res_1</span>)</div><div class='output co'>#&gt;   lambda_n   lambda_1 
-#&gt; -0.9708644  0.9999991 </div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>ab.listw</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] -0.9708644</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>ab.listw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>boston.soi</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"S"</span>)
-<span class='no'>er</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='fu'><a href='eigenw.html'>eigenw</a></span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>ab.listw</span>)))
-<span class='no'>er</span>
-<span class='no'>res_1</span> <span class='kw'>&lt;-</span> <span class='fu'>lextrS</span>(<span class='no'>ab.listw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>res_1</span>)
-}
-<span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='fu'><a href='similar.listw.html'>similar.listw</a></span>(<span class='no'>ab.listw</span>), <span class='st'>"CsparseMatrix"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"SR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] -0.9708644</div><div class='input'><span class='kw'>if</span> (<span class='no'>run</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span>(<span class='no'>B</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>which</span><span class='kw'>=</span><span class='st'>"LR"</span>)$<span class='no'>values</span>
-}</div><div class='output co'>#&gt; [1] 1</div></pre>
+<span class='va'>ab.listb</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>
+<span class='va'>er</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='va'>ab.listb</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>er</span>
+</div><div class='output co'>#&gt; [1] -3.039465  5.306204</div><div class='input'><span class='va'>res_1</span> <span class='op'>&lt;-</span> <span class='fu'>lextrB</span><span class='op'>(</span><span class='va'>ab.listb</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>res_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  lambda_n  lambda_1 
+#&gt; -3.039374  5.306203 </div><div class='input'><span class='va'>run</span> <span class='op'>&lt;-</span> <span class='cn'>FALSE</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/yixuan/RSpectra'>"RSpectra"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='va'>run</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='va'>ab.listb</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"SR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] -3.039465</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"LR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] 5.306204</div><div class='input'><span class='va'>k5</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knn2nb.html'>knn2nb</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knearneigh.html'>knearneigh</a></span><span class='op'>(</span><span class='va'>boston.utm</span>, k<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>l_max</span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>k5</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span><span class='op'>(</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>k5</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>l_max</span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>k5</span>, style<span class='op'>=</span><span class='st'>"C"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/complex.html'>Re</a></span><span class='op'>(</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>k5</span>, style<span class='op'>=</span><span class='st'>"C"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='va'>ab.listw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>
+<span class='va'>er</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>er</span>
+</div><div class='output co'>#&gt; [1] -0.9708644  1.0000000</div><div class='input'><span class='va'>res_1</span> <span class='op'>&lt;-</span> <span class='fu'>lextrW</span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>res_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   lambda_n   lambda_1 
+#&gt; -0.9708644  0.9999991 </div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"SR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] -0.9708644</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"LR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>ab.listw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span>, style<span class='op'>=</span><span class='st'>"S"</span><span class='op'>)</span>
+<span class='va'>er</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='fu'><a href='griffith_sone.html'>eigenw</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>er</span>
+</div><div class='output co'>#&gt; [1] -0.723495  1.110373</div><div class='input'><span class='va'>res_1</span> <span class='op'>&lt;-</span> <span class='fu'>lextrS</span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>res_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   lambda_n   lambda_1 
+#&gt; -0.7230376  1.1103694 </div><div class='input'><span class='co'># }</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/coerce-methods.html'>as</a></span><span class='op'>(</span><span class='fu'><a href='similar.listw.html'>similar.listw</a></span><span class='op'>(</span><span class='va'>ab.listw</span><span class='op'>)</span>, <span class='st'>"CsparseMatrix"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"SR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] -0.723495</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='va'>run</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/pkg/RSpectra/man/eigs.html'>eigs</a></span><span class='op'>(</span><span class='va'>B</span>, k<span class='op'>=</span><span class='fl'>1</span>, which<span class='op'>=</span><span class='st'>"LR"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>values</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; [1] 1.110373</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -227,7 +248,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

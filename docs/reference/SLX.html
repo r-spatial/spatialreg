@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +102,14 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-spatial/spatialreg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,17 +135,17 @@
     <p><code>lmSLX</code> fits an <code>lm</code> model augmented with the spatially lagged RHS variables, including the lagged intercept when the spatial weights are not row-standardised. <code>create_WX</code> creates spatially lagged RHS variables, and is exposed for use in model fitting functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lmSLX</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>listw</span>, <span class='no'>na.action</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='kw'>NULL</span>,
- <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>)
-<span class='fu'>create_WX</span>(<span class='no'>x</span>, <span class='no'>listw</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>prefix</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='co'># S3 method for SLX</span>
-<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>obj</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for WXImpact</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
-<span class='co'># S3 method for WXImpact</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>adjust_k</span><span class='kw'>=</span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>object</span>, <span class='st'>"type"</span>) <span class='kw'>==</span> <span class='st'>"SDEM"</span>))
-<span class='co'># S3 method for SLX</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>object</span>, <span class='no'>newdata</span>, <span class='no'>listw</span>, <span class='kw'>zero.policy</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>formula</span>, data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>listw</span>, <span class='va'>na.action</span>, weights<span class='op'>=</span><span class='cn'>NULL</span>,
+ Durbin<span class='op'>=</span><span class='cn'>TRUE</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span><span class='op'>)</span>
+<span class='fu'>create_WX</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>listw</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span>, prefix<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
+<span class='co'># S3 method for SlX</span>
+<span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>obj</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for WXimpact</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for WXimpact</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span>, adjust_k<span class='op'>=</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='st'>"type"</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"SDEM"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># S3 method for SlX</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>newdata</span>, <span class='va'>listw</span>, zero.policy<span class='op'>=</span><span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,12 +215,16 @@ for the data on which the model was fitted. Should have row names corresponding 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/lm.html'>lm</a></code>, <code><a href='https://rdrr.io/pkg/gmodels/man/estimable.html'>estimable</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Roger Bivand <a href='mailto:Roger.Bivand@nhh.no'>Roger.Bivand@nhh.no</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>oldcol</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"spdep"</span>)
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>COL.nb</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"W"</span>)
-<span class='no'>COL.SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SLX</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oldcol</span>, package<span class='op'>=</span><span class='st'>"spdep"</span><span class='op'>)</span>
+<span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>
+<span class='va'>COL.SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
 #&gt;     data = as.data.frame(x), weights = weights)
@@ -239,7 +246,8 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; Residual standard error: 10.93 on 44 degrees of freedom
 #&gt; Multiple R-squared:  0.6088,	Adjusted R-squared:  0.5732 
 #&gt; F-statistic: 17.12 on 4 and 44 DF,  p-value: 1.553e-08
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.SLX</span>))</div><div class='output co'>#&gt; Impact measures (SLX, estimable, n-k):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SlX, estimable, n-k):
 #&gt;           Direct   Indirect       Total
 #&gt; INC   -1.1089293 -1.3709725 -2.47990173
 #&gt; HOVAL -0.2897283  0.1917608 -0.09796753
@@ -258,8 +266,9 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt;       Direct    Indirect Total     
 #&gt; INC   0.0030118 0.014582 5.9047e-07
 #&gt; HOVAL 0.0042605 0.338462 0.62905   
-#&gt; </div><div class='input'><span class='no'>COL.SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>HOVAL</span>^<span class='fl'>2</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.SLX</span>))</div><div class='output co'>#&gt; Impact measures (SLX, estimable, n-k):
+#&gt; </div><div class='input'><span class='va'>COL.SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>HOVAL</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span>, Durbin<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SlX, estimable, n-k):
 #&gt;                  Direct     Indirect       Total
 #&gt; INC        -0.947594274 -1.275338647 -2.22293292
 #&gt; HOVAL      -0.777427839 -0.355048446 -1.13247628
@@ -282,7 +291,8 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; INC        0.017505 0.032623 7.9273e-05
 #&gt; HOVAL      0.094161 0.717720 0.29145   
 #&gt; I(HOVAL^2) 0.272258 0.536990 0.31750   
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SLX</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
 #&gt;     data = as.data.frame(x), weights = weights)
@@ -306,8 +316,9 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; Residual standard error: 10.99 on 42 degrees of freedom
 #&gt; Multiple R-squared:  0.6224,	Adjusted R-squared:  0.5684 
 #&gt; F-statistic: 11.54 on 6 and 42 DF,  p-value: 1.361e-07
-#&gt; </div><div class='input'><span class='no'>COL.SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>HOVAL</span>^<span class='fl'>2</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>, <span class='kw'>Durbin</span><span class='kw'>=</span>~<span class='no'>INC</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.SLX</span>))</div><div class='output co'>#&gt; Impact measures (SLX, estimable, n-k):
+#&gt; </div><div class='input'><span class='va'>COL.SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>HOVAL</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span>, Durbin<span class='op'>=</span><span class='op'>~</span><span class='va'>INC</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SlX, estimable, n-k):
 #&gt;                  Direct  Indirect        Total
 #&gt; INC        -1.079064628 -1.010896 -2.089960575
 #&gt; HOVAL      -0.634518755        NA -0.634518755
@@ -330,7 +341,8 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; INC        0.0050336 0.026388 2.8584e-06
 #&gt; HOVAL      0.1563077 NA       0.15631   
 #&gt; I(HOVAL^2) 0.4005579 NA       0.40056   
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SLX</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
 #&gt;     data = as.data.frame(x), weights = weights)
@@ -352,8 +364,9 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; Residual standard error: 10.96 on 44 degrees of freedom
 #&gt; Multiple R-squared:  0.607,	Adjusted R-squared:  0.5712 
 #&gt; F-statistic: 16.99 on 4 and 44 DF,  p-value: 1.716e-08
-#&gt; </div><div class='input'><span class='no'>COL.SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>COL.SLX</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>COL.SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
 #&gt;     data = as.data.frame(x), weights = weights)
@@ -373,7 +386,8 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; Residual standard error: 11.65 on 46 degrees of freedom
 #&gt; Multiple R-squared:  0.5353,	Adjusted R-squared:  0.5151 
 #&gt; F-statistic: 26.49 on 2 and 46 DF,  p-value: 2.214e-08
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>COL.SLX</span>))</div><div class='output co'>#&gt; Impact measures (SLX, estimable, n-k):
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SlX, estimable, n-k):
 #&gt;        Direct  Indirect     Total
 #&gt; INC -1.588901 -1.085867 -2.674768
 #&gt; ========================================================
@@ -388,33 +402,87 @@ for the data on which the model was fitted. Should have row names corresponding 
 #&gt; p-values:
 #&gt;     Direct     Indirect Total     
 #&gt; INC 8.2671e-06 0.024029 5.1387e-11
-#&gt; </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>crds</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>COL.OLD</span>$<span class='no'>X</span>, <span class='no'>COL.OLD</span>$<span class='no'>Y</span>)
-<span class='no'>mdist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>crds</span>, <span class='fl'>2</span>, <span class='no'>range</span>))^<span class='fl'>2</span>))
-<span class='no'>dnb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/dnearneigh.html'>dnearneigh</a></span>(<span class='no'>crds</span>, <span class='fl'>0</span>, <span class='no'>mdist</span>)
-<span class='no'>dists</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nbdists.html'>nbdists</a></span>(<span class='no'>dnb</span>, <span class='no'>crds</span>)
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>form</span>, <span class='no'>data</span>, <span class='no'>dnb</span>, <span class='no'>dists</span>, <span class='no'>verbose</span>) {
-  <span class='no'>glst</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>dists</span>, <span class='kw'>function</span>(<span class='no'>d</span>) <span class='fl'>1</span>/(<span class='no'>d</span>^<span class='no'>x</span>))
-  <span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>dnb</span>, <span class='kw'>glist</span><span class='kw'>=</span><span class='no'>glst</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
-  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/logLik.html'>logLik</a></span>(<span class='fu'>lmSLX</span>(<span class='kw'>form</span><span class='kw'>=</span><span class='no'>form</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>))
-  <span class='kw'>if</span> (<span class='no'>verbose</span>) <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"power:"</span>, <span class='no'>x</span>, <span class='st'>"logLik:"</span>, <span class='no'>res</span>, <span class='st'>"\n"</span>)
-  <span class='no'>res</span>
-}
-<span class='no'>opt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/optimize.html'>optimize</a></span>(<span class='no'>f</span>, <span class='kw'>interval</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>4</span>), <span class='kw'>form</span><span class='kw'>=</span><span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>,
- <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>dnb</span><span class='kw'>=</span><span class='no'>dnb</span>, <span class='kw'>dists</span><span class='kw'>=</span><span class='no'>dists</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>maximum</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>glst</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>dists</span>, <span class='kw'>function</span>(<span class='no'>d</span>) <span class='fl'>1</span>/(<span class='no'>d</span>^<span class='no'>opt</span>$<span class='no'>maximum</span>))
-<span class='no'>lw</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>spdep</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span>(<span class='no'>dnb</span>, <span class='kw'>glist</span><span class='kw'>=</span><span class='no'>glst</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"B"</span>)
-<span class='no'>SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>SLX</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='impacts.html'>impacts</a></span>(<span class='no'>SLX</span>))
-}
-<span class='no'>COL.SLX</span> <span class='kw'>&lt;-</span> <span class='fu'>lmSLX</span>(<span class='no'>CRIME</span> ~ <span class='no'>INC</span> + <span class='no'>HOVAL</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='no'>pslx0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>COL.SLX</span>)
-<span class='no'>pslx1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>COL.SLX</span>, <span class='kw'>newdata</span><span class='kw'>=</span><span class='no'>COL.OLD</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>pslx0</span>, <span class='no'>pslx1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>COL.OLD1</span> <span class='kw'>&lt;-</span> <span class='no'>COL.OLD</span>
-<span class='no'>COL.OLD1</span>$<span class='no'>INC</span> <span class='kw'>&lt;-</span> <span class='no'>COL.OLD1</span>$<span class='no'>INC</span> + <span class='fl'>1</span>
-<span class='no'>pslx2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>COL.SLX</span>, <span class='kw'>newdata</span><span class='kw'>=</span><span class='no'>COL.OLD1</span>, <span class='kw'>listw</span><span class='kw'>=</span><span class='no'>lw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>COL.SLX</span>)[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)])</div><div class='output co'>#&gt; [1] -2.479902</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>pslx2</span>-<span class='no'>pslx1</span>)</div><div class='output co'>#&gt; [1] -2.479902</div></pre>
+#&gt; </div><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>crds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>COL.OLD</span><span class='op'>$</span><span class='va'>X</span>, <span class='va'>COL.OLD</span><span class='op'>$</span><span class='va'>Y</span><span class='op'>)</span>
+<span class='va'>mdist</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>crds</span>, <span class='fl'>2</span>, <span class='va'>range</span><span class='op'>)</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dnb</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/dnearneigh.html'>dnearneigh</a></span><span class='op'>(</span><span class='va'>crds</span>, <span class='fl'>0</span>, <span class='va'>mdist</span><span class='op'>)</span>
+<span class='va'>dists</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nbdists.html'>nbdists</a></span><span class='op'>(</span><span class='va'>dnb</span>, <span class='va'>crds</span><span class='op'>)</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>form</span>, <span class='va'>data</span>, <span class='va'>dnb</span>, <span class='va'>dists</span>, <span class='va'>verbose</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>glst</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>dists</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='fl'>1</span><span class='op'>/</span><span class='op'>(</span><span class='va'>d</span><span class='op'>^</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>dnb</span>, glist<span class='op'>=</span><span class='va'>glst</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>
+  <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/logLik.html'>logLik</a></span><span class='op'>(</span><span class='fu'>lmSLX</span><span class='op'>(</span>form<span class='op'>=</span><span class='va'>form</span>, data<span class='op'>=</span><span class='va'>data</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>verbose</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"power:"</span>, <span class='va'>x</span>, <span class='st'>"logLik:"</span>, <span class='va'>res</span>, <span class='st'>"\n"</span><span class='op'>)</span>
+  <span class='va'>res</span>
+<span class='op'>}</span>
+<span class='va'>opt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/optimize.html'>optimize</a></span><span class='op'>(</span><span class='va'>f</span>, interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>4</span><span class='op'>)</span>, form<span class='op'>=</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>,
+ data<span class='op'>=</span><span class='va'>COL.OLD</span>, dnb<span class='op'>=</span><span class='va'>dnb</span>, dists<span class='op'>=</span><span class='va'>dists</span>, verbose<span class='op'>=</span><span class='cn'>TRUE</span>, maximum<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; power: 1.589667 logLik: -172.6864 
+#&gt; power: 2.510333 logLik: -177.741 
+#&gt; power: 1.020665 logLik: -171.5379 
+#&gt; power: 0.8721475 logLik: -171.7979 
+#&gt; power: 1.11302 logLik: -171.4973 
+#&gt; power: 1.107329 logLik: -171.497 
+#&gt; power: 1.105705 logLik: -171.497 
+#&gt; power: 1.105746 logLik: -171.497 
+#&gt; power: 1.105664 logLik: -171.497 
+#&gt; power: 1.105705 logLik: -171.497 </div><div class='input'><span class='va'>glst</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>dists</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='fl'>1</span><span class='op'>/</span><span class='op'>(</span><span class='va'>d</span><span class='op'>^</span><span class='va'>opt</span><span class='op'>$</span><span class='va'>maximum</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>dnb</span>, glist<span class='op'>=</span><span class='va'>glst</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>
+<span class='va'>SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>SLX</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), 
+#&gt;     data = as.data.frame(x), weights = weights)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -25.1535  -4.7529  -0.9819   4.8053  22.2274 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                 Estimate Std. Error t value Pr(&gt;|t|)  
+#&gt; (Intercept)     18.78498   11.23795   1.672   0.1019  
+#&gt; INC             -0.65428    0.29463  -2.221   0.0317 *
+#&gt; HOVAL           -0.18244    0.08138  -2.242   0.0302 *
+#&gt; lag..Intercept.  6.27790    4.44284   1.413   0.1648  
+#&gt; lag.INC         -0.12958    0.28794  -0.450   0.6550  
+#&gt; lag.HOVAL        0.02668    0.11273   0.237   0.8141  
+#&gt; ---
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#&gt; 
+#&gt; Residual standard error: 8.553 on 43 degrees of freedom
+#&gt; Multiple R-squared:  0.7659,	Adjusted R-squared:  0.7387 
+#&gt; F-statistic: 28.14 on 5 and 43 DF,  p-value: 1.544e-12
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='impacts.html'>impacts</a></span><span class='op'>(</span><span class='va'>SLX</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Impact measures (SlX, estimable, n-k):
+#&gt;           Direct    Indirect      Total
+#&gt; INC   -0.6542760 -0.12957739 -0.7838534
+#&gt; HOVAL -0.1824383  0.02667561 -0.1557627
+#&gt; ========================================================
+#&gt; Standard errors:
+#&gt;           Direct  Indirect     Total
+#&gt; INC   0.29463342 0.2879383 0.3742251
+#&gt; HOVAL 0.08138257 0.1127279 0.1404591
+#&gt; ========================================================
+#&gt; Z-values:
+#&gt;          Direct   Indirect     Total
+#&gt; INC   -2.220644 -0.4500179 -2.094604
+#&gt; HOVAL -2.241736  0.2366371 -1.108954
+#&gt; 
+#&gt; p-values:
+#&gt;       Direct   Indirect Total   
+#&gt; INC   0.026375 0.65270  0.036206
+#&gt; HOVAL 0.024978 0.81294  0.267450
+#&gt; </div><div class='input'><span class='co'># }</span>
+<span class='va'>COL.SLX</span> <span class='op'>&lt;-</span> <span class='fu'>lmSLX</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='va'>pslx0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span>
+<span class='va'>pslx1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>COL.SLX</span>, newdata<span class='op'>=</span><span class='va'>COL.OLD</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>pslx0</span>, <span class='va'>pslx1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='va'>COL.OLD1</span> <span class='op'>&lt;-</span> <span class='va'>COL.OLD</span>
+<span class='va'>COL.OLD1</span><span class='op'>$</span><span class='va'>INC</span> <span class='op'>&lt;-</span> <span class='va'>COL.OLD1</span><span class='op'>$</span><span class='va'>INC</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='va'>pslx2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>COL.SLX</span>, newdata<span class='op'>=</span><span class='va'>COL.OLD1</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>COL.SLX</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5.623621</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pslx2</span><span class='op'>-</span><span class='va'>pslx1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.425045</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -430,7 +498,7 @@ for the data on which the model was fitted. Should have row names corresponding 
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
