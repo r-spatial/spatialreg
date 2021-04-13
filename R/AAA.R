@@ -14,5 +14,5 @@ assign("cluster", spdep::get.ClusterOption(), envir = .spatialregOptions)
 setOldClass(c("listw"))
 
 Hausman.test <- function(object, ...)
-    UseMethod("Hausman.test", object)
+    UseMethod("Hausman.test")
 

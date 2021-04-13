@@ -33,7 +33,7 @@ importFrom(gmodels, estimable)
 ##################
 # ML SE
 export(errorsarlm, lagsarlm, sacsarlm)
-
+export(trW, impacts, intImpacts)
 export(bptest.Sarlm, LR.Sarlm, LR1.Sarlm, Wald1.Sarlm, Hausman.test)
 
 S3method(print, Sarlm)
@@ -134,7 +134,6 @@ S3method(fitted, Me_res)
 S3method(print, Me_res)
 
 # Impacts
-export(trW, impacts, intImpacts)
 
 S3method(print, LagImpact)
 S3method(plot, LagImpact)

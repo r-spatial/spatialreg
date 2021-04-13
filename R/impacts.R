@@ -119,8 +119,9 @@ mom_calc <- function(lw, m) {
   }
   Omega
 }
+
 impacts <- function(obj, ...)
-  UseMethod("impacts", obj)
+  UseMethod("impacts")
 
 
 
