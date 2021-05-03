@@ -52,13 +52,16 @@ if (!is.na(nc)) {
 # enforced for Github actions 210502
   cat("Windows: get.mcOption: ", get.mcOption(), "\n")
   cl <- makeCluster(get.coresOption())
-  cat("Windows: mom_calc exists in cluster A: ", clusterEvalQ(cl, exists("mom_calc")), "\n")
+  cat("Windows: mom_calc exists in cluster A: ",
+    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
   set.ClusterOption(cl)
   clusterEvalQ(get.ClusterOption(), library(spatialreg))
-  cat("Windows: mom_calc exists in cluster B: ", clusterEvalQ(cl, exists("mom_calc")), "\n")
+  cat("Windows: mom_calc exists in cluster B: ",
+    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
   clusterEvalQ(get.ClusterOption(), detach(package:spatialreg))
   set.ClusterOption(NULL)
-  cat("Windows: mom_calc exists in cluster C: ", clusterEvalQ(cl, exists("mom_calc")), "\n")
+  cat("Windows: mom_calc exists in cluster C: ",
+    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
   stopCluster(cl)
  } else {
   mcOpt <- get.mcOption()
