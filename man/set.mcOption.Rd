@@ -57,7 +57,8 @@ if (!is.na(nc)) {
   print(clusterEvalQ(cl, exists("mom_calc")))
   clusterEvalQ(get.ClusterOption(), detach(package:spatialreg))
   set.ClusterOption(NULL)
-  print(clusterEvalQ(cl, exists("mom_calc")))
+#  print(clusterEvalQ(cl, exists("mom_calc")))
+# removed for Github actions 210503
   stopCluster(cl)
  } else {
   mcOpt <- get.mcOption()
