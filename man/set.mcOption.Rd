@@ -46,26 +46,25 @@ coresOpt <- get.coresOption()
 coresOpt
 if (!is.na(nc)) {
  invisible(set.coresOption(nc))
- cat("mom_calc exists: ", exists("mom_calc"), "\n")
+ print(exists("mom_calc"))
  if(.Platform$OS.type == "windows") {
 # forking not permitted on Windows - start cluster
-# enforced for Github actions 210502
-  cat("Windows: get.mcOption: ", get.mcOption(), "\n")
+# removed for Github actions 210502
+\dont_run{
+  print(get.mcOption())
   cl <- makeCluster(get.coresOption())
-  cat("Windows: mom_calc exists in cluster A: ",
-    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
+  print(clusterEvalQ(cl, exists("mom_calc")))
   set.ClusterOption(cl)
   clusterEvalQ(get.ClusterOption(), library(spatialreg))
-  cat("Windows: mom_calc exists in cluster B: ",
-    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
+  print(clusterEvalQ(cl, exists("mom_calc")))
   clusterEvalQ(get.ClusterOption(), detach(package:spatialreg))
   set.ClusterOption(NULL)
-  cat("Windows: mom_calc exists in cluster C: ",
-    paste(unlist(clusterEvalQ(cl, exists("mom_calc"))), collapse="/"), "\n")
+  print(clusterEvalQ(cl, exists("mom_calc")))
   stopCluster(cl)
+}
  } else {
   mcOpt <- get.mcOption()
-  cat("MC: get.mcOption: ", mcOpt, "\n")
+  print(mcOpt)
   print(mclapply(1:get.coresOption(), function(i) exists("mom_calc"),
    mc.cores=get.coresOption()))
   invisible(set.mcOption(FALSE))
