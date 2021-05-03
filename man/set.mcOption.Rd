@@ -50,7 +50,7 @@ if (!is.na(nc)) {
  if(.Platform$OS.type == "windows") {
 # forking not permitted on Windows - start cluster
 # removed for Github actions 210502
-\dont_run{
+\dontrun{
   print(get.mcOption())
   cl <- makeCluster(get.coresOption())
   print(clusterEvalQ(cl, exists("mom_calc")))
