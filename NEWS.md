@@ -1,4 +1,4 @@
-# Version 1.1-7 (development)
+# Version 1.1-8 (development)
 
 * #18 standardize use of `coef()` methods for (some) fitted model summary objects
 
