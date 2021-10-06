@@ -62,7 +62,7 @@ stage least squares procedure for estimating a spatial autoregressive
 model with autoregressive disturbances. \emph{Journal of Real Estate
 Finance and Economics} 17, 99-121.
 
-Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. \emph{Journal of Statistical Software}, 63(18), 1-36. \url{https://www.jstatsoft.org/v63/i18/}.
+Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. \emph{Journal of Statistical Software}, 63(18), 1-36. \doi{10.18637/jss.v063.i18}.
 }
 \author{Luc Anselin, Gianfranco Piras and Roger Bivand}
 

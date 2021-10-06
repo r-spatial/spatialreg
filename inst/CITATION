@@ -14,7 +14,7 @@ citEntry(entry="Article",
          textVersion = paste("Bivand, R., G. Millo, and G. Piras. 2021.",
          "A Review of Software for Spatial Econometrics in R.",
          "Mathematics 9 (11):1276.",
-         "http://dx.doi.org/10.3390/math9111276.")
+         "https://doi.org/10.3390/math9111276.")
 )
 
 citEntry(entry = "Article",
@@ -26,13 +26,13 @@ citEntry(entry = "Article",
   volume       = "63",
   number       = "18",
   pages        = "1--36",
-  url          = "https://www.jstatsoft.org/v63/i18/",
+  doi          = "10.18637/jss.v063.i18",
 
   textVersion  =
   paste("Roger Bivand, Gianfranco Piras (2015).",
         "Comparing Implementations of Estimation Methods for Spatial Econometrics.",
         "Journal of Statistical Software, 63(18), 1-36.",
-        "URL http://www.jstatsoft.org/v63/i18/.")
+        "URL https://www.jstatsoft.org/v63/i18/.")
 )
 
 citEntry(entry = "Article",
