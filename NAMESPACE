@@ -15,10 +15,11 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "nb2listw", "n.comp.nb", "listw2U", "listw2mat", "Szero", "listw2sn",
- "invIrW", "mat2listw", "is.symmetric.nb", "chkIDs", "get.spChkOption",
+ "mat2listw", "is.symmetric.nb", "chkIDs", "get.spChkOption",
  "subset.listw")
 
 import(Matrix, except=c("expm"))
+import(sf)
 importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
 importFrom(MASS, mvrnorm)
@@ -150,7 +151,7 @@ exportMethods(coerce)
 export(as_dgRMatrix_listw, as_dsTMatrix_listw, as_dsCMatrix_I,
 	as_dsCMatrix_IrW, Jacobian_W, listw2U_Matrix)
 
-export(powerWeights)
+export(powerWeights, invIrW, invIrM)
 
 export(as.spam.listw, listw2U_spam)
 
@@ -174,5 +175,7 @@ export(set.mcOption, get.mcOption, set.coresOption, get.coresOption,
 
 export(set.VerboseOption, get.VerboseOption, set.ZeroPolicyOption, 
         get.ZeroPolicyOption)
+
+export(aple.plot, localAple, aple, aple.mc)
 
 

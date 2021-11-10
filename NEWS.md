@@ -1,6 +1,8 @@
-# Version 1.1-9 (development)
+# Version 1.2-1 (development)
 
 * Add Fortran character handling USE_FC_LEN_T WRE §6.6.1
+
+* Add **spdep** split-out functionality
 
 # Version 1.1-8 (2021-05-03)
 

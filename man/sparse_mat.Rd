@@ -84,7 +84,7 @@ x <- apply(x, 2, function(v) residuals(spautolm(v ~ 1, listw=lw,
 x <- apply(x, 2, scale)
 }
 W <- as(lw, "CsparseMatrix")
-system.time(e <- spdep::invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) \%*\% x)
+system.time(e <- invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) \%*\% x)
 system.time(ee <- powerWeights(W, rho=0.98, X=x))
 str(attr(ee, "internal"))
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)

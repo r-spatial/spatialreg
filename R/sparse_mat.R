@@ -114,3 +114,48 @@ powerWeights <- function(W, rho, order=250, X, tol=.Machine$double.eps^(3/5)) {
     acc
 }
 
+invIrM <- function(neighbours, rho, glist=NULL, style="W", method="solve", 
+	feasible=NULL) {
+	if(class(neighbours) != "nb") stop("Not a neighbours list")
+	invIrW(nb2listw(neighbours, glist=glist, style=style), rho=rho, 
+		method=method, feasible=feasible)
+}
+
+invIrW <- function(x, rho, method="solve", feasible=NULL) {
+	if(inherits(x, "listw")) {
+	  n <- length(x$neighbours)
+	  V <- listw2mat(x)
+	} else if (inherits(x, "Matrix") || inherits(x, "matrix")) {
+	  if (method == "chol" && all(t(x) == x))
+            stop("No Cholesky method for matrix or sparse matrix object")
+          n <- dim(x)[1]
+          V <- x
+	} else stop("Not a weights list or a Sparse Matrix")
+	if (is.null(feasible) || (is.logical(feasible) && !feasible)) {
+		e <- eigen(V, only.values = TRUE)$values
+		if (is.complex(e)) feasible <- 1/(range(Re(e)))
+		else feasible <- 1/(range(e))
+		if (rho <= feasible[1] || rho >= feasible[2])
+			stop(paste("Rho", rho, "outside feasible range:",
+                        paste(feasible, collapse=":")))
+	}
+        if (method == "chol"){
+	    if (x$style %in% c("W", "S") && !(spatialreg::can.be.simmed(x)))
+			stop("Cholesky method requires symmetric weights")
+		if (x$style %in% c("B", "C", "U") && 
+			!(is.symmetric.glist(x$neighbours, x$weights)))
+			stop("Cholesky method requires symmetric weights")
+		if (x$style %in% c("W", "S")) {
+			V <- listw2mat(listw2U(spatialreg::similar.listw(x)))
+		}
+		mat <- diag(n) - rho * V
+		res <- chol2inv(chol(mat))
+	} else if (method == "solve") {
+		mat <- diag(n) - rho * V
+		res <- solve(mat)
+	} else stop("unknown method")
+	attr(res, "call") <- match.call()
+	res
+}
+
+
