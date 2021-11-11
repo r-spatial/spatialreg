@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2-1</span>
       </span>
     </div>
 
@@ -96,6 +96,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/SpatialFiltering.html">Moran Eigenvectors</a>
+    </li>
+    <li>
+      <a href="../articles/nb_igraph.html">Spatial weights objects as sparse matrices and graphs</a>
     </li>
     <li>
       <a href="../articles/sids_models.html">North Carolina SIDS data set (models)</a>
@@ -248,75 +251,66 @@ Dordrecht: Kluwer, pp. 121--122.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/logLik.html'>logLik.lm</a></code>, <code>anova.Sarlm</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://r-spatial.github.io/sf/'>"sf"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>columbus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"shapes/columbus.shp"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, quiet<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='va'>col.gal.nb</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"weights/columbus.gal"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>lm.mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span><span class='op'>)</span>
-<span class='va'>lag</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>mixed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"mixed"</span><span class='op'>)</span>
-<span class='va'>error</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>Hausman.test</span><span class='op'>(</span><span class='va'>error</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	Spatial Hausman test (asymptotic)
-#&gt; 
-#&gt; data:  NULL
-#&gt; Hausman test = 6.4729, df = 3, p-value = 0.09074
-#&gt; </div><div class='input'><span class='fu'>LR.Sarlm</span><span class='op'>(</span><span class='va'>mixed</span>, <span class='va'>error</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	Likelihood ratio for spatial linear models
-#&gt; 
-#&gt; data:  
-#&gt; Likelihood ratio = 4.2782, df = 2, p-value = 0.1178
-#&gt; sample estimates:
-#&gt; Log likelihood of mixed Log likelihood of error 
-#&gt;               -182.0161               -184.1552 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>lm.mod</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;        Model df    AIC  logLik Test L.Ratio   p-value
-#&gt; lag        1  5 376.34 -183.17    1                  
-#&gt; lm.mod     2  4 382.75 -187.38    2  8.4179 0.0037154</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>error</span>, <span class='va'>mixed</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       Model df    AIC  logLik Test L.Ratio p-value
-#&gt; lag       1  5 376.34 -183.17    1                
-#&gt; error     2  5 378.31 -184.16    1                
-#&gt; mixed     3  7 378.03 -182.02    2  4.2782 0.11776</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>error</span>, <span class='va'>mixed</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       df      AIC
-#&gt; lag    5 376.3366
-#&gt; error  5 378.3104
-#&gt; mixed  7 378.0322</div><div class='input'><span class='fu'>bptest.Sarlm</span><span class='op'>(</span><span class='va'>error</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	studentized Breusch-Pagan test
-#&gt; 
-#&gt; data:  
-#&gt; BP = 9.3694, df = 2, p-value = 0.009235
-#&gt; </div><div class='input'><span class='fu'>bptest.Sarlm</span><span class='op'>(</span><span class='va'>error</span>, studentize<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	Breusch-Pagan test
-#&gt; 
-#&gt; data:  
-#&gt; BP = 16.285, df = 2, p-value = 0.0002908
-#&gt; </div><div class='input'><span class='co'># \dontrun{</span>
-<span class='va'>lm.target</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>error</span><span class='op'>$</span><span class='va'>tary</span> <span class='op'>~</span> <span class='va'>error</span><span class='op'>$</span><span class='va'>tarX</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>lmtest</span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='http://sandwich.R-Forge.R-project.org/'>sandwich</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/lmtest/man/coeftest.html'>coeftest</a></span><span class='op'>(</span><span class='va'>lm.target</span>, vcov<span class='op'>=</span><span class='fu'><a href='https://sandwich.R-Forge.R-project.org//reference/vcovHC.html'>vcovHC</a></span><span class='op'>(</span><span class='va'>lm.target</span>, type<span class='op'>=</span><span class='st'>"HC0"</span><span class='op'>)</span>, df<span class='op'>=</span><span class='cn'>Inf</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘zoo’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    as.Date, as.Date.numeric</span></div><div class='output co'>#&gt; 
-#&gt; z test of coefficients:
-#&gt; 
-#&gt;                                         Estimate Std. Error z value Pr(&gt;|z|)
-#&gt; error$tarXI(x - lambda * WX)(Intercept) 61.05362    4.69780 12.9962  &lt; 2e-16
-#&gt; error$tarXI(x - lambda * WX)HOVAL       -0.30798    0.16434 -1.8740  0.06093
-#&gt; error$tarXI(x - lambda * WX)INC         -0.99547    0.44404 -2.2418  0.02497
-#&gt;                                            
-#&gt; error$tarXI(x - lambda * WX)(Intercept) ***
-#&gt; error$tarXI(x - lambda * WX)HOVAL       .  
-#&gt; error$tarXI(x - lambda * WX)INC         *  
-#&gt; ---
-#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://r-spatial.github.io/sf/'>"sf"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>columbus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"shapes/columbus.shp"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, quiet<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>#require("spdep", quietly=TRUE)</span></span>
+<span class='r-in'><span class='va'>col.gal.nb</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/read.gal.html'>read.gal</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"weights/columbus.gal"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lm.mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lag</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>mixed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"mixed"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>error</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>HOVAL</span> <span class='op'>+</span> <span class='va'>INC</span>, data<span class='op'>=</span><span class='va'>columbus</span>, <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>col.gal.nb</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>Hausman.test</span><span class='op'>(</span><span class='va'>error</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Spatial Hausman test (asymptotic)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Hausman test = 6.4729, df = 3, p-value = 0.09074</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>LR.Sarlm</span><span class='op'>(</span><span class='va'>mixed</span>, <span class='va'>error</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Likelihood ratio for spatial linear models</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Likelihood ratio = 4.2782, df = 2, p-value = 0.1178</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> sample estimates:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Log likelihood of mixed Log likelihood of error </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               -182.0161               -184.1552 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>lm.mod</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        Model df    AIC  logLik Test L.Ratio   p-value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lag        1  5 376.34 -183.17    1                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lm.mod     2  4 382.75 -187.38    2  8.4179 0.0037154</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>error</span>, <span class='va'>mixed</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Model df    AIC  logLik Test L.Ratio p-value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lag       1  5 376.34 -183.17    1                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> error     2  5 378.31 -184.16    1                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mixed     3  7 378.03 -182.02    2  4.2782 0.11776</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>lag</span>, <span class='va'>error</span>, <span class='va'>mixed</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       df      AIC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lag    5 376.3366</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> error  5 378.3104</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mixed  7 378.0322</span>
+<span class='r-in'><span class='fu'>bptest.Sarlm</span><span class='op'>(</span><span class='va'>error</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	studentized Breusch-Pagan test</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> BP = 9.3694, df = 2, p-value = 0.009235</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>bptest.Sarlm</span><span class='op'>(</span><span class='va'>error</span>, studentize<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Breusch-Pagan test</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> BP = 16.285, df = 2, p-value = 0.0002908</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>lm.target</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>error</span><span class='op'>$</span><span class='va'>tary</span> <span class='op'>~</span> <span class='va'>error</span><span class='op'>$</span><span class='va'>tarX</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>lmtest</span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://sandwich.R-Forge.R-project.org/'>sandwich</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/lmtest/man/coeftest.html'>coeftest</a></span><span class='op'>(</span><span class='va'>lm.target</span>, vcov<span class='op'>=</span><span class='fu'><a href='https://sandwich.R-Forge.R-project.org//reference/vcovHC.html'>vcovHC</a></span><span class='op'>(</span><span class='va'>lm.target</span>, type<span class='op'>=</span><span class='st'>"HC0"</span><span class='op'>)</span>, df<span class='op'>=</span><span class='cn'>Inf</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

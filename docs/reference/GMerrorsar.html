@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2-1</span>
       </span>
     </div>
 
@@ -96,6 +96,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/SpatialFiltering.html">Moran Eigenvectors</a>
+    </li>
+    <li>
+      <a href="../articles/nb_igraph.html">Spatial weights objects as sparse matrices and graphs</a>
     </li>
     <li>
       <a href="../articles/sids_models.html">North Carolina SIDS data set (models)</a>
@@ -282,7 +285,8 @@ variable in making predictions for the fitting data.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Kelejian, H. H., and Prucha, I. R., 1999. A Generalized Moments Estimator for the Autoregressive Parameter in a Spatial Model. International Economic Review, 40, pp. 509--533; Cressie, N. A. C. 1993 <em>Statistics for spatial data</em>, Wiley, New York.</p>
-<p>Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. <em>Journal of Statistical Software</em>, 63(18), 1-36. <a href='https://www.jstatsoft.org/v63/i18/'>https://www.jstatsoft.org/v63/i18/</a>.</p>
+<p>Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. <em>Journal of Statistical Software</em>, 63(18), 1-36. doi: <a href='https://doi.org/10.18637/jss.v063.i18'>10.18637/jss.v063.i18</a>
+.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Luc Anselin and Roger Bivand</p>
@@ -291,185 +295,195 @@ variable in making predictions for the fitting data.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='ML_models.html'>errorsarlm</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#require("spdep", quietly=TRUE)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oldcol</span>, package<span class='op'>=</span><span class='st'>"spdep"</span><span class='op'>)</span>
-<span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
- <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span>
-<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span>, Hausman<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
-#&gt;     style = "W"), method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -34.81174  -6.44031  -0.72142   7.61476  23.33626 
-#&gt; 
-#&gt; Type: error 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16
-#&gt; INC         -0.941312   0.330569 -2.8476 0.0044057
-#&gt; HOVAL       -0.302250   0.090476 -3.3407 0.0008358
-#&gt; 
-#&gt; Lambda: 0.56179, LR test value: 7.9935, p-value: 0.0046945
-#&gt; Asymptotic standard error: 0.13387
-#&gt;     z-value: 4.1966, p-value: 2.7098e-05
-#&gt; Wald statistic: 17.611, p-value: 2.7098e-05
-#&gt; 
-#&gt; Log likelihood: -183.3805 for error model
-#&gt; ML residual variance (sigma squared): 95.575, (sigma: 9.7762)
-#&gt; Number of observations: 49 
-#&gt; Number of parameters estimated: 5 
-#&gt; AIC: 376.76, (AIC for lm: 382.75)
-#&gt; Hausman test: 4.902, df: 3, p-value: 0.17911
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;               Estimate Std. Error   z value     Pr(&gt;|z|)
-#&gt; (Intercept) 59.8932192 5.36616252 11.161276 0.0000000000
-#&gt; INC         -0.9413120 0.33056857 -2.847554 0.0044056569
-#&gt; HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357788</div><div class='input'><span class='va'>COL.errW.GM</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
- <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>, returnHcov<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.GM</span>, Hausman<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; GMerrorsar(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
-#&gt;     style = "W"), returnHcov = TRUE)
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -30.5432  -6.5553  -2.1921  10.0553  28.7497 
-#&gt; 
-#&gt; Type: GM SAR estimator
-#&gt; Coefficients: (GM standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) 62.513752   5.121339  12.207 &lt; 2.2e-16
-#&gt; INC         -1.128283   0.339745  -3.321  0.000897
-#&gt; HOVAL       -0.296957   0.095699  -3.103  0.001915
-#&gt; 
-#&gt; Lambda: 0.40196 (standard error): 0.42334 (z-value): 0.94948
-#&gt; Residual variance (sigma squared): 106.64, (sigma: 10.327)
-#&gt; GM argmin sigma squared: 106.36
-#&gt; Number of observations: 49 
-#&gt; Number of parameters estimated: 5 
-#&gt; Hausman test: 6.6406, df: 3, p-value: 0.08428
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;               Estimate Std. Error   z value     Pr(&gt;|z|)
-#&gt; (Intercept) 62.5137525 5.12133863 12.206526 0.0000000000
-#&gt; INC         -1.1282834 0.33974492 -3.320972 0.0008970455
-#&gt; HOVAL       -0.2969573 0.09569889 -3.103038 0.0019154486</div><div class='input'><span class='va'>aa</span> <span class='op'>&lt;-</span> <span class='fu'>GMargminImage</span><span class='op'>(</span><span class='va'>COL.errW.GM</span><span class='op'>)</span>
-<span class='va'>levs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>aa</span><span class='op'>$</span><span class='va'>z</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>/</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span><span class='op'>(</span><span class='va'>aa</span>, breaks<span class='op'>=</span><span class='va'>levs</span>, xlab<span class='op'>=</span><span class='st'>"lambda"</span>, ylab<span class='op'>=</span><span class='st'>"s2"</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>COL.errW.GM</span><span class='op'>$</span><span class='va'>lambda</span>, <span class='va'>COL.errW.GM</span><span class='op'>$</span><span class='va'>s2</span>, pch<span class='op'>=</span><span class='fl'>3</span>, lwd<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span><span class='op'>(</span><span class='va'>aa</span>, levels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>signif</a></span><span class='op'>(</span><span class='va'>levs</span>, <span class='fl'>4</span><span class='op'>)</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='GMerrorsar-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>COL.errW.GM1</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,
- <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.GM1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; GMerrorsar(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, 
-#&gt;     style = "W"))
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -30.5432  -6.5553  -2.1921  10.0553  28.7497 
-#&gt; 
-#&gt; Type: GM SAR estimator
-#&gt; Coefficients: (GM standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) 62.513752   5.121339  12.207 &lt; 2.2e-16
-#&gt; INC         -1.128283   0.339745  -3.321  0.000897
-#&gt; HOVAL       -0.296957   0.095699  -3.103  0.001915
-#&gt; 
-#&gt; Lambda: 0.40196 (standard error): 0.42334 (z-value): 0.94948
-#&gt; Residual variance (sigma squared): 106.64, (sigma: 10.327)
-#&gt; GM argmin sigma squared: 106.36
-#&gt; Number of observations: 49 
-#&gt; Number of parameters estimated: 5 
-#&gt; </div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://r-spatial.github.io/sf/'>"sf"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.9.1, GDAL 3.2.2, PROJ 8.0.0</span></div><div class='input'><span class='va'>nydata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"shapes/NY8_bna_utm18.gpkg"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, quiet<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='va'>nyadjmat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fu'>foreign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>
- <span class='st'>"misc/nyadjwts.dbf"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='va'>ID</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'>foreign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>
- <span class='st'>"misc/nyadjwts.dbf"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='va'>ID</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>nydata</span><span class='op'>$</span><span class='va'>AREAKEY</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='va'>nyadjlw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/mat2listw.html'>mat2listw</a></span><span class='op'>(</span><span class='va'>nyadjmat</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>nydata</span><span class='op'>$</span><span class='va'>AREAKEY</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>listw_NY</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>nyadjlw</span><span class='op'>$</span><span class='va'>neighbours</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span>
-<span class='va'>esar1f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>, data<span class='op'>=</span><span class='va'>nydata</span>,
- listw<span class='op'>=</span><span class='va'>listw_NY</span>, family<span class='op'>=</span><span class='st'>"SAR"</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1f</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call: 
-#&gt; spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, 
-#&gt;     listw = listw_NY, family = "SAR", method = "eigen")
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.56754 -0.38239 -0.02643  0.33109  4.01219 
-#&gt; 
-#&gt; Coefficients: 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.618193   0.176784 -3.4969 0.0004707
-#&gt; PEXPOSURE    0.071014   0.042051  1.6888 0.0912635
-#&gt; PCTAGE65P    3.754200   0.624722  6.0094 1.862e-09
-#&gt; PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
-#&gt; 
-#&gt; Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 
-#&gt; Numerical Hessian standard error of lambda: 0.017209 
-#&gt; 
-#&gt; Log likelihood: -276.1069 
-#&gt; ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 564.21
-#&gt; </div><div class='input'><span class='va'>esar1gm</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>,
- data<span class='op'>=</span><span class='va'>nydata</span>, listw<span class='op'>=</span><span class='va'>listw_NY</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1gm</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:GMerrorsar(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, 
-#&gt;     data = nydata, listw = listw_NY)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.641411 -0.396370 -0.026618  0.341740  4.204264 
-#&gt; 
-#&gt; Type: GM SAR estimator
-#&gt; Coefficients: (GM standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.604364   0.174576 -3.4619 0.0005364
-#&gt; PEXPOSURE    0.067902   0.041164  1.6496 0.0990337
-#&gt; PCTAGE65P    3.775308   0.622965  6.0602 1.359e-09
-#&gt; PCTOWNHOME  -0.437545   0.188906 -2.3162 0.0205468
-#&gt; 
-#&gt; Lambda: 0.03605 (standard error): 0.2022 (z-value): 0.17829
-#&gt; Residual variance (sigma squared): 0.41585, (sigma: 0.64487)
-#&gt; GM argmin sigma squared: 0.45141
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; </div><div class='input'><span class='va'>esar1gm1</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>,
- data<span class='op'>=</span><span class='va'>nydata</span>, listw<span class='op'>=</span><span class='va'>listw_NY</span>, method<span class='op'>=</span><span class='st'>"Nelder-Mead"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1gm1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:GMerrorsar(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, 
-#&gt;     data = nydata, listw = listw_NY, method = "Nelder-Mead")
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.641390 -0.396374 -0.026616  0.341745  4.204277 
-#&gt; 
-#&gt; Type: GM SAR estimator
-#&gt; Coefficients: (GM standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept) -0.604384   0.174580 -3.4619 0.0005363
-#&gt; PEXPOSURE    0.067907   0.041165  1.6496 0.0990225
-#&gt; PCTAGE65P    3.775275   0.622969  6.0601  1.36e-09
-#&gt; PCTOWNHOME  -0.437518   0.188910 -2.3160 0.0205572
-#&gt; 
-#&gt; Lambda: 0.036057 (standard error): 0.20221 (z-value): 0.17832
-#&gt; Residual variance (sigma squared): 0.41585, (sigma: 0.64487)
-#&gt; GM argmin sigma squared: 0.45139
-#&gt; Number of observations: 281 
-#&gt; Number of parameters estimated: 6 
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'>#require("spdep", quietly=TRUE)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oldcol</span>, package<span class='op'>=</span><span class='st'>"spdep"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>COL.errW.eig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>errorsarlm</a></span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,</span>
+<span class='r-in'> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.eig</span>, Hausman<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     style = "W"), method = "eigen")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -34.81174  -6.44031  -0.72142   7.61476  23.33626 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: error </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (asymptotic standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INC         -0.941312   0.330569 -2.8476 0.0044057</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> HOVAL       -0.302250   0.090476 -3.3407 0.0008358</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.56179, LR test value: 7.9935, p-value: 0.0046945</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Asymptotic standard error: 0.13387</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: 4.1966, p-value: 2.7098e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Wald statistic: 17.611, p-value: 2.7098e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Log likelihood: -183.3805 for error model</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ML residual variance (sigma squared): 95.575, (sigma: 9.7762)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 49 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 5 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AIC: 376.76, (AIC for lm: 382.75)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Hausman test: 4.902, df: 3, p-value: 0.17911</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               Estimate Std. Error   z value     Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 59.8932192 5.36616252 11.161276 0.0000000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INC         -0.9413120 0.33056857 -2.847554 0.0044056569</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357788</span>
+<span class='r-in'><span class='va'>COL.errW.GM</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,</span>
+<span class='r-in'> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span>, returnHcov<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.GM</span>, Hausman<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GMerrorsar(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     style = "W"), returnHcov = TRUE)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -30.5432  -6.5553  -2.1921  10.0553  28.7497 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: GM SAR estimator</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (GM standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 62.513752   5.121339  12.207 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INC         -1.128283   0.339745  -3.321  0.000897</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> HOVAL       -0.296957   0.095699  -3.103  0.001915</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.40196 (standard error): 0.42334 (z-value): 0.94948</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual variance (sigma squared): 106.64, (sigma: 10.327)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GM argmin sigma squared: 106.36</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 49 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 5 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Hausman test: 6.6406, df: 3, p-value: 0.08428</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               Estimate Std. Error   z value     Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 62.5137525 5.12133863 12.206526 0.0000000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INC         -1.1282834 0.33974492 -3.320972 0.0008970455</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> HOVAL       -0.2969573 0.09569889 -3.103038 0.0019154486</span>
+<span class='r-in'><span class='va'>aa</span> <span class='op'>&lt;-</span> <span class='fu'>GMargminImage</span><span class='op'>(</span><span class='va'>COL.errW.GM</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>levs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>aa</span><span class='op'>$</span><span class='va'>z</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>/</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span><span class='op'>(</span><span class='va'>aa</span>, breaks<span class='op'>=</span><span class='va'>levs</span>, xlab<span class='op'>=</span><span class='st'>"lambda"</span>, ylab<span class='op'>=</span><span class='st'>"s2"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>COL.errW.GM</span><span class='op'>$</span><span class='va'>lambda</span>, <span class='va'>COL.errW.GM</span><span class='op'>$</span><span class='va'>s2</span>, pch<span class='op'>=</span><span class='fl'>3</span>, lwd<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span><span class='op'>(</span><span class='va'>aa</span>, levels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>signif</a></span><span class='op'>(</span><span class='va'>levs</span>, <span class='fl'>4</span><span class='op'>)</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='GMerrorsar-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='va'>COL.errW.GM1</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>CRIME</span> <span class='op'>~</span> <span class='va'>INC</span> <span class='op'>+</span> <span class='va'>HOVAL</span>, data<span class='op'>=</span><span class='va'>COL.OLD</span>,</span>
+<span class='r-in'> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>COL.nb</span>, style<span class='op'>=</span><span class='st'>"W"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>COL.errW.GM1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GMerrorsar(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     style = "W"))</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -30.5432  -6.5553  -2.1921  10.0553  28.7497 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: GM SAR estimator</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (GM standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 62.513752   5.121339  12.207 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INC         -1.128283   0.339745  -3.321  0.000897</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> HOVAL       -0.296957   0.095699  -3.103  0.001915</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.40196 (standard error): 0.42334 (z-value): 0.94948</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual variance (sigma squared): 106.64, (sigma: 10.327)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GM argmin sigma squared: 106.36</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 49 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 5 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://r-spatial.github.io/sf/'>"sf"</a></span>, quietly<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>nydata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"shapes/NY8_bna_utm18.gpkg"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, quiet<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='va'>nyadjmat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fu'>foreign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
+<span class='r-in'> <span class='st'>"misc/nyadjwts.dbf"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='va'>ID</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'>foreign</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/foreign/man/read.dbf.html'>read.dbf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
+<span class='r-in'> <span class='st'>"misc/nyadjwts.dbf"</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='va'>ID</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substring</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>nydata</span><span class='op'>$</span><span class='va'>AREAKEY</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] TRUE</span>
+<span class='r-in'><span class='va'>nyadjlw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/mat2listw.html'>mat2listw</a></span><span class='op'>(</span><span class='va'>nyadjmat</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>nydata</span><span class='op'>$</span><span class='va'>AREAKEY</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>listw_NY</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>nyadjlw</span><span class='op'>$</span><span class='va'>neighbours</span>, style<span class='op'>=</span><span class='st'>"B"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>esar1f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='spautolm.html'>spautolm</a></span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>, data<span class='op'>=</span><span class='va'>nydata</span>,</span>
+<span class='r-in'> listw<span class='op'>=</span><span class='va'>listw_NY</span>, family<span class='op'>=</span><span class='st'>"SAR"</span>, method<span class='op'>=</span><span class='st'>"eigen"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1f</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call: </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     listw = listw_NY, family = "SAR", method = "eigen")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -1.56754 -0.38239 -0.02643  0.33109  4.01219 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) -0.618193   0.176784 -3.4969 0.0004707</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PEXPOSURE    0.071014   0.042051  1.6888 0.0912635</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTAGE65P    3.754200   0.624722  6.0094 1.862e-09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Numerical Hessian standard error of lambda: 0.017209 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Log likelihood: -276.1069 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 281 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AIC: 564.21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='va'>esar1gm</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>,</span>
+<span class='r-in'> data<span class='op'>=</span><span class='va'>nydata</span>, listw<span class='op'>=</span><span class='va'>listw_NY</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1gm</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:GMerrorsar(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     data = nydata, listw = listw_NY)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -1.641411 -0.396370 -0.026618  0.341740  4.204264 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: GM SAR estimator</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (GM standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) -0.604364   0.174576 -3.4619 0.0005364</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PEXPOSURE    0.067902   0.041164  1.6496 0.0990337</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTAGE65P    3.775308   0.622965  6.0602 1.359e-09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTOWNHOME  -0.437545   0.188906 -2.3162 0.0205468</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.03605 (standard error): 0.2022 (z-value): 0.17829</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual variance (sigma squared): 0.41585, (sigma: 0.64487)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GM argmin sigma squared: 0.45141</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 281 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='va'>esar1gm1</span> <span class='op'>&lt;-</span> <span class='fu'>GMerrorsar</span><span class='op'>(</span><span class='va'>Z</span> <span class='op'>~</span> <span class='va'>PEXPOSURE</span> <span class='op'>+</span> <span class='va'>PCTAGE65P</span> <span class='op'>+</span> <span class='va'>PCTOWNHOME</span>,</span>
+<span class='r-in'> data<span class='op'>=</span><span class='va'>nydata</span>, listw<span class='op'>=</span><span class='va'>listw_NY</span>, method<span class='op'>=</span><span class='st'>"Nelder-Mead"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>esar1gm1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:GMerrorsar(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     data = nydata, listw = listw_NY, method = "Nelder-Mead")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -1.641390 -0.396374 -0.026616  0.341745  4.204277 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: GM SAR estimator</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (GM standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) -0.604384   0.174580 -3.4619 0.0005363</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PEXPOSURE    0.067907   0.041165  1.6496 0.0990225</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTAGE65P    3.775275   0.622969  6.0601  1.36e-09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PCTOWNHOME  -0.437518   0.188910 -2.3160 0.0205572</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Lambda: 0.036057 (standard error): 0.20221 (z-value): 0.17832</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual variance (sigma squared): 0.41585, (sigma: 0.64487)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GM argmin sigma squared: 0.45139</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 281 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

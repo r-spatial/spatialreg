@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2-1</span>
       </span>
     </div>
 
@@ -95,6 +95,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/SpatialFiltering.html">Moran Eigenvectors</a>
+    </li>
+    <li>
+      <a href="../articles/nb_igraph.html">Spatial weights objects as sparse matrices and graphs</a>
     </li>
     <li>
       <a href="../articles/sids_models.html">North Carolina SIDS data set (models)</a>
@@ -129,13 +132,24 @@
       <small>Source: <a href='https://github.com/r-spatial/spatialreg/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-11-7-development" class="section level1">
-<h1 class="page-header" data-toc-text="1.1-7">
-<a href="#version-11-7-development" class="anchor"></a>Version 1.1-7 (development)<small> Unreleased </small>
+    <div id="version-12-1-development" class="section level1">
+<h1 class="page-header" data-toc-text="1.2-1">
+<a href="#version-12-1-development" class="anchor"></a>Version 1.2-1 (development)<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Add Fortran character handling USE_FC_LEN_T WRE §6.6.1</p></li>
+<li><p>Add <strong>spdep</strong> split-out functionality</p></li>
+</ul>
+</div>
+    <div id="version-11-8-2021-05-03" class="section level1">
+<h1 class="page-header" data-toc-text="1.1-8">
+<a href="#version-11-8-2021-05-03" class="anchor"></a>Version 1.1-8 (2021-05-03)<small> 2021-05-03 </small>
 </h1>
 <ul>
 <li><p><a href='https://github.com/r-spatial/spatialreg/issues/18'>#18</a> standardize use of <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> methods for (some) fitted model summary objects</p></li>
 <li><p><a href="https://github.com/tidymodels/broom/issues/1003#issuecomment-798694400" class="uri">https://github.com/tidymodels/broom/issues/1003#issuecomment-798694400</a> changing <strong>spatialreg</strong> model output class names: <strong>spdep</strong> <code>sarlm</code> -&gt; <strong>spatialreg</strong> <code>Sarlm</code>, <code>spautolm</code> -&gt; <code>Spautolm</code>, <code>stsls</code> -&gt; <code>Stsls</code>, <code>gmsar</code> -&gt; <code>Gmsar</code>, <code>lagmess</code> -&gt; <code>Lagmess</code>, <code>SLX</code> -&gt; , <code>SlX</code>, <code>MCMC_s*_g</code> -&gt; <code>MCMC_s*_G</code>, <code>SFResult</code> -&gt; <code>SfResult</code>, <code>ME_res</code> -&gt; <code>Me_res</code>, <code>lagImpact</code> -&gt; <code>LagImpact</code>, <code>WXImpact</code> -&gt; <code>WXimpact</code></p></li>
+<li><p><a href='https://github.com/r-spatial/spatialreg/issues/16'>#16</a> merged coordination of impacts methods (Gianfranco Piras)</p></li>
+<li><p><a href='https://github.com/r-spatial/spatialreg/issues/14'>#14</a> merged correction to SDEM and SLX impacts when a lagged intercept is present (Tobias Rüttenauer).</p></li>
 </ul>
 </div>
     <div id="version-11-5-2019-12-01" class="section level1">

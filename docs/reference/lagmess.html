@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2-1</span>
       </span>
     </div>
 
@@ -96,6 +96,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/SpatialFiltering.html">Moran Eigenvectors</a>
+    </li>
+    <li>
+      <a href="../articles/nb_igraph.html">Spatial weights objects as sparse matrices and graphs</a>
     </li>
     <li>
       <a href="../articles/sids_models.html">North Carolina SIDS data set (models)</a>
@@ -164,7 +167,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
     </tr>
     <tr>
       <th>na.action</th>
-      <td><p>a function (default <code><a href='https://rdrr.io/r/base/options.html'>options("na.action")</a></code>), can also be <code>na.omit</code> or <code>na.exclude</code> with consequences for residuals and fitted values - in these cases the weights list will be subsetted to remove NAs in the data. It may be necessary to set zero.policy to TRUE because this subsetting may create no-neighbour observations. Note that only weights lists created without using the glist argument to <code>nb2listw</code> may be subsetted.</p></td>
+      <td><p>a function (default <code>options("na.action")</code>), can also be <code>na.omit</code> or <code>na.exclude</code> with consequences for residuals and fitted values - in these cases the weights list will be subsetted to remove NAs in the data. It may be necessary to set zero.policy to TRUE because this subsetting may create no-neighbour observations. Note that only weights lists created without using the glist argument to <code>nb2listw</code> may be subsetted.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -223,257 +226,267 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
     <div class='dont-index'><p><code><a href='ML_models.html'>lagsarlm</a></code>, <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#require(spdep, quietly=TRUE)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>baltimore</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span>
-<span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span> <span class='op'>&lt;</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span><span class='op'>)</span>
-<span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knn2nb.html'>knn2nb</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knearneigh.html'>knearneigh</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>baltimore</span><span class='op'>$</span><span class='va'>X</span>, <span class='va'>baltimore</span><span class='op'>$</span><span class='va'>Y</span><span class='op'>)</span>, k<span class='op'>=</span><span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>obj1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>,
- data<span class='op'>=</span><span class='va'>baltimore</span><span class='op'>)</span>
-<span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span><span class='op'>(</span><span class='va'>obj1</span>, <span class='va'>lw</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	Global Moran I for regression residuals
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; Moran I statistic standard deviate = 7.4648, p-value = 4.171e-14
-#&gt; alternative hypothesis: greater
-#&gt; sample estimates:
-#&gt; Observed Moran I      Expectation         Variance 
-#&gt;      0.245149959     -0.007853660      0.001148722 
-#&gt; </div><div class='input'><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.LMtests.html'>lm.LMtests</a></span><span class='op'>(</span><span class='va'>obj1</span>, <span class='va'>lw</span>, test<span class='op'>=</span><span class='st'>"all"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 	Lagrange multiplier diagnostics for spatial dependence
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; LMerr = 48.648, df = 1, p-value = 3.063e-12
-#&gt; 
-#&gt; 
-#&gt; 	Lagrange multiplier diagnostics for spatial dependence
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; LMlag = 83.091, df = 1, p-value &lt; 2.2e-16
-#&gt; 
-#&gt; 
-#&gt; 	Lagrange multiplier diagnostics for spatial dependence
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; RLMerr = 1.2535, df = 1, p-value = 0.2629
-#&gt; 
-#&gt; 
-#&gt; 	Lagrange multiplier diagnostics for spatial dependence
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; RLMlag = 35.696, df = 1, p-value = 2.306e-09
-#&gt; 
-#&gt; 
-#&gt; 	Lagrange multiplier diagnostics for spatial dependence
-#&gt; 
-#&gt; data:  
-#&gt; model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =
-#&gt; baltimore)
-#&gt; weights: lw
-#&gt; 
-#&gt; SARMA = 84.344, df = 2, p-value &lt; 2.2e-16
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>obj2</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.048   0.000   0.049 </div><div class='input'><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj2</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Matrix exponential spatial lag model:
-#&gt; 
-#&gt; Call:
-#&gt; lagmess(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), 
-#&gt;     data = baltimore, listw = lw)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -2.026722 -0.141191  0.050831  0.223830  1.073114 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)
-#&gt; (Intercept)  1.546376   0.214513  7.2088 1.039e-11
-#&gt; PATIO        0.258287   0.086891  2.9726  0.003303
-#&gt; log(AGE)    -0.148174   0.035252 -4.2033 3.912e-05
-#&gt; log(SQFT)    0.300966   0.071598  4.2036 3.908e-05
-#&gt; 
-#&gt; Residual standard error: 0.41658 on 207 degrees of freedom
-#&gt; Multiple R-squared:  0.22373,	Adjusted R-squared:  0.21248 
-#&gt; F-statistic: 19.887 on 3 and 207 DF,  p-value: 2.2881e-11
-#&gt; 
-#&gt; Alpha: -0.64302, standard error: 0.1043
-#&gt;     z-value: -6.1649, p-value: 7.0511e-10
-#&gt; LR test value: 48.296, p-value: 3.6644e-12
-#&gt; Implied rho: 0.4742995 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;               Estimate Std. Error   t value     Pr(&gt;|t|)
-#&gt; (Intercept)  1.5463761 0.21451319  7.208770 1.038762e-11
-#&gt; PATIO        0.2582874 0.08689079  2.972552 3.303312e-03
-#&gt; log(AGE)    -0.1481738 0.03525174 -4.203305 3.912250e-05
-#&gt; log(SQFT)    0.3009659 0.07159771  4.203569 3.908038e-05</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>obj2a</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span>,
- use_expm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.624   0.000   0.627 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj2a</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Matrix exponential spatial lag model:
-#&gt; (calculated with expm)
-#&gt; 
-#&gt; Call:
-#&gt; lagmess(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), 
-#&gt;     data = baltimore, listw = lw, use_expm = TRUE)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -2.026722 -0.141191  0.050831  0.223830  1.073114 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)
-#&gt; (Intercept)  1.546376   0.214513  7.2088 1.039e-11
-#&gt; PATIO        0.258287   0.086891  2.9726  0.003303
-#&gt; log(AGE)    -0.148174   0.035252 -4.2033 3.912e-05
-#&gt; log(SQFT)    0.300966   0.071598  4.2036 3.908e-05
-#&gt; 
-#&gt; Residual standard error: 0.41658 on 207 degrees of freedom
-#&gt; Multiple R-squared:  0.22373,	Adjusted R-squared:  0.21248 
-#&gt; F-statistic: 19.887 on 3 and 207 DF,  p-value: 2.2881e-11
-#&gt; 
-#&gt; Alpha: -0.64302, standard error: 0.1043
-#&gt;     z-value: -6.1649, p-value: 7.0511e-10
-#&gt; LR test value: 48.296, p-value: 3.6644e-12
-#&gt; Implied rho: 0.4742995 
-#&gt; </div><div class='input'><span class='va'>obj3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:lagsarlm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), 
-#&gt;     data = baltimore, listw = lw)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -1.969554 -0.147514  0.042581  0.199567  1.076181 
-#&gt; 
-#&gt; Type: lag 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;              Estimate Std. Error z value  Pr(&gt;|z|)
-#&gt; (Intercept)  1.255885   0.320679  3.9163 8.991e-05
-#&gt; PATIO        0.244225   0.083448  2.9267 0.0034262
-#&gt; log(AGE)    -0.131947   0.034510 -3.8235 0.0001316
-#&gt; log(SQFT)    0.278888   0.070259  3.9694 7.205e-05
-#&gt; 
-#&gt; Rho: 0.55765, LR test value: 52.661, p-value: 3.9635e-13
-#&gt; Asymptotic standard error: 0.072749
-#&gt;     z-value: 7.6653, p-value: 1.7764e-14
-#&gt; Wald statistic: 58.757, p-value: 1.7875e-14
-#&gt; 
-#&gt; Log likelihood: -110.4248 for lag model
-#&gt; ML residual variance (sigma squared): 0.1589, (sigma: 0.39862)
-#&gt; Number of observations: 211 
-#&gt; Number of parameters estimated: 6 
-#&gt; AIC: 232.85, (AIC for lm: 283.51)
-#&gt; LM test for residual autocorrelation
-#&gt; test value: 8.7942, p-value: 0.0030219
-#&gt; </div><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>boston</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span>
-<span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span>
-<span class='va'>gp2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>CMEDV</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
- <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>,
- data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='va'>lw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:lagsarlm(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
-#&gt;     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + 
-#&gt;     log(LSTAT), data = boston.c, listw = lw, method = "Matrix")
-#&gt; 
-#&gt; Residuals:
-#&gt;        Min         1Q     Median         3Q        Max 
-#&gt; -0.5262308 -0.0749699 -0.0044237  0.0713409  0.7122121 
-#&gt; 
-#&gt; Type: lag 
-#&gt; Coefficients: (asymptotic standard errors) 
-#&gt;                Estimate  Std. Error  z value  Pr(&gt;|z|)
-#&gt; (Intercept)  2.2796e+00  1.7495e-01  13.0302 &lt; 2.2e-16
-#&gt; CRIM        -7.1045e-03  9.6236e-04  -7.3824 1.554e-13
-#&gt; ZN           3.7985e-04  3.8510e-04   0.9864 0.3239507
-#&gt; INDUS        1.2572e-03  1.7986e-03   0.6990 0.4845472
-#&gt; CHAS1        7.3677e-03  2.5416e-02   0.2899 0.7719059
-#&gt; I(NOX^2)    -2.6892e-01  8.8026e-02  -3.0550 0.0022508
-#&gt; I(RM^2)      6.7243e-03  1.0039e-03   6.6985 2.106e-11
-#&gt; AGE         -2.7682e-04  4.0062e-04  -0.6910 0.4895829
-#&gt; log(DIS)    -1.5830e-01  2.5554e-02  -6.1947 5.841e-10
-#&gt; log(RAD)     7.0689e-02  1.4616e-02   4.8363 1.323e-06
-#&gt; TAX         -3.6569e-04  9.3744e-05  -3.9009 9.582e-05
-#&gt; PTRATIO     -1.2011e-02  3.9599e-03  -3.0330 0.0024211
-#&gt; B            2.8432e-04  7.9402e-05   3.5807 0.0003427
-#&gt; log(LSTAT)  -2.3216e-01  2.0425e-02 -11.3663 &lt; 2.2e-16
-#&gt; 
-#&gt; Rho: 0.48537, LR test value: 214.06, p-value: &lt; 2.22e-16
-#&gt; Asymptotic standard error: 0.029426
-#&gt;     z-value: 16.494, p-value: &lt; 2.22e-16
-#&gt; Wald statistic: 272.06, p-value: &lt; 2.22e-16
-#&gt; 
-#&gt; Log likelihood: 264.0089 for lag model
-#&gt; ML residual variance (sigma squared): 0.019276, (sigma: 0.13884)
-#&gt; Number of observations: 506 
-#&gt; Number of parameters estimated: 16 
-#&gt; AIC: -496.02, (AIC for lm: -283.96)
-#&gt; LM test for residual autocorrelation
-#&gt; test value: 10.74, p-value: 0.0010486
-#&gt; </div><div class='input'><span class='va'>gp2a</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='va'>CMEDV</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
- <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>,
- data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='va'>lw</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2a</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Matrix exponential spatial lag model:
-#&gt; 
-#&gt; Call:
-#&gt; lagmess(formula = CMEDV ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
-#&gt;     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + 
-#&gt;     log(LSTAT), data = boston.c, listw = lw)
-#&gt; 
-#&gt; Residuals:
-#&gt;       Min        1Q    Median        3Q       Max 
-#&gt; -17.03755  -2.05386  -0.30295   1.67710  21.82120 
-#&gt; 
-#&gt; Coefficients:
-#&gt;               Estimate Std. Error  t value  Pr(&gt;|t|)
-#&gt; (Intercept) 35.3206850  3.0128759  11.7232 &lt; 2.2e-16
-#&gt; CRIM        -0.0986056  0.0242819  -4.0609 5.688e-05
-#&gt; ZN           0.0198500  0.0098638   2.0124 0.0447222
-#&gt; INDUS        0.0071211  0.0461104   0.1544 0.8773301
-#&gt; CHAS1        0.8158059  0.6477224   1.2595 0.2084473
-#&gt; I(NOX^2)    -9.2592911  2.2072427  -4.1950 3.238e-05
-#&gt; I(RM^2)      0.2434745  0.0256001   9.5107 &lt; 2.2e-16
-#&gt; AGE         -0.0040683  0.0102667  -0.3963 0.6920816
-#&gt; log(DIS)    -5.3974116  0.6514323  -8.2855 1.125e-15
-#&gt; log(RAD)     1.7142905  0.3732772   4.5925 5.569e-06
-#&gt; TAX         -0.0087053  0.0023933  -3.6373 0.0003046
-#&gt; PTRATIO     -0.4118524  0.0977997  -4.2112 3.021e-05
-#&gt; B            0.0056141  0.0020116   2.7908 0.0054614
-#&gt; log(LSTAT)  -6.1484203  0.4878957 -12.6019 &lt; 2.2e-16
-#&gt; 
-#&gt; Residual standard error: 3.5594 on 492 degrees of freedom
-#&gt; Multiple R-squared:  0.76221,	Adjusted R-squared:  0.75593 
-#&gt; F-statistic: 121.31 on 13 and 492 DF,  p-value: &lt; 2.22e-16
-#&gt; 
-#&gt; Alpha: -0.41361, standard error: 0.038521
-#&gt;     z-value: -10.737, p-value: &lt; 2.22e-16
-#&gt; LR test value: 121.4, p-value: &lt; 2.22e-16
-#&gt; Implied rho: 0.3387434 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'>#require(spdep, quietly=TRUE)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>baltimore</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span> <span class='op'>&lt;</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='va'>baltimore</span><span class='op'>$</span><span class='va'>AGE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knn2nb.html'>knn2nb</a></span><span class='op'>(</span><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/knearneigh.html'>knearneigh</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>baltimore</span><span class='op'>$</span><span class='va'>X</span>, <span class='va'>baltimore</span><span class='op'>$</span><span class='va'>Y</span><span class='op'>)</span>, k<span class='op'>=</span><span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>obj1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>,</span>
+<span class='r-in'> data<span class='op'>=</span><span class='va'>baltimore</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.morantest.html'>lm.morantest</a></span><span class='op'>(</span><span class='va'>obj1</span>, <span class='va'>lw</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Global Moran I for regression residuals</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Moran I statistic standard deviate = 7.4648, p-value = 4.171e-14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> alternative hypothesis: greater</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> sample estimates:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Observed Moran I      Expectation         Variance </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      0.245149959     -0.007853660      0.001148722 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/lm.LMtests.html'>lm.LMtests</a></span><span class='op'>(</span><span class='va'>obj1</span>, <span class='va'>lw</span>, test<span class='op'>=</span><span class='st'>"all"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LMerr = 48.648, df = 1, p-value = 3.063e-12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LMlag = 83.091, df = 1, p-value &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RLMerr = 1.2535, df = 1, p-value = 0.2629</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RLMlag = 35.696, df = 1, p-value = 2.306e-09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data:  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> baltimore)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> weights: lw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> SARMA = 84.344, df = 2, p-value &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>obj2</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    user  system elapsed </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0.041   0.000   0.040 </span>
+<span class='r-in'><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix exponential spatial lag model:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lagmess(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     data = baltimore, listw = lw)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -2.026722 -0.141191  0.050831  0.223830  1.073114 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error t value  Pr(&gt;|t|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)  1.546376   0.214513  7.2088 1.039e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PATIO        0.258287   0.086891  2.9726  0.003303</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(AGE)    -0.148174   0.035252 -4.2033 3.912e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(SQFT)    0.300966   0.071598  4.2036 3.908e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual standard error: 0.41658 on 207 degrees of freedom</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Multiple R-squared:  0.22373,	Adjusted R-squared:  0.21248 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> F-statistic: 19.887 on 3 and 207 DF,  p-value: 2.2881e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Alpha: -0.64302, standard error: 0.1043</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: -6.1649, p-value: 7.0511e-10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LR test value: 48.296, p-value: 3.6644e-12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Implied rho: 0.4742995 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               Estimate Std. Error   t value     Pr(&gt;|t|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)  1.5463761 0.21451319  7.208770 1.038762e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PATIO        0.2582874 0.08689079  2.972552 3.303312e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(AGE)    -0.1481738 0.03525174 -4.203305 3.912250e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(SQFT)    0.3009659 0.07159771  4.203569 3.908038e-05</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='va'>obj2a</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span>,</span>
+<span class='r-in'> use_expm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    user  system elapsed </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0.549   0.000   0.551 </span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj2a</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix exponential spatial lag model:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (calculated with expm)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lagmess(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     data = baltimore, listw = lw, use_expm = TRUE)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -2.026722 -0.141191  0.050831  0.223830  1.073114 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error t value  Pr(&gt;|t|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)  1.546376   0.214513  7.2088 1.039e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PATIO        0.258287   0.086891  2.9726  0.003303</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(AGE)    -0.148174   0.035252 -4.2033 3.912e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(SQFT)    0.300966   0.071598  4.2036 3.908e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual standard error: 0.41658 on 207 degrees of freedom</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Multiple R-squared:  0.22373,	Adjusted R-squared:  0.21248 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> F-statistic: 19.887 on 3 and 207 DF,  p-value: 2.2881e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Alpha: -0.64302, standard error: 0.1043</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: -6.1649, p-value: 7.0511e-10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LR test value: 48.296, p-value: 3.6644e-12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Implied rho: 0.4742995 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='va'>obj3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>PRICE</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>PATIO</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>AGE</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>SQFT</span><span class='op'>)</span>, data<span class='op'>=</span><span class='va'>baltimore</span>, listw<span class='op'>=</span><span class='va'>lw</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>obj3</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:lagsarlm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     data = baltimore, listw = lw)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -1.969554 -0.147514  0.042581  0.199567  1.076181 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: lag </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (asymptotic standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)  1.255885   0.320679  3.9163 8.991e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PATIO        0.244225   0.083448  2.9267 0.0034262</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(AGE)    -0.131947   0.034510 -3.8235 0.0001316</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(SQFT)    0.278888   0.070259  3.9694 7.205e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rho: 0.55765, LR test value: 52.661, p-value: 3.9635e-13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Asymptotic standard error: 0.072749</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: 7.6653, p-value: 1.7764e-14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Wald statistic: 58.757, p-value: 1.7875e-14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Log likelihood: -110.4248 for lag model</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ML residual variance (sigma squared): 0.1589, (sigma: 0.39862)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 211 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AIC: 232.85, (AIC for lm: 283.51)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LM test for residual autocorrelation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> test value: 8.7942, p-value: 0.0030219</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>boston</span>, package<span class='op'>=</span><span class='st'>"spData"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lw</span> <span class='op'>&lt;-</span> <span class='fu'>spdep</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/spdep/man/nb2listw.html'>nb2listw</a></span><span class='op'>(</span><span class='va'>boston.soi</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>gp2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ML_models.html'>lagsarlm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>CMEDV</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>,</span>
+<span class='r-in'> data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='va'>lw</span>, method<span class='op'>=</span><span class='st'>"Matrix"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:lagsarlm(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     log(LSTAT), data = boston.c, listw = lw, method = "Matrix")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        Min         1Q     Median         3Q        Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -0.5262308 -0.0749699 -0.0044237  0.0713409  0.7122121 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Type: lag </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients: (asymptotic standard errors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                Estimate  Std. Error  z value  Pr(&gt;|z|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)  2.2796e+00  1.7495e-01  13.0302 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CRIM        -7.1045e-03  9.6236e-04  -7.3824 1.554e-13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ZN           3.7985e-04  3.8510e-04   0.9864 0.3239507</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INDUS        1.2572e-03  1.7986e-03   0.6990 0.4845472</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CHAS1        7.3677e-03  2.5416e-02   0.2899 0.7719059</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(NOX^2)    -2.6892e-01  8.8026e-02  -3.0550 0.0022508</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(RM^2)      6.7243e-03  1.0039e-03   6.6985 2.106e-11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AGE         -2.7682e-04  4.0062e-04  -0.6910 0.4895829</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(DIS)    -1.5830e-01  2.5554e-02  -6.1947 5.841e-10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(RAD)     7.0689e-02  1.4616e-02   4.8363 1.323e-06</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TAX         -3.6569e-04  9.3744e-05  -3.9009 9.582e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PTRATIO     -1.2011e-02  3.9599e-03  -3.0330 0.0024211</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B            2.8432e-04  7.9402e-05   3.5807 0.0003427</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(LSTAT)  -2.3216e-01  2.0425e-02 -11.3663 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rho: 0.48537, LR test value: 214.06, p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Asymptotic standard error: 0.029426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: 16.494, p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Wald statistic: 272.06, p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Log likelihood: 264.0089 for lag model</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ML residual variance (sigma squared): 0.019276, (sigma: 0.13884)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of observations: 506 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of parameters estimated: 16 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AIC: -496.02, (AIC for lm: -283.96)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LM test for residual autocorrelation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> test value: 10.74, p-value: 0.0010486</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='va'>gp2a</span> <span class='op'>&lt;-</span> <span class='fu'>lagmess</span><span class='op'>(</span><span class='va'>CMEDV</span> <span class='op'>~</span> <span class='va'>CRIM</span> <span class='op'>+</span> <span class='va'>ZN</span> <span class='op'>+</span> <span class='va'>INDUS</span> <span class='op'>+</span> <span class='va'>CHAS</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>NOX</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>RM</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='op'>+</span>  <span class='va'>AGE</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>DIS</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>RAD</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>TAX</span> <span class='op'>+</span> <span class='va'>PTRATIO</span> <span class='op'>+</span> <span class='va'>B</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>LSTAT</span><span class='op'>)</span>,</span>
+<span class='r-in'> data<span class='op'>=</span><span class='va'>boston.c</span>, <span class='va'>lw</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gp2a</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Matrix exponential spatial lag model:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lagmess(formula = CMEDV ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     log(LSTAT), data = boston.c, listw = lw)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residuals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> -17.03755  -2.05386  -0.30295   1.67710  21.82120 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               Estimate Std. Error  t value  Pr(&gt;|t|)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept) 35.3206850  3.0128759  11.7232 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CRIM        -0.0986056  0.0242819  -4.0609 5.688e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ZN           0.0198500  0.0098638   2.0124 0.0447222</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> INDUS        0.0071211  0.0461104   0.1544 0.8773301</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> CHAS1        0.8158059  0.6477224   1.2595 0.2084473</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(NOX^2)    -9.2592911  2.2072427  -4.1950 3.238e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> I(RM^2)      0.2434745  0.0256001   9.5107 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AGE         -0.0040683  0.0102667  -0.3963 0.6920816</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(DIS)    -5.3974116  0.6514323  -8.2855 1.125e-15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(RAD)     1.7142905  0.3732772   4.5925 5.569e-06</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> TAX         -0.0087053  0.0023933  -3.6373 0.0003046</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PTRATIO     -0.4118524  0.0977997  -4.2112 3.021e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> B            0.0056141  0.0020116   2.7908 0.0054614</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> log(LSTAT)  -6.1484203  0.4878957 -12.6019 &lt; 2.2e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Residual standard error: 3.5594 on 492 degrees of freedom</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Multiple R-squared:  0.76221,	Adjusted R-squared:  0.75593 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> F-statistic: 121.31 on 13 and 492 DF,  p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Alpha: -0.41361, standard error: 0.038521</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     z-value: -10.737, p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LR test value: 121.4, p-value: &lt; 2.22e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Implied rho: 0.3387434 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
