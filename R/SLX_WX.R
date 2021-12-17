@@ -136,8 +136,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         #   } # NK: End of 'if(3 == 4) ...'
     } else if (is.formula(Durbin)) {
         #FIXME
-        LI <- listw$style != "W" * attr(terms(Durbin), "intercept") # NK: TRUE & ==1 means 1, FALSE or !=1 means 0
-        # LI <- ifelse(listw$style != "W" && attr(terms(Durbin), "intercept") == 1, 1, 0) #TR: lagged intercept if not W and in Durbin formula
+        LI <- ifelse(listw$style != "W" && attr(terms(Durbin), "intercept") == 1, 1, 0) #TR: lagged intercept if not W and in Durbin formula
         m <- sum(dvars)
         KIL <- max((LI - (K - 1)), 0) #TR: KIL = 1 if intercept in lag but not in main formula
         m2 <- dvars[2] - KIL #TR: no linear combination for intercept if LI but not K
@@ -306,9 +305,9 @@ summary.WXimpact <- function(object, ...,
 
 
 create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
-        if (is.null(zero.policy))
-            zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
-        stopifnot(is.logical(zero.policy))
+    if (is.null(zero.policy))
+        zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
+    stopifnot(is.logical(zero.policy))
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
 	if (NROW(x) != length(listw$neighbours))
 	    stop("Input data and neighbourhood list have different dimensions")
@@ -316,35 +315,30 @@ create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
 	m <- NCOL(x)
 	# check if there are enough regressors
 	xcolnames <- colnames(x)
-        stopifnot(!is.null(xcolnames))
+    stopifnot(!is.null(xcolnames))
 	K <- ifelse(xcolnames[1] == "(Intercept)", 2, 1)
-        Wvars <- NULL
-        wxI <- NULL
-        WX <- NULL
+    Wvars <- NULL
+    WX <- NULL
+    wxI <- NULL
 	if (K == 2) {
         # unnormalized weight matrices
-               	if (!(listw$style == "W")) {
+        if (!(listw$style == "W")) {
  			intercept <- as.double(rep(1, n))
-       	       		wxI <- lag.listw(listw, intercept,
-				zero.policy = zero.policy)
-                        Wvars <- paste(prefix, ".(Intercept)", sep="")
-               	}
+            wxI <- lag.listw(listw, intercept, zero.policy = zero.policy)
+            Wvars <- paste(prefix, ".(Intercept)", sep="")
         }
+    }
 	if (m > 1 || (m == 1 && K == 1)) {
-                WX <- matrix(as.numeric(NA), nrow=n,
-                    ncol=ifelse(m==1, 1, (m-(K-1))))
+        WX <- matrix(as.numeric(NA), nrow=n, ncol=ifelse(m==1, 1, (m-(K-1))))
 		for (k in K:m) {
-                        j <- ifelse(k==1, 1, k-(K-1))
-			WX[,j] <- lag.listw(listw, x[,xcolnames[k]],
-			    zero.policy=zero.policy)
-			if (any(is.na(WX[,j])))
-			    stop("NAs in lagged independent variable")
-                        Wvars <- c(Wvars, paste(prefix, ".",
-                            xcolnames[k], sep=""))
+            j <- ifelse(k==1, 1, k-(K-1))
+			WX[,j] <- lag.listw(listw, x[,xcolnames[k]], zero.policy=zero.policy)
+			if (any(is.na(WX[,j]))) stop("NAs in lagged independent variable")
+            Wvars <- c(Wvars, paste(prefix, ".", xcolnames[k], sep=""))
 		}
 	}
-        if (!is.null(wxI)) WX <- cbind(wxI, WX)
-        colnames(WX) <- Wvars
-        WX
+    if (!is.null(wxI)) WX <- cbind(wxI, WX)
+    colnames(WX) <- Wvars
+    WX
 }
 
