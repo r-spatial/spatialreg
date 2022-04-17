@@ -42,7 +42,7 @@ SpatialFiltering(formula, lagformula=NULL, data=list(), na.action=na.fail,
       \item{MinMi}{value Moran's I for residual autocorrelation}
       \item{ZMinMi}{standardized value of Moran's I assuming a normal approximation}
       \item{pr(ZI)}{probability value of the permutation-based standardized deviate for the given value of the alternative argument}
-      \item{R2}{R\^2 of the model including exogenous variables and eigenvectors}
+      \item{R2}{R^2 of the model including exogenous variables and eigenvectors}
       \item{gamma}{regression coefficient of selected eigenvector in fit}
     }
     The first row is the value at the start of the search

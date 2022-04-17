@@ -90,11 +90,6 @@ anova(lag, error, mixed)
 AIC(lag, error, mixed)
 bptest.Sarlm(error)
 bptest.Sarlm(error, studentize=FALSE)
-\dontrun{
-lm.target <- lm(error$tary ~ error$tarX - 1)
-if (require(lmtest, quietly=TRUE) && require(sandwich, quietly=TRUE)) {
-  print(coeftest(lm.target, vcov=vcovHC(lm.target, type="HC0"), df=Inf))
 }
-}
-}
+
 \keyword{spatial}

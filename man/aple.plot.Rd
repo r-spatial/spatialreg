@@ -14,7 +14,7 @@ localAple(x, listw, override_similarity_check=FALSE, useTrace=TRUE)
 \arguments{
   \item{x}{a zero-mean detrended continuous variable}
   \item{listw}{a \code{listw} object from for example \code{nb2listw}}
-  \item{override\_similarity\_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
+  \item{override_similarity_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
   \item{useTrace}{default TRUE, use trace of sparse matrix \code{W \%*\% W} (Li et al. (2010)), if FALSE, use crossproduct of eigenvalues of \code{W} as in Li et al. (2007)}
   \item{do.plot}{default TRUE: should a scatterplot be drawn}
   \item{\dots}{other arguments to be passed to \code{plot}}

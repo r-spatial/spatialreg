@@ -38,7 +38,7 @@ is called.}
   \item{method}{character string: default \code{"eigen"} for use of dense matrices, \code{"Matrix_J"} for sparse matrices (restricted to spatial weights symmetric or similar to symmetric) using methods in the Matrix package; \dQuote{Matrix} provides updating Cholesky decomposition methods. Values of method may also include "LU", which provides an alternative sparse matrix decomposition approach, and the "Chebyshev" and Monte Carlo "MC" approximate log-determinant methods.}
   \item{verbose}{default NULL, use global option value; if TRUE, reports function values during optimization.}
   \item{trs}{default NULL, if given, a vector of powered spatial weights matrix traces output by \code{trW}; when given, used in some Jacobian methods}
-  \item{interval}{search interval for autoregressive parameter when not using method="eigen"; default is c(-1,0.999), \code{optimize} will reset NA/NaN to a bound and gives a warning when the interval is poorly set; method="Matrix" will attempt to search for an appropriate interval, if find\_interval=TRUE (fails on some platforms)}
+  \item{interval}{search interval for autoregressive parameter when not using method="eigen"; default is c(-1,0.999), \code{optimize} will reset NA/NaN to a bound and gives a warning when the interval is poorly set; method="Matrix" will attempt to search for an appropriate interval, if find_interval=TRUE (fails on some platforms)}
   \item{zero.policy}{default NULL, use global option value; Include list of no-neighbour observations in output if TRUE --- otherwise zero.policy is handled within the listw argument}
   \item{tol.solve}{the tolerance for detecting linear dependencies in the columns of matrices to be inverted - passed to \code{solve()} (default=double precision machine tolerance). Errors in \code{solve()} may constitute indications of poorly scaled variables: if the variables have scales differing much from the autoregressive coefficient, the values in this matrix may be very different in scale, and inverting such a matrix is analytically possible by definition, but numerically unstable; rescaling the RHS variables alleviates this better than setting tol.solve to a very small value}
   \item{llprof}{default NULL, can either be an integer, to divide the feasible range into llprof points, or a sequence of spatial coefficient values, at which to evaluate the likelihood function}
@@ -96,8 +96,8 @@ variable in making predictions for the fitting data.
     \item{SSE}{ML sum of squared errors}
     \item{s2}{ML residual variance}
     \item{imat}{ML coefficient covariance matrix (before multiplying by s2)}
-    \item{signal\_trend}{non-spatial component of fitted.values}
-    \item{signal\_stochastic}{spatial component of fitted.values}
+    \item{signal_trend}{non-spatial component of fitted.values}
+    \item{signal_stochastic}{spatial component of fitted.values}
     \item{fitted.values}{sum of non-spatial and spatial components of fitted.values}
     \item{residuals}{difference between observed and fitted values}
   }}

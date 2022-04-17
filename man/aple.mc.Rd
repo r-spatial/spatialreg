@@ -13,7 +13,7 @@ aple.mc(x, listw, nsim, override_similarity_check=FALSE, useTrace=TRUE)
   \item{x}{a zero-mean detrended continuous variable}
   \item{listw}{a \code{listw} object from for example \code{nb2listw}}
   \item{nsim}{number of simulations}
-  \item{override\_similarity\_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
+  \item{override_similarity_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
   \item{useTrace}{default TRUE, use trace of sparse matrix \code{W \%*\% W} (Li et al. (2010)), if FALSE, use crossproduct of eigenvalues of \code{W} as in Li et al. (2007)}
 }
 
