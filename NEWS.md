@@ -1,4 +1,6 @@
-# Version 1.2-2 (development)
+# Version 1.2-3 (development)
+
+* protect definition of USE_FC_LEN_T
 
 * unescape underscores in help pages
 

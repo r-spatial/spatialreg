@@ -1,6 +1,8 @@
-/* Copyright 2019-2021 by Roger S. Bivand. */
+/* Copyright 2019-2022 by Roger S. Bivand. */
 
-#define USE_FC_LEN_T
+#ifndef USE_FC_LEN_T
+# define USE_FC_LEN_T
+#endif
 #include <R.h>
 #include <Rmath.h>
 #include <Rdefines.h>
