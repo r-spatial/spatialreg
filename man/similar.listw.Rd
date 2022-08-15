@@ -10,7 +10,7 @@ similar.listw(listw)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{listw}{a \code{listw} object created for example by \code{nb2listw}}
+  \item{listw}{a \code{listw} object created for example by \code{spdep::nb2listw}}
 }
 
 \value{

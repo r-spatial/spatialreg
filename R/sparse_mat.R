@@ -30,8 +30,8 @@ as_dgRMatrix_listw <- function(listw) {
 	scard <- sum(cardw)
 	z <- .Call("listw2dgR", listw$neighbours, listw$weights,
 		as.integer(cardw), as.integer(scard), PACKAGE="spatialreg")
-	res <- new("dgRMatrix", j=z[[1]], p=p0, Dim=as.integer(c(n, n)),
-		x=z[[2]])
+	res <- as(new("dgRMatrix", j=z[[1]], p=p0, Dim=as.integer(c(n, n)),
+		x=z[[2]]), "generalMatrix")
         colnames(res) <- attr(listw$neighbours, "region.id")
         rownames(res) <- colnames(res)
 	res
@@ -48,8 +48,8 @@ as_dsTMatrix_listw <- function(listw) {
 	z <- .Call("listw2dsT", listw$neighbours, listw$weights,
 		as.integer(cardw), as.integer(scard/2), PACKAGE="spatialreg")
 
-	res <- new("dsTMatrix", i=z[[1]], j=z[[2]], Dim=as.integer(c(n, n)),
-		x=z[[3]])
+	res <- as(new("dsTMatrix", i=z[[1]], j=z[[2]], Dim=as.integer(c(n, n)),
+		x=z[[3]]), "generalMatrix")
         colnames(res) <- attr(listw$neighbours, "region.id")
         rownames(res) <- colnames(res)
 	res
@@ -57,7 +57,7 @@ as_dsTMatrix_listw <- function(listw) {
 
 as_dsCMatrix_I <- function(n) {
 	if (n < 1) stop("matrix must have positive dimensions")
-	as(as(Diagonal(n), "symmetricMatrix"), "CsparseMatrix")
+	as(as(Diagonal(n), "symmetricMatrix"), "generalMatrix")
 }
 
 as_dsCMatrix_IrW <- function(W, rho) {

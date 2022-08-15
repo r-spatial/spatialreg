@@ -10,7 +10,7 @@ cheb_setup <- function(env, q=5, which=1) {
 # W a CSparseMatrix object
 # q order
     n <- nrow(W)
-    IM <- .symDiagonal(n)
+    IM <- as(.symDiagonal(n),  "generalMatrix")
     T <- vector(mode="list", length=(q+1))
     T[[1]] <- IM
     T[[2]] <- W
@@ -66,9 +66,9 @@ cheb_ldet <- function(alpha, env, which=1) {
 # MC approximation setup and run functions
 mcdet_setup <- function(env, p=16, m=30, which=1) {
         if (which == 1) {
-          W <- as(get("listw", envir=env), "CsparseMatrix")
+          W <- as(as(get("listw", envir=env), "CsparseMatrix"), "generalMatrix")
         } else {
-          W <- as(get("listw2", envir=env), "CsparseMatrix")
+          W <- as(as(get("listw2", envir=env), "CsparseMatrix"), "generalMatrix")
         }
 # W a CSparseMatrix object
 # p, m given in papers

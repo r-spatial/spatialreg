@@ -59,21 +59,20 @@ row.names(columbus)[1:10]
 Contiguous neighbours are often used for polygonal spatial entities, here with the **poly2nb** function defaulting to the *queen* criterion - entities are neighbours if they share a boundary point. We see that the entity IDs are copied across to the `nb` object:
 
 ```{r, echo=dothis, eval=dothis}
-library(spdep)
-nb_q <- poly2nb(columbus)
+nb_q <- spdep::poly2nb(columbus)
 nb_q
 attr(nb_q, "region.id")[1:10]
-is.symmetric.nb(nb_q)
+spdep::is.symmetric.nb(nb_q)
 ```
 
 In order to make the object more complicated, let us drop the neighbour links for the 21st entity (noting that the print method reports the ID of the entity with no neighbours, not its number in `1:n`), and plot the resulting map of neighbours:
 
 ```{r, echo=dothis, eval=dothis}
-col2 <- droplinks(nb_q, 21)
+col2 <- spdep::droplinks(nb_q, 21)
 nb_q[[21]]
 col2[[21]]
 col2
-is.symmetric.nb(col2)
+spdep::is.symmetric.nb(col2)
 coords <- st_coordinates(st_centroid(st_geometry(columbus)))
 plot(nb_q, coords, col="grey")
 plot(col2, coords, add=TRUE)
@@ -84,7 +83,7 @@ plot(col2, coords, add=TRUE)
 At present only `listw` objects can be coerced to objects of classes defined in **Matrix**. Because the `style` is lost on coercion, it may not be possible to reconstruct spatial weights as the sparse matrix representation does not preserve it. We will start with symmetric binary weights, first creating a spatial weights object, and signalling that one entity has no neighbours with the `zero.policy` argument (default false). The matrix and graph representations of no-neighbour entities are not obvious.
 
 ```{r, echo=dothis, eval=dothis}
-nb_B <- nb2listw(col2, style="B", zero.policy=TRUE)
+nb_B <- spdep::nb2listw(col2, style="B", zero.policy=TRUE)
 nb_B$style
 ```
 
@@ -103,7 +102,7 @@ rownames(B)[1:10]
 Let us now try to retreive the list of neighbours from the symmetric sparse matrix. At present, we have to coerce from one **Matrix** internal representation to another in order to get to the `"dgCMatrix"` format used inside `mat2listw`, so we coerce to `"dgTMatrix"` from `"dsTMatrix"`. The style is not retreived automatically, but is set to `"M"` to indicate conversion from a matrix. The neighbour links are retreived correctly, as are the IDs:
 
 ```{r, echo=dothis, eval=dothis}
-nb_B1 <- mat2listw(as(B, "dgTMatrix"))
+nb_B1 <- spdep::mat2listw(as(as(B, "TsparseMatrix"), "CsparseMatrix"))
 nb_B1$style
 all.equal(nb_B1$neighbours, col2, check.attributes=FALSE)
 all.equal(attr(nb_B1$neighbours, "region.id"), attr(nb_B$neighbours, "region.id"))
@@ -142,7 +141,7 @@ n * log(rho) + (2 * c(determinant(update(nChol, nW, 1/rho))$modulus))
 The use of row-standardisation leads to asymmetry even if the underlying neighbours are symmetric, unless all entities have matching numbers of neighbours (for example a regular grid on a torus):
 
 ```{r, echo=dothis, eval=dothis}
-nb_W <- nb2listw(col2, style="W", zero.policy=TRUE)
+nb_W <- spdep::nb2listw(col2, style="W", zero.policy=TRUE)
 W <- as(nb_W, "CsparseMatrix")
 str(W)
 all(W == t(W))
@@ -165,7 +164,7 @@ Calculating the log determinant for asymmetric weights (here with symmetric neig
 
 ```{r, echo=dothis, eval=dothis}
 rho <- 0.5
-sum(log(1 - rho * spatialreg::eigenw(nb_W)))
+sum(log(1 - rho * eigenw(nb_W)))
 class(I - rho * W)
 c(determinant(I - rho * W, logarithm=TRUE)$modulus)
 ```
@@ -183,7 +182,7 @@ The `nb2listw` function stores components that can be employed to transform the 
 
 ```{r, echo=dothis, eval=dothis}
 d <- attr(nb_W$weights, "comp")$d
-all.equal(d, card(col2))
+all.equal(d, spdep::card(col2))
 ```
 If we first restore the row-standarised matrix to its binary form (which must be symmetric), we can pre- and post-multiply by the square roots of the inverted neighbour counts, yielding a symmetric matrix with the appropriate properties:
 
@@ -215,7 +214,7 @@ if (!require("RSpectra", quietly=TRUE)) dothis <- FALSE
 In this case, the results are trivial with small `k`.
 
 ```{r, echo=dothis, eval=dothis}
-1/range(spatialreg::eigenw(nb_W))
+1/range(eigenw(nb_W))
 1/Re(c(eigs(W, k=1, which="SR")$values, eigs(W, k=1, which="LR")$values))
 ```
 Using row-standardisation has the nice feature of setting the upper bound to unity, and there are graph methods for finding out whether the lower bound is `-1`.
@@ -244,7 +243,7 @@ We can also convert this graph pack to the same matrix, but note that `get.adjac
 B1 <- get.adjacency(g1)
 class(B1)
 object.size(B1)
-all.equal(B, as(as(B1, "dgTMatrix"), "symmetricMatrix"))
+all.equal(B, as(B1, "CsparseMatrix"))
 ```
 
 ### Graph components in **spdep**
@@ -252,7 +251,7 @@ all.equal(B, as(as(B1, "dgTMatrix"), "symmetricMatrix"))
 A simple example of using **igraph** to do the same as an existing **spdep** function is Nicholas Lewin-Koh's `n.comp.nb` from the early days of the package. It is useful to know whether an `nb` object is divided up into separate subgraphs, and which entities are members of which such subgraph.
 
 ```{r, echo=dothis, eval=dothis}
-res <- n.comp.nb(col2)
+res <- spdep::n.comp.nb(col2)
 table(res$comp.id)
 ```
 
@@ -270,7 +269,7 @@ all.equal(c1$csize, c(table(res$comp.id)), check.attributes=FALSE)
 The same holds for the row-standardised variant:
 
 ```{r, echo=dothis, eval=dothis}
-W <- as(nb2listw(col2, style="W", zero.policy=TRUE), "CsparseMatrix")
+W <- as(spdep::nb2listw(col2, style="W", zero.policy=TRUE), "CsparseMatrix")
 g1W <- graph.adjacency(W, mode="directed", weighted="W")
 c1W <- clusters(g1W)
 all.equal(c1W$membership, res$comp.id)
@@ -292,15 +291,15 @@ str(sp_mat)
 If we do the same in **spdep**, using `nblag` to a maximum number of lag orders - the diameter, but which is unknown in advance (the largest lag order for which the number of links is greater than zero), we run into the problem of how to represent missing neighbour information. 
 
 ```{r, echo=dothis, eval=dothis}
-nbl10 <- nblag(col2, maxlag=10)
-vals <- sapply(nbl10, function(x) sum(card(x)))
+nbl10 <- spdep::nblag(col2, maxlag=10)
+vals <- sapply(nbl10, function(x) sum(spdep::card(x)))
 zero <- which(vals == 0)
 zero[1]-1
 ```
 If we insert zero into the weights matrix where there is no connection using `zero.policy=TRUE`, we generate a zero shortest path. If we are to create a matrix that matches the one produced by `shortest.paths`, we need to set all these non-structural zeros to infinity (the length of the path between unconnected nodes), and re-instate structural zeros on the diagonal:
 
 ```{r, echo=dothis, eval=dothis}
-lmat <- lapply(nbl10[1:(zero[1]-1)], nb2mat, style="B", zero.policy=TRUE)
+lmat <- lapply(nbl10[1:(zero[1]-1)], spdep::nb2mat, style="B", zero.policy=TRUE)
 mat <- matrix(0, n, n)
 for (i in seq(along=lmat)) mat = mat + i*lmat[[i]]
 mat[mat==0] <- Inf
@@ -315,22 +314,22 @@ Another area in which a graph representation might prove useful is in trying to 
 The internal function find_q1_q2 returns the number of non-singleton components, and the number of these that meet this condition. It does this for each block/subgraph by testing the condition until it meets w[j,k] > 0, at which point it breaks. Smirnov and Anselin (2009) state that rook neighbours on a regular grid meet the condition:
 
 ```{r, echo=dothis, eval=dothis}
-nb_r <- cell2nb(7, 7, type="rook")
-nb_rW <- nb2listw(nb_r, style="W")
+nb_r <- spdep::cell2nb(7, 7, type="rook")
+nb_rW <- spdep::nb2listw(nb_r, style="W")
 spdep:::find_q1_q2(nb_rW)
 ```
 
 One block/graph component is found, and this one meets the cyclical matrix condition, as also shown by the domain:
 
 ```{r, echo=dothis, eval=dothis}
-1/range(Re(spatialreg::eigenw(spatialreg::similar.listw(nb_rW))))
+1/range(Re(eigenw(similar.listw(nb_rW))))
 ```
 
 This does not apply to the spatial weights we have been using above, with two non-singleton components, neither meeting the cyclical matrix condition:
 
 ```{r, echo=dothis, eval=dothis}
 spdep:::find_q1_q2(nb_W)
-1/range(Re(spatialreg::eigenw(spatialreg::similar.listw(nb_W))))
+1/range(Re(eigenw(similar.listw(nb_W))))
 ```
 
 By construction, all two-node connected graph components also meet the condition, as the eigenvalues sum to zero, and the maximum is unity, so the minimum must be -1.

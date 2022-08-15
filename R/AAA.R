@@ -13,6 +13,10 @@ assign("rlecuyerSeed", rep(12345, 6), envir = .spatialregOptions)
 
 setOldClass(c("listw"))
 
+.onLoad <- function(lib, pkg) {
+  options(Matrix.warnDeprecatedCoerce = 1L)
+}
+
 Hausman.test <- function(object, ...)
     UseMethod("Hausman.test")
 

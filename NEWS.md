@@ -1,4 +1,10 @@
-# Version 1.2-3 (development)
+# Version 1.2-4 (development)
+
+* updating coercion for **Matrix** 1.4-2
+
+* updating dontrun/donttest for package split (previously unchecked, mostly in `aple`)
+
+# Version 1.2-3 (2022-04-18)
 
 * protect definition of USE_FC_LEN_T
 

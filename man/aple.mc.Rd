@@ -11,7 +11,7 @@ aple.mc(x, listw, nsim, override_similarity_check=FALSE, useTrace=TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a zero-mean detrended continuous variable}
-  \item{listw}{a \code{listw} object from for example \code{nb2listw}}
+  \item{listw}{a \code{listw} object from for example \code{spdep::nb2listw}}
   \item{nsim}{number of simulations}
   \item{override_similarity_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
   \item{useTrace}{default TRUE, use trace of sparse matrix \code{W \%*\% W} (Li et al. (2010)), if FALSE, use crossproduct of eigenvalues of \code{W} as in Li et al. (2007)}
@@ -27,9 +27,9 @@ aple.mc(x, listw, nsim, override_similarity_check=FALSE, useTrace=TRUE)
 \examples{
 \dontrun{
 wheat <- st_read(system.file("shapes/wheat.shp", package="spData")[1], quiet=TRUE)
-nbr1 <- poly2nb(wheat, queen=FALSE)
-nbrl <- nblag(nbr1, 2)
-nbr12 <- nblag_cumul(nbrl)
+nbr1 <- spdep::poly2nb(wheat, queen=FALSE)
+nbrl <- spdep::nblag(nbr1, 2)
+nbr12 <- spdep::nblag_cumul(nbrl)
 wheat_g <- wheat
 st_geometry(wheat_g) <- NULL
 cms0 <- with(wheat_g, tapply(yield, c, median))
@@ -39,7 +39,7 @@ oldRNG <- RNGkind()
 RNGkind("L'Ecuyer-CMRG")
 set.seed(1L)
 boot_out_ser <- aple.mc(as.vector(scale(wheat$yield_detrend, scale=FALSE)),
- nb2listw(nbr12, style="W"), nsim=500)
+ spdep::nb2listw(nbr12, style="W"), nsim=500)
 plot(boot_out_ser)
 boot_out_ser
 library(parallel)
@@ -56,7 +56,7 @@ if (!get.mcOption()) {
   mc.reset.stream()
 }
 boot_out_par <- aple.mc(as.vector(scale(wheat$yield_detrend, scale=FALSE)),
-    nb2listw(nbr12, style="W"), nsim=500)
+    spdep::nb2listw(nbr12, style="W"), nsim=500)
 if (!get.mcOption()) {
   set.ClusterOption(NULL)
   stopCluster(cl)

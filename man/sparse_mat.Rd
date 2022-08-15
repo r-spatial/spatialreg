@@ -76,6 +76,7 @@ lw <- spdep::nb2listw(nb7rt)
 if (FALSE) {
 # Only needed in some simulation settings where the input and
 # output distributions must agree in all but autocorrelation
+e <- eigenw(lw)
 x <- apply(x, 2, scale)
 st <- apply(x, 2, function(x) shapiro.test(x)$p.value)
 x <- x[, (st > 0.2 & st < 0.8)]

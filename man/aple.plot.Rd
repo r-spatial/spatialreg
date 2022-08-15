@@ -13,7 +13,7 @@ localAple(x, listw, override_similarity_check=FALSE, useTrace=TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a zero-mean detrended continuous variable}
-  \item{listw}{a \code{listw} object from for example \code{nb2listw}}
+  \item{listw}{a \code{listw} object from for example \code{spdep::nb2listw}}
   \item{override_similarity_check}{default FALSE, if TRUE - typically for row-standardised weights with asymmetric underlying general weights - similarity is not checked}
   \item{useTrace}{default TRUE, use trace of sparse matrix \code{W \%*\% W} (Li et al. (2010)), if FALSE, use crossproduct of eigenvalues of \code{W} as in Li et al. (2007)}
   \item{do.plot}{default TRUE: should a scatterplot be drawn}
@@ -36,14 +36,14 @@ localAple(x, listw, override_similarity_check=FALSE, useTrace=TRUE)
 \examples{
 \dontrun{
 wheat <- st_read(system.file("shapes/wheat.shp", package="spData")[1], quiet=TRUE)
-nbr1 <- poly2nb(wheat, queen=FALSE)
-nbrl <- nblag(nbr1, 2)
-nbr12 <- nblag_cumul(nbrl)
+nbr1 <- spdep::poly2nb(wheat, queen=FALSE)
+nbrl <- spdep::nblag(nbr1, 2)
+nbr12 <- spdep::nblag_cumul(nbrl)
 cms0 <- with(as.data.frame(wheat), tapply(yield, c, median))
 cms1 <- c(model.matrix(~ factor(c) -1, data=wheat) \%*\% cms0)
 wheat$yield_detrend <- wheat$yield - cms1
 plt_out <- aple.plot(as.vector(scale(wheat$yield_detrend, scale=FALSE)),
- nb2listw(nbr12, style="W"), cex=0.6)
+ spdep::nb2listw(nbr12, style="W"), cex=0.6)
 lm_obj <- lm(Y ~ X, plt_out)
 abline(lm_obj)
 abline(v=0, h=0, lty=2)
@@ -52,7 +52,7 @@ infl <- as.integer(rownames(zz))
 points(plt_out$X[infl], plt_out$Y[infl], pch=3, cex=0.6, col="red")
 crossprod(plt_out$Y, plt_out$X)/crossprod(plt_out$X)
 wheat$localAple <- localAple(as.vector(scale(wheat$yield_detrend, scale=FALSE)),
- nb2listw(nbr12, style="W"))
+ spdep::nb2listw(nbr12, style="W"))
 mean(wheat$localAple)
 hist(wheat$localAple)
 opar <- par(no.readonly=TRUE)
