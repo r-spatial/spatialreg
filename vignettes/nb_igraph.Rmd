@@ -240,10 +240,14 @@ object.size(g1)
 We can also convert this graph pack to the same matrix, but note that `get.adjacency` chooses a particular class of sparse matrix to be returned, so that the conversion process typically leads many matrices to fewer graph types, and back to fewer matrix types:
 
 ```{r, echo=dothis, eval=dothis}
-B1 <- get.adjacency(g1)
-class(B1)
-object.size(B1)
-all.equal(B, as(B1, "CsparseMatrix"))
+# Matrix 1.4-2 vulnerability work-around
+ow <- options("warn")$warn
+options("warn"=2L)
+B1 <- try(get.adjacency(g1), silent=TRUE)
+if (!inherits(B1, "try-error")) print(class(B1))
+if (!inherits(B1, "try-error")) print(object.size(B1))
+if (!inherits(B1, "try-error")) print(all.equal(B, as(B1, "CsparseMatrix")))
+options("warn"=ow)
 ```
 
 ### Graph components in **spdep**

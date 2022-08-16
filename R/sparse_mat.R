@@ -116,7 +116,7 @@ powerWeights <- function(W, rho, order=250, X, tol=.Machine$double.eps^(3/5)) {
 
 invIrM <- function(neighbours, rho, glist=NULL, style="W", method="solve", 
 	feasible=NULL) {
-	if(class(neighbours) != "nb") stop("Not a neighbours list")
+	if(!inherits(neighbours, "nb")) stop("Not a neighbours list")
 	invIrW(nb2listw(neighbours, glist=glist, style=style), rho=rho, 
 		method=method, feasible=feasible)
 }
