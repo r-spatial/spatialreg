@@ -45,7 +45,7 @@ citEntry(entry = "Article",
   volume       = "45",
   number       = "2",
   pages        = "150--179",
-  url          = "https://doi.org/10.1111/gean.12008",
+  doi          = "10.1111/gean.12008",
 
   textVersion  =
   paste("Bivand, R. S., Hauke, J., and Kossowski, T. (2013).",

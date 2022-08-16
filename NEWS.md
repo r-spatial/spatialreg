@@ -1,4 +1,4 @@
-# Version 1.2-4 (development)
+# Version 1.2-5 (development)
 
 * updating coercion for **Matrix** 1.4-2
 

@@ -150,14 +150,12 @@ eigs <- eigenw(listw_NY)
 esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY)
 summary(esar0)
-}
 system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="eigen",
  control=list(pre_eig=eigs)))
 res <- summary(esar1f)
 print(res)
 coef(res)
-\dontrun{
 sqrt(diag(res$resvar))
 sqrt(diag(esar1f$fit$imat)*esar1f$fit$s2)
 sqrt(diag(esar1f$fdHess))
@@ -168,12 +166,10 @@ system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix",
  control=list(super=TRUE)))
 summary(esar1M)
-}
 esar1wf <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8, family="SAR", method="eigen",
  control=list(pre_eig=eigs))
 summary(esar1wf)
-\dontrun{
 system.time(esar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="SAR", method="Matrix"))
 summary(esar1wM)
@@ -202,6 +198,7 @@ system.time(ecar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="CAR", method="Matrix"))
 summary(ecar1wM)
 }
+\dontrun{
 require("sf", quietly=TRUE)
 nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
 ft.SID74 <- sqrt(1000)*(sqrt(nc.sids$SID74/nc.sids$BIR74) +
@@ -260,6 +257,7 @@ ecarIVaw <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata.4,
 summary(ecarIVaw)
 nc.sids$fitIV <- append(fitted.values(ecarIVaw), NA, outl-1)
 plot(nc.sids[,"fitIV"], nbreaks=12) # Cressie 1993, p. 565
+}
 \dontrun{
 data(oldcol, package="spdep")
 COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
