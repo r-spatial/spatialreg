@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/r-spatial/spatialreg/">
+  <a href="https://github.com/r-spatial/spatialreg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,167 +81,166 @@
 
       
 
-      </header><script src="SpatialFiltering_files/header-attrs-2.11/header-attrs.js"></script><script src="SpatialFiltering_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Moran Eigenvectors</h1>
-                        <h4 class="author">Roger Bivand</h4>
+                        <h4 data-toc-skip class="author">Roger Bivand</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/r-spatial/spatialreg/blob/master/vignettes/SpatialFiltering.Rmd"><code>vignettes/SpatialFiltering.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-spatial/spatialreg/blob/HEAD/vignettes/SpatialFiltering.Rmd" class="external-link"><code>vignettes/SpatialFiltering.Rmd</code></a></small>
       <div class="hidden name"><code>SpatialFiltering.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction-1" class="anchor"></a>Introduction<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+<div class="section level2">
+<h2 id="introduction-1">Introduction<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a><a class="anchor" aria-label="anchor" href="#introduction-1"></a>
 </h2>
-<p>The Moran eigenvector approach <span class="citation">(Dray, Legendre, and Peres-Neto <a href="#ref-dray+legendre+peres-neto:06" role="doc-biblioref">2006</a>; Griffith and Peres-Neto <a href="#ref-griffith+peres-neto:06" role="doc-biblioref">2006</a>)</span> involved the spatial patterns represented by maps of eigenvectors; by choosing suitable orthogonal patterns and adding them to a linear or generalised linear model, the spatial dependence present in the residuals can be moved into the model.</p>
+<p>The Moran eigenvector approach <span class="citation">(<a href="#ref-dray+legendre+peres-neto:06" role="doc-biblioref">Dray, Legendre, and Peres-Neto 2006</a>; <a href="#ref-griffith+peres-neto:06" role="doc-biblioref">Griffith and Peres-Neto 2006</a>)</span> involved the spatial patterns represented by maps of eigenvectors; by choosing suitable orthogonal patterns and adding them to a linear or generalised linear model, the spatial dependence present in the residuals can be moved into the model.</p>
 <p>It uses brute force to search the set of eigenvectors of the matrix <span class="math inline">\(\mathbf{M W M}\)</span>, where</p>
 <p><span class="math display">\[\mathbf{M} = \mathbf{I} - \mathbf{X}(\mathbf{X}^{\rm T}
 \mathbf{X})^{-1}\mathbf{X}^{\rm T}\]</span> is a symmetric and idempotent projection matrix and <span class="math inline">\(\mathbf{W}\)</span> are the spatial weights. In the spatial lag form of <span><code>SpatialFiltering</code></span> and in the GLM <span><code>ME</code></span> form below, <span class="math inline">\(\mathbf{X}\)</span> is an <span class="math inline">\(n\)</span>-vector of ones, that is the intercept only.</p>
-<p>In its general form, <span><code>SpatialFiltering</code></span> chooses the subset of the <span class="math inline">\(n\)</span> eigenvectors that reduce the residual spatial autocorrelation in the error of the model with covariates. The lag form adds the covariates in assessment of which eigenvectors to choose, but does not use them in constructing the eigenvectors. <span><code>SpatialFiltering</code></span> was implemented and contributed by Yongwan Chun and Michael Tiefelsdorf, and is presented in <span class="citation">Tiefelsdorf and Griffith (<a href="#ref-tiefelsdorf+griffith:07" role="doc-biblioref">2007</a>)</span>; <span><code>ME</code></span> is based on Matlab code by Pedro Peres-Neto and is discussed in <span class="citation">Dray, Legendre, and Peres-Neto (<a href="#ref-dray+legendre+peres-neto:06" role="doc-biblioref">2006</a>)</span> and <span class="citation">Griffith and Peres-Neto (<a href="#ref-griffith+peres-neto:06" role="doc-biblioref">2006</a>)</span>.</p>
+<p>In its general form, <span><code>SpatialFiltering</code></span> chooses the subset of the <span class="math inline">\(n\)</span> eigenvectors that reduce the residual spatial autocorrelation in the error of the model with covariates. The lag form adds the covariates in assessment of which eigenvectors to choose, but does not use them in constructing the eigenvectors. <span><code>SpatialFiltering</code></span> was implemented and contributed by Yongwan Chun and Michael Tiefelsdorf, and is presented in <span class="citation"><a href="#ref-tiefelsdorf+griffith:07" role="doc-biblioref">Tiefelsdorf and Griffith</a> (<a href="#ref-tiefelsdorf+griffith:07" role="doc-biblioref">2007</a>)</span>; <span><code>ME</code></span> is based on Matlab code by Pedro Peres-Neto and is discussed in <span class="citation"><a href="#ref-dray+legendre+peres-neto:06" role="doc-biblioref">Dray, Legendre, and Peres-Neto</a> (<a href="#ref-dray+legendre+peres-neto:06" role="doc-biblioref">2006</a>)</span> and <span class="citation"><a href="#ref-griffith+peres-neto:06" role="doc-biblioref">Griffith and Peres-Neto</a> (<a href="#ref-griffith+peres-neto:06" role="doc-biblioref">2006</a>)</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">NY8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/NY8_utm18.shp"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Reading layer `NY8_utm18' from data source 
-##   `/home/rsb/lib/r_libs/spData/shapes/NY8_utm18.shp' using driver `ESRI Shapefile'
-## Simple feature collection with 281 features and 17 fields
-## Geometry type: POLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 358241.9 ymin: 4649755 xmax: 480393.1 ymax: 4808545
-## Projected CRS: WGS 84 / UTM zone 18N</code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/" class="external-link">spdep</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/" class="external-link">"sf"</a></span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">NY8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/NY8_utm18.shp"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Reading layer `NY8_utm18' from data source </span></span>
+<span><span class="co">##   `/home/rsb/lib/r_libs/spData/shapes/NY8_utm18.shp' using driver `ESRI Shapefile'</span></span>
+<span><span class="co">## Simple feature collection with 281 features and 17 fields</span></span>
+<span><span class="co">## Geometry type: POLYGON</span></span>
+<span><span class="co">## Dimension:     XY</span></span>
+<span><span class="co">## Bounding box:  xmin: 358241.9 ymin: 4649755 xmax: 480393.1 ymax: 4808545</span></span>
+<span><span class="co">## Projected CRS: WGS 84 / UTM zone 18N</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">NY_nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spdep/man/read.gal.html">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"weights/NY_nb.gal"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span>, override.id<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">NY_nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"weights/NY_nb.gal"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span>, override.id<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span>
-<span class="va">nySFE</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpatialFiltering.html">SpatialFiltering</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span>, nb<span class="op">=</span><span class="va">NY_nb</span>, style<span class="op">=</span><span class="st">"W"</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">nylmSFE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">nySFE</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">nylmSFE</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + fitted(nySFE), 
-##     data = NY8)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.5184 -0.3523 -0.0105  0.3221  3.1964 
-## 
-## Coefficients:
-##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        -0.51728    0.14606  -3.542 0.000469 ***
-## PEXPOSURE           0.04884    0.03230   1.512 0.131717    
-## PCTAGE65P           3.95089    0.55776   7.083 1.25e-11 ***
-## PCTOWNHOME         -0.56004    0.15688  -3.570 0.000423 ***
-## fitted(nySFE)vec13 -2.09397    0.60534  -3.459 0.000630 ***
-## fitted(nySFE)vec44 -2.24003    0.60534  -3.700 0.000261 ***
-## fitted(nySFE)vec6   1.02979    0.60534   1.701 0.090072 .  
-## fitted(nySFE)vec38  1.29282    0.60534   2.136 0.033613 *  
-## fitted(nySFE)vec20  1.10064    0.60534   1.818 0.070150 .  
-## fitted(nySFE)vec14 -1.05105    0.60534  -1.736 0.083662 .  
-## fitted(nySFE)vec75  1.90600    0.60534   3.149 0.001826 ** 
-## fitted(nySFE)vec21 -1.06331    0.60534  -1.757 0.080138 .  
-## fitted(nySFE)vec36 -1.17861    0.60534  -1.947 0.052578 .  
-## fitted(nySFE)vec61 -1.08582    0.60534  -1.794 0.073986 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6053 on 267 degrees of freedom
-## Multiple R-squared:  0.3401, Adjusted R-squared:  0.308 
-## F-statistic: 10.58 on 13 and 267 DF,  p-value: &lt; 2.2e-16</code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/" class="external-link">spatialreg</a></span><span class="op">)</span></span>
+<span><span class="va">nySFE</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpatialFiltering.html">SpatialFiltering</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span>, nb<span class="op">=</span><span class="va">NY_nb</span>, style<span class="op">=</span><span class="st">"W"</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">nylmSFE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">nySFE</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">nylmSFE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## lm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + fitted(nySFE), </span></span>
+<span><span class="co">##     data = NY8)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residuals:</span></span>
+<span><span class="co">##     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">## -1.5184 -0.3523 -0.0105  0.3221  3.1964 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##                    Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)        -0.51728    0.14606  -3.542 0.000469 ***</span></span>
+<span><span class="co">## PEXPOSURE           0.04884    0.03230   1.512 0.131717    </span></span>
+<span><span class="co">## PCTAGE65P           3.95089    0.55776   7.083 1.25e-11 ***</span></span>
+<span><span class="co">## PCTOWNHOME         -0.56004    0.15688  -3.570 0.000423 ***</span></span>
+<span><span class="co">## fitted(nySFE)vec13 -2.09397    0.60534  -3.459 0.000630 ***</span></span>
+<span><span class="co">## fitted(nySFE)vec44 -2.24003    0.60534  -3.700 0.000261 ***</span></span>
+<span><span class="co">## fitted(nySFE)vec6   1.02979    0.60534   1.701 0.090072 .  </span></span>
+<span><span class="co">## fitted(nySFE)vec38  1.29282    0.60534   2.136 0.033613 *  </span></span>
+<span><span class="co">## fitted(nySFE)vec20  1.10064    0.60534   1.818 0.070150 .  </span></span>
+<span><span class="co">## fitted(nySFE)vec14 -1.05105    0.60534  -1.736 0.083662 .  </span></span>
+<span><span class="co">## fitted(nySFE)vec75  1.90600    0.60534   3.149 0.001826 ** </span></span>
+<span><span class="co">## fitted(nySFE)vec21 -1.06331    0.60534  -1.757 0.080138 .  </span></span>
+<span><span class="co">## fitted(nySFE)vec36 -1.17861    0.60534  -1.947 0.052578 .  </span></span>
+<span><span class="co">## fitted(nySFE)vec61 -1.08582    0.60534  -1.794 0.073986 .  </span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residual standard error: 0.6053 on 267 degrees of freedom</span></span>
+<span><span class="co">## Multiple R-squared:  0.3401, Adjusted R-squared:  0.308 </span></span>
+<span><span class="co">## F-statistic: 10.58 on 13 and 267 DF,  p-value: &lt; 2.2e-16</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nylm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">nylm</span>, <span class="va">nylmSFE</span><span class="op">)</span></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME
-## Model 2: Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + fitted(nySFE)
-##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
-## 1    277 119.619                                  
-## 2    267  97.837 10    21.782 5.9444 3.988e-08 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<code class="sourceCode R"><span><span class="va">nylm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Z</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">nylm</span>, <span class="va">nylmSFE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Analysis of Variance Table</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Model 1: Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME</span></span>
+<span><span class="co">## Model 2: Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + fitted(nySFE)</span></span>
+<span><span class="co">##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    </span></span>
+<span><span class="co">## 1    277 119.619                                  </span></span>
+<span><span class="co">## 2    267  97.837 10    21.782 5.9444 3.988e-08 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre>
 <p>Since the <span><code>SpatialFiltering</code></span> approach does not allow weights to be used, we see that the residual autocorrelation of the original linear model is absorbed, or ‘whitened’ by the inclusion of selected eigenvectors in the model, but that the covariate coefficients change little. The addition of these eigenvectors – each representing an independent spatial pattern – relieves the residual autocorrelation, but otherwise makes few changes in the substantive coefficient values.</p>
 <p>The <span><code>ME</code></span> function also searches for eigenvectors from the spatial lag variant of the underlying model, but in a GLM framework. The criterion is a permutation bootstrap test on Moran’s <span class="math inline">\(I\)</span> for regression residuals, and in this case, because of the very limited remaining spatial autocorrelation, is set at <span class="math inline">\(\alpha = 0.5\)</span>. Even with this very generous stopping rule, only few eigenvectors are chosen; their combined contribution only just improves the fit of the GLM model.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">NYlistwW</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spdep/man/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">NY_nb</span>, style <span class="op">=</span> <span class="st">"W"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">111</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">NYlistwW</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">NY_nb</span>, style <span class="op">=</span> <span class="st">"W"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">111</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyME</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ME.html">ME</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span>, offset<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span>, family<span class="op">=</span><span class="st">"poisson"</span>, listw<span class="op">=</span><span class="va">NYlistwW</span>, alpha<span class="op">=</span><span class="fl">0.44</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nyME</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ME.html">ME</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">NY8</span>, offset<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span>, family<span class="op">=</span><span class="st">"poisson"</span>, listw<span class="op">=</span><span class="va">NYlistwW</span>, alpha<span class="op">=</span><span class="fl">0.44</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyME</span></code></pre></div>
-<pre><code>##   Eigenvector ZI pr(ZI)
-## 0          NA NA   0.31
-## 1          24 NA   0.44
-## 2         223 NA   0.42
-## 3         206 NA   0.43
-## 4         169 NA   0.48</code></pre>
+<code class="sourceCode R"><span><span class="va">nyME</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Eigenvector ZI pr(ZI)</span></span>
+<span><span class="co">## 0          NA NA   0.31</span></span>
+<span><span class="co">## 1          24 NA   0.44</span></span>
+<span><span class="co">## 2         223 NA   0.42</span></span>
+<span><span class="co">## 3         206 NA   0.43</span></span>
+<span><span class="co">## 4         169 NA   0.48</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">NY8</span><span class="op">$</span><span class="va">eigen_24</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
-<span class="va">NY8</span><span class="op">$</span><span class="va">eigen_223</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">NY8</span><span class="op">$</span><span class="va">eigen_24</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">NY8</span><span class="op">$</span><span class="va">eigen_223</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyglmME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/offset.html">offset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span>, family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">nyglmME</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8)) + 
-##     fitted(nyME), family = "poisson", data = NY8)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.9695  -0.9875  -0.2365   0.6506   3.3866  
-## 
-## Coefficients:
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        -8.13431    0.18388 -44.237  &lt; 2e-16 ***
-## PEXPOSURE           0.14136    0.03134   4.511 6.45e-06 ***
-## PCTAGE65P           4.16875    0.60149   6.931 4.19e-12 ***
-## PCTOWNHOME         -0.39290    0.19222  -2.044  0.04096 *  
-## fitted(nyME)vec24   1.62658    0.72243   2.252  0.02435 *  
-## fitted(nyME)vec223  0.92941    0.70391   1.320  0.18671    
-## fitted(nyME)vec206 -0.11559    0.68987  -0.168  0.86693    
-## fitted(nyME)vec169 -1.82674    0.68142  -2.681  0.00735 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for poisson family taken to be 1)
-## 
-##     Null deviance: 428.25  on 280  degrees of freedom
-## Residual deviance: 340.08  on 273  degrees of freedom
-## AIC: Inf
-## 
-## Number of Fisher Scoring iterations: 5</code></pre>
+<code class="sourceCode R"><span><span class="va">nyglmME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/offset.html" class="external-link">offset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">nyME</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span>, family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">nyglmME</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## glm(formula = Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8)) + </span></span>
+<span><span class="co">##     fitted(nyME), family = "poisson", data = NY8)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Deviance Residuals: </span></span>
+<span><span class="co">##     Min       1Q   Median       3Q      Max  </span></span>
+<span><span class="co">## -2.9695  -0.9875  -0.2365   0.6506   3.3866  </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##                    Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">## (Intercept)        -8.13431    0.18388 -44.237  &lt; 2e-16 ***</span></span>
+<span><span class="co">## PEXPOSURE           0.14136    0.03134   4.511 6.45e-06 ***</span></span>
+<span><span class="co">## PCTAGE65P           4.16875    0.60149   6.931 4.19e-12 ***</span></span>
+<span><span class="co">## PCTOWNHOME         -0.39290    0.19222  -2.044  0.04096 *  </span></span>
+<span><span class="co">## fitted(nyME)vec24   1.62658    0.72243   2.252  0.02435 *  </span></span>
+<span><span class="co">## fitted(nyME)vec223  0.92941    0.70391   1.320  0.18671    </span></span>
+<span><span class="co">## fitted(nyME)vec206 -0.11559    0.68987  -0.168  0.86693    </span></span>
+<span><span class="co">## fitted(nyME)vec169 -1.82674    0.68142  -2.681  0.00735 ** </span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## (Dispersion parameter for poisson family taken to be 1)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     Null deviance: 428.25  on 280  degrees of freedom</span></span>
+<span><span class="co">## Residual deviance: 340.08  on 273  degrees of freedom</span></span>
+<span><span class="co">## AIC: Inf</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Number of Fisher Scoring iterations: 5</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyGLMp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/offset.html">offset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span>,family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">nyGLMp</span>, <span class="va">nyglmME</span>, test<span class="op">=</span><span class="st">"Chisq"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Analysis of Deviance Table
-## 
-## Model 1: Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8))
-## Model 2: Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8)) + 
-##     fitted(nyME)
-##   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)  
-## 1       277     353.35                       
-## 2       273     340.08  4   13.269  0.01003 *
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<code class="sourceCode R"><span><span class="va">nyGLMp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Cases</span><span class="op">~</span><span class="va">PEXPOSURE</span><span class="op">+</span><span class="va">PCTAGE65P</span><span class="op">+</span><span class="va">PCTOWNHOME</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/offset.html" class="external-link">offset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">POP8</span><span class="op">)</span><span class="op">)</span>, data<span class="op">=</span><span class="va">NY8</span>,family<span class="op">=</span><span class="st">"poisson"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">nyGLMp</span>, <span class="va">nyglmME</span>, test<span class="op">=</span><span class="st">"Chisq"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Analysis of Deviance Table</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Model 1: Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8))</span></span>
+<span><span class="co">## Model 2: Cases ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME + offset(log(POP8)) + </span></span>
+<span><span class="co">##     fitted(nyME)</span></span>
+<span><span class="co">##   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)  </span></span>
+<span><span class="co">## 1       277     353.35                       </span></span>
+<span><span class="co">## 2       273     340.08  4   13.269  0.01003 *</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre>
 <p>Figure <span class="math display">\[fig:geigen2\]</span> shows the spatial patterns chosen to match the very small amount of spatial autocorrelation remaining in the model. As with the other Poisson regressions, the closeness to TCE sites is highly significant. Since, however, many TCE sites are also in or close to more densely populated urban areas with the possible presence of both point-source and non-point-source pollution, it would be premature to take such results simply at their face value. There is, however, a potentially useful contrast between the cities of Binghamton in the south of the study area with several sites in its vicinity, and Syracuse in the north without TCE sites in this data set.</p>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-dray+legendre+peres-neto:06">
-<p>Dray, S., P. Legendre, and P. R. Peres-Neto. 2006. “Spatial Modeling: A Comprehensive Framework for Principle Coordinate Analysis of Neighbor Matrices (PCNM).” <em>Ecological Modelling</em> 196: 483–93.</p>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-dray+legendre+peres-neto:06" class="csl-entry">
+Dray, S., P. Legendre, and P. R. Peres-Neto. 2006. <span>“Spatial Modeling: A Comprehensive Framework for Principle Coordinate Analysis of Neighbor Matrices (<span>PCNM</span>).”</span> <em>Ecological Modelling</em> 196: 483–93.
 </div>
-<div id="ref-griffith+peres-neto:06">
-<p>Griffith, D. A., and P. R. Peres-Neto. 2006. “Spatial Modeling in Ecology: The Flexibility of Eigenfunction Spatial Analyses.” <em>Ecology</em> 87: 2603–13.</p>
+<div id="ref-griffith+peres-neto:06" class="csl-entry">
+Griffith, D. A., and P. R. Peres-Neto. 2006. <span>“Spatial Modeling in Ecology: The Flexibility of Eigenfunction Spatial Analyses.”</span> <em>Ecology</em> 87: 2603–13.
 </div>
-<div id="ref-tiefelsdorf+griffith:07">
-<p>Tiefelsdorf, M., and D. A. Griffith. 2007. “Semiparametric Filtering of Spatial Autocorrelation: The Eigenvector Approach.” <em>Environment and Planning A</em> 39: 1193–1221.</p>
+<div id="ref-tiefelsdorf+griffith:07" class="csl-entry">
+Tiefelsdorf, M., and D. A. Griffith. 2007. <span>“Semiparametric Filtering of Spatial Autocorrelation: The Eigenvector Approach.”</span> <em>Environment and Planning A</em> 39: 1193–1221.
 </div>
 </div>
 </div>
@@ -268,11 +263,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Roger Bivand, Gianfranco Piras.</p>
+  <p></p>
+<p>Developed by Roger Bivand, Gianfranco Piras.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -280,6 +277,8 @@
 
   
 
+
+  
 
   </body>
 </html>
