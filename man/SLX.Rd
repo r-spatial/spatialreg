@@ -44,10 +44,10 @@ for the data on which the model was fitted. Should have row names corresponding 
 }
 
 \value{
-The \code{lmSLX} function returns an \dQuote{lm} object with a \dQuote{mixedImps} list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts calculated using \code{gmodels::estimable()}.
+The \code{lmSLX} function returns an \dQuote{lm} object with a \dQuote{mixedImps} list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts calculated using a simplified local copy of the estimable function from the gmodels package.
 }
 
-\seealso{\code{\link{lm}}, \code{\link[gmodels]{estimable}}
+\seealso{\code{\link{lm}}
 }
 
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}}

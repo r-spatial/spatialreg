@@ -1,4 +1,8 @@
-# Version 1.2-6 (development)
+# Version 1.2-7 (development)
+
+
+
+# Version 1.2-6 (2022-10-07)
 
 * make local copy of `gmodels::estimable()` for lm objects only, add authors to package contributors
 
