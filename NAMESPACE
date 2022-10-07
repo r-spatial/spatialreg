@@ -29,7 +29,6 @@ importFrom("graphics", "plot")
 importFrom(splines, interpSpline)
 importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
-importFrom(gmodels, estimable)
 
 ##################
 # ML SE

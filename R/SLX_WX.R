@@ -137,8 +137,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 indirImps <- sum_lm_model$coefficients[(m2+1):m, 1:2, drop=FALSE]
                 rownames(indirImps) <- rownames(cm)
             }
-            totImps <- as.matrix(estimable(lm.model, cm)[, 1:2, drop=FALSE])
-            
+            totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
             
           } 
       } else if (is.formula(Durbin)) {
@@ -176,21 +175,20 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                  }
                }
                rownames(indirImps) <- xn
-               totImps <- as.matrix(estimable(lm.model, cm)[, 1:2,
-                 drop=FALSE])
-               if (!is.null(zero_fill)) {
-                 if (length(zero_fill) > 0L) {
-                   lres <- vector(mode="list", length=2L)
-                   for (j in 1:2) {
-                     jtotImps <- dirImps[, j] 
-                     for (i in seq(along=inds)) {
-                       jtotImps[(inds[i] + (1 - K))] <- totImps[i, j] #TR: only -1 if has intercept
+               totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
+                 if (!is.null(zero_fill)) {
+                   if (length(zero_fill) > 0L) {
+                     lres <- vector(mode="list", length=2L)
+                     for (j in 1:2) {
+                       jtotImps <- dirImps[, j] 
+                       for (i in seq(along=inds)) {
+                         jtotImps[(inds[i] + (1 - K))] <- totImps[i, j] #TR: only -1 if has intercept
+                       }
+                       lres[[j]] <- jtotImps
                      }
-                     lres[[j]] <- jtotImps
-                   }
-                   totImps <- do.call("cbind", lres)
+                     totImps <- do.call("cbind", lres)
+                    }
                   }
-                }
                 rownames(totImps) <- xn
         } else stop("undefined Durbin state")
         mixedImps <- list(dirImps=dirImps, indirImps=indirImps,
@@ -359,3 +357,101 @@ create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
         WX
 }
 
+## $Id: gmodels estimable.R 2060 2015-07-19 03:22:30Z warnes $
+.estimable <- function (obj, cm, beta0, conf.int=NULL,
+                               show.beta0, joint.test=FALSE, ...)
+{
+  if (is.matrix(cm) || is.data.frame(cm)) {
+      cm <- t(apply(cm, 1, .to.est, obj=obj))
+  } else if(is.list(cm)) {
+      cm <- matrix(.to.est(obj, cm), nrow=1)
+  } else if(is.vector(cm)) {
+      cm <- matrix(.to.est(obj, cm), nrow=1)
+  } else {
+      stop("`cm' argument must be of type vector, list, or matrix.")
+  }
+  if(missing(show.beta0)) {
+      if(!missing(beta0))
+        show.beta0=TRUE
+      else
+        show.beta0=FALSE
+  }
+
+  if (missing(beta0)) {
+      beta0 = rep(0, ifelse(is.null(nrow(cm)), 1, nrow(cm)))
+  }
+
+  stat.name <- "t.stat"
+  cf <- summary.lm(obj)$coefficients
+  vcv <- summary.lm(obj)$cov.unscaled * summary.lm(obj)$sigma^2
+  df <- obj$df.residual
+  if (is.null(cm))
+    cm <- diag(dim(cf)[1])
+  if (!dim(cm)[2]==dim(cf)[1])
+    stop(paste("\n Dimension of ", deparse(substitute(cm)),
+                   ": ", paste(dim(cm), collapse="x"),
+                   ", not compatible with no of parameters in ",
+                   deparse(substitute(obj)), ": ", dim(cf)[1], sep=""))
+    ct <- cm %*% cf[, 1]
+    ct.diff <- cm %*% cf[, 1] - beta0
+
+    vc <- sqrt(diag(cm %*% vcv %*% t(cm)))
+    if (is.null(rownames(cm)))
+      rn <- paste("(", apply(cm, 1, paste, collapse=" "),
+                    ")", sep="")
+    else rn <- rownames(cm)
+    retval <- cbind(hyp=beta0, est=ct, stderr=vc)
+          dimnames(retval) <- list(rn, c("beta0", "Estimate", "Std. Error"))
+    rownames(retval) <- make.unique(rownames(retval))
+    retval <- as.data.frame(retval)
+    if(!show.beta0) retval$beta0 <- NULL
+
+    class(retval) <- c("estimable", class(retval))
+
+    return(retval)
+}
+
+# gmodels to.est.R
+# return a vector for cm in estimable()
+# Randy Johnson
+# Laboratory of Genomic Diversity at NCI-Frederick
+
+.to.est <- function(obj, params)
+{
+  eff.obj <- coef(obj)
+
+  if (is.null(obj))
+    stop("Error obtaining model coefficients")
+
+  est <- rep(0, length(eff.obj))
+  names(est) <- names(eff.obj)
+
+  if(!missing(params))
+    {
+      if(is.null(names(params)))
+        if(length(params)==length(est))
+          names(params) <- names(est)
+        else
+          stop("'param' has no names and does not match number of coefficients of model. Unable to construct coefficient vector")
+      else
+        {
+          matches <- names(params) %in% names(est)
+          if(!(all(matches)))
+             stop(
+                  '\n\t',
+                  'Invalid parameter name(s): ',
+                  paste(names(params)[!matches], collapse=', '),
+                  '\n\t',
+                  'Valid names are: ',
+                  paste(names(est), collapse=', ')
+                  )
+        }
+
+      if(is.list(params))
+        est[names(params)] <- unlist(params)
+      else
+        est[names(params)] <- params
+    }
+
+  return(est)
+}
