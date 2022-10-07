@@ -41,7 +41,7 @@ typedef struct hess_lag_sse {
     int set;
 } HESS_LAG_SSE;
 
-SEXP opt_error_init() {
+SEXP opt_error_init(void) { /* -Wstrict-prototypes */
 
     OPT_ERROR_SSE *pt;
     SEXP ptr;
@@ -127,7 +127,7 @@ SEXP opt_error_free(SEXP ptr) {
     return(R_NilValue);
 }
 
-SEXP hess_error_init() {
+SEXP hess_error_init(void) { /* -Wstrict-prototypes */
 
     HESS_ERROR_SSE *pt;
     SEXP ptr;
@@ -206,7 +206,7 @@ SEXP hess_error_free(SEXP ptr) {
     return(R_NilValue);
 }
 
-SEXP hess_lag_init() {
+SEXP hess_lag_init(void) { /* -Wstrict-prototypes */
 
     HESS_LAG_SSE *pt;
     SEXP ptr;

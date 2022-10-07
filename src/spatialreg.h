@@ -28,9 +28,9 @@ SEXP listw2dgR(SEXP nbs, SEXP wts, SEXP card, SEXP ncard);
 SEXP opt_error_free(SEXP ptr); 
 SEXP hess_error_free(SEXP ptr); 
 SEXP hess_lag_free(SEXP ptr); 
-SEXP opt_error_init(); 
-SEXP hess_error_init(); 
-SEXP hess_lag_init(); 
+SEXP opt_error_init(void); /* -Wstrict-prototypes */
+SEXP hess_error_init(void); /* -Wstrict-prototypes */
+SEXP hess_lag_init(void); /* -Wstrict-prototypes */
 SEXP R_ml_sse_env(SEXP env, SEXP coef); 
 SEXP R_ml1_sse_env(SEXP env, SEXP lambda, SEXP beta); 
 SEXP R_ml2_sse_env(SEXP env, SEXP rho, SEXP beta); 
