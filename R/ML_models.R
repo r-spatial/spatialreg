@@ -495,6 +495,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	}
 	if (!is.null(na.act))
 		ret$na.action <- na.act
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
 	ret
 }
 
@@ -867,6 +868,7 @@ lagsarlm <- function(formula, data = list(), listw,
 	}
 	if (!is.null(na.act))
 		ret$na.action <- na.act
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
 	ret
 }
 
@@ -1300,6 +1302,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             ret$llprof <- list(grd=llprof, ll=ll_prof, xseq=llrho,
                 yseq=lllambda)
         }
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
 	if (!is.null(na.act))
 		ret$na.action <- na.act
 	ret

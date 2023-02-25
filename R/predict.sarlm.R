@@ -65,6 +65,9 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         legacy.mixed <- TRUE
       }
       
+      if (!is.null(attr(object, "Durbin"))) {}
+
+      
       K <- ifelse(colnames(Xs)[1] == "(Intercept)", 2, 1)
       m <- ncol(Xs)
       # check if there are enough regressors

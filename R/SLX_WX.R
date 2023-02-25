@@ -196,6 +196,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         
         attr(lm.model, "mixedImps") <- mixedImps
         attr(lm.model, "dvars") <- dvars
+        if (is.formula(Durbin)) attr(lm.model, "Durbin") <- Durbin
         class(lm.model) <- c("SlX", class(lm.model))
         lm.model
 }
@@ -221,7 +222,14 @@ predict.SlX <- function(object, newdata, listw, zero.policy=NULL, ...) {
     n <- nrow(x)
     if (n != length(listw$neighbours))
         stop("listw and data of different lengths")
-    WX <- create_WX(x, listw, zero.policy=zero.policy, prefix="lag")
+    xx <- x
+    if (!is.null(attr(object, "Durbin"))) {
+        ff <- update(f, attr(object, "Durbin"))
+        mf <- lm(ff, newdata, method="model.frame")
+        mt <- attr(mf, "terms")
+        xx <- model.matrix(mt, mf)
+    }
+    WX <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
     x <- cbind(x, WX)
     res <- as.vector(x %*% coef(object))
     names(res) <- row.names(newdata)
