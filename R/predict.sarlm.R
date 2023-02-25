@@ -44,7 +44,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
     if (!pred.type %in% c("trend", "TC", "TS"))
       warning("no such predictor type for prevision")
     # DATA
-    frm <- formula(object$call)
+    frm <- as.formula(object$call)
     mt <- delete.response(terms(frm, data=newdata)) # returns a terms object for the same model but with no response variable
     mf <- model.frame(mt, newdata)
     # resolved problem of missing response column in newdata reported by
@@ -65,35 +65,42 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         legacy.mixed <- TRUE
       }
       
-      if (!is.null(attr(object, "Durbin"))) {}
-
+      xx <- Xs
+      if (!is.null(attr(object, "Durbin"))) {
+        ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
+            collapse=" ")))
+        mf <- lm(ff, newdata, method="model.frame")
+        mt <- attr(mf, "terms")
+        xx <- model.matrix(mt, mf)
+      }
+      WXs <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
       
-      K <- ifelse(colnames(Xs)[1] == "(Intercept)", 2, 1)
-      m <- ncol(Xs)
-      # check if there are enough regressors
-      if (m > 1) {
-        WXs <- matrix(nrow=nrow(Xs),ncol=(m-(K-1)))
-        for (k in K:m) {
-          wx <- lag.listw(listw, Xs[,k], 
-                          zero.policy=zero.policy)
-          if (any(is.na(wx))) 
-            stop("NAs in lagged independent variable")
-          WXs[,(k-(K-1))] <- wx
-        }
-      }
-      if (K == 2) {
-        # unnormalized weight matrices
-        if (!(listw$style == "W")) {
-          intercept <- as.double(rep(1, nrow(Xs)))
-          wx <- lag.listw(listw, intercept, 
-                          zero.policy = zero.policy)
-          if (m > 1) {
-            WXs <- cbind(wx, WXs)
-          } else {
-            WXs <- matrix(wx, nrow = nrow(Xs), ncol = 1)
-          }
-        } 
-      }
+#      K <- ifelse(colnames(Xs)[1] == "(Intercept)", 2, 1)
+#      m <- ncol(Xs)
+#      # check if there are enough regressors
+#      if (m > 1) {
+#        WXs <- matrix(nrow=nrow(Xs),ncol=(m-(K-1)))
+#        for (k in K:m) {
+#          wx <- lag.listw(listw, Xs[,k], 
+#                          zero.policy=zero.policy)
+#          if (any(is.na(wx))) 
+#            stop("NAs in lagged independent variable")
+#          WXs[,(k-(K-1))] <- wx
+#        }
+#      }
+#      if (K == 2) {
+#        # unnormalized weight matrices
+#        if (!(listw$style == "W")) {
+#          intercept <- as.double(rep(1, nrow(Xs)))
+#          wx <- lag.listw(listw, intercept, 
+#                          zero.policy = zero.policy)
+#          if (m > 1) {
+#            WXs <- cbind(wx, WXs)
+#          } else {
+#            WXs <- matrix(wx, nrow = nrow(Xs), ncol = 1)
+#          }
+#        } 
+#      }
       if (any(object$aliased)) {
         if (K>1 && (listw$style == "W")) colnames(WXs) <- paste("lag.", colnames(Xs)[-1], sep="")
         else colnames(WXs) <- paste("lag.", colnames(Xs), sep="")
@@ -199,7 +206,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
     
     
     # DATA
-    frm <- formula(object$call)
+    frm <- as.formula(object$call)
     mt <- delete.response(terms(frm, data=newdata)) # returns a terms object for the same model but with no response variable
     mf <- model.frame(mt, newdata)
     # resolved problem of missing response column in newdata reported by
@@ -248,33 +255,44 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
       names(temp) <- region.id.mixed
       if (spChk && !chkIDs(temp, listw.mixed))
         stop("Check of data and weights ID integrity failed")
+
+      xx <- X
+      if (!is.null(attr(object, "Durbin"))) {
+        ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
+            collapse=" ")))
+        mf <- lm(ff, newdata, method="model.frame")
+        mt <- attr(mf, "terms")
+        xx <- model.matrix(mt, mf)
+      }
+      WX <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
+
       
-      K <- ifelse(colnames(X)[1] == "(Intercept)", 2, 1)
-      m <- ncol(X)
-      # check if there are enough regressors
-      if (m > 1) {
-        WX <- matrix(nrow=nrow(X),ncol=(m-(K-1)))
-        for (k in K:m) {
-          wx <- lag.listw(listw.mixed, X[,k], 
-                          zero.policy=zero.policy)
-          if (any(is.na(wx)))
-            stop("NAs in lagged independent variable")
-          WX[,(k-(K-1))] <- wx
-        }
-      }
-      if (K == 2) {
-        # unnormalized weight matrices
-        if (!(listw.mixed$style == "W")) {
-          intercept <- as.double(rep(1, nrow(X)))
-          wx <- lag.listw(listw.mixed, intercept, 
-                          zero.policy = zero.policy)
-          if (m > 1) {
-            WX <- cbind(wx, WX)
-          } else {
-            WX <- matrix(wx, nrow = nrow(X), ncol = 1)
-          }
-        } 
-      }
+#      K <- ifelse(colnames(X)[1] == "(Intercept)", 2, 1)
+#      m <- ncol(X)
+#      # check if there are enough regressors
+#      if (m > 1) {
+#        WX <- matrix(nrow=nrow(X),ncol=(m-(K-1)))
+#        for (k in K:m) {
+#          wx <- lag.listw(listw.mixed, X[,k], 
+#                          zero.policy=zero.policy)
+#          if (any(is.na(wx)))
+#            stop("NAs in lagged independent variable")
+#          WX[,(k-(K-1))] <- wx
+#        }
+#      }
+#      if (K == 2) {
+#        # unnormalized weight matrices
+#        if (!(listw.mixed$style == "W")) {
+#          intercept <- as.double(rep(1, nrow(X)))
+#          wx <- lag.listw(listw.mixed, intercept, 
+#                          zero.policy = zero.policy)
+#          if (m > 1) {
+#            WX <- cbind(wx, WX)
+#          } else {
+#            WX <- matrix(wx, nrow = nrow(X), ncol = 1)
+#          }
+#        } 
+#      }
       if (any(object$aliased)) {
         if (K>1 && (listw.mixed$style == "W")) colnames(WX) <- paste("lag.", colnames(X)[-1], sep="")
         else colnames(WX) <- paste("lag.", colnames(X), sep="")
