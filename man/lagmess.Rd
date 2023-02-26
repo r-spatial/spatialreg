@@ -25,7 +25,7 @@ of model specification are given for \code{lm()}}
   \item{data}{an optional data frame containing the variables in the model. 
 By default the variables are taken from the environment which the function 
 is called.}
-  \item{listw}{a \code{listw} object created for example by \code{nb2listw}}
+  \item{listw}{a \code{listw} object created for example by \code{spdep::nb2listw()}}
   \item{zero.policy}{default NULL, use global option value; if TRUE assign zero to the lagged value of zones without 
 neighbours, if FALSE assign NA - causing \code{lagmess()} to terminate with an error}
   \item{na.action}{a function (default \code{options("na.action")}), can also be \code{na.omit} or \code{na.exclude} with consequences for residuals and fitted values - in these cases the weights list will be subsetted to remove NAs in the data. It may be necessary to set zero.policy to TRUE because this subsetting may create no-neighbour observations. Note that only weights lists created without using the glist argument to \code{nb2listw} may be subsetted.}
@@ -41,11 +41,11 @@ neighbours, if FALSE assign NA - causing \code{lagmess()} to terminate with an e
 
 \deqn{y = \rho W y + X \beta + \varepsilon}{y = rho W y + X beta + e}
 
-where \eqn{\rho}{rho} is the spatial parameter may be fitted by maximum likelihood. In that case, the log likelihood function includes the logartithm of cumbersome Jacobian term \eqn{|I - \rho W|}{|I - rho W|}. If we rewrite the model as:
+where \eqn{\rho}{rho} is the spatial parameter may be fitted by maximum likelihood. In that case, the log likelihood function includes the logarithm of cumbersome Jacobian term \eqn{|I - \rho W|}{|I - rho W|}. If we rewrite the model as:
 
 \deqn{S y = X \beta + \varepsilon}{S y = X beta + e}
 
-we see that in the ML case \eqn{S y = (I - \rho W) y}{S y = (I - rho W) y}. If W is row-stochastic, S may be expressed as a linear combination of row-stochastic matrices. By pre-computing the matrix \eqn{[y Wy, W^2y, ..., W^{q-1}y]}{[y Wy, W^2y, ..., W^{q-1}y]}, the term \eqn{S y (\alpha)}{S y (alpha)} can readily be found by numerical optimization using the matrix exponential approach. \eqn{\alpha}{alpha} and \eqn{\rho}{rho} are related as \eqn{\rho = 1 - \exp{\alpha}}{rho = 1 - exp(alpha)}, conditional on the number of matrix power terms taken \code{q}.}
+we see that in the ML case \eqn{S y = (I - \rho W) y}{S y = (I - rho W) y}. If W is row-stochastic, S may be expressed as a linear combination of row-stochastic matrices. By pre-computing the matrix \eqn{[y, Wy, W^2y, ..., W^{q-1}y]}{[y, Wy, W^2y, ..., W^{q-1}y]}, the term \eqn{S y (\alpha)}{S y (alpha)} can readily be found by numerical optimization using the matrix exponential approach. \eqn{\alpha}{alpha} and \eqn{\rho}{rho} are related as \eqn{\rho = 1 - \exp{\alpha}}{rho = 1 - exp(alpha)}, conditional on the number of matrix power terms taken \code{q}.}
 
 \value{
 The function returns an object of class \code{Lagmess} with components:
