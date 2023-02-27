@@ -15,9 +15,11 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         mf[[1]] <- as.name("model.frame")
         mf <- eval(mf, parent.frame())
         mt <- attr(mf, "terms")
+        if (attr(mt, "intercept") == 0L) warning("missing intercept")
 
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
+	if (listw$style == "M") warning("missing spatial weights style")
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
