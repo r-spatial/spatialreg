@@ -15,9 +15,11 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         mf[[1]] <- as.name("model.frame")
         mf <- eval(mf, parent.frame())
         mt <- attr(mf, "terms")
+        if (attr(mt, "intercept") == 0L) warning("missing intercept")
 
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
+	if (listw$style == "M") warning("missing spatial weights style")
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
@@ -196,7 +198,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         
         attr(lm.model, "mixedImps") <- mixedImps
         attr(lm.model, "dvars") <- dvars
-        if (is.formula(Durbin)) attr(lm.model, "Durbin") <- Durbin
+        if (is.formula(Durbin)) attr(lm.model, "Durbin") <- deparse(Durbin)
         class(lm.model) <- c("SlX", class(lm.model))
         lm.model
 }
@@ -224,7 +226,7 @@ predict.SlX <- function(object, newdata, listw, zero.policy=NULL, ...) {
         stop("listw and data of different lengths")
     xx <- x
     if (!is.null(attr(object, "Durbin"))) {
-        ff <- update(f, attr(object, "Durbin"))
+        ff <- update(f, formula(paste(attr(object, "Durbin"), collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
         mt <- attr(mf, "terms")
         xx <- model.matrix(mt, mf)

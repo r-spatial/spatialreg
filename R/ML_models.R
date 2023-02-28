@@ -95,6 +95,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             fdHess <- NULL
         }
         stopifnot(is.logical(con$fdHess))
+        dvars <- c(NCOL(x), 0L)
+
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
                 prefix <- "lag"
                 if (isTRUE(Durbin)) {
@@ -483,8 +485,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                 timings=do.call("rbind", timings)[, c(1, 3)], 
                 f_calls=get("f_calls", envir=env),
                 hf_calls=get("hf_calls", envir=env), intern_classic=iC,
-                pWinternal=pWinternal, weights=weights, emixedImps=emixedImps),
-                class=c("Sarlm"))
+                pWinternal=pWinternal, weights=weights, emixedImps=emixedImps,
+                dvars=dvars), class=c("Sarlm"))
         rm(env)
         GC <- gc()
 	if (zero.policy) {
@@ -495,7 +497,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	}
 	if (!is.null(na.act))
 		ret$na.action <- na.act
-        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- deparse(Durbin)
 	ret
 }
 
@@ -868,7 +870,7 @@ lagsarlm <- function(formula, data = list(), listw,
 	}
 	if (!is.null(na.act))
 		ret$na.action <- na.act
-        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- deparse(Durbin)
 	ret
 }
 
@@ -1302,7 +1304,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             ret$llprof <- list(grd=llprof, ll=ll_prof, xseq=llrho,
                 yseq=lllambda)
         }
-        if (is.formula(Durbin)) attr(ret, "Durbin") <- Durbin
+        if (is.formula(Durbin)) attr(ret, "Durbin") <- deparse(Durbin)
 	if (!is.null(na.act))
 		ret$na.action <- na.act
 	ret

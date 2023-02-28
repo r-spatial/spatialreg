@@ -1,66 +1,55 @@
 citHeader("To cite spatialreg in publications use one or more of the following as appropriate:")
 
-citEntry(entry="Article",
+bibentry(bibtype="Article",
          title="A Review of Software for Spatial Econometrics in {R}",
-         author=personList(as.person("Roger Bivand"), 
-                           as.person("Giovanni Millo"),
-                           as.person("Gianfranco Piras")),
+         author=c(person(c("Roger"), "Bivand"), 
+                           person(c("Giovanni"), "Millo"),
+                           person(c("Gianfranco"), "Piras")),
          journal="Mathematics",
          year="2021",
          volume="9",
          number="11",
          url="https://www.mdpi.com/2227-7390/9/11/1276",
-         doi="10.3390/math9111276",
-         textVersion = paste("Bivand, R., G. Millo, and G. Piras. 2021.",
-         "A Review of Software for Spatial Econometrics in R.",
-         "Mathematics 9 (11):1276.",
-         "https://doi.org/10.3390/math9111276.")
+         doi="10.3390/math9111276"
 )
 
-citEntry(entry = "Article",
+bibentry(bibtype = "Article",
   title        = "Comparing Implementations of Estimation Methods for Spatial Econometrics",
-  author       = personList(as.person("Roger Bivand"),
-                   as.person("Gianfranco Piras")),
+  author       = c(person(c("Roger"), "Bivand"),
+                   person(c("Gianfranco"), "Piras")),
   journal      = "Journal of Statistical Software",
   year         = "2015",
   volume       = "63",
   number       = "18",
   pages        = "1--36",
-  doi          = "10.18637/jss.v063.i18",
-
-  textVersion  =
-  paste("Roger Bivand, Gianfranco Piras (2015).",
-        "Comparing Implementations of Estimation Methods for Spatial Econometrics.",
-        "Journal of Statistical Software, 63(18), 1-36.",
-        "URL https://www.jstatsoft.org/v63/i18/.")
+  doi          = "10.18637/jss.v063.i18"
 )
 
-citEntry(entry = "Article",
+bibentry(bibtype = "Article",
   title        = "Computing the Jacobian in Gaussian spatial autoregressive models: An illustrated comparison of available methods",
-  author       = personList(as.person("Roger Bivand"),
-                   as.person("Jan Hauke"),
-                   as.person("Tomasz Kossowski")),
+  author       = c(person(c("Roger"), "Bivand"),
+                   person(c("Jan"), "Hauke"),
+                   person(c("Tomasz"), "Kossowski")),
   journal      = "Geographical Analysis",
   year         = "2013",
   volume       = "45",
   number       = "2",
   pages        = "150--179",
-  doi          = "10.1111/gean.12008",
-
-  textVersion  =
-  paste("Bivand, R. S., Hauke, J., and Kossowski, T. (2013).",
-        "Computing the Jacobian in Gaussian spatial autoregressive models:",
-        "An illustrated comparison of available methods. Geographical",
-        "Analysis, 45(2), 150-179.", "URL https://doi.org/10.1111/gean.12008")
+  doi          = "10.1111/gean.12008"
 )
-citEntry(entry="book",
-  author       = "Roger S. Bivand, Edzer Pebesma and Virgilio Gomez-Rubio",
+bibentry(bibtype="book",
+  author       = c(person(c("Roger S."), "Bivand"), person(c("Edzer"), "Pebesma"), person(c("Virgilio"), c("Gómez-Rubio"))),
   title        = "Applied spatial data analysis with {R}, Second edition",
   year         = "2013",
   publisher    = "Springer, NY",
-  url          = "https://asdar-book.org/",
-  textVersion = 
-  paste("Roger S. Bivand, Edzer Pebesma, Virgilio Gomez-Rubio, 2013.",
-	"Applied spatial data analysis with R, Second edition. Springer, NY.",
-	"https://asdar-book.org/")
+  url          = "https://asdar-book.org/"
 )
+
+bibentry(bibtype="book",
+  author       = c(person(c("Edzer"), "Pebesma"), person(c("Roger S."), "Bivand")),
+  title        = "Spatial Data Science With Applications in {R}",
+  year         = "2023",
+  publisher    = "Chapman & Hall",
+  url          = "https://r-spatial.org/book/"
+)
+
