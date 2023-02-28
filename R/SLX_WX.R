@@ -114,9 +114,9 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
           } else {
               m2 <- m/2
           }
-          if (3 == 4) { #TR: omit condition "(K == 1 && odd)" for now. why issue if no intercept, and odd num coefs?
-            warning("model configuration issue: no total impacts")
-          } else {
+#          if (3 == 4) { #TR: omit condition "(K == 1 && odd)" for now. why issue if no intercept, and odd num coefs?
+#            warning("model configuration issue: no total impacts")
+#          } else {
             cm <- matrix(0, ncol=m, nrow=m2)
             if (K == 2) {
                 if (odd) {
@@ -141,7 +141,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             }
             totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
             
-          } 
+#          } 
       } else if (is.formula(Durbin)) {
 #FIXME
             LI <- ifelse(listw$style != "W" 
