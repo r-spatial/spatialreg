@@ -13,7 +13,7 @@
 }
 \usage{
 lmSLX(formula, data = list(), listw, na.action, weights=NULL,
- Durbin=TRUE, zero.policy=NULL)
+ Durbin=TRUE, zero.policy=NULL, control=list())
 create_WX(x, listw, zero.policy=NULL, prefix="")
 \method{impacts}{SlX}(obj, ...)
 \method{print}{WXimpact}(x, ...)
@@ -32,8 +32,8 @@ is called.}
   \item{na.action}{a function (default \code{options("na.action")}), can also be \code{na.omit} or \code{na.exclude} with consequences for residuals and fitted values - in these cases the spatial weights list will be subsetted to remove NAs in the data. It may be necessary to set zero.policy to TRUE because this subsetting may create no-neighbour observations. Note that only weights lists created without using the glist argument to \code{nb2listw} may be subsetted.}
   \item{weights}{an optional vector of weights to be used in the fitting process. Non-NULL weights can be used to indicate that different observations have different variances (with the values in weights being inversely proportional to the variances); or equivalently, when the elements of weights are positive integers w_i, that each response y_i is the mean of w_i unit-weight observations (including the case that there are w_i observations equal to y_i and the data have been summarized) - \code{\link{lm}}}
   \item{Durbin}{default TRUE for \code{lmSLX} (Durbin model including WX); if TRUE, full spatial Durbin model; if a formula object, the subset of explanatory variables to lag}
-  \item{zero.policy}{default NULL, use global option value; if TRUE assign zero to the lagged value of zones without 
-neighbours, if FALSE assign NA}
+  \item{zero.policy}{default NULL, use global option value; if TRUE assign zero to the lagged value of zones without neighbours, if FALSE assign NA}
+  \item{control}{list of extra control arguments - see section below}
   \item{obj}{A spatial regression object created by \code{lmSLX}}
   \item{\dots}{Arguments passed through}
   \item{prefix}{default empty string, may be \dQuote{lag} in some cases}
@@ -43,6 +43,10 @@ neighbours, if FALSE assign NA}
 for the data on which the model was fitted. Should have row names corresponding to region.id. If row names are exactly the same than the ones used for training, it uses in-sample predictors for forecast.}
 }
 
+\section{Control arguments}{
+\describe{
+  \item{glht}{default FALSE, if TRUE, use \code{summary(multcomp::glht()} in place of legacy code for linear combination}
+}}
 \value{
 The \code{lmSLX} function returns an \dQuote{lm} object with a \dQuote{mixedImps} list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts calculated using a simplified local copy of the estimable function from the gmodels package.
 }

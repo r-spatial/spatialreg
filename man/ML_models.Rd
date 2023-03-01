@@ -153,6 +153,7 @@ Because numerical optimisation is used to find the values of lambda and rho in \
   \item{pars:}{default \code{NULL}, for which five trial starting values spanning the lower/upper range are tried and the best selected, starting values of \eqn{\rho}{rho} and \eqn{\lambda}{lambda}}
   \item{npars}{default integer \code{4L}, four trial points; if not default value, nine trial points}
   \item{pre_eig1, pre_eig2}{default NULL; may be used to pass pre-computed vectors of eigenvalues}
+  \item{glht}{default FALSE, if TRUE, use \code{summary(multcomp::glht()} in place of legacy code for linear combination}
 }}
 \references{Cliff, A. D., Ord, J. K. 1981 \emph{Spatial processes}, Pion;
 Ord, J. K. 1975 Estimation methods for models of spatial interaction,

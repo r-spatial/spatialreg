@@ -29,6 +29,7 @@ importFrom("graphics", "plot")
 importFrom(splines, interpSpline)
 importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
+importFrom(multcomp, glht)
 
 ##################
 # ML SE

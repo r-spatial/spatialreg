@@ -1,9 +1,15 @@
 
 
-lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL) {
+lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL, control=list()) {
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
+        con <- list(glht=FALSE)
+        nmsC <- names(con)
+        con[(namc <- names(control))] <- control
+        if (length(noNms <- namc[!namc %in% nmsC])) 
+            warning("unknown names in control: ", paste(noNms, collapse = ", "))
+        stopifnot(is.logical(con$glht))
         if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
 #	mf <- lm(formula, data, na.action=na.action, weights=weights,
@@ -15,7 +21,6 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         mf[[1]] <- as.name("model.frame")
         mf <- eval(mf, parent.frame())
         mt <- attr(mf, "terms")
-        if (attr(mt, "intercept") == 0L) warning("missing intercept")
 
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
@@ -108,18 +113,15 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             names(coefficients(lm.model))[1]) == 1L), 2, 1)
         if (isTRUE(Durbin)) {
           m <- length(coefficients(lm.model))
-          odd <- (m%/%2) > 0
-          if (odd && K == 2) { #TR: without intercept and odd use m/2
+          m.1 <- m > 1
+          if (m.1 && K == 2) { #TR: without intercept and m.1 use m/2
               m2 <- (m-1)/2
           } else {
               m2 <- m/2
           }
-#          if (3 == 4) { #TR: omit condition "(K == 1 && odd)" for now. why issue if no intercept, and odd num coefs?
-#            warning("model configuration issue: no total impacts")
-#          } else {
             cm <- matrix(0, ncol=m, nrow=m2)
             if (K == 2) {
-                if (odd) {
+                if (m.1) {
                     rownames(cm) <- nclt[2:(m2+1)]
                 } else {
                     rownames(cm) <- nclt[1:m2]
@@ -139,9 +141,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 indirImps <- sum_lm_model$coefficients[(m2+1):m, 1:2, drop=FALSE]
                 rownames(indirImps) <- rownames(cm)
             }
-            totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
-            
-#          } 
+            if (con$glht) {
+              lc <- summary(multcomp::glht(lm.model, linfct=cm))
+              totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
+	    } else {
+              totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
+            }
       } else if (is.formula(Durbin)) {
 #FIXME
             LI <- ifelse(listw$style != "W" 
@@ -177,7 +182,14 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                  }
                }
                rownames(indirImps) <- xn
-               totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2, drop=FALSE])
+               if (con$glht) {
+                 lc <- summary(multcomp::glht(lm.model, linfct=cm))
+                 totImps <- cbind("Estimate"=lc$test$coefficients,
+                     "Std. Error"=lc$test$sigma)
+	       } else {
+                 totImps <- as.matrix(.estimable(lm.model, cm)[, 1:2,
+                     drop=FALSE])
+               }
                  if (!is.null(zero_fill)) {
                    if (length(zero_fill) > 0L) {
                      lres <- vector(mode="list", length=2L)
