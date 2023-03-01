@@ -30,6 +30,7 @@ importFrom(splines, interpSpline)
 importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
 importFrom(multcomp, glht)
+importFrom(gmodels, estimable)
 
 ##################
 # ML SE
