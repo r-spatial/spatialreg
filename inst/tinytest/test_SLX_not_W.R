@@ -11,4 +11,8 @@ expect_true(isTRUE(all.equal(unname(coef(mod0)), unname(coef(mod1)))))
 expect_silent(modx <- lmSLX(CRIME ~ INC + HOVAL + 0, data=COL.OLD, listw=lwB))
 mod1x <- lm(CRIME ~ INC + HOVAL + 0 + INCB + HOVALB, data=COL.OLD)
 expect_true(isTRUE(all.equal(unname(coef(modx)), unname(coef(mod1x)))))
+expect_error(mod0_no_x <- lmSLX(CRIME ~ 1, data=COL.OLD, listw=lwB, Durbin=TRUE))
+expect_error(mod0_no_x <- lmSLX(CRIME ~ 1, data=COL.OLD, listw=lwB, Durbin= ~ INC))
+expect_warning(mod0_no_x <- errorsarlm(CRIME ~ 1, data=COL.OLD, listw=lwB, Durbin=TRUE))
+expect_warning(mod0_no_x <- errorsarlm(CRIME ~ 1, data=COL.OLD, listw=lwB, Durbin= ~ INC))
 

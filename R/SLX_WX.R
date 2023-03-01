@@ -21,7 +21,9 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         mf[[1]] <- as.name("model.frame")
         mf <- eval(mf, parent.frame())
         mt <- attr(mf, "terms")
-
+        if (attr(mt, "intercept") == 1 && !any(attr(mt, "factors") == 1)) {
+            stop("intercept-only model, Durbin invalid")
+        }
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
 	if (listw$style == "M") warning("missing spatial weights style")
