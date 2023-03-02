@@ -130,7 +130,7 @@ impacts <- function(obj, ...)
 impactSDEM <- function(obj) { 
   n <- nrow(obj$tarX)
   k <- ncol(obj$tarX)
-  impactsWX(obj$emixedImps, n, k, type="SDEM", method="estimable")
+  impactsWX(obj$emixedImps, n, k, type="SDEM", method="glht")
 }
 
 

@@ -1,15 +1,9 @@
 
 
-lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL, control=list()) {
+lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL) {
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
-        con <- list(glht=FALSE)
-        nmsC <- names(con)
-        con[(namc <- names(control))] <- control
-        if (length(noNms <- namc[!namc %in% nmsC])) 
-            warning("unknown names in control: ", paste(noNms, collapse = ", "))
-        stopifnot(is.logical(con$glht))
         if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
 #	mf <- lm(formula, data, na.action=na.action, weights=weights,
@@ -143,12 +137,8 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 indirImps <- sum_lm_model$coefficients[(m2+1):m, 1:2, drop=FALSE]
                 rownames(indirImps) <- rownames(cm)
             }
-            if (con$glht) {
-              lc <- summary(multcomp::glht(lm.model, linfct=cm))
-              totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
-	    } else {
-              totImps <- as.matrix(gmodels::estimable(lm.model, cm)[, 1:2, drop=FALSE])
-            }
+            lc <- summary(multcomp::glht(lm.model, linfct=cm))
+            totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
       } else if (is.formula(Durbin)) {
 #FIXME
             LI <- ifelse(listw$style != "W" 
@@ -184,14 +174,9 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                  }
                }
                rownames(indirImps) <- xn
-               if (con$glht) {
-                 lc <- summary(multcomp::glht(lm.model, linfct=cm))
-                 totImps <- cbind("Estimate"=lc$test$coefficients,
+               lc <- summary(multcomp::glht(lm.model, linfct=cm))
+               totImps <- cbind("Estimate"=lc$test$coefficients,
                      "Std. Error"=lc$test$sigma)
-	       } else {
-                 totImps <- as.matrix(gmodels::estimable(lm.model, cm)[, 1:2,
-                     drop=FALSE])
-               }
                  if (!is.null(zero_fill)) {
                    if (length(zero_fill) > 0L) {
                      lres <- vector(mode="list", length=2L)
@@ -257,11 +242,11 @@ impacts.SlX <- function(obj, ...) {
     stopifnot(!is.null(attr(obj, "mixedImps")))
     n <- nrow(obj$model)
     k <- obj$qr$rank
-    impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="estimable")
+    impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="glht")
 }
 
 
-impactsWX <- function(obj, n, k, type="SlX", method="estimable") {
+impactsWX <- function(obj, n, k, type="SlX", method="glht") {
     imps <- lapply(obj, function(x) x[, 1])
     names(imps) <- c("direct", "indirect", "total")
     attr(imps, "bnames") <- rownames(obj[[1]])

@@ -299,7 +299,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                     indirImps <- sum_lm_target$coefficients[(m2+1):m, 1:2, drop=FALSE]
                     rownames(indirImps) <- rownames(cm)
                 }
-            totImps <- as.matrix(gmodels::estimable(lm.target, cm)[, 1:2, drop=FALSE])
+            lc <- summary(multcomp::glht(lm.target, linfct=cm))
+            totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
           } else if (is.formula(Durbin)) {
 #FIXME
             LI <- ifelse(listw$style != "W" 
@@ -335,8 +336,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                 }
               }
               rownames(indirImps) <- xn
-              totImps <- as.matrix(gmodels::estimable(lm.target, cm)[, 1:2,
-                drop=FALSE])
+              lc <- summary(multcomp::glht(lm.target, linfct=cm))
+              totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
               if (!is.null(zero_fill)) {
                 if (length(zero_fill) > 0L) {
                  lres <- vector(mode="list", length=2L)
