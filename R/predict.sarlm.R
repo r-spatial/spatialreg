@@ -66,7 +66,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
       }
       
       xx <- Xs
-      if (!is.null(attr(object, "Durbin"))) {
+      if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
         ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
             collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
@@ -227,6 +227,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         region.id.mixed <- rownames(Xo)
       } else { # compute [WX]o
         is.not.lagged <- 1:((K-1)+(ncol(Xs)-(K-1))/2) #TODO: change the way lag variables are detected
+# https://github.com/r-spatial/spatialreg/issues/38
         Xs.not.lagged <- Xs[, is.not.lagged]
         if (any(colnames(Xs.not.lagged) != colnames(Xo)))
           stop("unknown mismatch. please report this bug")
@@ -257,14 +258,17 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         stop("Check of data and weights ID integrity failed")
 
       xx <- X
-      if (!is.null(attr(object, "Durbin"))) {
+      if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
         ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
             collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
         mt <- attr(mf, "terms")
         xx <- model.matrix(mt, mf)
       }
-      WX <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
+      if (legacy.mixed)
+          WX <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
+      else
+          WX <- create_WX(X, listw.mixed, zero.policy=zero.policy, prefix="lag")
 
       
 #      K <- ifelse(colnames(X)[1] == "(Intercept)", 2, 1)

@@ -224,7 +224,8 @@ predict.SlX <- function(object, newdata, listw, zero.policy=NULL, ...) {
     if (n != length(listw$neighbours))
         stop("listw and data of different lengths")
     xx <- x
-    if (!is.null(attr(object, "Durbin"))) {
+# https://github.com/r-spatial/spatialreg/issues/37
+    if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
         ff <- update(f, formula(paste(attr(object, "Durbin"), collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
         mt <- attr(mf, "terms")
