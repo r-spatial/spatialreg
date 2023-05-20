@@ -379,7 +379,11 @@ print.summary.Spautolm <- function(x, digits = max(5, .Options$digits - 3),
 		format(signif(sqrt(x$fit$s2), digits)), ")\n", sep="")
 	cat("Number of observations:", x$fit$N, "\n")
 	cat("Number of parameters estimated:", x$parameters, "\n")
-	cat("AIC: ", format(signif(AIC(x), digits)), "\n", sep="")
+	if (is.null(x$weights)) {
+	    cat("AIC: ", format(signif(AIC(x), digits)), "\n", sep="")
+	} else {
+	    cat("AIC: NA (not available for weighted model)\n", sep="")
+	}
         if (!is.null(x$NK)) cat("Nagelkerke pseudo-R-squared:",
             format(signif(x$NK, digits)), "\n")
     	correl <- x$correlation

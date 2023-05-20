@@ -175,7 +175,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         sw <- sqrt(weights)
 #
         LL_null_lm <- NULL
-	if ("(Intercept)" %in% colnames(x)) LL_null_lm <- logLik(lm(y ~ 1))
+	if ("(Intercept)" %in% colnames(x)) LL_null_lm <- logLik(lm(y ~ 1,
+            weights=weights))
 	m <- NCOL(x)
 	xcolnames <- colnames(x)
 	K <- ifelse(xcolnames[1] == "(Intercept)", 2, 1)

@@ -249,8 +249,13 @@ print.summary.Sarlm <- function(x, digits = max(5, .Options$digits - 3),
             format(signif(x$NK, digits)), "\n")
 	cat("Number of observations:", length(x$residuals), "\n")
 	cat("Number of parameters estimated:", x$parameters, "\n")
-	cat("AIC: ", format(signif(AIC(x), digits)), ", (AIC for lm: ",
+	if (is.null(x$weights)) {
+	    cat("AIC: ", format(signif(AIC(x), digits)), ", (AIC for lm: ",
 		format(signif(x$AIC_lm.model, digits)), ")\n", sep="")
+	} else {
+	    cat("AIC: NA (not available for weighted model), (AIC for lm: ",
+		format(signif(x$AIC_lm.model, digits)), ")\n", sep="")
+	}
 	if (x$type == "error") {
 		if (!is.null(x$Haus)) {
 		    cat("Hausman test: ", format(signif(x$Haus$statistic, 

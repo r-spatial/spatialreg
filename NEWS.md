@@ -1,5 +1,7 @@
 # Version 1.2-9 (development)
 
+* address #19 by not reporting `AIC` where case weights are used in `spautolm` or `errorsarlm`
+
 * address bug in `predict()` for new data, SDEM. Others in #37, #38 need work.
 
 * Further added checking for SLX/SDEM impacts and edge/corner cases; starting transition to use **multcomp** in place og **gmodels**
