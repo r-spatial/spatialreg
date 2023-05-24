@@ -217,21 +217,47 @@ predict.SlX <- function(object, newdata, listw, zero.policy=NULL, ...) {
     vars <- rownames(attr(object, "mixedImps")$dirImps)
     f <- formula(paste("~", paste(vars, collapse=" + ")))
     mf <- lm(f, newdata, method="model.frame")
+    if (dim(mf)[1] != nrow(newdata))
+      stop("missing values in newdata")
     mt <- attr(mf, "terms")
     x <- model.matrix(mt, mf)
-    if (any(is.na(x))) stop("NAs in independent variable")
-    n <- nrow(x)
-    if (n != length(listw$neighbours))
-        stop("listw and data of different lengths")
-    xx <- x
-# https://github.com/r-spatial/spatialreg/issues/37
-    if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
+    if (!is.null(attr(object, "Durbin")) && is.formula(formula(attr(object, "Durbin")))) {
         ff <- update(f, formula(paste(attr(object, "Durbin"), collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
+        if (dim(mf)[1] != nrow(newdata))
+          stop("missing values in newdata")
         mt <- attr(mf, "terms")
-        xx <- model.matrix(mt, mf)
+        xd <- model.matrix(mt, mf)
+    } else {
+        ff <- f
+        xd <- x
     }
+    if (any(is.na(xd))) stop("NAs in independent variable")
+    n <- nrow(x)
+    if (any(! row.names(newdata) %in% attr(listw, "region.id")))
+        stop("mismatch between newdata and spatial weights. newdata should have region.id as row.names")
+    if (n == length(listw$neighbours)) { # in-sample
+        xx <- xd
+    } else { # out-of-sample
+        if (length(listw$neighbours) == (n + nrow(object$model))) {
+            xo <- xd
+            mf <- lm(ff, object$model, method="model.frame")
+            mt <- attr(mf, "terms")
+            xs <- model.matrix(mt, mf)
+            ids <- attr(listw, "region.id")
+            xso <- rbind(xs, xo)
+            xx <- xso[match(ids, row.names(xso)),]
+            if (any(!(row.names(xx) == ids))) stop("row name mismatch")
+        } else {
+            stop("listw and model and new data of different lengths")
+        }
+    }
+
+# https://github.com/r-spatial/spatialreg/issues/37
     WX <- create_WX(xx, listw, zero.policy=zero.policy, prefix="lag")
+    if (n < length(listw$neighbours)) {
+        WX <- WX[match(rownames(xo), rownames(WX)),]
+    }
     x <- cbind(x, WX)
     res <- as.vector(x %*% coef(object))
     names(res) <- row.names(newdata)
@@ -364,6 +390,7 @@ create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
 	}
         if (!is.null(wxI)) WX <- cbind(wxI, WX)
         colnames(WX) <- Wvars
+        rownames(WX) <- rownames(x)
         WX
 }
 

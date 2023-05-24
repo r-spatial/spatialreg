@@ -66,7 +66,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
       }
       
       xx <- Xs
-      if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
+      if (!is.null(attr(object, "Durbin")) && is.formula(formula(attr(object, "Durbin")))) {
         ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
             collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
@@ -226,7 +226,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         X <- Xo
         region.id.mixed <- rownames(Xo)
       } else { # compute [WX]o
-        is.not.lagged <- 1:((K-1)+(ncol(Xs)-(K-1))/2) #TODO: change the way lag variables are detected
+        is.not.lagged <- 1:((K-1)+(ncol(Xs)-(K-1))/2) #TODO: change the way lag variables are detected; formula Durbin not supported
 # https://github.com/r-spatial/spatialreg/issues/38
         Xs.not.lagged <- Xs[, is.not.lagged]
         if (any(colnames(Xs.not.lagged) != colnames(Xo)))
@@ -258,7 +258,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         stop("Check of data and weights ID integrity failed")
 
       xx <- X
-      if (!is.null(attr(object, "Durbin")) && is.formula(attr(object, "Durbin"))) {
+      if (!is.null(attr(object, "Durbin")) && is.formula(formula(attr(object, "Durbin")))) {
         ff <- update(frm, as.formula(paste(attr(object, "Durbin"),
             collapse=" ")))
         mf <- lm(ff, newdata, method="model.frame")
