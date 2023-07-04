@@ -1,5 +1,9 @@
 # Version 1.2-9 (development)
 
+* raised #39, no support for weights in SEM/SDEM/SLX #39
+
+* address #37; #38 remains (no formula Durbin support for prediction using any Sarlm object)
+
 * address #19 by not reporting `AIC` where case weights are used in `spautolm` or `errorsarlm`
 
 * address bug in `predict()` for new data, SDEM. Others in #37, #38 need work.
