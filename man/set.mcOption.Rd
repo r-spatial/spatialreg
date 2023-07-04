@@ -37,7 +37,7 @@ get.ClusterOption()
 \examples{
 ls(envir=spatialreg:::.spatialregOptions)
 library(parallel)
-nc <- detectCores(logical=FALSE)
+nc <- max(2L, detectCores(logical=FALSE), na.rm = TRUE)-1L
 nc
 # set nc to 1L here
 if (nc > 1L) nc <- 1L
