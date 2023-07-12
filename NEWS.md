@@ -1,4 +1,8 @@
-# Version 1.2-9 (development)
+# Version 1.2-10 (development)
+
+* corrected #19 because the fitted model weights component is never NULL, but may have a single unique value
+
+# Version 1.2-9 (2023-05-25)
 
 * raised #39, no support for weights in SEM/SDEM/SLX #39
 

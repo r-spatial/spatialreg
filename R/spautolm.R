@@ -379,7 +379,7 @@ print.summary.Spautolm <- function(x, digits = max(5, .Options$digits - 3),
 		format(signif(sqrt(x$fit$s2), digits)), ")\n", sep="")
 	cat("Number of observations:", x$fit$N, "\n")
 	cat("Number of parameters estimated:", x$parameters, "\n")
-	if (is.null(x$weights)) {
+	if (length(unique(x$weights)) == 1L) {
 	    cat("AIC: ", format(signif(AIC(x), digits)), "\n", sep="")
 	} else {
 	    cat("AIC: NA (not available for weighted model)\n", sep="")
