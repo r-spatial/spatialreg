@@ -109,15 +109,15 @@ neighbours, if FALSE (default) assign NA}
 #require("spdep", quietly=TRUE)
 data(oldcol, package="spdep")
 lw <- spdep::nb2listw(COL.nb, style="W")
-ev <- eigenw(lw)
-W <- as(lw, "CsparseMatrix")
-trMatc <- trW(W, type="mult")
 require("coda", quietly=TRUE)
 set.seed(1)
 COL.err.Bayes <- spBreg_err(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw)
 print(summary(COL.err.Bayes))
 print(raftery.diag(COL.err.Bayes, r=0.01))
 \dontrun{
+ev <- eigenw(lw)
+W <- as(lw, "CsparseMatrix")
+trMatc <- trW(W, type="mult")
 set.seed(1)
 COL.err.Bayes <- spBreg_err(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw,
  control=list(prior=list(lambdaMH=TRUE)))
