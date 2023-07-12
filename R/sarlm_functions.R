@@ -249,7 +249,7 @@ print.summary.Sarlm <- function(x, digits = max(5, .Options$digits - 3),
             format(signif(x$NK, digits)), "\n")
 	cat("Number of observations:", length(x$residuals), "\n")
 	cat("Number of parameters estimated:", x$parameters, "\n")
-	if (is.null(x$weights)) {
+	if (length(unique(x$weights)) == 1L) {
 	    cat("AIC: ", format(signif(AIC(x), digits)), ", (AIC for lm: ",
 		format(signif(x$AIC_lm.model, digits)), ")\n", sep="")
 	} else {
