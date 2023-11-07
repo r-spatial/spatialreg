@@ -1,5 +1,7 @@
 # Version 1.2-10 (development)
 
+* added `zero.policy` pass-through to `spdep::mat2listw` calls in `predict.Sarlm` and to `spdep::sn2listw` in `sids_models.Rmd`
+
 * corrected #19 because the fitted model weights component is never NULL, but may have a single unique value
 
 # Version 1.2-9 (2023-05-25)

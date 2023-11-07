@@ -21,7 +21,7 @@
 
 GMerrorsar <- function(#W, y, X, 
 	formula, data = list(), listw, na.action=na.fail, 
-	zero.policy=NULL, method="nlminb", arnoldWied=FALSE, 
+	zero.policy=attr(listw, "zero.policy"), method="nlminb", arnoldWied=FALSE, 
         control=list(), pars=NULL, scaleU=FALSE, verbose=NULL, legacy=FALSE,
         se.lambda=TRUE, returnHcov=FALSE, pWOrder=250, tol.Hcov=1.0e-10) {
 #	ols <- lm(I(y) ~ I(X) - 1)
@@ -518,7 +518,7 @@ impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
 ####SARAR model
 
 gstsls<-function (formula, data = list(), listw, listw2=NULL,
- na.action = na.fail, zero.policy = NULL, pars=NULL, scaleU=FALSE,
+ na.action = na.fail, zero.policy = attr(listw, "zero.policy"), pars=NULL, scaleU=FALSE,
  control = list(), verbose = NULL, method = "nlminb", robust = FALSE,
  legacy = FALSE, W2X = TRUE ) 
 {

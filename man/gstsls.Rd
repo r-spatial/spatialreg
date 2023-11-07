@@ -8,7 +8,7 @@
 }
 \usage{
 gstsls(formula, data = list(), listw, listw2 = NULL, na.action = na.fail, 
-    zero.policy = NULL, pars=NULL, scaleU=FALSE, control = list(), 
+    zero.policy = attr(listw, "zero.policy"), pars=NULL, scaleU=FALSE, control = list(), 
     verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE) 
 \method{impacts}{Gmsar}(obj, \dots, n = NULL, tr = NULL, R = NULL,
  listw = NULL, evalues=NULL, tol = 1e-06, empirical = FALSE, Q=NULL)

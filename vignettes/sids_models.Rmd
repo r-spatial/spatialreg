@@ -97,7 +97,7 @@ n <- nc$BIR74
 el1 <- min(dij)/dij
 el2 <- sqrt(n[sids.nhbr$to]/n[sids.nhbr$from])
 sids.nhbr$weights <- el1*el2
-sids.nhbr.listw <- sn2listw(sids.nhbr)
+sids.nhbr.listw <- sn2listw(sids.nhbr, style="B", zero.policy=TRUE)
 ```
 
 The first model (I) is a null model with just an intercept, the second

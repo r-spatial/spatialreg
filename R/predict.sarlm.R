@@ -193,7 +193,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
           W <- as(listw, "CsparseMatrix")
           W <- W[region.id, region.id]
           style <- listw$style
-          listw <- mat2listw(W, row.names = region.id, style = style) # re-normalize to keep the style
+          listw <- mat2listw(W, row.names = region.id, style = style, zero.policy=zero.policy) # re-normalize to keep the style
           rm(W) # avoid the use of a wrong W
         }
       }
@@ -247,7 +247,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
           W <- as(listw.mixed, "CsparseMatrix")
           W <- W[region.id.mixed, region.id.mixed]
           style <- listw.mixed$style
-          listw.mixed <- mat2listw(W, row.names = region.id.mixed, style = style) # re-normalize to keep the style
+          listw.mixed <- mat2listw(W, row.names = region.id.mixed, style = style, zero.policy=zero.policy) # re-normalize to keep the style
           rm(W) # avoid the use of a wrong W
         }
       }
@@ -540,7 +540,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         for (i in 1:nrow(newdata)) {
           region.id.temp <- c(region.id.data, region.id.newdata[i])
           Wi <- W[region.id.temp, region.id.temp]
-          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style) # re-normalize
+          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style, zero.policy=zero.policy) # re-normalize
           if (power)
             Wi <- as(listwi, "CsparseMatrix")
           Xi <- rbind(Xs, Xo[i,])
@@ -564,7 +564,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         for (i in 1:nrow(newdata)) {
           region.id.temp <- c(region.id.data, region.id.newdata[i])
           Wi <- W[region.id.temp, region.id.temp]
-          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style) # re-normalize
+          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style, zero.policy=zero.policy) # re-normalize
           Wi <- as(listwi, "CsparseMatrix")
           Xi <- rbind(Xs, Xo[i,])
           # compute TC1 for S and o units
@@ -599,7 +599,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         for (i in 1:nrow(newdata)) {
           region.id.temp <- c(region.id.data, region.id.newdata[i])
           Wi <- W[region.id.temp, region.id.temp]
-          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style) # re-normalize
+          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style, zero.policy=zero.policy) # re-normalize
           Wi <- as(listwi, "CsparseMatrix")
           Xi <- rbind(Xs, Xo[i,])
           is.data <- 1:length(ys)
@@ -633,7 +633,7 @@ predict.Sarlm <- function(object, newdata=NULL, listw=NULL, pred.type="TS", all.
         for (i in 1:nrow(newdata)) {
           region.id.temp <- c(region.id.data, region.id.newdata[i])
           Wi <- W[region.id.temp, region.id.temp]
-          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style) # re-normalize
+          listwi <- mat2listw(Wi, row.names = region.id.temp, style = style, zero.policy=zero.policy) # re-normalize
           Wi <- as(listwi, "CsparseMatrix")
           Xi <- rbind(Xs, Xo[i,])
           # compute TC1 for S and o units

@@ -17,7 +17,7 @@
 }
 \usage{
 GMerrorsar(formula, data = list(), listw, na.action = na.fail,
- zero.policy = NULL, method="nlminb", arnoldWied=FALSE, 
+ zero.policy = attr(listw, "zero.policy"), method="nlminb", arnoldWied=FALSE, 
  control = list(), pars, scaleU=FALSE, verbose=NULL, legacy=FALSE,
  se.lambda=TRUE, returnHcov=FALSE, pWOrder=250, tol.Hcov=1.0e-10)
 \method{summary}{Gmsar}(object, correlation = FALSE, Hausman=FALSE, ...)
