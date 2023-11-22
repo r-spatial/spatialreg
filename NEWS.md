@@ -1,6 +1,8 @@
-# Version 1.2-10 (development)
+# Version 1.3-1 (development)
 
-* added `zero.policy` pass-through to `spdep::mat2listw` calls in `predict.Sarlm` and to `spdep::sn2listw` in `sids_models.Rmd`
+* move `expm` from Imports to Suggests #42
+
+* added `zero.policy` pass-through to `spdep::mat2listw` calls in `predict.Sarlm` and to `spdep::sn2listw` in `sids_models.Rmd`; set `spdep` requirement to `1.3-1`
 
 * corrected #19 because the fitted model weights component is never NULL, but may have a single unique value
 

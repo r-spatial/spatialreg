@@ -1,6 +1,6 @@
 Package: spatialreg
-Version: 1.2-10
-Date: 2023-10-27
+Version: 1.3-1
+Date: 2023-11-22
 Title: Spatial Regression Analysis
 Encoding: UTF-8
 Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
