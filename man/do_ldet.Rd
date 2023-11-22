@@ -63,7 +63,7 @@ can.be.simmed(listw)
   \item{type}{moments trace type, see \code{\link{trW}}}
   \item{correct}{default TRUE: use Smirnov correction term, see \code{\link{trW}}}
   \item{trunc}{default TRUE: truncate Smirnov correction term, see \code{\link{trW}}}
-  \item{eq7}{default TRUE}{use equation 7 in Smirnov and Anselin (2009), if FALSE no unit root correction}
+  \item{eq7}{default TRUE; use equation 7 in Smirnov and Anselin (2009), if FALSE no unit root correction}
   \item{SE_method}{default \dQuote{LU}, alternatively \dQuote{MC}; underlying lndet method to use for generating SE toolbox emulation grid}
   \item{nrho}{default 200, number of lndet values in first stage SE toolbox emulation grid}
   \item{interval}{default c(-1,0.999) if interval argument NULL, bounds for SE toolbox emulation grid}
