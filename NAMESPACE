@@ -18,9 +18,10 @@ importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "mat2listw", "is.symmetric.nb", "chkIDs", "get.spChkOption",
  "subset.listw")
 
-import(Matrix, except=c("expm"))
+import(Matrix#, except=c("expm")
+)
 import(sf)
-importFrom(expm, expAtv, expm)
+#importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
 importFrom(MASS, mvrnorm)
 importFrom(boot, boot)

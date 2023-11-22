@@ -31,6 +31,13 @@ lagmess <- function(formula, data = list(), listw, zero.policy=NULL,
     W <- as(listw, "CsparseMatrix")
     assign("W", W, envir=env)
 
+    if (use_expm) {
+        if (!requireNamespace("expm", quietly=TRUE)) {
+            use_expm <- FALSE
+            warning("expm requested but not available")
+        }
+    }
+
     if (!use_expm) {
         Y <- powerWeightsMESS(W, y, q=q)
         assign("Y", Y, envir=env)
@@ -52,7 +59,7 @@ lagmess <- function(formula, data = list(), listw, zero.policy=NULL,
     rho <- 1.0 - exp(alpha[1])
 
     if (use_expm) {
-        Sy <- expAtv(alpha*W, y)$eAtv
+        Sy <- expm::expAtv(alpha*W, y)$eAtv
     } else {
         va <- alpha^v
         Sy <- Y %*% G1 %*% va
@@ -117,7 +124,7 @@ mymess_hess <- function(coefs, env) {
 mymess1_hess <- function(coefs, env) {
     alpha <- coefs[1]
     beta <- coefs[-1]
-    Sy <- expAtv(alpha*get("W", envir=env), get("y", envir=env))$eAtv
+    Sy <- expm::expAtv(alpha*get("W", envir=env), get("y", envir=env))$eAtv
     res <- Sy - get("X", envir=env) %*% beta
     SSE <- c(crossprod(res))
     n <- get("n", envir=env)
@@ -128,7 +135,7 @@ mymess1_hess <- function(coefs, env) {
 }
 
 mymess1 <- function(alpha, env, verbose=FALSE) {
-    Sy <- expAtv(alpha*get("W", envir=env), get("y", envir=env))$eAtv
+    Sy <- expm::expAtv(alpha*get("W", envir=env), get("y", envir=env))$eAtv
     lmobj <- lm(Sy ~ get("X", envir=env) - 1)
     res <- -c(logLik(lmobj))
     if (verbose) cat("res:", res, "\n")
@@ -227,12 +234,23 @@ impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
     empirical=FALSE) {
     if (!is.null(R)) stopifnot(!is.null(obj$mess_hess))
     stopifnot(!is.null(listw))
+    use_expm <- obj$use_expm
+    if (use_expm) {
+        if (!requireNamespace("expm", quietly=TRUE)) {
+            use_expm <- FALSE
+            warning("expm requested but not available")
+        }
+    }
     timings <- list()
     .ptime_start <- proc.time()
     type <- class(obj)
     W <- as(listw, "CsparseMatrix")
     alpha <- obj$alpha
-    S_W <- expm(-alpha*W)
+    if (use_expm) {
+        S_W <- expm::expm(-alpha*W)
+    } else {
+        S_W <- Matrix::expm(-alpha*W)
+    }
     beta <- obj$lmobj$coefficients
     n <- length(obj$lmobj$residuals)
     icept <- grep("(Intercept)", names(beta))
@@ -256,7 +274,7 @@ impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
         .ptime_start <- proc.time()
         sres <- apply(samples, 1, processMessSample,
             drop2beta=drop2beta, type=type, iicept=iicept,
-            icept=icept, n=n, W=W, ialpha=ialpha)
+            icept=icept, n=n, W=W, ialpha=ialpha, use_expm=use_expm)
         timings[["process_samples"]] <- proc.time() - .ptime_start
         .ptime_start <- proc.time()
         if (length(bnames) == 1L) {
@@ -291,9 +309,13 @@ impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
 }
 
 processMessSample <- function(x, drop2beta, type, iicept, icept, n, W,
-    ialpha) {
+    ialpha, use_expm) {
     alpha <- x[ialpha]
-    S_W <- expm(-alpha*W)
+    if (use_expm) {
+        S_W <- expm::expm(-alpha*W)
+    } else {
+        S_W <- Matrix::expm(-alpha*W)
+    }
     beta <- x[-drop2beta]
     if (iicept) {
       P <- matrix(beta[-icept], ncol=1)

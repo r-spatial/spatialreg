@@ -78,9 +78,11 @@ spdep::lm.LMtests(obj1, lw, test="all")
 system.time(obj2 <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw))
 (x <- summary(obj2))
 coef(x)
-system.time(obj2a <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw,
- use_expm=TRUE))
+has_expm <- require("expm", quietly=TRUE)
+if (has_expm) {
+system.time(obj2a <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw, use_expm=TRUE))
 summary(obj2a)
+}
 obj3 <- lagsarlm(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw)
 summary(obj3)
 \donttest{
