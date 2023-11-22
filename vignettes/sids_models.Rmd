@@ -97,7 +97,11 @@ n <- nc$BIR74
 el1 <- min(dij)/dij
 el2 <- sqrt(n[sids.nhbr$to]/n[sids.nhbr$from])
 sids.nhbr$weights <- el1*el2
-sids.nhbr.listw <- sn2listw(sids.nhbr, style="B", zero.policy=TRUE)
+if (packageVersion("spdep") >= "1.3.1") {
+  sids.nhbr.listw <- sn2listw(sids.nhbr, style="B", zero.policy=TRUE)
+} else {
+  sids.nhbr.listw <- sn2listw(sids.nhbr)
+}
 ```
 
 The first model (I) is a null model with just an intercept, the second
