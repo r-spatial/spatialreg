@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">GMerrorsar</span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">listw</span>, na.action <span class="op">=</span> <span class="va">na.fail</span>,</span>
-<span> zero.policy <span class="op">=</span> <span class="cn">NULL</span>, method<span class="op">=</span><span class="st">"nlminb"</span>, arnoldWied<span class="op">=</span><span class="cn">FALSE</span>, </span>
+<span> zero.policy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">listw</span>, <span class="st">"zero.policy"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"nlminb"</span>, arnoldWied<span class="op">=</span><span class="cn">FALSE</span>, </span>
 <span> control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">pars</span>, scaleU<span class="op">=</span><span class="cn">FALSE</span>, verbose<span class="op">=</span><span class="cn">NULL</span>, legacy<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span> se.lambda<span class="op">=</span><span class="cn">TRUE</span>, returnHcov<span class="op">=</span><span class="cn">FALSE</span>, pWOrder<span class="op">=</span><span class="fl">250</span>, tol.Hcov<span class="op">=</span><span class="fl">1.0e-10</span><span class="op">)</span></span>
 <span><span class="co"># S3 method for Gmsar</span></span>
@@ -297,9 +297,9 @@ variable in making predictions for the fitting data.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error   z value     Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.8932192 5.36616252 11.161276 0.0000000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.9413120 0.33056857 -2.847554 0.0044056569</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.8932190 5.36616256 11.161276 0.0000000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.9413120 0.33056857 -2.847554 0.0044056574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357787</span>
 <span class="r-in"><span><span class="va">COL.errW.GM</span> <span class="op">&lt;-</span> <span class="fu">GMerrorsar</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">COL.nb</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span>, returnHcov<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.errW.GM</span>, Hausman<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -371,6 +371,7 @@ variable in making predictions for the fitting data.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">ID</span>, <span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nydata</span><span class="op">$</span><span class="va">AREAKEY</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="va">nyadjlw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">mat2listw</a></span><span class="op">(</span><span class="va">nyadjmat</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nydata</span><span class="op">$</span><span class="va">AREAKEY</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style is M (missing); style should be set to a valid value</span>
 <span class="r-in"><span><span class="va">listw_NY</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">nyadjlw</span><span class="op">$</span><span class="va">neighbours</span>, style<span class="op">=</span><span class="st">"B"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">esar1f</span> <span class="op">&lt;-</span> <span class="fu"><a href="spautolm.html">spautolm</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span><span class="op">)</span></span></span>
@@ -392,7 +393,7 @@ variable in making predictions for the fitting data.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017209 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017201 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -276.1069 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
@@ -464,7 +465,7 @@ variable in making predictions for the fitting data.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

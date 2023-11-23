@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -63,7 +63,24 @@
       <small>Source: <a href="https://github.com/r-spatial/spatialreg/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="section level2"><h2 class="page-header" data-toc-text="1.2-7" id="version-12-7-development">Version 1.2-7 (development)<a class="anchor" aria-label="anchor" href="#version-12-7-development"></a></h2></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.3-1" id="version-13-1-development">Version 1.3-1 (development)<a class="anchor" aria-label="anchor" href="#version-13-1-development"></a></h2>
+<ul><li><p>move <code>expm</code> from Imports to Suggests <a href="https://github.com/r-spatial/spatialreg/issues/42" class="external-link">#42</a></p></li>
+<li><p>added <code>zero.policy</code> pass-through to <code><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">spdep::mat2listw</a></code> calls in <code>predict.Sarlm</code> and to <code><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">spdep::sn2listw</a></code> in <code>sids_models.Rmd</code>; set <code>spdep</code> requirement to <code>1.3-1</code></p></li>
+<li><p>corrected <a href="https://github.com/r-spatial/spatialreg/issues/19" class="external-link">#19</a> because the fitted model weights component is never NULL, but may have a single unique value</p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.2-9" id="version-12-9-2023-05-25">Version 1.2-9 (2023-05-25)<small>2023-05-25</small><a class="anchor" aria-label="anchor" href="#version-12-9-2023-05-25"></a></h2>
+<ul><li><p>raised <a href="https://github.com/r-spatial/spatialreg/issues/39" class="external-link">#39</a>, no support for weights in SEM/SDEM/SLX <a href="https://github.com/r-spatial/spatialreg/issues/39" class="external-link">#39</a></p></li>
+<li><p>address <a href="https://github.com/r-spatial/spatialreg/issues/37" class="external-link">#37</a>; <a href="https://github.com/r-spatial/spatialreg/issues/38" class="external-link">#38</a> remains (no formula Durbin support for prediction using any Sarlm object)</p></li>
+<li><p>address <a href="https://github.com/r-spatial/spatialreg/issues/19" class="external-link">#19</a> by not reporting <code>AIC</code> where case weights are used in <code>spautolm</code> or <code>errorsarlm</code></p></li>
+<li><p>address bug in <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> for new data, SDEM. Others in <a href="https://github.com/r-spatial/spatialreg/issues/37" class="external-link">#37</a>, <a href="https://github.com/r-spatial/spatialreg/issues/38" class="external-link">#38</a> need work.</p></li>
+<li><p>Further added checking for SLX/SDEM impacts and edge/corner cases; starting transition to use <strong>multcomp</strong> in place og <strong>gmodels</strong></p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.2-8" id="version-12-8-2023-03-01">Version 1.2-8 (2023-03-01)<small>2023-03-01</small><a class="anchor" aria-label="anchor" href="#version-12-8-2023-03-01"></a></h2>
+<ul><li>Attending to SLX/Durbin/non-W-style weights: <a href="https://github.com/r-spatial/spatialreg/issues/7" class="external-link">#7</a>, <a href="https://github.com/r-spatial/spatialreg/issues/36" class="external-link">#36</a>, <a href="https://github.com/r-spatial/spatialreg/issues/26" class="external-link">#26</a>, <a href="https://github.com/r-spatial/spatialreg/issues/35" class="external-link">#35</a>, <a href="https://github.com/r-spatial/spatialreg/issues/30" class="external-link">#30</a> <a href="https://github.com/r-spatial/spatialreg/issues/24" class="external-link">#24</a>, <a href="https://github.com/r-spatial/spatialreg/issues/23" class="external-link">#23</a>, partly based on <a href="https://github.com/r-spatial/spatialreg/issues/13" class="external-link">#13</a></li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2-6" id="version-12-6-2022-10-07">Version 1.2-6 (2022-10-07)<small>2022-10-07</small><a class="anchor" aria-label="anchor" href="#version-12-6-2022-10-07"></a></h2>
 <ul><li><p>make local copy of <code><a href="https://rdrr.io/pkg/gmodels/man/estimable.html" class="external-link">gmodels::estimable()</a></code> for lm objects only, add authors to package contributors</p></li>
@@ -101,7 +118,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1-3" id="version-11-3-2019-04-01">Version 1.1-3 (2019-04-01)<small>2019-04-01</small><a class="anchor" aria-label="anchor" href="#version-11-3-2019-04-01"></a></h2>
-<ul><li>#2 Split spatialreg from spdep; spdep functions still present there as deprecated</li></ul></div>
+<ul><li>#2 Split spatialreg from spdep; spdep functions still present there as deprecated</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -116,7 +134,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -196,7 +196,7 @@ Finance and Economics</em> 17, 99-121.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type: lag </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 45.079251   7.177347  6.2808 3.369e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 45.079250   7.177347  6.2808 3.369e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.031616   0.305143 -3.3808 0.0007229</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.265926   0.088499 -3.0049 0.0026570</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -209,9 +209,9 @@ Finance and Economics</em> 17, 99-121.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 95.494, (sigma: 9.7721)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 49 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 374.78, (AIC for lm: 382.75)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model), (AIC for lm: 382.75)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LM test for residual autocorrelation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> test value: 0.31955, p-value: 0.57188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test value: 0.31954, p-value: 0.57188</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Correlation of coefficients </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             sigma rho   (Intercept) INC  </span>
@@ -262,19 +262,19 @@ Finance and Economics</em> 17, 99-121.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.39668006 0.9695180 1.0529050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.09757127 0.3123932 0.3649017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.4250637 0.7860257 0.9598058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1068486 0.6601511 0.7218709</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.768354 -0.8583926 -1.833383</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.954457 -0.8425926 -1.511339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.474018 -1.0625140 -1.9657924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.826222 -0.4999244 -0.8755077</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0056340 0.39068  0.066746</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0031322 0.39946  0.130702</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0133603 0.28800  0.049323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0047101 0.61713  0.381298</span>
 <span class="r-in"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">loobj2</span> <span class="op">&lt;-</span> <span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.lag.stsls</span>, R<span class="op">=</span><span class="fl">200</span>, evalues<span class="op">=</span><span class="va">ev</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">loobj2</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
@@ -287,23 +287,23 @@ Finance and Economics</em> 17, 99-121.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3841092 0.7160775 0.8241613</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1008357 0.4126274 0.4698167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3647280 1.2688013 1.3886153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1175608 0.8263993 0.9011554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.895776 -1.1602746 -2.357719</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.743940 -0.6064747 -1.121576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.955756 -0.7150236 -1.4296758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.404673 -0.4145933 -0.6939034</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0037822 0.24594  0.018388</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0060707 0.54420  0.262043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct   Indirect Total  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.003119 0.47459  0.15281</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.016187 0.67844  0.48774</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">coda</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/HPDinterval.html" class="external-link">HPDinterval</a></span><span class="op">(</span><span class="va">loobj1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            lower       upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.7799556 -0.35225230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.4587508 -0.09515137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            lower      upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.8854657 -0.2997080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.4662763 -0.1121351</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"Probability")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
 <span class="r-in"><span><span class="va">COL.lag.stslsW</span> <span class="op">&lt;-</span> <span class="fu">stsls</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, <span class="va">lw</span>, W2X<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -431,7 +431,7 @@ Finance and Economics</em> 17, 99-121.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

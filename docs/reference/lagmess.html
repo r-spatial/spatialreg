@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ By default the variables are taken from the environment which the function
 is called.</p></dd>
 
   <dt>listw</dt>
-<dd><p>a <code>listw</code> object created for example by <code>nb2listw</code></p></dd>
+<dd><p>a <code>listw</code> object created for example by <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">spdep::nb2listw()</a></code></p></dd>
 
   <dt>zero.policy</dt>
 <dd><p>default NULL, use global option value; if TRUE assign zero to the lagged value of zones without 
@@ -118,9 +118,9 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
     <h2>Details</h2>
     <p>The underlying spatial lag model:</p>
 <p>$$y = \rho W y + X \beta + \varepsilon$$</p>
-<p>where \(\rho\) is the spatial parameter may be fitted by maximum likelihood. In that case, the log likelihood function includes the logartithm of cumbersome Jacobian term \(|I - \rho W|\). If we rewrite the model as:</p>
+<p>where \(\rho\) is the spatial parameter may be fitted by maximum likelihood. In that case, the log likelihood function includes the logarithm of cumbersome Jacobian term \(|I - \rho W|\). If we rewrite the model as:</p>
 <p>$$S y = X \beta + \varepsilon$$</p>
-<p>we see that in the ML case \(S y = (I - \rho W) y\). If W is row-stochastic, S may be expressed as a linear combination of row-stochastic matrices. By pre-computing the matrix \([y Wy, W^2y, ..., W^{q-1}y]\), the term \(S y (\alpha)\) can readily be found by numerical optimization using the matrix exponential approach. \(\alpha\) and \(\rho\) are related as \(\rho = 1 - \exp{\alpha}\), conditional on the number of matrix power terms taken <code>q</code>.</p>
+<p>we see that in the ML case \(S y = (I - \rho W) y\). If W is row-stochastic, S may be expressed as a linear combination of row-stochastic matrices. By pre-computing the matrix \([y, Wy, W^2y, ..., W^{q-1}y]\), the term \(S y (\alpha)\) can readily be found by numerical optimization using the matrix exponential approach. \(\alpha\) and \(\rho\) are related as \(\rho = 1 - \exp{\alpha}\), conditional on the number of matrix power terms taken <code>q</code>.</p>
     </div>
     <div id="value">
     <h2>Value</h2>
@@ -244,7 +244,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">obj2</span> <span class="op">&lt;-</span> <span class="fu">lagmess</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">PRICE</span><span class="op">)</span> <span class="op">~</span> <span class="va">PATIO</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">SQFT</span><span class="op">)</span>, data<span class="op">=</span><span class="va">baltimore</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.060   0.000   0.061 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.034   0.000   0.035 </span>
 <span class="r-in"><span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matrix exponential spatial lag model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -274,15 +274,22 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error   t value     Pr(&gt;|t|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  1.5463761 0.21451319  7.208770 1.038762e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  1.5463761 0.21451319  7.208769 1.038762e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PATIO        0.2582874 0.08689079  2.972552 3.303312e-03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log(AGE)    -0.1481738 0.03525174 -4.203305 3.912250e-05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log(SQFT)    0.3009659 0.07159771  4.203569 3.908038e-05</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">obj2a</span> <span class="op">&lt;-</span> <span class="fu">lagmess</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">PRICE</span><span class="op">)</span> <span class="op">~</span> <span class="va">PATIO</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">SQFT</span><span class="op">)</span>, data<span class="op">=</span><span class="va">baltimore</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
-<span class="r-in"><span> use_expm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.684   0.001   0.688 </span>
+<span class="r-in"><span><span class="va">has_expm</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://R-Forge.R-project.org/projects/expm/" class="external-link">"expm"</a></span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘expm’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:Matrix’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     expm</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">has_expm</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">obj2a</span> <span class="op">&lt;-</span> <span class="fu">lagmess</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">PRICE</span><span class="op">)</span> <span class="op">~</span> <span class="va">PATIO</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">SQFT</span><span class="op">)</span>, data<span class="op">=</span><span class="va">baltimore</span>, listw<span class="op">=</span><span class="va">lw</span>, use_expm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">obj2a</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matrix exponential spatial lag model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (calculated with expm)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -337,7 +344,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.1589, (sigma: 0.39862)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 211 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 232.85, (AIC for lm: 283.51)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model), (AIC for lm: 283.51)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LM test for residual autocorrelation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> test value: 8.7942, p-value: 0.0030219</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -364,7 +371,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> CRIM        -7.1045e-03  9.6236e-04  -7.3824 1.554e-13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ZN           3.7985e-04  3.8510e-04   0.9864 0.3239507</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INDUS        1.2572e-03  1.7986e-03   0.6990 0.4845472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1        7.3677e-03  2.5416e-02   0.2899 0.7719059</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1        7.3677e-03  2.5416e-02   0.2899 0.7719057</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2)    -2.6892e-01  8.8026e-02  -3.0550 0.0022508</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2)      6.7243e-03  1.0039e-03   6.6985 2.106e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AGE         -2.7682e-04  4.0062e-04  -0.6910 0.4895829</span>
@@ -384,7 +391,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.019276, (sigma: 0.13884)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 506 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: -496.02, (AIC for lm: -283.96)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model), (AIC for lm: -283.96)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LM test for residual autocorrelation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> test value: 10.74, p-value: 0.0010486</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -444,7 +451,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -290,9 +290,6 @@ neighbours, if FALSE (default) assign NA</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#require("spdep", quietly=TRUE)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">oldcol</span>, package<span class="op">=</span><span class="st">"spdep"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">lw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">COL.nb</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="va">lw</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">lw</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">trMatc</span> <span class="op">&lt;-</span> <span class="fu"><a href="trW.html">trW</a></span><span class="op">(</span><span class="va">W</span>, type<span class="op">=</span><span class="st">"mult"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"coda"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
@@ -336,621 +333,65 @@ neighbours, if FALSE (default) assign NA</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      3        1010  937          1.080     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  sige        2        930   937          0.993     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="va">lw</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">lw</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">trMatc</span> <span class="op">&lt;-</span> <span class="fu"><a href="trW.html">trW</a></span><span class="op">(</span><span class="va">W</span>, type<span class="op">=</span><span class="st">"mult"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prior<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lambdaMH<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean      SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  59.5304  8.9916 0.201059       0.275885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9142  0.3969 0.008874       0.011266</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.3027  0.1021 0.002282       0.002282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.6011  0.1502 0.003358       0.007723</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        116.6773 27.9707 0.625443       0.660902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%    25%      50%      75%    97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 44.0607 54.802  59.6796  64.2473  72.9189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.6866 -1.184  -0.9177  -0.6422  -0.1429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.5102 -0.370  -0.3005  -0.2359  -0.1019</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda       0.2826  0.511   0.6135   0.7023   0.8676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        74.1788 97.167 113.2955 130.2498 182.6024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/raftery.diag.html" class="external-link">raftery.diag</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span>, r<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile (q) = 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accuracy (r) = +/- 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Probability (s) = 0.95 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Burn-in  Total Lower bound  Dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              (M)      (N)   (Nmin)       factor (I)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept) 3        1143  937          1.220     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  INC         2        969   937          1.030     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  HOVAL       2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      17       4454  937          4.750     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  sige        2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Mean      SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  72.66455 11.7701 0.263187       0.263187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.01543  0.3763 0.008414       0.008414</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.28060  0.1050 0.002347       0.002347</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.06754  0.7388 0.016519       0.016519</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     0.08961  0.2383 0.005328       0.005328</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.48878  0.1732 0.003873       0.003873</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        114.66234 26.8527 0.600444       0.659903</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%      25%       50%      75%     97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 48.2182 65.57218  73.00283  80.0588  95.67986</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7264 -1.27249  -1.01848  -0.7658  -0.26325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4835 -0.35298  -0.27998  -0.2105  -0.07685</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -2.4553 -1.54934  -1.08873  -0.6092   0.39927</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL   -0.3926 -0.06243   0.09177   0.2443   0.55929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda       0.1165  0.37669   0.49775   0.6118   0.79690</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        73.4827 95.70364 110.68368 129.1459 177.97468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SDEM, MCMC, n):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct    Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0154294 -1.06753527 -2.0829647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2806034  0.08960515 -0.1909982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.35656492 0.7000652 0.8257127</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.09946104 0.2258118 0.2716818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.847811 -1.5249083 -2.5226265</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.821239  0.3968134 -0.7030219</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0044021 0.12728  0.011648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0047839 0.69151  0.482042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/raftery.diag.html" class="external-link">raftery.diag</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span>, r<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile (q) = 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accuracy (r) = +/- 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Probability (s) = 0.95 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Burn-in  Total Lower bound  Dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              (M)      (N)   (Nmin)       factor (I)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept) 2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  INC         3        1010  937          1.080     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  HOVAL       2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.INC     2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.HOVAL   2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  sige        2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="cn">TRUE</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prior<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lambdaMH<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Mean      SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  70.40019 70.4345 1.574962       1.385430</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.97037  0.4110 0.009190       0.009823</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.28455  0.1145 0.002561       0.002561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -0.95215  0.8426 0.018842       0.027001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     0.06555  0.2679 0.005990       0.007555</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.60702  0.1781 0.003983       0.014276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        120.45188 29.1908 0.652727       1.279486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%     25%       50%      75%     97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 37.9440 62.5478  71.80756  80.9018 104.95272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7687 -1.2346  -0.98524  -0.7063  -0.14242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.5141 -0.3592  -0.28460  -0.2088  -0.06554</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -2.6086 -1.5191  -0.95619  -0.4294   0.72268</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL   -0.4869 -0.1027   0.06799   0.2443   0.56913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda       0.2366  0.5043   0.62080   0.7333   0.92570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        76.7686 99.6498 116.80421 135.9061 189.12857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SDEM, MCMC, n):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct    Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -0.9703690 -0.95214894 -1.9225179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2845537  0.06555386 -0.2189999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3894378 0.7984944 0.9933065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1085247 0.2538476 0.3175629</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.491717 -1.192430 -1.9354730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.622018  0.258241 -0.6896269</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0127127 0.23309  0.052932</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0087411 0.79622  0.490429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/raftery.diag.html" class="external-link">raftery.diag</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span>, r<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile (q) = 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accuracy (r) = +/- 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Probability (s) = 0.95 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Burn-in  Total Lower bound  Dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              (M)      (N)   (Nmin)       factor (I)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept) 5        1472  937          1.570     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  INC         2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  HOVAL       3        1010  937          1.080     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.INC     3        1010  937          1.080     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.HOVAL   2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      14       3645  937          3.890     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  sige        2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="op">~</span><span class="va">INC</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  74.5423 10.98931 0.245728       0.245728</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.0339  0.38293 0.008563       0.008987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2860  0.09857 0.002204       0.002204</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -0.9190  0.59170 0.013231       0.012507</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.4879  0.17196 0.003845       0.003672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        112.0658 25.47022 0.569531       0.567228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%     25%      50%      75%     97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 52.0905 67.8363  74.9216  81.7016  94.97558</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7796 -1.2965  -1.0425  -0.7816  -0.23925</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4762 -0.3494  -0.2861  -0.2205  -0.08885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -2.0736 -1.3191  -0.9217  -0.5457   0.27871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda       0.1355  0.3737   0.4987   0.6088   0.80100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        73.0813 94.1656 108.2980 125.8857 173.13082</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SDEM, MCMC, n):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0339443 -0.9190497 -1.9529940</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2860029         NA -0.2860029</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.36696535 0.5670367 0.69945670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.09446444        NA 0.09446444</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.817553 -1.620794 -2.792159</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -3.027625        NA -3.027625</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0048391 0.10506  0.0052358</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0024648 NA       0.0024648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/raftery.diag.html" class="external-link">raftery.diag</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span>, r<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile (q) = 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accuracy (r) = +/- 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Probability (s) = 0.95 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Burn-in  Total Lower bound  Dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              (M)      (N)   (Nmin)       factor (I)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept) 3        1010  937          1.080     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  INC         2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  HOVAL       2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.INC     2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  sige        3        1010  937          1.080     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.err.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_err</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="op">~</span><span class="va">INC</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prior<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lambdaMH<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean      SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  72.8864 13.2070 0.295318       0.332323</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9843  0.3831 0.008566       0.009768</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2889  0.1008 0.002253       0.002253</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -0.8606  0.6640 0.014847       0.014847</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.5779  0.1662 0.003715       0.010526</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        114.9801 26.2240 0.586387       0.665850</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%     25%      50%      75%    97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 45.5280 65.3717  73.3929  81.2895  97.2255</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7170 -1.2373  -0.9898  -0.7261  -0.2197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4870 -0.3565  -0.2850  -0.2177  -0.1032</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -2.1579 -1.2914  -0.8847  -0.4386   0.4898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda       0.2436  0.4725   0.5835   0.6981   0.8672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        73.5737 96.1297 111.5039 130.5606 176.0332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SDEM, MCMC, n):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -0.9843411 -0.8605551 -1.8448962</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2889068         NA -0.2889068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.36712699 0.6362974 0.80457985</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.09657666        NA 0.09657666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.681201 -1.352442 -2.292993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.991476        NA -2.991476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0073359 0.17623  0.0218484</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0027763 NA       0.0027763</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/raftery.diag.html" class="external-link">raftery.diag</a></span><span class="op">(</span><span class="va">COL.err.Bayes</span>, r<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile (q) = 0.025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accuracy (r) = +/- 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Probability (s) = 0.95 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Burn-in  Total Lower bound  Dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              (M)      (N)   (Nmin)       factor (I)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept) 4        1192  937          1.270     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  INC         2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  HOVAL       2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lag.INC     2        892   937          0.952     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      10       2853  937          3.040     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  sige        2        930   937          0.993     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.sacW.B0</span> <span class="op">&lt;-</span> <span class="fu">spBreg_sac</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="cn">FALSE</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ndraw<span class="op">=</span><span class="fl">1500L</span>, nomit<span class="op">=</span><span class="fl">500L</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.sacW.B0</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:1500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 1000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  49.3672  9.23725 0.292108       0.847100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9925  0.35777 0.011314       0.012624</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2847  0.09798 0.003099       0.003307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho           0.3117  0.19633 0.006208       0.020392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.1927  0.27130 0.008579       0.027162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        105.0462 23.96805 0.757936       0.757936</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%      25%      50%      75%    97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 31.8783 43.12583  48.9398  55.3573  68.1858</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.6817 -1.24459  -0.9872  -0.7516  -0.3168</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4952 -0.34433  -0.2827  -0.2201  -0.1028</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho         -0.1548  0.21285   0.3406   0.4438   0.6176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda      -0.3788  0.01455   0.2171   0.3794   0.6988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        68.5025 88.13909 101.6888 118.2545 160.2792</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.sacW.B0</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (sac, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.017325 -0.4246675 -1.4419930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.291816 -0.1218143 -0.4136303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3668822 0.4180525 0.6533395</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1016518 0.1341689 0.1983041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.808257 -1.219897 -2.357550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.910868 -1.106171 -2.240542</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0049810 0.22250  0.018396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0036043 0.26865  0.025056</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.sacW.B1</span> <span class="op">&lt;-</span> <span class="fu">spBreg_sac</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="cn">TRUE</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ndraw<span class="op">=</span><span class="fl">1500L</span>, nomit<span class="op">=</span><span class="fl">500L</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.sacW.B1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:1500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 1000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  60.1833 24.14827 0.763635       3.169760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9880  0.36251 0.011464       0.015819</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2839  0.09749 0.003083       0.003433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -0.8740  0.77272 0.024435       0.061565</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     0.1704  0.22184 0.007015       0.013821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho           0.1808  0.32007 0.010121       0.044327</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda        0.2106  0.32071 0.010142       0.041657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        100.9463 24.32264 0.769149       0.946662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%       25%     50%      75%    97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 22.2042 42.277313 56.1007  76.4887 113.5316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7045 -1.223372 -0.9842  -0.7329  -0.3299</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4803 -0.349479 -0.2841  -0.2152  -0.1085</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -2.5306 -1.336778 -0.8386  -0.3451   0.5156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL   -0.3031  0.026900  0.1851   0.3249   0.5752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho         -0.5076 -0.021227  0.2386   0.4320   0.6655</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda      -0.5106 -0.007594  0.2129   0.4482   0.7389</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        64.6867 84.395156 96.9599 114.4101 159.7252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.sacW.B1</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (sacmixed, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0332779 -1.239705 -2.2729830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2787547  0.140259 -0.1384957</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3510687 0.9383466 1.0337787</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1002385 0.2776460 0.3184971</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.962199 -1.4351185 -2.3085930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.775887  0.5415921 -0.4015108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0030545 0.15125  0.020966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0055051 0.58810  0.688044</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.lag.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_lag</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.lag.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  45.8256  8.04911 0.179984       0.179984</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.0459  0.34746 0.007770       0.007770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2662  0.09366 0.002094       0.002094</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho           0.4146  0.12434 0.002780       0.002780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        107.8827 23.75095 0.531087       0.561152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%     25%      50%      75%     97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 30.3334 40.3140  45.9376  51.0903  61.51008</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.7252 -1.2774  -1.0477  -0.8158  -0.35423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.4533 -0.3312  -0.2686  -0.2019  -0.08107</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho          0.1645  0.3327   0.4157   0.5008   0.64982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        70.5778 90.6316 104.8556 120.4706 164.75421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.lag.Bayes</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, short<span class="op">=</span><span class="cn">TRUE</span>, zstats<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0962113 -0.6903627 -1.7865741</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2790451 -0.1757347 -0.4547797</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3680189 0.4927553 0.7674941</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1002735 0.1393959 0.2171077</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -3.003178 -1.554252 -2.437925</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.809370 -1.425055 -2.212507</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0026718 0.12012  0.014772</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0049639 0.15414  0.026932</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.lag.Bayes</span>, evalues<span class="op">=</span><span class="va">ev</span><span class="op">)</span>, short<span class="op">=</span><span class="cn">TRUE</span>, zstats<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, evalues):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0962113 -0.6903627 -1.7865741</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2790451 -0.1757347 -0.4547797</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3680193 0.4929524 0.7676307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1002746 0.1395496 0.2172252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -3.003178 -1.553686 -2.437527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.809345 -1.423571 -2.211367</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0026718 0.12026  0.014788</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0049642 0.15457  0.027010</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.D0.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_lag</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">lw</span>, Durbin<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.D0.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  45.3106 13.74660 0.307383       0.307383</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9255  0.36779 0.008224       0.008224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2941  0.09628 0.002153       0.002153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -0.5834  0.63860 0.014279       0.014279</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     0.2396  0.19206 0.004295       0.004295</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho           0.3932  0.16296 0.003644       0.003644</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        109.7428 24.97328 0.558419       0.607251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 2.5%     25%      50%      75%    97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 19.18523 35.9952  45.0347  54.5253  72.8545</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.63995 -1.1761  -0.9206  -0.6651  -0.2148</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.48230 -0.3566  -0.2931  -0.2308  -0.1021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -1.82283 -1.0066  -0.5712  -0.1763   0.6692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL   -0.14391  0.1068   0.2393   0.3670   0.6168</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho          0.06053  0.2826   0.3977   0.5078   0.6949</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        71.19421 91.4872 106.1690 123.7826 170.9503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.D0.Bayes</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, short<span class="op">=</span><span class="cn">TRUE</span>, zstats<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.027773 -1.4589793 -2.48675192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.280732  0.1908138 -0.08991828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.38264314 1.3114491 1.4534522</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.09937135 0.3347428 0.3698437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.739321 -1.2582210 -1.8564594</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.838369  0.5610536 -0.2548209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0061566 0.20831  0.063388</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0045345 0.57476  0.798861</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.D1.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_lag</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">DISCBD</span> <span class="op">+</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">lw</span>, Durbin<span class="op">=</span> <span class="op">~</span> <span class="va">INC</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.D1.Bayes</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iterations = 501:2500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thinning interval = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample size per chain = 2000 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1. Empirical mean and standard deviation for each variable,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    plus standard error of the mean:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Mean       SD Naive SE Time-series SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  56.4447 13.43635 0.300446       0.300446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD       -4.7748  2.14395 0.047940       0.047940</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -0.9493  0.34681 0.007755       0.007755</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.1798  0.09983 0.002232       0.002232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC       0.4262  0.63352 0.014166       0.014166</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho           0.1873  0.18174 0.004064       0.004064</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        103.8701 23.29384 0.520866       0.566802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2. Quantiles for each variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                2.5%       25%      50%      75%     97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 30.5093 47.769573  56.4789  65.0877  84.86254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD      -9.2416 -6.153288  -4.7453  -3.3591  -0.67219</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.6655 -1.174948  -0.9451  -0.7102  -0.28365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.3744 -0.247270  -0.1775  -0.1128   0.01524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -0.8028  0.004752   0.4224   0.8433   1.66618</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rho         -0.2116  0.072536   0.1836   0.3067   0.53579</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sige        67.8946 87.054945 100.9815 116.4528 161.25826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.D1.Bayes</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, short<span class="op">=</span><span class="cn">TRUE</span>, zstats<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            Direct    Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD -4.8148501 -1.06067837 -5.8755285</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC    -0.9381442  0.29454370 -0.6436005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL  -0.1813164 -0.03994275 -0.2212591</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD 2.1926383 1.82145831 3.3798560</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC    0.3502903 0.81693522 0.8950370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL  0.1015612 0.06692703 0.1429623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD -2.219068 -0.7449248 -1.8410439</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC    -2.696796  0.3333552 -0.7511779</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL  -1.802805 -0.7412143 -1.6277185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Direct   Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD 0.026482 0.45632  0.065615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC    0.007001 0.73887  0.452546</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL  0.071419 0.45856  0.103585</span>
 <span class="r-in"><span><span class="co">#data(elect80, package="spData")</span></span></span>
 <span class="r-in"><span><span class="co">#lw &lt;- spdep::nb2listw(e80_queen, zero.policy=TRUE)</span></span></span>
 <span class="r-in"><span><span class="co">#el_ml &lt;- lagsarlm(log(pc_turnout) ~ log(pc_college) + log(pc_homeownership)</span></span></span>
@@ -962,7 +403,7 @@ neighbours, if FALSE (default) assign NA</p></dd>
 <span class="r-in"><span><span class="co">#print(summary(el_B))</span></span></span>
 <span class="r-in"><span><span class="co">#print(el_ml$timings)</span></span></span>
 <span class="r-in"><span><span class="co">#print(attr(el_B, "timings"))</span></span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -977,7 +418,7 @@ neighbours, if FALSE (default) assign NA</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

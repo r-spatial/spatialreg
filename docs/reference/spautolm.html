@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -329,55 +329,12 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/" class="external-link">"sf"</a></span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">nydata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/NY8_bna_utm18.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">lm0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.7417 -0.3957 -0.0326  0.3353  4.1398 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.51728    0.15856  -3.262  0.00124 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.04884    0.03506   1.393  0.16480    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.95089    0.60550   6.525 3.22e-10 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.56004    0.17031  -3.288  0.00114 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 0.6571 on 277 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.1932,	Adjusted R-squared:  0.1844 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic:  22.1 on 3 and 277 DF,  p-value: 7.306e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">lm0w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>, weights<span class="op">=</span><span class="va">POP8</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm0w</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = POP8)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Weighted Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -129.067  -14.714    5.817   25.624   70.723 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.77837    0.14116  -5.514 8.03e-08 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.07626    0.02731   2.792  0.00560 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.85656    0.57126   6.751 8.60e-11 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.39869    0.15305  -2.605  0.00968 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 33.5 on 277 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.1977,	Adjusted R-squared:  0.189 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 22.75 on 3 and 277 DF,  p-value: 3.382e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="va">nyadjmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu">foreign</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/foreign/man/read.dbf.html" class="external-link">read.dbf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span> <span class="st">"misc/nyadjwts.dbf"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="va">ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu">foreign</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/foreign/man/read.dbf.html" class="external-link">read.dbf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span></span>
@@ -386,263 +343,43 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="co">#require("spdep", quietly=TRUE)</span></span></span>
 <span class="r-in"><span><span class="va">nyadjlw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">mat2listw</a></span><span class="op">(</span><span class="va">nyadjmat</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nydata</span><span class="op">$</span><span class="va">AREAKEY</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style is M (missing); style should be set to a valid value</span>
 <span class="r-in"><span><span class="va">listw_NY</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">nyadjlw</span><span class="op">$</span><span class="va">neighbours</span>, style<span class="op">=</span><span class="st">"B"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">eigs</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="va">listw_NY</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">esar0</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:errorsarlm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = nydata, listw = listw_NY)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.56754 -0.38239 -0.02643  0.33109  4.01219 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.618193   0.176784 -3.4969 0.0004707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.071014   0.042051  1.6888 0.0912635</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.754200   0.624722  6.0094 1.862e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.040487, LR test value: 5.2438, p-value: 0.022026</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.016214</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 2.4971, p-value: 0.01252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 6.2356, p-value: 0.01252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -276.1069 for error model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 564.21, (AIC for lm: 567.46)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1f</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.272   0.000   0.274 </span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, family = "SAR", method = "eigen", control = list(pre_eig = eigs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.56754 -0.38239 -0.02643  0.33109  4.01219 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.618193   0.176784 -3.4969 0.0004707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.071014   0.042051  1.6888 0.0912635</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.754200   0.624722  6.0094 1.862e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017209 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -276.1069 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 564.21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate Std. Error   z value     Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.61819272 0.17678351 -3.496891 4.707136e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.07101384 0.04205063  1.688770 9.126351e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.75419997 0.62472153  6.009397 1.862141e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.41988961 0.19132936 -2.194591 2.819298e-02</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">resvar</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472153  0.19132936 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">imat</span><span class="op">)</span><span class="op">*</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">s2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472153  0.19132936 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fdHess</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.01720868 0.18535631 0.04389387 0.63003835 0.20373413</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.323   0.000   0.325 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, family = "SAR", method = "Matrix")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -3.406132 -0.561646 -0.092662  0.474796  5.384405 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.414826   0.102166 -4.0603 4.901e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.015081   0.017772  0.8486    0.3961</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    5.159749   0.476498 10.8285 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.892387   0.099241 -8.9921 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -0.38889 LR test value: 254.73 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.044857 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -151.3662 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.95111, (sigma: 0.97525)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 314.73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.282   0.000   0.283 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, family = "SAR", method = "Matrix", control = list(super = TRUE))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -3.178535 -0.521860 -0.074421  0.414212  5.184465 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.411041   0.104426 -3.9362 8.279e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.015768   0.018366  0.8585    0.3906</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    5.070130   0.483332 10.4900 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.880883   0.102093 -8.6282 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -0.33146 LR test value: 247.44 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.030659 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -155.0108 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.82436, (sigma: 0.90795)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 322.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esar1wf</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wf</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, weights = POP8, family = "SAR", method = "eigen", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     control = list(pre_eig = eigs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.48488 -0.26823  0.09489  0.46552  4.28343 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.797063   0.144054 -5.5331 3.146e-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.080545   0.028334  2.8428  0.004473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.816731   0.576037  6.6258 3.453e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.016466 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -251.6017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 515.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.320   0.000   0.322 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wM</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, weights = POP8, family = "SAR", method = "Matrix")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.561100 -0.374524  0.057405  0.591094  5.700142 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.578546   0.090006 -6.4279 1.294e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.035402   0.013959  2.5361   0.01121</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    4.651137   0.421285 11.0404 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.666898   0.091443 -7.2931 3.029e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -0.34423 LR test value: 264.24 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.036776 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -119.6468 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 2129.1, (sigma: 46.142)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 251.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esar1wlu</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"LU"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wlu</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, weights = POP8, family = "SAR", method = "LU")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.48488 -0.26823  0.09489  0.46552  4.28343 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.797063   0.144054 -5.5331 3.146e-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.080545   0.028334  2.8428  0.004473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.816731   0.576037  6.6258 3.453e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.016522 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -251.6017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 515.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esar1wch</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Chebyshev"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wch</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, weights = POP8, family = "SAR", method = "Chebyshev")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -4.39831 -0.86303  0.12117  1.09320  8.78570 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.538555   0.087573 -6.1498  7.76e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.029782   0.013074  2.2780   0.02273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    4.896346   0.419359 11.6758 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.737829   0.087569 -8.4257 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -1 LR test value: 236970 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: NaN </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: 118232.5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 9336.4, (sigma: 96.625)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: -236450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">ecar1f</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -664,7 +401,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.382789   0.195564 -1.9574 0.0503053</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.084123 LR test value: 5.8009 p-value: 0.016018 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.030868 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.030872 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -275.8283 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.40758, (sigma: 0.63842)</span>
@@ -672,38 +409,11 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 563.66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.349   0.000   0.350 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1M</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, family = "CAR", method = "Matrix")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -3.449951 -0.633777 -0.072436  0.550248  6.039594 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.402788   0.112612 -3.5768 0.0003479</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.020131   0.020783  0.9686 0.3327222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    4.632644   0.500526  9.2555 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.812981   0.112867 -7.2030 5.891e-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -0.5 LR test value: 228.48 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: NaN </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -164.4897 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.50386, (sigma: 0.70983)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 340.98</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">ecar1wf</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>, data<span class="op">=</span><span class="va">nydata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -726,47 +436,20 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.386820   0.157436 -2.4570  0.014010</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.022419 LR test value: 0.38785 p-value: 0.53343 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.038543 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.038977 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -251.5711 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1102.9, (sigma: 33.21)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 515.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.342   0.000   0.344 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1wM</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data = nydata, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     listw = listw_NY, weights = POP8, family = "CAR", method = "Matrix")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.98144 -0.15716  0.37342  1.08857  7.10495 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.714952   0.093905 -7.6136 2.665e-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.041467   0.015279  2.7139   0.00665</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    4.149207   0.425446  9.7526 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.478396   0.097030 -4.9304 8.205e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: -0.5 LR test value: 262.65 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: NaN </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -120.4395 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1159.2, (sigma: 34.046)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 281 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 252.88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/" class="external-link">"sf"</a></span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">nc.sids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/sids.shp"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ft.SID74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">SID74</span><span class="op">/</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -777,21 +460,18 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="va">sids.nhbr30.dist</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nbdists.html" class="external-link">nbdists</a></span><span class="op">(</span><span class="va">sids.nhbr30</span>, <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">east</span>, <span class="va">nc.sids</span><span class="op">$</span><span class="va">north</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sids.nhbr</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">listw2sn</a></span><span class="op">(</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">sids.nhbr30</span>,</span></span>
 <span class="r-in"><span> glist<span class="op">=</span><span class="va">sids.nhbr30.dist</span>, style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>zero sum general weights</span>
 <span class="r-in"><span><span class="va">dij</span> <span class="op">&lt;-</span> <span class="va">sids.nhbr</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span></span></span>
 <span class="r-in"><span><span class="va">el1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dij</span><span class="op">)</span><span class="op">/</span><span class="va">dij</span></span></span>
 <span class="r-in"><span><span class="va">el2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">[</span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">to</span><span class="op">]</span><span class="op">/</span><span class="va">n</span><span class="op">[</span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">from</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="va">el1</span><span class="op">*</span><span class="va">el2</span></span></span>
 <span class="r-in"><span><span class="va">sids.nhbr.listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">sn2listw</a></span><span class="op">(</span><span class="va">sids.nhbr</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>56, 87 are not origins</span>
 <span class="r-in"><span><span class="va">both</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">L_id</span>, <span class="va">nc.sids</span><span class="op">$</span><span class="va">M_id</span>, sep<span class="op">=</span><span class="st">":"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ft.NWBIR74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">/</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">both</span>, <span class="va">ft.NWBIR74</span>, <span class="va">ft.SID74</span>, BIR74<span class="op">=</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">outl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">rstandard</a></span><span class="op">(</span><span class="va">lm_nc</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">NAME</span><span class="op">[</span><span class="va">outl</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Anson"</span>
 <span class="r-in"><span><span class="va">mdata.4</span> <span class="op">&lt;-</span> <span class="va">mdata</span><span class="op">[</span><span class="op">-</span><span class="va">outl</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html" class="external-link">listw2mat</a></span><span class="op">(</span><span class="va">sids.nhbr.listw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">W.4</span> <span class="op">&lt;-</span> <span class="va">W</span><span class="op">[</span><span class="op">-</span><span class="va">outl</span>, <span class="op">-</span><span class="va">outl</span><span class="op">]</span></span></span>
@@ -799,395 +479,50 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="va">esarI</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarI</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:errorsarlm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     zero.policy = TRUE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.887117 -0.636573 -0.043429  0.448767  3.406724 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regions with no neighbours included:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  56 87 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.97463    0.13011  22.862 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.66864, LR test value: 10.214, p-value: 0.0013939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.11473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 5.8278, p-value: 5.6147e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 33.964, p-value: 5.6147e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -133.8616 for error model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 273.72, (AIC for lm: 281.94)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIa</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIa</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family = "SAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.887117 -0.636573 -0.043429  0.448767  3.406724 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.97463    0.13011  22.862 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.66864 LR test value: 10.214 p-value: 0.0013939 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.16506 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -133.8616 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 273.72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIV</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIV</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> errorsarlm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     zero.policy = TRUE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.123648 -0.573163  0.017859  0.468022  2.693604 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regions with no neighbours included:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  56 87 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.549443   0.219230  7.0677 1.576e-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.18465, LR test value: 0.50496, p-value: 0.47733</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.20648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 0.89424, p-value: 0.37119</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 0.79967, p-value: 0.37119</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -117.7464 for error model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 243.49, (AIC for lm: 242)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIVa</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIVa</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family = "SAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.123648 -0.573163  0.017859  0.468022  2.693604 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.549443   0.219230  7.0677 1.576e-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.18465 LR test value: 0.50496 p-value: 0.47733 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25591 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -117.7464 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 243.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.867485 -0.568644  0.019717  0.502197  3.498013 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 2.852052   0.090271  31.594 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.7338 LR test value: 12.917 p-value: 0.00032554 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.13887 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -130.0975 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1539.4, (sigma: 39.236)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 266.19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">both</span> <span class="op">-</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIIaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ both - 1, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.590809 -0.432976  0.016736  0.357284  3.536718 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:2  2.05545    0.22184  9.2654 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:3  2.87260    0.16181 17.7531 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:4  4.16365    0.34330 12.1283 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:1  2.47255    0.29757  8.3090 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:2  2.15307    0.21172 10.1692 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:3  2.64235    0.17296 15.2770 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:4  3.26604    0.28287 11.5459 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:1  3.11277    0.34166  9.1107 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:2  2.76541    0.15667 17.6508 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:3  2.86582    0.18593 15.4134 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:4  3.18142    0.21617 14.7169 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both4:3  3.69333    0.23348 15.8188 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.32136 LR test value: 1.4004 p-value: 0.23666 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25465 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -109.8922 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1071.6, (sigma: 32.735)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 247.78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIVaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIVaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.00956 -0.45229  0.12547  0.55952  2.92223 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.5769279  0.2501334  6.3043 2.894e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.0368573  0.0069413  5.3099 1.097e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.3839 LR test value: 1.9983 p-value: 0.15747 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25769 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -119.5648 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1295.8, (sigma: 35.997)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 247.13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata.4</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ 1, data = mdata.4, listw = sids.nhbr.listw.4, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.009350 -0.638915 -0.060761  0.428526  2.019409 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 2.942864   0.095304  30.879 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.86832 LR test value: 23.003 p-value: 1.6172e-06 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.048102 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -118.7564 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1264, (sigma: 35.553)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 243.51</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">both</span> <span class="op">-</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata.4</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NaNs produced</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIIaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ both - 1, data = mdata.4, listw = sids.nhbr.listw.4, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.564067 -0.461531 -0.020982  0.384458  2.054255 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:2  2.06282    0.20065 10.2806 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:3  2.91982    0.14171 20.6048 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both1:4  4.12159    0.30076 13.7037 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:1  2.58281    0.27014  9.5611 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:2  2.17549    0.18265 11.9104 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:3  2.67030    0.15355 17.3910 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both2:4  3.10806    0.24748 12.5588 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:1  2.93237    0.30007  9.7724 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:2  2.65317    0.14139 18.7646 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:3  2.91685    0.17134 17.0234 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both3:4  3.20447    0.20402 15.7063 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> both4:3  3.80672    0.20831 18.2742 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.22163 LR test value: 1.3827 p-value: 0.23964 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: NaN </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -99.2181 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 890.66, (sigma: 29.844)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 226.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIVaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata.4</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata.4, listw = sids.nhbr.listw.4, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.99259 -0.44794  0.15464  0.60748  1.95751 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.434705   0.225521  6.3618 1.995e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.040903   0.006299  6.4936 8.382e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.22724 LR test value: 1.1936 p-value: 0.2746 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.55494 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -114.0196 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1201, (sigma: 34.655)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 236.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">nc.sids</span><span class="op">$</span><span class="va">fitIV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/append.html" class="external-link">append</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted.values</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span>, <span class="cn">NA</span>, <span class="va">outl</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">[</span>,<span class="st">"fitIV"</span><span class="op">]</span>, nbreaks<span class="op">=</span><span class="fl">12</span><span class="op">)</span> <span class="co"># Cressie 1993, p. 565</span></span></span>
-<span class="r-plt img"><img src="spautolm-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">oldcol</span>, package<span class="op">=</span><span class="st">"spdep"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">COL.nb</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> errorsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     style = "W"))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -34.81174  -6.44031  -0.72142   7.61476  23.33626 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.941312   0.330569 -2.8476 0.0044057</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.302250   0.090476 -3.3407 0.0008358</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.56179, LR test value: 7.9935, p-value: 0.0046945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.13387</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 4.1966, p-value: 2.7098e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 17.611, p-value: 2.7098e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -183.3805 for error model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 95.575, (sigma: 9.7762)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 49 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 376.76, (AIC for lm: 382.75)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">COL.errW.sar</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">COL.nb</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.errW.sar</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = spdep::nb2listw(COL.nb, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     style = "W"))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -34.81174  -6.44031  -0.72142   7.61476  23.33626 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.941312   0.330569 -2.8476 0.0044057</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.302250   0.090476 -3.3407 0.0008358</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.56179 LR test value: 7.9935 p-value: 0.0046945 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.15242 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -183.3805 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 95.575, (sigma: 9.7762)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 49 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 376.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">boston</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">gp1</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">CMEDV</span><span class="op">)</span> <span class="op">~</span> <span class="va">CRIM</span> <span class="op">+</span> <span class="va">ZN</span> <span class="op">+</span> <span class="va">INDUS</span> <span class="op">+</span> <span class="va">CHAS</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">NOX</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">RM</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">AGE</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">DIS</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">RAD</span><span class="op">)</span> <span class="op">+</span> <span class="va">TAX</span> <span class="op">+</span> <span class="va">PTRATIO</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">LSTAT</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">boston.c</span>, <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">boston.soi</span><span class="op">)</span>, family<span class="op">=</span><span class="st">"SMA"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">gp1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: spautolm(formula = log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     log(LSTAT), data = boston.c, listw = spdep::nb2listw(boston.soi), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family = "SMA")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Min         1Q     Median         3Q        Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.5847694 -0.0713881  0.0012284  0.0827517  0.6071219 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate  Std. Error  z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  4.28501607  0.15367176  27.8842 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM        -0.00718807  0.00106298  -6.7622 1.359e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ZN           0.00023008  0.00051897   0.4433 0.6575185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS        0.00047300  0.00263339   0.1796 0.8574551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1        0.01020698  0.02872047   0.3554 0.7222970</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2)    -0.44885530  0.13675913  -3.2821 0.0010304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2)      0.00638094  0.00110330   5.7835 7.316e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AGE         -0.00043973  0.00051336  -0.8566 0.3916862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS)    -0.15650578  0.03856337  -4.0584 4.941e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD)     0.07583760  0.02016468   3.7609 0.0001693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TAX         -0.00049364  0.00012162  -4.0588 4.933e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO     -0.02494959  0.00538791  -4.6307 3.645e-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B            0.00048517  0.00010944   4.4334 9.277e-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT)  -0.32961379  0.02353891 -14.0029 &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.61991 LR test value: 144.28 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.044359 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: 229.1208 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.02596, (sigma: 0.16112)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 506 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: -426.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1202,7 +537,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

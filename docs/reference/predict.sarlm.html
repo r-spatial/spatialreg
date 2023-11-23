@@ -21,7 +21,7 @@ trend, signal, and noise, or other types of predictors --- see references."><!--
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
       </span>
     </div>
 
@@ -227,108 +227,108 @@ returning a data frame with columns: "fit", "trend" and "signal" (when available
 <span class="r-in"><span>  type<span class="op">=</span><span class="st">"mixed"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.mix.eig</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> This method assumes the response is known - see manual page</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            fit      trend    signal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1001 26.044311 14.8543508 11.189960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1002 44.034234 29.2632112 14.771023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1003 43.511934 25.8193818 17.692553</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1004 37.656561 16.4555583 21.201002</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1005 10.902976  0.3664066 10.536570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1006 36.829798 24.2905246 12.539274</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1007 44.290467 27.0386615 17.251806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1008 38.853571 21.5342393 17.319331</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1009 50.870854 29.5092783 21.361576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1010 16.401300  5.6029104 10.798389</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1011 36.354390 28.6415353  7.712855</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1012 20.452836 12.4607277  7.992108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1013 20.324088 14.4173433  5.906745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1014 19.243496 10.2606419  8.982854</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1015 19.747775 12.2556861  7.492089</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1016  6.962527 -2.0137491  8.976276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1017  7.452143 -6.3808928 13.833036</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1018 28.481587 14.2125594 14.269028</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1019 43.351392 28.0442064 15.307186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1020 50.359682 30.6608153 19.698867</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1021 38.905226 24.7490977 14.156128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1022 44.724478 28.8314299 15.893048</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1023 37.888974 23.7778863 14.111087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1024 45.527017 26.9163190 18.610698</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1025 32.429571 17.1892401 15.240331</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1026 26.490842 14.8893980 11.601444</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1027 35.629158 23.4577209 12.171437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1028 35.574326 21.9001006 13.674226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1029 38.598639 23.1818442 15.416795</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1030 36.602053 14.8614072 21.740646</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1031 50.320031 30.1013982 20.218633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1032 53.698863 31.2094168 22.489447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1033 49.364208 26.5151201 22.849088</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1034 46.262357 25.5538226 20.708534</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1035 39.177121 15.7689329 23.408188</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1036 54.984344 32.6590841 22.325260</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1037 51.611458 33.1290203 18.482438</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1038 51.998831 30.7428313 21.256000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1039 43.651605 27.4107880 16.240817</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1040 44.196841 25.9409252 18.255916</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1041 49.310592 29.5106497 19.799943</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1042 37.995310 15.7039024 22.291408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1043 46.908709 28.2687603 18.639948</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1044 28.976789 19.5389223  9.437867</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1045 25.343793 17.1838200  8.159973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1046 24.006252 16.0103703  7.995882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1047 25.034907 18.4616473  6.573260</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1048 10.478529  3.3573578  7.121171</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1049 13.495623  5.3356502  8.159973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            fit     trend    signal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1001 26.044310 14.854350 11.189960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1002 44.034234 29.263210 14.771023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1003 43.511934 25.819381 17.692554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1004 37.656561 16.455557 21.201004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1005 10.902976  0.366406 10.536570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1006 36.829798 24.290524 12.539274</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1007 44.290467 27.038660 17.251807</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1008 38.853571 21.534238 17.319332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1009 50.870854 29.509277 21.361577</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1010 16.401300  5.602910 10.798390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1011 36.354390 28.641535  7.712855</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1012 20.452836 12.460727  7.992109</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1013 20.324088 14.417343  5.906745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1014 19.243496 10.260642  8.982854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1015 19.747775 12.255686  7.492089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1016  6.962527 -2.013749  8.976277</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1017  7.452143 -6.380893 13.833037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1018 28.481587 14.212559 14.269028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1019 43.351392 28.044206 15.307187</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1020 50.359682 30.660814 19.698868</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1021 38.905226 24.749097 14.156129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1022 44.724478 28.831429 15.893049</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1023 37.888974 23.777886 14.111088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1024 45.527017 26.916318 18.610699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1025 32.429571 17.189239 15.240332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1026 26.490842 14.889397 11.601445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1027 35.629157 23.457720 12.171437</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1028 35.574326 21.900100 13.674226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1029 38.598639 23.181843 15.416796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1030 36.602053 14.861406 21.740647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1031 50.320031 30.101397 20.218634</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1032 53.698863 31.209416 22.489448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1033 49.364208 26.515119 22.849089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1034 46.262357 25.553822 20.708535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1035 39.177121 15.768932 23.408190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1036 54.984344 32.659083 22.325261</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1037 51.611458 33.129019 18.482439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1038 51.998831 30.742830 21.256001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1039 43.651605 27.410787 16.240818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1040 44.196841 25.940924 18.255917</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1041 49.310593 29.510649 19.799944</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1042 37.995310 15.703901 22.291409</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1043 46.908709 28.268759 18.639949</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1044 28.976789 19.538922  9.437868</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1045 25.343793 17.183819  8.159973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1046 24.006252 16.010370  7.995883</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1047 25.034907 18.461647  6.573260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1048 10.478529  3.357357  7.121172</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1049 13.495623  5.335650  8.159973</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.mix.eig</span>, newdata<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>, pred.type <span class="op">=</span> <span class="st">"TS"</span>,</span></span>
 <span class="r-in"><span> legacy.mixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            fit      trend    signal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1001 29.038788 14.8543508 14.184437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1002 46.227075 29.2632112 16.963864</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1003 45.640479 25.8193818 19.821097</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1004 36.643520 16.4555583 20.187962</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1005 14.819940  0.3664066 14.453533</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1006 38.764777 24.2905246 14.474252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1007 45.715716 27.0386615 18.677055</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1008 37.514611 21.5342393 15.980372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1009 49.324228 29.5092783 19.814950</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1010 17.510607  5.6029104 11.907696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1011 34.973608 28.6415353  6.332072</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1012 21.079100 12.4607277  8.618372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1013 19.704134 14.4173433  5.286791</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1014 16.365521 10.2606419  6.104879</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1015 17.063856 12.2556861  4.808170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1016  6.190282 -2.0137491  8.204031</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1017  5.967260 -6.3808928 12.348153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1018 29.250462 14.2125594 15.037902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1019 41.530036 28.0442064 13.485830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1020 49.344770 30.6608153 18.683954</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1021 39.508818 24.7490977 14.759720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1022 42.772692 28.8314299 13.941262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1023 37.114901 23.7778863 13.337015</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1024 43.622499 26.9163190 16.706180</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1025 33.247197 17.1892401 16.057957</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1026 30.301331 14.8893980 15.411933</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1027 38.316063 23.4577209 14.858342</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1028 36.886068 21.9001006 14.985967</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1029 38.970564 23.1818442 15.788720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1030 33.014615 14.8614072 18.153208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1031 48.209875 30.1013982 18.108477</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1032 50.808064 31.2094168 19.598647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1033 44.555996 26.5151201 18.040876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1034 43.232773 25.5538226 17.678951</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1035 35.009061 15.7689329 19.240128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1036 52.113364 32.6590841 19.454280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1037 52.189015 33.1290203 19.059995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1038 51.631805 30.7428313 20.888973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1039 46.543565 27.4107880 19.132776</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1040 45.036095 25.9409252 19.095170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1041 45.907835 29.5106497 16.397185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1042 35.337110 15.7039024 19.633208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1043 43.948398 28.2687603 15.679638</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1044 32.091257 19.5389223 12.552334</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1045 29.647005 17.1838200 12.463185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1046 26.375304 16.0103703 10.364934</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1047 27.235807 18.4616473  8.774160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1048 14.785518  3.3573578 11.428160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1049 17.798835  5.3356502 12.463185</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            fit     trend    signal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1001 29.038788 14.854350 14.184438</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1002 46.227075 29.263210 16.963865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1003 45.640479 25.819381 19.821099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1004 36.643520 16.455557 20.187963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1005 14.819940  0.366406 14.453534</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1006 38.764777 24.290524 14.474253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1007 45.715716 27.038660 18.677056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1008 37.514611 21.534238 15.980372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1009 49.324228 29.509277 19.814951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1010 17.510606  5.602910 11.907697</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1011 34.973607 28.641535  6.332073</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1012 21.079100 12.460727  8.618373</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1013 19.704134 14.417343  5.286791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1014 16.365521 10.260642  6.104879</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1015 17.063856 12.255686  4.808170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1016  6.190282 -2.013749  8.204032</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1017  5.967260 -6.380893 12.348154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1018 29.250462 14.212559 15.037903</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1019 41.530036 28.044206 13.485830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1020 49.344769 30.660814 18.683955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1021 39.508818 24.749097 14.759721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1022 42.772692 28.831429 13.941263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1023 37.114901 23.777886 13.337016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1024 43.622499 26.916318 16.706181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1025 33.247197 17.189239 16.057958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1026 30.301331 14.889397 15.411934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1027 38.316063 23.457720 14.858343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1028 36.886068 21.900100 14.985968</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1029 38.970564 23.181843 15.788721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1030 33.014615 14.861406 18.153209</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1031 48.209875 30.101397 18.108478</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1032 50.808064 31.209416 19.598648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1033 44.555996 26.515119 18.040877</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1034 43.232773 25.553822 17.678952</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1035 35.009061 15.768932 19.240129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1036 52.113364 32.659083 19.454281</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1037 52.189015 33.129019 19.059996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1038 51.631805 30.742830 20.888974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1039 46.543564 27.410787 19.132778</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1040 45.036095 25.940924 19.095171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1041 45.907835 29.510649 16.397186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1042 35.337110 15.703901 19.633209</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1043 43.948398 28.268759 15.679639</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1044 32.091257 19.538922 12.552335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1045 29.647005 17.183819 12.463186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1046 26.375304 16.010370 10.364935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1047 27.235807 18.461647  8.774160</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1048 14.785518  3.357357 11.428161</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1049 17.798836  5.335650 12.463186</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">COL.mix.eig</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 376.787</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/deviance.html" class="external-link">deviance</a></span><span class="op">(</span><span class="va">COL.mix.eig</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">COL.nb</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -377,15 +377,15 @@ returning a data frame with columns: "fit", "trend" and "signal" (when available
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.mix.eig</span>, newdata<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>, pred.type <span class="op">=</span> <span class="st">"TS"</span>,</span></span>
 <span class="r-in"><span> legacy<span class="op">=</span><span class="cn">FALSE</span>, legacy.mixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p3</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p3</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.mix.eig</span>, newdata<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>, pred.type <span class="op">=</span> <span class="st">"TS"</span>,</span></span>
 <span class="r-in"><span> legacy<span class="op">=</span><span class="cn">FALSE</span>, power<span class="op">=</span><span class="cn">TRUE</span>, legacy.mixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p4</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p4</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.mix.eig</span>, newdata<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>, pred.type <span class="op">=</span> <span class="st">"TS"</span>,</span></span>
 <span class="r-in"><span> legacy<span class="op">=</span><span class="cn">TRUE</span>, power<span class="op">=</span><span class="cn">TRUE</span>, legacy.mixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p5</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">p5</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>
     </div>
@@ -401,7 +401,7 @@ returning a data frame with columns: "fit", "trend" and "signal" (when available
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
