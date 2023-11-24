@@ -1,4 +1,8 @@
-# Version 1.3-1 (development)
+# Version 1.3-2 (development)
+
+* suppress warning from `multcomp::glht` as the test which throws the warning is discarded
+
+# Version 1.3-1 (2023-11-23)
 
 * move `expm` from Imports to Suggests #42
 

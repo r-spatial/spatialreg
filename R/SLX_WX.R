@@ -137,7 +137,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                 indirImps <- sum_lm_model$coefficients[(m2+1):m, 1:2, drop=FALSE]
                 rownames(indirImps) <- rownames(cm)
             }
-            lc <- summary(multcomp::glht(lm.model, linfct=cm))
+            suppressWarnings(lc <- summary(multcomp::glht(lm.model, linfct=cm)))
             totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
       } else if (is.formula(Durbin)) {
 #FIXME
@@ -174,7 +174,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                  }
                }
                rownames(indirImps) <- xn
-               lc <- summary(multcomp::glht(lm.model, linfct=cm))
+               suppressWarnings(lc <- summary(multcomp::glht(lm.model, linfct=cm)))
                totImps <- cbind("Estimate"=lc$test$coefficients,
                      "Std. Error"=lc$test$sigma)
                  if (!is.null(zero_fill)) {
