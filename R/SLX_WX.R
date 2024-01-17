@@ -25,8 +25,12 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
 	    listw <- subset(listw, subset, zero.policy=zero.policy)
 	}
-        
+
+        d_name <- deparse(substitute(data))
+	listw_name <- deparse(substitute(listw))
+
 	y <- model.response(mf, "numeric")
+        y_name <- as.character(mt)[2]
 	if (any(is.na(y))) stop("NAs in dependent variable")
 	x <- model.matrix(mt, mf)
 	if (any(is.na(x))) stop("NAs in independent variable")
@@ -198,8 +202,37 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         attr(lm.model, "mixedImps") <- mixedImps
         attr(lm.model, "dvars") <- dvars
         if (is.formula(Durbin)) attr(lm.model, "Durbin") <- deparse(Durbin)
+        if (is.null(weights)) attr(lm.model, "weights") <- weights
+        tms <- as.character(lm.model$terms)
+        attr(lm.model, "SLX_call") <- paste(y_name, " ", tms[1], " ", tms[3],
+            ", data = ", d_name, ", listw = ", listw_name, sep="")
         class(lm.model) <- c("SlX", class(lm.model))
         lm.model
+}
+
+
+print.SlX <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
+    x$ocall <- x$call
+    if (!is.null(attr(x, "SLX_call"))) 
+        x$call <- str2lang(paste("lm(", attr(x, "SLX_call"), ")", sep=""))
+    class(x) <- "lm"
+    invisible(print(x, digits=digits, ...))
+}
+
+summary.SlX <- function(object, correlation = FALSE, symbolic.cor = FALSE, ...) {
+    class(object) <- "lm"
+    sum_obj <- summary(object, correlation=correlation, symbolic.cor=symbolic.cor, ...)
+    class(sum_obj) <- "summary.SlX"
+    sum_obj
+}
+
+
+print.summary.SlX <- function(x, digits = max(3L, getOption("digits") - 3L), symbolic.cor = x$symbolic.cor, signif.stars = getOption("show.signif.stars"), ...) {
+    x$ocall <- x$call
+    if (!is.null(attr(x, "SLX_call")))
+        x$call <- str2lang(paste("lm(", attr(x, "SLX_call"), ")", sep=""))
+    class(x) <- "lm"
+    invisible(print(x, digits=digits, symbolic.cor=symbolic.cor, signif.stars=signif.stars, ...))
 }
 
 

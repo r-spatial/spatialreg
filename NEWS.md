@@ -1,5 +1,7 @@
 # Version 1.3-2 (development)
 
+* pass through SlX formula in call
+
 * re-corrected #19 because the fitted model weights component may be NULL
 
 * suppress warning from `multcomp::glht` as the test which throws the warning is discarded

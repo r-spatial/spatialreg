@@ -127,6 +127,9 @@ export(lmSLX, create_WX)
 
 S3method(impacts, SlX)
 S3method(predict, SlX)
+S3method(print, SlX)
+S3method(summary, SlX)
+S3method(print, summary.SlX)
 
 # SF/ME
 export(SpatialFiltering, ME)

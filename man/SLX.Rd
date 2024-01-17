@@ -5,6 +5,9 @@
 \alias{print.WXimpact}
 \alias{summary.WXimpact}
 \alias{print.summary.WXimpact}
+\alias{print.SlX}
+\alias{summary.SlX}
+\alias{print.summary.SlX}
 \alias{predict.SlX}
 
 \title{Spatial Durbin linear (SLX, spatially lagged X) model}
@@ -14,12 +17,14 @@
 \usage{
 lmSLX(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE,
  zero.policy=NULL)
-create_WX(x, listw, zero.policy=NULL, prefix="")
+\method{print}{SlX}(x, digits = max(3L, getOption("digits") - 3L), ...)
+\method{summary}{SlX}(object, correlation = FALSE, symbolic.cor = FALSE, ...)
+\method{print}{summary.SlX}(x, digits = max(3L, getOption("digits") - 3L), symbolic.cor = x$symbolic.cor, signif.stars = getOption("show.signif.stars"), ...)
 \method{impacts}{SlX}(obj, ...)
 \method{print}{WXimpact}(x, ...)
 \method{summary}{WXimpact}(object, ..., adjust_k=(attr(object, "type") == "SDEM"))
 \method{predict}{SlX}(object, newdata, listw, zero.policy=NULL, ...)
-
+create_WX(x, listw, zero.policy=NULL, prefix="")
 }
 
 \arguments{
@@ -33,6 +38,10 @@ is called.}
   \item{weights}{an optional vector of weights to be used in the fitting process. Non-NULL weights can be used to indicate that different observations have different variances (with the values in weights being inversely proportional to the variances); or equivalently, when the elements of weights are positive integers w_i, that each response y_i is the mean of w_i unit-weight observations (including the case that there are w_i observations equal to y_i and the data have been summarized) - \code{\link{lm}}}
   \item{Durbin}{default TRUE for \code{lmSLX} (Durbin model including WX); if TRUE, full spatial Durbin model; if a formula object, the subset of explanatory variables to lag}
   \item{zero.policy}{default NULL, use global option value; if TRUE assign zero to the lagged value of zones without neighbours, if FALSE assign NA}
+  \item{digits}{the number of significant digits to use when printing}
+  \item{correlation}{logical; if \code{TRUE}, the correlation matrix of the estimated parameters is returned and printed}
+  \item{symbolic.cor}{logical. If \code{TRUE}, print the correlations in a symbolic form (see 'symnum') rather than as numbers}
+  \item{signif.stars}{logical. If \code{TRUE}, 'significance stars' are printed for each coefficient}
   \item{obj}{A spatial regression object created by \code{lmSLX}}
   \item{\dots}{Arguments passed through}
   \item{prefix}{default empty string, may be \dQuote{lag} in some cases}
