@@ -19,7 +19,8 @@ lmSLX(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE,
  zero.policy=NULL)
 \method{print}{SlX}(x, digits = max(3L, getOption("digits") - 3L), ...)
 \method{summary}{SlX}(object, correlation = FALSE, symbolic.cor = FALSE, ...)
-\method{print}{summary.SlX}(x, digits = max(3L, getOption("digits") - 3L), symbolic.cor = x$symbolic.cor, signif.stars = getOption("show.signif.stars"), ...)
+\method{print}{summary.SlX}(x, digits = max(3L, getOption("digits") - 3L),
+ symbolic.cor = x$symbolic.cor, signif.stars = getOption("show.signif.stars"), ...)
 \method{impacts}{SlX}(obj, ...)
 \method{print}{WXimpact}(x, ...)
 \method{summary}{WXimpact}(object, ..., adjust_k=(attr(object, "type") == "SDEM"))
