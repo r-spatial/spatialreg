@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-2</span>
       </span>
     </div>
 
@@ -71,7 +71,13 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lmSLX</span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">listw</span>, <span class="va">na.action</span>, weights<span class="op">=</span><span class="cn">NULL</span>, Durbin<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span> zero.policy<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="fu">create_WX</span><span class="op">(</span><span class="va">x</span>, <span class="va">listw</span>, zero.policy<span class="op">=</span><span class="cn">NULL</span>, prefix<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for SlX</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for SlX</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span>, symbolic.cor <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for summary.SlX</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>,</span>
+<span> symbolic.cor <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">symbolic.cor</span>, signif.stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"show.signif.stars"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="co"># S3 method for SlX</span></span>
 <span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">obj</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="co"># S3 method for WXimpact</span></span>
@@ -79,7 +85,8 @@
 <span><span class="co"># S3 method for WXimpact</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, adjust_k<span class="op">=</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">object</span>, <span class="st">"type"</span><span class="op">)</span> <span class="op">==</span> <span class="st">"SDEM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># S3 method for SlX</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">newdata</span>, <span class="va">listw</span>, zero.policy<span class="op">=</span><span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">newdata</span>, <span class="va">listw</span>, zero.policy<span class="op">=</span><span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">create_WX</span><span class="op">(</span><span class="va">x</span>, <span class="va">listw</span>, zero.policy<span class="op">=</span><span class="cn">NULL</span>, prefix<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -107,6 +114,18 @@ is called.</p></dd>
 
   <dt>zero.policy</dt>
 <dd><p>default NULL, use global option value; if TRUE assign zero to the lagged value of zones without neighbours, if FALSE assign NA</p></dd>
+
+  <dt>digits</dt>
+<dd><p>the number of significant digits to use when printing</p></dd>
+
+  <dt>correlation</dt>
+<dd><p>logical; if <code>TRUE</code>, the correlation matrix of the estimated parameters is returned and printed</p></dd>
+
+  <dt>symbolic.cor</dt>
+<dd><p>logical. If <code>TRUE</code>, print the correlations in a symbolic form (see 'symnum') rather than as numbers</p></dd>
+
+  <dt>signif.stars</dt>
+<dd><p>logical. If <code>TRUE</code>, 'significance stars' are printed for each coefficient</p></dd>
 
   <dt>obj</dt>
 <dd><p>A spatial regression object created by <code>lmSLX</code></p></dd>
@@ -154,23 +173,13 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = as.data.frame(x), weights = weights)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -36.536  -7.835   0.474   8.349  25.594 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  75.0287     6.6260  11.323 1.26e-14 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.1089     0.3738  -2.967  0.00485 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -0.2897     0.1014  -2.858  0.00649 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.3710     0.5613  -2.443  0.01867 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     0.1918     0.2003   0.957  0.34369    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 10.93 on 44 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.6088,	Adjusted R-squared:  0.5732 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 17.12 on 4 and 44 DF,  p-value: 1.553e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate    Std. Error  t value     Pr(&gt;|t|)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   7.503e+01   6.626e+00   1.132e+01   1.261e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.109e+00   3.738e-01  -2.967e+00   4.854e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -2.897e-01   1.014e-01  -2.858e+00   6.486e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.371e+00   5.613e-01  -2.443e+00   1.867e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL     1.918e-01   2.003e-01   9.572e-01   3.437e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SlX, glht, n-k):</span>
@@ -225,25 +234,15 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = as.data.frame(x), weights = weights)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -33.974  -7.764   0.907   6.820  24.395 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)    92.459835  19.278187   4.796 2.06e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC            -0.947594   0.398833  -2.376   0.0221 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL          -0.777428   0.464457  -1.674   0.1016    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I.HOVAL.2.      0.004640   0.004226   1.098   0.2785    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC        -1.275339   0.596874  -2.137   0.0385 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL      -0.355048   0.982132  -0.362   0.7195    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.I.HOVAL.2.  0.005608   0.009084   0.617   0.5403    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 10.99 on 42 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.6224,	Adjusted R-squared:  0.5684 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 11.54 on 6 and 42 DF,  p-value: 1.361e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Estimate    Std. Error  t value     Pr(&gt;|t|)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      9.246e+01   1.928e+01   4.796e+00   2.058e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC             -9.476e-01   3.988e-01  -2.376e+00   2.214e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL           -7.774e-01   4.645e-01  -1.674e+00   1.016e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I.HOVAL.2.       4.640e-03   4.226e-03   1.098e+00   2.785e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC         -1.275e+00   5.969e-01  -2.137e+00   3.849e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL       -3.550e-01   9.821e-01  -3.615e-01   7.195e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.I.HOVAL.2.   5.608e-03   9.084e-03   6.174e-01   5.403e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">COL.SLX</span> <span class="op">&lt;-</span> <span class="fu">lmSLX</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">HOVAL</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>, Durbin<span class="op">=</span><span class="op">~</span><span class="va">INC</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -277,23 +276,13 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = as.data.frame(x), weights = weights)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -35.908  -7.085   0.770   7.147  24.684 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 83.679968   9.264846   9.032  1.4e-11 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -1.079065   0.384711  -2.805  0.00747 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.634519   0.447601  -1.418  0.16335    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I.HOVAL.2.   0.003455   0.004110   0.841  0.40510    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC     -1.010896   0.455267  -2.220  0.03159 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 10.96 on 44 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.607,	Adjusted R-squared:  0.5712 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 16.99 on 4 and 44 DF,  p-value: 1.716e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate    Std. Error  t value     Pr(&gt;|t|)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   8.368e+01   9.265e+00   9.032e+00   1.401e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.079e+00   3.847e-01  -2.805e+00   7.466e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL        -6.345e-01   4.476e-01  -1.418e+00   1.634e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I.HOVAL.2.    3.455e-03   4.110e-03   8.406e-01   4.051e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.011e+00   4.553e-01  -2.220e+00   3.159e-02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">COL.SLX</span> <span class="op">&lt;-</span> <span class="fu">lmSLX</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span></span></span>
@@ -302,21 +291,11 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = as.data.frame(x), weights = weights)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -49.297  -6.658   0.669   7.315  29.826 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  73.9849     6.2081  11.918 1.16e-15 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.5889     0.3564  -4.458 5.28e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.0859     0.4812  -2.257   0.0288 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 11.65 on 46 degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.5353,	Adjusted R-squared:  0.5151 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 26.49 on 2 and 46 DF,  p-value: 2.214e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate    Std. Error  t value     Pr(&gt;|t|)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   7.398e+01   6.208e+00   1.192e+01   1.155e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC          -1.589e+00   3.564e-01  -4.458e+00   5.276e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC      -1.086e+00   4.812e-01  -2.257e+00   2.882e-02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SlX, glht, n-k):</span>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-2</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@ is reported on loading:</p>
 <pre><code><span><span class="co">## Loading required package: spData</span></span></code></pre>
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
 <pre><code><span><span class="co">## Loading required package: sf</span></span></code></pre>
-<pre><code><span><span class="co">## Linking to GEOS 3.12.1, GDAL 3.8.0, PROJ 9.3.0; sf_use_s2() is TRUE</span></span></code></pre>
+<pre><code><span><span class="co">## Linking to GEOS 3.12.1, GDAL 3.8.3, PROJ 9.3.1; sf_use_s2() is TRUE</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="getting-some-data">Getting some data<a class="anchor" aria-label="anchor" href="#getting-some-data"></a>
@@ -181,9 +181,9 @@ turn depends on <strong>sf</strong>.</p>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html" class="external-link">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <pre><code><span><span class="co">##           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span></span>
-<span><span class="co">##       "3.12.1"        "3.8.0"        "9.3.0"         "true"         "true" </span></span>
+<span><span class="co">##       "3.12.1"        "3.8.3"        "9.3.1"         "true"         "true" </span></span>
 <span><span class="co">##           PROJ </span></span>
-<span><span class="co">##        "9.3.0"</span></span></code></pre>
+<span><span class="co">##        "9.3.1"</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="va">columbus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/columbus.shp"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -554,10 +554,16 @@ of a symmetric matrix is <code>"undirected"</code> by definition:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">##     union</span></span></code></pre>
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_adjacency_matrix.html" class="external-link">graph.adjacency</a></span><span class="op">(</span><span class="va">B</span>, mode<span class="op">=</span><span class="st">"undirected"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "igraph"</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph.adjacency.html" class="external-link">graph.adjacency</a></span><span class="op">(</span><span class="va">B</span>, mode<span class="op">=</span><span class="st">"undirected"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `graph.adjacency()` was deprecated in igraph 2.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `graph_from_adjacency_matrix()` instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "igraph"</span></span></code></pre>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html" class="external-link">object.size</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## 6544 bytes</span></span></code></pre>
 </div>
@@ -568,23 +574,15 @@ of a symmetric matrix is <code>"undirected"</code> by definition:</p>
 <code>get.adjacency</code> chooses a particular class of sparse matrix
 to be returned, so that the conversion process typically leads many
 matrices to fewer graph types, and back to fewer matrix types:</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Matrix 1.4-2 vulnerability work-around</span></span>
 <span><span class="va">ow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"warn"</span><span class="op">)</span><span class="op">$</span><span class="va">warn</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"warn"</span><span class="op">=</span><span class="fl">2L</span><span class="op">)</span></span>
-<span><span class="va">B1</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/as_adjacency_matrix.html" class="external-link">get.adjacency</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span>, silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">B1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "dgCMatrix"</span></span>
-<span><span class="co">## attr(,"package")</span></span>
-<span><span class="co">## [1] "Matrix"</span></span></code></pre>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html" class="external-link">object.size</a></span><span class="op">(</span><span class="va">B1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 10824 bytes</span></span></code></pre>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">B</span>, <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"warn"</span><span class="op">=</span><span class="va">ow</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">B1</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/get.adjacency.html" class="external-link">get.adjacency</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span>, silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">B1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html" class="external-link">object.size</a></span><span class="op">(</span><span class="va">B1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">B</span>, <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">B1</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"warn"</span><span class="op">=</span><span class="va">ow</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="graph-components-in-spdep">Graph components in <strong>spdep</strong><a class="anchor" aria-label="anchor" href="#graph-components-in-spdep"></a>
@@ -594,7 +592,7 @@ an existing <strong>spdep</strong> function is Nicholas Lewin-Koh’s
 <code>n.comp.nb</code> from the early days of the package. It is useful
 to know whether an <code>nb</code> object is divided up into separate
 subgraphs, and which entities are members of which such subgraph.</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/compon.html" class="external-link">n.comp.nb</a></span><span class="op">(</span><span class="va">col2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">comp.id</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -606,21 +604,27 @@ subgraphs, and which entities are members of which such subgraph.</p>
 </h3>
 <p>The same result can be obtained using the <code>clusters</code>
 function in <strong>igraph</strong>:</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">clusters</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span>
-<span><span class="va">c1</span><span class="op">$</span><span class="va">no</span> <span class="op">==</span> <span class="va">res</span><span class="op">$</span><span class="va">nc</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/clusters.html" class="external-link">clusters</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `clusters()` was deprecated in igraph 2.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `components()` instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">c1</span><span class="op">$</span><span class="va">no</span> <span class="op">==</span> <span class="va">res</span><span class="op">$</span><span class="va">nc</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">c1</span><span class="op">$</span><span class="va">membership</span>, <span class="va">res</span><span class="op">$</span><span class="va">comp.id</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "names for target but not for current"</span></span></code></pre>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">c1</span><span class="op">$</span><span class="va">csize</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">comp.id</span><span class="op">)</span><span class="op">)</span>, check.attributes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
 <p>The same holds for the row-standardised variant:</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">col2</span>, style<span class="op">=</span><span class="st">"W"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span></span>
-<span><span class="va">g1W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_adjacency_matrix.html" class="external-link">graph.adjacency</a></span><span class="op">(</span><span class="va">W</span>, mode<span class="op">=</span><span class="st">"directed"</span>, weighted<span class="op">=</span><span class="st">"W"</span><span class="op">)</span></span>
-<span><span class="va">c1W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">clusters</a></span><span class="op">(</span><span class="va">g1W</span><span class="op">)</span></span>
+<span><span class="va">g1W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph.adjacency.html" class="external-link">graph.adjacency</a></span><span class="op">(</span><span class="va">W</span>, mode<span class="op">=</span><span class="st">"directed"</span>, weighted<span class="op">=</span><span class="st">"W"</span><span class="op">)</span></span>
+<span><span class="va">c1W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/clusters.html" class="external-link">clusters</a></span><span class="op">(</span><span class="va">g1W</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">c1W</span><span class="op">$</span><span class="va">membership</span>, <span class="va">res</span><span class="op">$</span><span class="va">comp.id</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "names for target but not for current"</span></span></code></pre>
 </div>
@@ -636,16 +640,27 @@ tells us that our graph is not connected, as we know from the figure
 above. The diameter measure is then the diameter of the largest
 component subgraph. Note that this generates an <code>n</code> x
 <code>n</code> matrix:</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">is.connected</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/is.connected.html" class="external-link">is.connected</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `is.connected()` was deprecated in igraph 2.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `is_connected()` instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
 <pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dg1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/diameter.html" class="external-link">diameter</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span>
 <span><span class="va">dg1</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 7</span></span></code></pre>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sp_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/distances.html" class="external-link">shortest.paths</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sp_mat</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sp_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/shortest.paths.html" class="external-link">shortest.paths</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `shortest.paths()` was deprecated in igraph 2.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `distances()` instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sp_mat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  num [1:49, 1:49] 0 1 1 2 2 3 4 3 3 4 ...</span></span>
 <span><span class="co">##  - attr(*, "dimnames")=List of 2</span></span>
 <span><span class="co">##   ..$ : chr [1:49] "1" "2" "3" "4" ...</span></span>
@@ -659,7 +674,7 @@ to a maximum number of lag orders - the diameter, but which is unknown
 in advance (the largest lag order for which the number of links is
 greater than zero), we run into the problem of how to represent missing
 neighbour information.</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nbl10</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html" class="external-link">nblag</a></span><span class="op">(</span><span class="va">col2</span>, maxlag<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">nbl10</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/card.html" class="external-link">card</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">zero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">vals</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -671,7 +686,7 @@ shortest path. If we are to create a matrix that matches the one
 produced by <code>shortest.paths</code>, we need to set all these
 non-structural zeros to infinity (the length of the path between
 unconnected nodes), and re-instate structural zeros on the diagonal:</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">nbl10</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">zero</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span>, <span class="fu">spdep</span><span class="fu">::</span><span class="va"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html" class="external-link">nb2mat</a></span>, style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n</span>, <span class="va">n</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>along<span class="op">=</span><span class="va">lmat</span><span class="op">)</span><span class="op">)</span> <span class="va">mat</span> <span class="op">=</span> <span class="va">mat</span> <span class="op">+</span> <span class="va">i</span><span class="op">*</span><span class="va">lmat</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span></span>
@@ -705,23 +720,23 @@ components, and the number of these that meet this condition. It does
 this for each block/subgraph by testing the condition until it meets
 w[j,k] &gt; 0, at which point it breaks. Smirnov and Anselin (2009)
 state that rook neighbours on a regular grid meet the condition:</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nb_r</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/cell2nb.html" class="external-link">cell2nb</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">7</span>, type<span class="op">=</span><span class="st">"rook"</span><span class="op">)</span></span>
 <span><span class="va">nb_rW</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">nb_r</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span></span>
 <span><span class="fu">spdep</span><span class="fu">:::</span><span class="fu">find_q1_q2</span><span class="op">(</span><span class="va">nb_rW</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1 1</span></span></code></pre>
 <p>One block/graph component is found, and this one meets the cyclical
 matrix condition, as also shown by the domain:</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Re</a></span><span class="op">(</span><span class="fu"><a href="../reference/eigenw.html">eigenw</a></span><span class="op">(</span><span class="fu"><a href="../reference/similar.listw.html">similar.listw</a></span><span class="op">(</span><span class="va">nb_rW</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -1  1</span></span></code></pre>
 <p>This does not apply to the spatial weights we have been using above,
 with two non-singleton components, neither meeting the cyclical matrix
 condition:</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">:::</span><span class="fu">find_q1_q2</span><span class="op">(</span><span class="va">nb_W</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 2 0</span></span></code></pre>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Re</a></span><span class="op">(</span><span class="fu"><a href="../reference/eigenw.html">eigenw</a></span><span class="op">(</span><span class="fu"><a href="../reference/similar.listw.html">similar.listw</a></span><span class="op">(</span><span class="va">nb_W</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -1.544645  1.000000</span></span></code></pre>
 <p>By construction, all two-node connected graph components also meet

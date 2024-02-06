@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-2</span>
       </span>
     </div>
 
@@ -191,60 +191,66 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> Observed Moran I      Expectation         Variance </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0.245149959     -0.007853660      0.001148722 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html" class="external-link">lm.LMtests</a></span><span class="op">(</span><span class="va">obj1</span>, <span class="va">lw</span>, test<span class="op">=</span><span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html" class="external-link">lm.LMtests</a></span><span class="op">(</span><span class="va">obj1</span>, <span class="va">lw</span>, test<span class="op">=</span><span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please update scripts to use lm.RStests in place of lm.LMtests</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> weights: lw</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LMerr = 48.648, df = 1, p-value = 3.063e-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	dependence</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> weights: lw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test weights: listw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LMlag = 83.091, df = 1, p-value &lt; 2.2e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> weights: lw</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RLMerr = 1.2535, df = 1, p-value = 0.2629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RSerr = 48.648, df = 1, p-value = 3.063e-12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	dependence</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> weights: lw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test weights: listw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RLMlag = 35.696, df = 1, p-value = 2.306e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RSlag = 83.091, df = 1, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Lagrange multiplier diagnostics for spatial dependence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	dependence</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> weights: lw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test weights: listw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> adjRSerr = 1.2535, df = 1, p-value = 0.2629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	dependence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test weights: listw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> adjRSlag = 35.696, df = 1, p-value = 2.306e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	dependence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data:  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> model: lm(formula = log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data =</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> baltimore)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> test weights: listw</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SARMA = 84.344, df = 2, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">obj2</span> <span class="op">&lt;-</span> <span class="fu">lagmess</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">PRICE</span><span class="op">)</span> <span class="op">~</span> <span class="va">PATIO</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">SQFT</span><span class="op">)</span>, data<span class="op">=</span><span class="va">baltimore</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.034   0.000   0.035 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.034   0.000   0.034 </span>
 <span class="r-in"><span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matrix exponential spatial lag model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -344,7 +350,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.1589, (sigma: 0.39862)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 211 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model), (AIC for lm: 283.51)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 232.85, (AIC for lm: 283.51)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LM test for residual autocorrelation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> test value: 8.7942, p-value: 0.0030219</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -391,7 +397,7 @@ neighbours, if FALSE assign NA - causing <code>lagmess()</code> to terminate wit
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.019276, (sigma: 0.13884)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 506 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model), (AIC for lm: -283.96)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: -496.02, (AIC for lm: -283.96)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LM test for residual autocorrelation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> test value: 10.74, p-value: 0.0010486</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

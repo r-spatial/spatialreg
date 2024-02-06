@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-2</span>
       </span>
     </div>
 
@@ -64,7 +64,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.3-1" id="version-13-1-development">Version 1.3-1 (development)<a class="anchor" aria-label="anchor" href="#version-13-1-development"></a></h2>
+<h2 class="page-header" data-toc-text="1.3-2" id="version-13-2-development">Version 1.3-2 (development)<a class="anchor" aria-label="anchor" href="#version-13-2-development"></a></h2>
+<ul><li><p>pass through SlX formula in call</p></li>
+<li><p>re-corrected <a href="https://github.com/r-spatial/spatialreg/issues/19" class="external-link">#19</a> because the fitted model weights component may be NULL</p></li>
+<li><p>suppress warning from <code><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">multcomp::glht</a></code> as the test which throws the warning is discarded</p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.3-1" id="version-13-1-2023-11-23">Version 1.3-1 (2023-11-23)<small>2023-11-23</small><a class="anchor" aria-label="anchor" href="#version-13-1-2023-11-23"></a></h2>
 <ul><li><p>move <code>expm</code> from Imports to Suggests <a href="https://github.com/r-spatial/spatialreg/issues/42" class="external-link">#42</a></p></li>
 <li><p>added <code>zero.policy</code> pass-through to <code><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">spdep::mat2listw</a></code> calls in <code>predict.Sarlm</code> and to <code><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">spdep::sn2listw</a></code> in <code>sids_models.Rmd</code>; set <code>spdep</code> requirement to <code>1.3-1</code></p></li>
 <li><p>corrected <a href="https://github.com/r-spatial/spatialreg/issues/19" class="external-link">#19</a> because the fitted model weights component is never NULL, but may have a single unique value</p></li>
