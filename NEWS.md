@@ -1,5 +1,11 @@
 # Version 1.3-2 (development)
 
+* add `sqrt=TRUE` in calls to Matrix `determinant` methods in `matrix_ldet`
+
+* add `igraph (>= 2.0.0)` in DESCRIPTION for re-named `igraph` functions
+
+# Version 1.3-2 (2024-02-06)
+
 * pass through SlX formula in call
 
 * re-corrected #19 because the fitted model weights component may be NULL

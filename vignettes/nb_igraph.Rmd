@@ -102,7 +102,8 @@ rownames(B)[1:10]
 Let us now try to retreive the list of neighbours from the symmetric sparse matrix. At present, we have to coerce from one **Matrix** internal representation to another in order to get to the `"dgCMatrix"` format used inside `mat2listw`, so we coerce to `"dgTMatrix"` from `"dsTMatrix"`. The style is not retreived automatically, but is set to `"M"` to indicate conversion from a matrix. The neighbour links are retreived correctly, as are the IDs:
 
 ```{r, echo=dothis, eval=dothis}
-nb_B1 <- spdep::mat2listw(as(as(B, "TsparseMatrix"), "CsparseMatrix"))
+nb_B1 <- spdep::mat2listw(as(as(B, "TsparseMatrix"), "CsparseMatrix"),
+    style="B", zero.policy=TRUE)
 nb_B1$style
 all.equal(nb_B1$neighbours, col2, check.attributes=FALSE)
 all.equal(attr(nb_B1$neighbours, "region.id"), attr(nb_B$neighbours, "region.id"))
@@ -133,7 +134,7 @@ The computation of a sparse Cholesky decomposition for each value of the spatial
 ```{r, echo=dothis, eval=dothis}
 nW <- -B
 nChol <- Cholesky(nW, Imult=8)
-n * log(rho) + (2 * c(determinant(update(nChol, nW, 1/rho))$modulus))
+n * log(rho) + (2 * c(determinant(update(nChol, nW, 1/rho), sqrt=TRUE)$modulus))
 ```
 
 ### Asymmetric sparse matrices
@@ -231,7 +232,7 @@ First we'll see how to get from sparse matrices to graphs. The mode of a symmetr
 class(B)
 object.size(B)
 if (!require("igraph", quietly=FALSE)) dothis <- FALSE
-g1 <- graph.adjacency(B, mode="undirected")
+g1 <- graph_from_adjacency_matrix(B, mode="undirected")
 class(g1)
 object.size(g1)
 ```
@@ -243,7 +244,7 @@ We can also convert this graph pack to the same matrix, but note that `get.adjac
 # Matrix 1.4-2 vulnerability work-around
 ow <- options("warn")$warn
 options("warn"=2L)
-B1 <- try(get.adjacency(g1), silent=TRUE)
+B1 <- try(as_adjacency_matrix(g1), silent=TRUE)
 if (!inherits(B1, "try-error")) print(class(B1))
 if (!inherits(B1, "try-error")) print(object.size(B1))
 if (!inherits(B1, "try-error")) print(all.equal(B, as(B1, "CsparseMatrix")))
@@ -264,7 +265,7 @@ table(res$comp.id)
 The same result can be obtained using the `clusters` function in **igraph**:
 
 ```{r, echo=dothis, eval=dothis}
-c1 <- clusters(g1)
+c1 <- components(g1)
 c1$no == res$nc
 all.equal(c1$membership, res$comp.id)
 all.equal(c1$csize, c(table(res$comp.id)), check.attributes=FALSE)
@@ -274,8 +275,8 @@ The same holds for the row-standardised variant:
 
 ```{r, echo=dothis, eval=dothis}
 W <- as(spdep::nb2listw(col2, style="W", zero.policy=TRUE), "CsparseMatrix")
-g1W <- graph.adjacency(W, mode="directed", weighted="W")
-c1W <- clusters(g1W)
+g1W <- graph_from_adjacency_matrix(W, mode="directed", weighted="W")
+c1W <- components(g1W)
 all.equal(c1W$membership, res$comp.id)
 ```
 ### Shortest paths in weights matrices: **igraph**
@@ -283,10 +284,10 @@ all.equal(c1W$membership, res$comp.id)
 Finding shortest paths between spatial entities across a given graph is a way to express closeness. If the graph is connected, that is that it is possible to traverse the graph edges from any node to any other, the longest shortest path is then a useful measure. In **igraph**, the `is.connected` function tells us tells us that our graph is not connected, as we know from the figure above. The diameter measure is then the diameter of the largest component subgraph. Note that this generates an `n` x `n` matrix:
 
 ```{r, echo=dothis, eval=dothis}
-is.connected(g1)
+is_connected(g1)
 dg1 <- diameter(g1)
 dg1
-sp_mat <- shortest.paths(g1)
+sp_mat <- distances(g1)
 str(sp_mat)
 ```
 

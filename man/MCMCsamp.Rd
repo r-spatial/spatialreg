@@ -37,8 +37,7 @@ suppressMessages(ID <- as.character(names(foreign::read.dbf(system.file(
  "misc/nyadjwts.dbf", package="spData")[1]))[-1]))
 identical(substring(ID, 2, 10), substring(as.character(nydata$AREAKEY), 2, 10))
 #require("spdep", quietly=TRUE)
-nyadjlw <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY))
-listw_NY <- spdep::nb2listw(nyadjlw$neighbours, style="B")
+listw_NY <- spdep::mat2listw(nyadjmat, as.character(nydata$AREAKEY), style="B")
 esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, family="SAR", method="eigen")
 summary(esar1f)

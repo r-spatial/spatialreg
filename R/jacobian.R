@@ -376,10 +376,10 @@ Matrix_ldet <- function(coef, env, which=1) {
     .f <- get(".f", envir=env)
 
     Jacobian <- ifelse(coef > b, n * log(coef) +
-            (.f * c(determinant(update(nChol, nW, 1/coef))$modulus)),
+            (.f * c(determinant(update(nChol, nW, 1/coef), sqrt=TRUE)$modulus)),
             ifelse(coef < a, n* log(-(coef)) + 
-            (.f * c(determinant(update(pChol, csrw, 1/(-coef)))$modulus)),
-            0.0))
+            (.f * c(determinant(update(pChol, csrw, 1/(-coef)),
+              sqrt=TRUE)$modulus)), 0.0))
     Jacobian
 }
 
