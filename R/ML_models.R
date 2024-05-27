@@ -13,7 +13,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             super=NULL, spamPivot="MMD", in_coef=0.1, type="MC",
             correct=TRUE, trunc=TRUE, SE_method="LU", nrho=200,
             interpn=2000, small_asy=TRUE, small=1500, SElndet=NULL,
-            LU_order=FALSE, pre_eig=NULL, glht=FALSE)
+            LU_order=FALSE, pre_eig=NULL, return_impacts=TRUE)
         nmsC <- names(con)
         con[(namc <- names(control))] <- control
         if (length(noNms <- namc[!namc %in% nmsC])) 
@@ -29,7 +29,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 #        stopifnot(is.logical(con$super))
         stopifnot(is.logical(con$compiled_sse))
         stopifnot(is.character(con$spamPivot))
-        stopifnot(is.logical(con$glht))
+        stopifnot(is.logical(con$return_impacts))
         if (!inherits(formula, "formula")) formula <- as.formula(formula)
 #	mt <- terms(formula, data = data)
 #	mf <- lm(formula, data, na.action=na.action, method="model.frame")
@@ -270,7 +270,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	names(coef.lambda) <- xcolnames
         sum_lm_target <- summary.lm(lm.target, correlation = FALSE)
         emixedImps <- NULL
-	if (etype == "emixed") {
+        if (any(sum_lm_target$aliased)) warning("aliased variables found")
+	if (con$return_impacts && etype == "emixed") {
           if (isTRUE(Durbin)) {
             m.1 <- m > 1
             if (m.1 && K == 2) {

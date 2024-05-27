@@ -1,6 +1,6 @@
 
 
-lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL) {
+lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE, zero.policy=NULL, return_impacts=TRUE) {
         if (is.null(zero.policy))
             zero.policy <- get("zeroPolicy", envir = .spatialregOptions)
         stopifnot(is.logical(zero.policy))
@@ -108,17 +108,19 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             lm.model <- lm(formula(paste("y ~ 0 + ", paste(colnames(x), collapse="+"))), data=as.data.frame(x), weights=weights)
         }
         sum_lm_model <- summary.lm(lm.model, correlation = FALSE)
+        if (any(sum_lm_model$aliased)) warning("aliased variables found")
         mixedImps <- NULL
-	K <- ifelse(isTRUE(grep("Intercept",
+        if (return_impacts) {
+	  K <- ifelse(isTRUE(grep("Intercept",
             names(coefficients(lm.model))[1]) == 1L), 2, 1)
-        if (isTRUE(Durbin)) {
-          m <- length(coefficients(lm.model))
-          m.1 <- m > 1
-          if (m.1 && K == 2) { #TR: without intercept and m.1 use m/2
+          if (isTRUE(Durbin)) {
+            m <- length(coefficients(lm.model))
+            m.1 <- m > 1
+            if (m.1 && K == 2) { #TR: without intercept and m.1 use m/2
               m2 <- (m-1)/2
-          } else {
+            } else {
               m2 <- m/2
-          }
+            }
             cm <- matrix(0, ncol=m, nrow=m2)
             if (K == 2) {
                 if (m.1) {
@@ -143,7 +145,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             }
             suppressWarnings(lc <- summary(multcomp::glht(lm.model, linfct=cm)))
             totImps <- cbind("Estimate"=lc$test$coefficients, "Std. Error"=lc$test$sigma)
-      } else if (is.formula(Durbin)) {
+        } else if (is.formula(Durbin)) {
 #FIXME
             LI <- ifelse(listw$style != "W" 
                          && attr(terms(Durbin), "intercept") == 1, 1, 0) #TR: lagged intercept if not W and in Durbin formula
@@ -195,10 +197,11 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
                     }
                   }
                 rownames(totImps) <- xn
-        } else stop("undefined Durbin state")
-        mixedImps <- list(dirImps=dirImps, indirImps=indirImps,
+          } else stop("undefined Durbin state")
+          mixedImps <- list(dirImps=dirImps, indirImps=indirImps,
             totImps=totImps)
         
+        }
         attr(lm.model, "mixedImps") <- mixedImps
         attr(lm.model, "dvars") <- dvars
         if (is.formula(Durbin)) attr(lm.model, "Durbin") <- deparse(Durbin)

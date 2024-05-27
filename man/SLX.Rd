@@ -16,7 +16,7 @@
 }
 \usage{
 lmSLX(formula, data = list(), listw, na.action, weights=NULL, Durbin=TRUE,
- zero.policy=NULL)
+ zero.policy=NULL, return_impacts=TRUE)
 \method{print}{SlX}(x, digits = max(3L, getOption("digits") - 3L), ...)
 \method{summary}{SlX}(object, correlation = FALSE, symbolic.cor = FALSE, ...)
 \method{print}{summary.SlX}(x, digits = max(3L, getOption("digits") - 3L),
@@ -39,6 +39,7 @@ is called.}
   \item{weights}{an optional vector of weights to be used in the fitting process. Non-NULL weights can be used to indicate that different observations have different variances (with the values in weights being inversely proportional to the variances); or equivalently, when the elements of weights are positive integers w_i, that each response y_i is the mean of w_i unit-weight observations (including the case that there are w_i observations equal to y_i and the data have been summarized) - \code{\link{lm}}}
   \item{Durbin}{default TRUE for \code{lmSLX} (Durbin model including WX); if TRUE, full spatial Durbin model; if a formula object, the subset of explanatory variables to lag}
   \item{zero.policy}{default NULL, use global option value; if TRUE assign zero to the lagged value of zones without neighbours, if FALSE assign NA}
+  \item{return_impacts}{default TRUE; may be set FALSE to avoid problems calculating impacts with aliased variables}
   \item{digits}{the number of significant digits to use when printing}
   \item{correlation}{logical; if \code{TRUE}, the correlation matrix of the estimated parameters is returned and printed}
   \item{symbolic.cor}{logical. If \code{TRUE}, print the correlations in a symbolic form (see 'symnum') rather than as numbers}
