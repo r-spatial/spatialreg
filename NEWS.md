@@ -1,4 +1,10 @@
-# Version 1.3-2 (development)
+# Version 1.3-3 (development)
+
+* protect `errorsarlm` against missing `Durbin=` if only intercept
+
+* fix longstanding bugs in `getVmate` in a non-default side logic branch
+
+* add `return_impacts=` to `lmSLX` to work around issues with aliased variables; impacts should be improved to handle this case when time permits
 
 * add `sqrt=TRUE` in calls to Matrix `determinant` methods in `matrix_ldet`
 
