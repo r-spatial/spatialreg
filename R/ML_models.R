@@ -42,7 +42,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         mf <- eval(mf, parent.frame())
         mt <- attr(mf, "terms")
         if (attr(mt, "intercept") == 1 && !any(attr(mt, "factors") == 1) &&
-            (is.formula(Durbin) || isTRUE(Durbin))) {
+            (!missing(Durbin)) && (is.formula(Durbin) || isTRUE(Durbin))) {
             warning("intercept-only model, Durbin invalid and set FALSE")
             Durbin <- FALSE
         }
