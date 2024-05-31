@@ -422,7 +422,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.196   0.000   0.197 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.313   0.000   0.314 </span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -467,7 +467,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.221   0.000   0.221 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.426   0.000   0.458 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -498,7 +498,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.196   0.000   0.196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.373   0.001   0.379 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -558,7 +558,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.212   0.000   0.214 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.382   0.000   0.385 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -675,7 +675,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.236   0.000   0.237 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.441   0.000   0.444 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -737,7 +737,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.243   0.000   0.244 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.437   0.001   0.456 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>

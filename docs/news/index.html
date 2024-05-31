@@ -64,8 +64,11 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.3-2" id="version-13-2-development">Version 1.3-2 (development)<small>2024-02-06</small><a class="anchor" aria-label="anchor" href="#version-13-2-development"></a></h2>
-<ul><li><p>add <code>sqrt=TRUE</code> in calls to Matrix <code>determinant</code> methods in <code>matrix_ldet</code></p></li>
+<h2 class="page-header" data-toc-text="1.3-3" id="version-13-3-development">Version 1.3-3 (development)<small>2024-05-31</small><a class="anchor" aria-label="anchor" href="#version-13-3-development"></a></h2>
+<ul><li><p>protect <code>errorsarlm</code> against missing <code>Durbin=</code> if only intercept</p></li>
+<li><p>fix longstanding bugs in <code>getVmate</code> in a non-default side logic branch</p></li>
+<li><p>add <code>return_impacts=</code> to <code>lmSLX</code> to work around issues with aliased variables; impacts should be improved to handle this case when time permits</p></li>
+<li><p>add <code>sqrt=TRUE</code> in calls to Matrix <code>determinant</code> methods in <code>matrix_ldet</code></p></li>
 <li><p>add <code>igraph (&gt;= 2.0.0)</code> in DESCRIPTION for re-named <code>igraph</code> functions</p></li>
 </ul></div>
     <div class="section level2">
