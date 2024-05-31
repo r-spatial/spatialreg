@@ -147,6 +147,7 @@ Because numerical optimisation is used to find the values of lambda and rho in \
   \item{SElndet}{default NULL, may be used to pass a pre-computed SE toolbox style matrix of coefficients and their lndet values to the "SE_classic" and "SE_whichMin" methods}
   \item{LU_order}{default FALSE; used in \dQuote{LU_prepermutate}, note warnings given for \code{lu} method}
   \item{pre_eig}{default NULL; may be used to pass a pre-computed vector of eigenvalues}
+  \item{return_impacts}{default TRUE; may be set FALSE to avoid problems calculating impacts with aliased variables}
   \item{OrdVsign}{default 1; used to set the sign of the final component to negative if -1 (alpha times ((sigma squared) squared) in Ord (1975) equation B.1).}
   \item{opt_method:}{default \dQuote{nlminb}, may be set to \dQuote{L-BFGS-B} to use box-constrained optimisation in \code{optim}}
   \item{opt_control:}{default \code{list()}, a control list to pass to \code{nlminb} or \code{optim}}
