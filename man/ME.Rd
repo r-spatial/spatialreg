@@ -65,7 +65,7 @@ coef(summary(glmME))
 anova(glmbase, glmME, test="Chisq")
 \dontrun{
 require("sf", quietly=TRUE)
-columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 lw <- spdep::nb2listw(col.gal.nb)
@@ -96,7 +96,7 @@ COL.ME.NA <- ME(CRIME ~ INC + HOVAL, data=NA.columbus, family="gaussian",
 COL.ME.NA$na.action
 summary(lm(CRIME ~ INC + HOVAL + fitted(COL.ME.NA), data=NA.columbus,
  na.action=na.exclude))
-nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
+nc.sids <- st_read(system.file("shapes/sids.gpkg", package="spData")[1], quiet=TRUE)
 rn <- as.character(nc.sids$FIPS)
 ncCC89_nb <- spdep::read.gal(system.file("weights/ncCC89.gal", package="spData")[1],
  region.id=rn)

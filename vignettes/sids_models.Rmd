@@ -49,8 +49,8 @@ data set in **spData**. The actual data, included in a shapefile of the county b
 
 ```{r echo=TRUE,eval=TRUE}
 library(spdep)
-nc <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
-st_crs(nc) <- "+proj=longlat +datum=NAD27"
+nc <- st_read(system.file("shapes/sids.gpkg", package="spData")[1], quiet=TRUE)
+#st_crs(nc) <- "+proj=longlat +datum=NAD27"
 row.names(nc) <- as.character(nc$FIPSNO)
 ```
 

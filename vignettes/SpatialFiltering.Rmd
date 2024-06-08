@@ -54,7 +54,7 @@ by Pedro Peres-Neto and is discussed in @dray+legendre+peres-neto:06 and
 ```{r echo=TRUE}
 library(spdep)
 require("sf", quietly=TRUE)
-NY8 <- st_read(system.file("shapes/NY8_utm18.shp", package="spData"))
+NY8 <- st_read(system.file("shapes/NY8_utm18.gpkg", package="spData"))
 NY_nb <- read.gal(system.file("weights/NY_nb.gal", package="spData"), override.id=TRUE)
 ```
 

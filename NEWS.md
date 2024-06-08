@@ -1,4 +1,8 @@
-# Version 1.3-3 (development)
+# Version 1.3-4 (development)
+
+* migrate from ESRI Shapefile to GeoPackage #50
+
+# Version 1.3-3 (2024-05-31)
 
 * protect `errorsarlm` against missing `Durbin=` if only intercept
 
