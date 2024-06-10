@@ -55,7 +55,7 @@ SpatialFiltering(formula, lagformula=NULL, data=list(), na.action=na.fail,
 \seealso{\code{\link[stats]{lm}}, \code{\link[base]{eigen}}, \code{\link{nb2listw}}, \code{\link{listw2U}}}
 \examples{
 require("sf", quietly=TRUE)
-columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 lmbase <- lm(CRIME ~ INC + HOVAL, data=columbus)

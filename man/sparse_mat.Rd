@@ -46,7 +46,7 @@ powerWeights(W, rho, order=250, X, tol=.Machine$double.eps^(3/5))
 \examples{
 \dontrun{
 require(sf, quietly=TRUE)
-columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require(spdep, quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 col.listw <- spdep::nb2listw(col.gal.nb)

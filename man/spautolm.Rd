@@ -199,7 +199,7 @@ summary(ecar1wM)
 }
 \dontrun{
 require("sf", quietly=TRUE)
-nc.sids <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
+nc.sids <- st_read(system.file("shapes/sids.gpkg", package="spData")[1], quiet=TRUE)
 ft.SID74 <- sqrt(1000)*(sqrt(nc.sids$SID74/nc.sids$BIR74) +
  sqrt((nc.sids$SID74+1)/nc.sids$BIR74))
 lm_nc <- lm(ft.SID74 ~ 1)

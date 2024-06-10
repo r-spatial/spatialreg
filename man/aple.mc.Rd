@@ -26,7 +26,7 @@ aple.mc(x, listw, nsim, override_similarity_check=FALSE, useTrace=TRUE)
 \seealso{\code{\link{aple}}, \code{\link[boot]{boot}}}
 \examples{
 \dontrun{
-wheat <- st_read(system.file("shapes/wheat.shp", package="spData")[1], quiet=TRUE)
+wheat <- st_read(system.file("shapes/wheat.gpkg", package="spData")[1], quiet=TRUE)
 nbr1 <- spdep::poly2nb(wheat, queen=FALSE)
 nbrl <- spdep::nblag(nbr1, 2)
 nbr12 <- spdep::nblag_cumul(nbrl)

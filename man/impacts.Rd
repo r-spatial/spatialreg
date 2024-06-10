@@ -95,7 +95,7 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 }
 \examples{
 require("sf", quietly=TRUE)
-columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 listw <- spdep::nb2listw(col.gal.nb)

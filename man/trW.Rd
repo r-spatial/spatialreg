@@ -38,7 +38,7 @@ A numeric vector of \code{m} traces, with \dQuote{timings} and \dQuote{type} att
 }
 \examples{
 require("sf", quietly=TRUE) 
-columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require(spdep, quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
 listw <- spdep::nb2listw(col.gal.nb)
