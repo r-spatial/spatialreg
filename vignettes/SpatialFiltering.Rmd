@@ -54,7 +54,13 @@ by Pedro Peres-Neto and is discussed in @dray+legendre+peres-neto:06 and
 ```{r echo=TRUE}
 library(spdep)
 require("sf", quietly=TRUE)
-NY8 <- st_read(system.file("shapes/NY8_utm18.gpkg", package="spData"))
+if (packageVersion("spData") >= "2.3.2") {
+    NY8 <- sf::st_read(system.file("shapes/NY8_utm18.gpkg", package="spData"))
+} else {
+    NY8 <- sf::st_read(system.file("shapes/NY8_bna_utm18.gpkg", package="spData"))
+    sf::st_crs(NY8) <- "EPSG:32618"
+    NY8$Cases <- NY8$TRACTCAS
+}
 NY_nb <- read.gal(system.file("weights/NY_nb.gal", package="spData"), override.id=TRUE)
 ```
 
@@ -89,22 +95,18 @@ set.seed(111)
 ```
 
 ```{r, echo=TRUE}
-nyME <- ME(Cases~PEXPOSURE+PCTAGE65P+PCTOWNHOME, data=NY8, offset=log(POP8), family="poisson", listw=NYlistwW, alpha=0.44)
+nyME <- ME(Cases~PEXPOSURE+PCTAGE65P+PCTOWNHOME, data=NY8, offset=log(POP8), family="poisson", listw=NYlistwW, alpha=0.46)
 ```
 
 ```{r, echo=TRUE}
 nyME
-NY8$eigen_24 <- fitted(nyME)[,1]
-NY8$eigen_223 <- fitted(nyME)[,2]
+NY8$eigen_1 <- fitted(nyME)[,1]
+NY8$eigen_2 <- fitted(nyME)[,2]
 ```
 
-```{r, results='asis',echo=FALSE, eval=FALSE}
-.iwidth <- 6
-.iheight <- 4
-.ipointsize <- 10
-library(RColorBrewer)
+```{r, echo=TRUE}
 #gry <- brewer.pal(9, "Greys")[-1]
-spplot(NY8, c("eigen_24", "eigen_223"), col.regions=grey.colors(6, 0.95, 0.55, 2.2), cuts=5)
+plot(NY8[,c("eigen_1", "eigen_2")])
 ``` 
 
 ```{r, echo=TRUE}
