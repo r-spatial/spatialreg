@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">spatialreg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3-4</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@ of functions in the spatial statistics module user’s manual <span class="citat
 </h2>
 <p>We will be using the <strong>spdep</strong> and
 <strong>spatialreg</strong> packages, here version: spdep, version
-1.3-4, 2024-05-31, the <strong>sf</strong> package and the
+1.3-5, 2024-06-02, the <strong>sf</strong> package and the
 <strong>tmap</strong> package. The data from the sources referred to
 above is documented in the <a href="https://jakubnowosad.com/spData/reference/nc.sids.html" class="external-link">help
 page</a> for the <code>nc.sids</code> data set in
@@ -132,8 +132,8 @@ coordinates (longitude-latitude in decimal degrees) and are assumed to
 use the NAD27 datum.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/" class="external-link">spdep</a></span><span class="op">)</span></span>
-<span><span class="va">nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/sids.shp"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">nc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"+proj=longlat +datum=NAD27"</span></span>
+<span><span class="va">nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/sids.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#st_crs(nc) &lt;- "+proj=longlat +datum=NAD27"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">nc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">FIPSNO</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">ft.SID74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">SID74</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">SID74</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span><span class="op">)</span></span>
