@@ -232,13 +232,16 @@ First we'll see how to get from sparse matrices to graphs. The mode of a symmetr
 class(B)
 object.size(B)
 if (!require("igraph", quietly=FALSE)) dothis <- FALSE
+```
+
+```{r, echo=dothis, eval=dothis}
 g1 <- graph_from_adjacency_matrix(B, mode="undirected")
 class(g1)
 object.size(g1)
 ```
 ### Converting from graph to symmetric adjacency matrix
 
-We can also convert this graph pack to the same matrix, but note that `get.adjacency` chooses a particular class of sparse matrix to be returned, so that the conversion process typically leads many matrices to fewer graph types, and back to fewer matrix types:
+We can also convert this graph back to the same matrix, but note that `as_adjacency_matrix` chooses a particular class of sparse matrix to be returned, so that the conversion process typically leads many matrices to fewer graph types, and back to fewer matrix types:
 
 ```{r, echo=dothis, eval=dothis}
 # Matrix 1.4-2 vulnerability work-around
