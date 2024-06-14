@@ -1,4 +1,8 @@
-# Version 1.3-4 (development)
+# Version 1.3-5 (development)
+
+* #52 subgraph updates
+
+# Version 1.3-4 (2024-06-10)
 
 * migrate from ESRI Shapefile to GeoPackage #50
 

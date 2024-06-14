@@ -69,7 +69,8 @@ Jc <- sum(log(1 - rho * k3eig))
 # complex eigenvalue Jacobian
 Jc
 # subgraphs
-nc <- spdep::n.comp.nb(k3)
+nc <- attr(k3, "ncomp")
+if (is.null(nc)) nc <- spdep::n.comp.nb(k3)
 nc$nc
 table(nc$comp.id)
 k3eigSG <- subgraph_eigenw(k3, style="W")
