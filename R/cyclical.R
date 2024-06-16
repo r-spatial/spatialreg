@@ -5,7 +5,9 @@ isCyclical <- function(nb) {
     stopifnot(inherits(nb, "nb"))
     cnb <- card(nb)
     if (any(cnb == 0)) stop("Neighbours must be connected")
-    if (n.comp.nb(nb)$nc != 1) stop("Complete connection required")
+    nc <- attr(nb, "ncomp")
+    if (is.null(nc)) nc <- n.comp.nb(nb)
+    if (nc$nc != 1) stop("Complete connection required")
     res <- 1L
       for (i in seq(along=nb)) {
         inbs <- nb[[i]]
@@ -29,7 +31,8 @@ isCyclical <- function(nb) {
 find_q1_q2 <- function(lw) {
     stopifnot(lw$style == "W")
     nb <- lw$neighbours
-    nc <- n.comp.nb(nb)
+    nc <- attr(nb, "ncomp")
+    if (is.null(nc)) nc <- n.comp.nb(nb)
     members <- tapply(1:length(nb), nc$comp.id, c)
     q2 <- 0L
     q1 <- nc$nc

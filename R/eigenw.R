@@ -48,7 +48,8 @@ subgraph_eigenw <- function(nb, glist=NULL, style="W", zero.policy=NULL,
     can.sim <- FALSE
     if (style %in% c("W", "S"))
         can.sim <- can.be.simmed(nb2listw(nb, glist=glist, style=style))
-    nc <- n.comp.nb(nb)
+    nc <- attr(nb, "ncomp")
+    if (is.null(nc)) nc <- n.comp.nb(nb)
     t0 <- table(nc$comp.id)
     elist <- vector(mode="list", length=length(t0))
     singleton <- names(t0)[which(t0 == 1)]
