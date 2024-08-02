@@ -1,5 +1,7 @@
 # Version 1.3-5 (development)
 
+* Condition on forthcoming `tmap` 4
+
 * #52 subgraph updates
 
 # Version 1.3-4 (2024-06-10)

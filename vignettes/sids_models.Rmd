@@ -64,6 +64,7 @@ nc$both <- factor(paste(nc$L_id, nc$M_id, sep=":"))
 is_tmap <- FALSE
 if (require(tmap, quietly=TRUE)) is_tmap <- TRUE
 is_tmap
+tmap4 <- packageVersion("tmap") >= "3.99"
 ```
 
 We will now examine the data set reproduced from Cressie and
@@ -161,8 +162,11 @@ summary(ecarIVaw)
 
 ```{r, eval=is_tmap, echo=TRUE}
 nc2$fitIV <- fitted.values(ecarIVaw)
-sf_use_s2(FALSE)
+if (tmap4) {
+  tm_shape(nc2) + tm_polygons(fill="fitIV", fill.scale=tm_scale(values="brewer.yl_or_br"), fill.legend=tm_legend(position=tm_pos_in("left", "bottom"), frame=FALSE, item.r = 0), lwd=0.01)
+} else {
 tm_shape(nc2) + tm_fill("fitIV")
+}
 ```
 
 The final figure shows the value of the log likelihood function for the null model (I):
