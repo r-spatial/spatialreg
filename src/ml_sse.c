@@ -1,4 +1,4 @@
-/* Copyright 2010 by Roger S. Bivand. */
+/* Copyright 2010-24 by Roger S. Bivand. */
 
 #include "spatialreg.h"
 
@@ -46,7 +46,7 @@ SEXP opt_error_init(void) { /* -Wstrict-prototypes */
     OPT_ERROR_SSE *pt;
     SEXP ptr;
 
-    pt = Calloc(1, OPT_ERROR_SSE);
+    pt = R_Calloc(1, OPT_ERROR_SSE);
     pt->set = FALSE;
 
     PROTECT(ptr = R_MakeExternalPtr(pt, R_NilValue, R_NilValue));
@@ -76,18 +76,18 @@ void opt_error_set(SEXP env) {
     PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
     PROTECT(WX = findVarInFrame(env, install("WX"))); pc++;
 
-    pt->y = Calloc(n, double);
-    pt->x = Calloc(np, double);
-    pt->yl = Calloc(n, double);
-    pt->wy1 = Calloc(n, double);
-    pt->xlq = Calloc(np, double);
-    pt->wx1 = Calloc(np, double);
-    pt->qy = Calloc(np, double);
-    pt->xlqyl = Calloc(p, double);
-    pt->jpvt = Calloc(p, int);
-    pt->work = Calloc(p*2, double); 
-/*    pt->work = Calloc(p, double); */
-    pt->qraux = Calloc(p, double);
+    pt->y = R_Calloc(n, double);
+    pt->x = R_Calloc(np, double);
+    pt->yl = R_Calloc(n, double);
+    pt->wy1 = R_Calloc(n, double);
+    pt->xlq = R_Calloc(np, double);
+    pt->wx1 = R_Calloc(np, double);
+    pt->qy = R_Calloc(np, double);
+    pt->xlqyl = R_Calloc(p, double);
+    pt->jpvt = R_Calloc(p, int);
+    pt->work = R_Calloc(p*2, double); 
+/*    pt->work = R_Calloc(p, double); */
+    pt->qraux = R_Calloc(p, double);
 
     for (i=0; i<n; i++) {
         pt->y[i] = NUMERIC_POINTER(y)[i];
@@ -110,19 +110,19 @@ SEXP opt_error_free(SEXP ptr) {
 
     pt = (OPT_ERROR_SSE *) R_ExternalPtrAddr(ptr);
 
-    Free(pt->qraux);
-    Free(pt->work);
-    Free(pt->jpvt);
-    Free(pt->xlqyl);
-    Free(pt->qy);
-    Free(pt->wx1);
-    Free(pt->xlq);
-    Free(pt->wy1);
-    Free(pt->yl);
-    Free(pt->x);
-    Free(pt->y);
+    R_Free(pt->qraux);
+    R_Free(pt->work);
+    R_Free(pt->jpvt);
+    R_Free(pt->xlqyl);
+    R_Free(pt->qy);
+    R_Free(pt->wx1);
+    R_Free(pt->xlq);
+    R_Free(pt->wy1);
+    R_Free(pt->yl);
+    R_Free(pt->x);
+    R_Free(pt->y);
 
-    Free(pt);
+    R_Free(pt);
     R_ClearExternalPtr(ptr);
     return(R_NilValue);
 }
@@ -132,7 +132,7 @@ SEXP hess_error_init(void) { /* -Wstrict-prototypes */
     HESS_ERROR_SSE *pt;
     SEXP ptr;
 
-    pt = Calloc(1, HESS_ERROR_SSE);
+    pt = R_Calloc(1, HESS_ERROR_SSE);
     pt->set = FALSE;
 
     PROTECT(ptr = R_MakeExternalPtr(pt, R_NilValue, R_NilValue));
@@ -162,14 +162,14 @@ void hess_error_set(SEXP env) {
     PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
     PROTECT(WX = findVarInFrame(env, install("WX"))); pc++;
 
-    pt->y = Calloc(n, double);
-    pt->x = Calloc(np, double);
-    pt->yl = Calloc(n, double);
-    pt->wy1 = Calloc(n, double);
-    pt->xl = Calloc(np, double);
-    pt->wx1 = Calloc(np, double);
-    pt->beta1 = Calloc(p, double);
-    pt->xlb = Calloc(n, double);
+    pt->y = R_Calloc(n, double);
+    pt->x = R_Calloc(np, double);
+    pt->yl = R_Calloc(n, double);
+    pt->wy1 = R_Calloc(n, double);
+    pt->xl = R_Calloc(np, double);
+    pt->wx1 = R_Calloc(np, double);
+    pt->beta1 = R_Calloc(p, double);
+    pt->xlb = R_Calloc(n, double);
 
     for (i=0; i<n; i++) {
         pt->y[i] = NUMERIC_POINTER(y)[i];
@@ -192,16 +192,16 @@ SEXP hess_error_free(SEXP ptr) {
 
     pt = (HESS_ERROR_SSE *) R_ExternalPtrAddr(ptr);
 
-    Free(pt->xlb);
-    Free(pt->beta1);
-    Free(pt->wx1);
-    Free(pt->xl);
-    Free(pt->wy1);
-    Free(pt->yl);
-    Free(pt->x);
-    Free(pt->y);
+    R_Free(pt->xlb);
+    R_Free(pt->beta1);
+    R_Free(pt->wx1);
+    R_Free(pt->xl);
+    R_Free(pt->wy1);
+    R_Free(pt->yl);
+    R_Free(pt->x);
+    R_Free(pt->y);
 
-    Free(pt);
+    R_Free(pt);
     R_ClearExternalPtr(ptr);
     return(R_NilValue);
 }
@@ -211,7 +211,7 @@ SEXP hess_lag_init(void) { /* -Wstrict-prototypes */
     HESS_LAG_SSE *pt;
     SEXP ptr;
 
-    pt = Calloc(1, HESS_LAG_SSE);
+    pt = R_Calloc(1, HESS_LAG_SSE);
     pt->set = FALSE;
 
     PROTECT(ptr = R_MakeExternalPtr(pt, R_NilValue, R_NilValue));
@@ -240,12 +240,12 @@ void hess_lag_set(SEXP env) {
     PROTECT(x = findVarInFrame(env, install("x"))); pc++;
     PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
 
-    pt->y = Calloc(n, double);
-    pt->x = Calloc(np, double);
-    pt->yl = Calloc(n, double);
-    pt->wy1 = Calloc(n, double);
-    pt->beta1 = Calloc(p, double);
-    pt->xb = Calloc(n, double);
+    pt->y = R_Calloc(n, double);
+    pt->x = R_Calloc(np, double);
+    pt->yl = R_Calloc(n, double);
+    pt->wy1 = R_Calloc(n, double);
+    pt->beta1 = R_Calloc(p, double);
+    pt->xb = R_Calloc(n, double);
 
     for (i=0; i<n; i++) {
         pt->y[i] = NUMERIC_POINTER(y)[i];
@@ -265,14 +265,14 @@ SEXP hess_lag_free(SEXP ptr) {
 
     pt = (HESS_LAG_SSE *) R_ExternalPtrAddr(ptr);
 
-    Free(pt->xb);
-    Free(pt->beta1);
-    Free(pt->wy1);
-    Free(pt->yl);
-    Free(pt->x);
-    Free(pt->y);
+    R_Free(pt->xb);
+    R_Free(pt->beta1);
+    R_Free(pt->wy1);
+    R_Free(pt->yl);
+    R_Free(pt->x);
+    R_Free(pt->y);
 
-    Free(pt);
+    R_Free(pt);
     R_ClearExternalPtr(ptr);
     return(R_NilValue);
 }

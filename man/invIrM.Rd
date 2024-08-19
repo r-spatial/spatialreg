@@ -20,7 +20,7 @@ invIrW(x, rho, method="solve", feasible=NULL)
   \item{style}{\code{style} can take values W, B, C, and S}
   \item{method}{default \code{solve}, can also take value \code{chol}}
   \item{feasible}{if NULL, the given value of rho is checked to see if it lies within its feasible range, if TRUE, the test is not conducted}
-  \item{x}{either a \code{listw} object from for example \code{nb2listw}, or a square spatial weights matrix, optionally a sparse matrix}
+  \item{x}{either a \code{listw} object from for example \code{nb2listw} or a square spatial weights matrix, optionally a sparse matrix}
 }
 \details{
 The \code{invIrW} function generates the full weights matrix V, checks that rho lies in its feasible range between 1/min(eigen(V)) and 1/max(eigen(V)), and returns the nxn inverted matrix \deqn{(I - \rho V)^{-1}}. With method=\dQuote{chol} (only for a listw object), Cholesky decomposition is used, thanks to contributed code by Markus Reder and Werner Mueller.
@@ -38,7 +38,7 @@ Before version 0.6-10, \code{powerWeights} only worked correctly for positive rh
 \references{Tiefelsdorf, M., Griffith, D. A., Boots, B. 1999 A variance-stabilizing coding scheme for spatial link matrices, Environment and Planning A, 31, pp. 165-180; Tiefelsdorf, M. 2000 Modelling spatial processes, Lecture notes in earth sciences, Springer, p. 76; Haining, R. 1990 Spatial data analysis in the social and environmental sciences, Cambridge University Press, p. 117; Cliff, A. D., Ord, J. K. 1981 Spatial processes, Pion, p. 152; Reder, M. and Mueller, W. (2007) An Improvement of the invIrM Routine of the Geostatistical R-package spdep by Cholesky Inversion, Statistical Projects, LV No: 238.205, SS 2006, Department of Applied Statistics, Johannes Kepler University, Linz}
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}}
 
-\seealso{\code{\link{nb2listw}}}
+\seealso{\code{\link[spdep]{nb2listw}}}
 
 \examples{
 library(spdep)

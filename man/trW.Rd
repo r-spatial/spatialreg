@@ -34,7 +34,7 @@ A numeric vector of \code{m} traces, with \dQuote{timings} and \dQuote{type} att
 
 
 \seealso{
-\code{\link{as_dgRMatrix_listw}}, \code{\link{nb2listw}}
+\code{\link{as_dgRMatrix_listw}}, \code{\link[spdep]{nb2listw}}
 }
 \examples{
 require("sf", quietly=TRUE) 

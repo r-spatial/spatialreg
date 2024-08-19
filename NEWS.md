@@ -1,5 +1,9 @@
 # Version 1.3-5 (development)
 
+* adding missing man page anchors
+
+* conforming with STRICT_R_HEADERS=1 
+
 * Condition on forthcoming `tmap` 4
 
 * #52 subgraph updates

@@ -91,7 +91,7 @@ Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation M
 
 
 \seealso{
-\code{\link{trW}}, \code{\link{lagsarlm}}, \code{\link{nb2listw}}, \code{\link[MASS]{mvrnorm}}, \code{\link[coda]{plot.mcmc}}, \code{\link[coda]{summary.mcmc}}, \code{\link[coda]{HPDinterval}}
+\code{\link{trW}}, \code{\link{lagsarlm}}, \code{\link[spdep]{nb2listw}}, \code{\link[MASS]{mvrnorm}}, \code{\link[coda]{plot.mcmc}}, \code{\link[coda]{summary.mcmc}}, \code{\link[coda]{HPDinterval}}
 }
 \examples{
 require("sf", quietly=TRUE)

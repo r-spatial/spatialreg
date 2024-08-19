@@ -52,7 +52,7 @@ SpatialFiltering(formula, lagformula=NULL, data=list(), na.action=na.fail,
 \references{Tiefelsdorf M, Griffith DA. (2007) Semiparametric Filtering of Spatial Autocorrelation: The Eigenvector Approach. Environment and Planning A, 39 (5) 1193 - 1221.}
 \author{Yongwan Chun, Michael Tiefelsdorf, Roger Bivand}
 
-\seealso{\code{\link[stats]{lm}}, \code{\link[base]{eigen}}, \code{\link{nb2listw}}, \code{\link{listw2U}}}
+\seealso{\code{\link[stats]{lm}}, \code{\link[base]{eigen}}, \code{\link[spdep]{nb2listw}}, \code{\link[spdep]{listw2U}}}
 \examples{
 require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
