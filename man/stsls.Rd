@@ -14,7 +14,8 @@
 }
 \usage{
 stsls(formula, data = list(), listw, zero.policy = NULL,
- na.action = na.fail, robust = FALSE, HC=NULL, legacy=FALSE, W2X = TRUE)
+ na.action = na.fail, robust = FALSE, HC=NULL, legacy=FALSE, W2X = TRUE,
+ sig2n_k=TRUE, adjust.n=FALSE)
 \method{impacts}{Stsls}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
  tol = 1e-06, empirical = FALSE, Q=NULL)
 }
@@ -31,8 +32,10 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
   \item{na.action}{a function (default \code{na.fail}), can also be \code{na.omit} or \code{na.exclude} with consequences for residuals and fitted values - in these cases the weights list will be subsetted to remove NAs in the data. It may be necessary to set zero.policy to TRUE because this subsetting may create no-neighbour observations. Note that only weights lists created without using the glist argument to \code{nb2listw} may be subsetted.}
   \item{robust}{default FALSE, if TRUE, apply a heteroskedasticity correction to the coefficients covariances}
   \item{HC}{default NULL, if \code{robust} is TRUE, assigned \dQuote{HC0}, may take values \dQuote{HC0} or \dQuote{HC1} for White estimates or MacKinnon-White estimates respectively}
- \item{legacy}{the argument chooses between two implementations of the robustness correction: default FALSE - use the estimate of Omega only in the White consistent estimator of the variance-covariance matrix, if TRUE, use the original implementation which runs a GLS using the estimate of Omega, and yields different coefficient estimates as well - see example below}
- \item{W2X}{default TRUE, if FALSE only WX are used as instruments in the spatial two stage least squares; until release 0.4-60, only WX were used - see example below }
+ \item{legacy}{the argument chooses between two implementations of the robustness correction: default FALSE - use the estimate of Omega only in the White consistent estimator of the variance-covariance matrix, if TRUE, use the original implementation which runs a GLS using the estimate of Omega, overrides sig2n_k, and yields different coefficient estimates as well - see example below}
+ \item{W2X}{default TRUE, if FALSE only WX are used as instruments in the spatial two stage least squares; until release 0.4-60, only WX were used - see example below; Python \code{spreg::GM_Lag} is default FALSE}
+ \item{sig2n_k}{default TRUE - use n-k to calculate sigma^2, if FALSE use n; Python \code{spreg::GM_Lag} is default FALSE}
+ \item{adjust.n}{default FALSE, used in creating spatial weights constants for the Anselin-Kelejian (1997) test}
   \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{\dots}{Arguments passed through to methods in the \pkg{coda} package}
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
@@ -48,6 +51,8 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
 \deqn{y = \rho W y + X \beta + \varepsilon}{y = rho W y + X beta + e}
 
 by using spatially lagged X variables as instruments for the spatially lagged dependent variable.
+
+From version 1.3-6, the general Anselin-Kelejian (1997) test for residual spatial autocorrelation is added.
 }
 \value{
   an object of class "Stsls" containing:
@@ -60,7 +65,9 @@ by using spatially lagged X variables as instruments for the spatially lagged de
 \references{Kelejian, H.H. and I.R. Prucha (1998). A generalized spatial two
 stage least squares procedure for estimating a spatial autoregressive
 model with autoregressive disturbances. \emph{Journal of Real Estate
-Finance and Economics} 17, 99-121.
+Finance and Economics} 17, 99-121. \doi{10.1023/A:1007707430416}.
+
+Anselin, L., & Kelejian, H. H. (1997). Testing for Spatial Error Autocorrelation in the Presence of Endogenous Regressors. International Regional Science Review, 20(1-2), 153-182. \doi{10.1177/016001769702000109}.
 
 Roger Bivand, Gianfranco Piras (2015). Comparing Implementations of Estimation Methods for Spatial Econometrics. \emph{Journal of Statistical Software}, 63(18), 1-36. \doi{10.18637/jss.v063.i18}.
 }

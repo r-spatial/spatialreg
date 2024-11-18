@@ -9,7 +9,7 @@
 \usage{
 gstsls(formula, data = list(), listw, listw2 = NULL, na.action = na.fail, 
     zero.policy = attr(listw, "zero.policy"), pars=NULL, scaleU=FALSE, control = list(), 
-    verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE) 
+    verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE, sig2n_k=FALSE) 
 \method{impacts}{Gmsar}(obj, \dots, n = NULL, tr = NULL, R = NULL,
  listw = NULL, evalues=NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
 }
@@ -34,6 +34,7 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   \item{robust}{see \code{stsls}}
   \item{legacy}{see \code{stsls}}
   \item{W2X}{see \code{stsls}}
+ \item{sig2n_k}{see \code{stsls}}
   \item{obj}{A spatial regression object created by \code{lagsarlm}, \code{lagmess} or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{\dots}{Arguments passed through to methods in the \pkg{coda} package}
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}

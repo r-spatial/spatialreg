@@ -518,9 +518,9 @@ impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
 ####SARAR model
 
 gstsls<-function (formula, data = list(), listw, listw2=NULL,
- na.action = na.fail, zero.policy = attr(listw, "zero.policy"), pars=NULL, scaleU=FALSE,
- control = list(), verbose = NULL, method = "nlminb", robust = FALSE,
- legacy = FALSE, W2X = TRUE ) 
+ na.action = na.fail, zero.policy = attr(listw, "zero.policy"), pars=NULL,
+ scaleU=FALSE, control = list(), verbose = NULL, method = "nlminb",
+ robust = FALSE, legacy = FALSE, W2X = TRUE, sig2n_k=FALSE) 
 {
 	
 	
@@ -590,7 +590,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
         }
 
         instr <- cbind(WX, WWX)
-        firststep <- tsls(y = y, yend = wy, X = x, Zinst = instr, robust = robust, legacy = legacy)
+        firststep <- tsls(y = y, yend = wy, X = x, Zinst = instr, robust = robust, legacy = legacy, sig2n_k=sig2n_k)
 
         ukp <- residuals(firststep)
 
@@ -641,7 +641,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
         colnames(xt) <- xcolnames
         colnames(wyt) <- c("Rho_Wy")
         secstep <- tsls(y = yt, yend = wyt, X = xt, Zinst = instr,
-            robust = robust, legacy = legacy)
+            robust = robust, legacy = legacy, sig2n_k=sig2n_k)
 	rho<-secstep$coefficients[1]
 	coef.sac<-secstep$coefficients
 	rest.se <- sqrt(diag(secstep$var))

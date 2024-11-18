@@ -1,8 +1,10 @@
 # Copyright 2006 by Luc Anselin and Roger Bivand
 # modified by Gianfranco Piras on December 11, 2009 (added the argument legacy)
 # and on March 12, 2010 (added the argument W2X)
+# https://github.com/r-spatial/spatialreg/issues/56 adding AK test
 stsls <- function(formula, data = list(), listw, zero.policy=NULL,
-	na.action=na.fail, robust=FALSE, HC=NULL, legacy=FALSE, W2X=TRUE) {
+	na.action=na.fail, robust=FALSE, HC=NULL, legacy=FALSE, W2X=TRUE,
+        sig2n_k=TRUE, adjust.n=FALSE) {
 
 
     	if (!inherits(listw, "listw")) 
@@ -70,7 +72,20 @@ stsls <- function(formula, data = list(), listw, zero.policy=NULL,
 	}
 #	if (listw$style == "W") colnames(WX) <- xcolnames[-1]
         result <- tsls(y=y, yend=Wy, X=X, Zinst=inst, robust=robust, HC=HC,
-            legacy=legacy)
+            legacy=legacy, sig2n_k=sig2n_k)
+# list(coefficients=biv, var=varb, sse=sse, residuals=c(e), df=df)
+        sc <- spdep::spweights.constants(listw=listw, zero.policy=zero.policy,
+            adjust.n=adjust.n)
+        u <- result$residuals
+        I <- c((sc$n * t(u) %*% (lag.listw(listw, u,
+            zero.policy=zero.policy))) / (sc$S0 * result$sse))
+        Z <- attr(result, "Z")
+        utWZ <- t(u) %*% lag.listw(listw, Z, zero.policy=zero.policy)
+        A <- c(utWZ %*% (result$var/(result$sse/result$df)) %*% t(utWZ))
+        s0nsq <- (sc$S0/sc$n)^2
+        phisq <- c((sc$S1 + (4/(result$sse/sc$n) * A)) / (s0nsq * sc$n))
+        AK <- (sc$n * I^2) / phisq
+	result$AK <- c(AK)
 	result$zero.policy <- zero.policy
 	result$robust <- robust
         if (robust) result$HC <- HC
@@ -141,6 +156,9 @@ print.summary.Stsls <- function(x, digits = max(5, .Options$digits - 3),
 	else cat("Residual variance (sigma squared): ")
 	cat(format(signif(x$sse/x$df, digits)), ", (sigma: ", 
 		format(signif(sqrt(x$sse/x$df), digits)), ")\n", sep="")
+	cat("Anselin-Kelejian (1997) test for residial autocorrelation: ")
+	cat(format(signif(x$AK, digits)), "\n        p-value: ", 
+		format.pval(pchisq(x$AK, 1, lower.tail=FALSE), digits), sep="")
 	
     	if (!is.null(correl)) {
         	p <- NCOL(correl)
@@ -312,11 +330,11 @@ htsls <- function(y,Z,Q,e) {
 #   s2: residual variance (using degrees of freedom N-K)
 #   residuals: observed y - predicted y, to be used in diagnostics
 
-tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE) {
+tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE, sig2n_k=FALSE) {
 #	colnames(X) <- c("CONSTANT",colnames(X)[2:ncol(X)])
 	Q <- cbind(X,Zinst)
 	Z <- cbind(yend,X)
-	df <- nrow(Z) - ncol(Z)
+        df <- ifelse(sig2n_k, nrow(Z) - ncol(Z), nrow(Z))
 #	QQ <- crossprod(Q,Q)
 	Qye <- crossprod(Q,yend)
         Qr <- qr(Q)
@@ -337,7 +355,7 @@ tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE) {
 	e <- y - yp
 	if (robust) {
 		if (legacy) {		
-		result <- htsls(y,Z,Q,e)
+		        result <- htsls(y,Z,Q,e)
 		} else {
 	        	sse <- c(crossprod(e,e))
                         if (HC == "HC0") omega <- as.numeric(e^2)
@@ -368,5 +386,6 @@ tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE) {
 	        residuals=c(e),
 		df=df)
 	}
+        attr(result, "Z") <- Z
 	result
 }
