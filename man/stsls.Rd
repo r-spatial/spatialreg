@@ -94,6 +94,8 @@ require(coda)
 HPDinterval(loobj1)
 COL.lag.stslsW <- stsls(CRIME ~ INC + HOVAL, data=COL.OLD, lw, W2X=FALSE)
 summary(COL.lag.stslsW, correlation=TRUE)
+COL.lag.stslsWn <- stsls(CRIME ~ INC + HOVAL, data=COL.OLD, lw, W2X=FALSE, sig2n_k=FALSE)
+summary(COL.lag.stslsWn, correlation=TRUE)
 COL.lag.stslsR <- stsls(CRIME ~ INC + HOVAL, data=COL.OLD, lw,
 robust=TRUE, W2X=FALSE)
 summary(COL.lag.stslsR, correlation=TRUE)

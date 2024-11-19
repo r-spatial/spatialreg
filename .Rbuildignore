@@ -3,3 +3,5 @@ ChangeLog
 ^\.travis\.yml$
 ^docs$
 .github
+.git
+_pkgdown.yml

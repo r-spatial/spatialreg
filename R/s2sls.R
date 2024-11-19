@@ -156,9 +156,10 @@ print.summary.Stsls <- function(x, digits = max(5, .Options$digits - 3),
 	else cat("Residual variance (sigma squared): ")
 	cat(format(signif(x$sse/x$df, digits)), ", (sigma: ", 
 		format(signif(sqrt(x$sse/x$df), digits)), ")\n", sep="")
-	cat("Anselin-Kelejian (1997) test for residial autocorrelation: ")
-	cat(format(signif(x$AK, digits)), "\n        p-value: ", 
-		format.pval(pchisq(x$AK, 1, lower.tail=FALSE), digits), sep="")
+	cat("Anselin-Kelejian (1997) test for residual autocorrelation\n")
+	cat("test value: ", format(signif(x$AK, digits)), ", p-value: ", 
+		format.pval(pchisq(x$AK, 1, lower.tail=FALSE), digits), 
+		"\n", sep="")
 	
     	if (!is.null(correl)) {
         	p <- NCOL(correl)
@@ -299,6 +300,7 @@ htsls <- function(y,Z,Q,e) {
 #    	sebiv <- sqrt(diag(vi))
 #    	tbiv <- biv / sebiv
 #    	pbiv <- pnorm(abs(tbiv),lower.tail=FALSE) * 2
+	colnames(vi) <- rownames(vi) <- names(biv)
     	result <- list(coefficients=biv,
 #            se=sebiv,t=tbiv,p=pbiv,
 	    var=vi,sse=sse,residuals=c(e),df=df)
@@ -364,7 +366,7 @@ tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE, sig2n_k=FA
                         else stop("invalid HC choice")
 			ZoZ<-crossprod(Zp,(Zp*omega))
 			varb<-ZpZpi%*%ZoZ%*%ZpZpi
-	   
+	   		colnames(varb) <- rownames(varb) <- names(biv)
 	   		result <- list(coefficients=biv,
 				var=varb,
 				sse=sse,
@@ -376,6 +378,7 @@ tsls <- function(y,yend,X,Zinst,robust=FALSE, HC="HC0", legacy=FALSE, sig2n_k=FA
 	    sse <- c(crossprod(e,e))
     	    s2 <- sse / df
 	    varb <- ZpZpi * s2
+            colnames(varb) <- rownames(varb) <- names(biv)
 #	    sebiv <- sqrt(diag(varb))
 #	    tbiv <- biv / sebiv
 #	    pbiv <- pnorm(abs(tbiv),lower.tail=FALSE) * 2

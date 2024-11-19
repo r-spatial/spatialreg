@@ -1,108 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/SpatialFiltering.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/nb_igraph.html</loc>
-  </url>
-  <url>
-    <loc>/articles/sids_models.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/GMerrorsar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MCMCsamp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ME.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ML_models.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SET_MCMC.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SLX.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SpatialFiltering.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aple.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aple.mc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aple.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/do_ldet.html</loc>
-  </url>
-  <url>
-    <loc>/reference/eigenw.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gstsls.html</loc>
-  </url>
-  <url>
-    <loc>/reference/impacts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/invIrM.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lagmess.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lextrB.html</loc>
-  </url>
-  <url>
-    <loc>/reference/predict.sarlm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sarlm_tests.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set.mcOption.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set.spChkOption.html</loc>
-  </url>
-  <url>
-    <loc>/reference/similar.listw.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sparse_mat.html</loc>
-  </url>
-  <url>
-    <loc>/reference/spautolm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stsls.html</loc>
-  </url>
-  <url>
-    <loc>/reference/trW.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://r-spatial.github.io/spatialreg/404.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/articles/SpatialFiltering.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/articles/index.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/articles/nb_igraph.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/articles/sids_models.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/authors.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/index.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/news/index.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/GMerrorsar.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/MCMCsamp.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/ME.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/ML_models.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/SET_MCMC.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/SLX.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/SpatialFiltering.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/aple.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/aple.mc.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/aple.plot.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/do_ldet.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/eigenw.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/gstsls.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/impacts.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/index.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/invIrM.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/lagmess.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/lextrB.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/predict.sarlm.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/sarlm_tests.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/set.mcOption.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/set.spChkOption.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/similar.listw.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/sparse_mat.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/spautolm.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/stsls.html</loc></url>
+<url><loc>https://r-spatial.github.io/spatialreg/reference/trW.html</loc></url>
 </urlset>
+
