@@ -4,8 +4,7 @@
 
 library(sf)
 library(spatialreg)
-nc <- st_read(system.file("shapes/sids.shp", package="spData")[1], quiet=TRUE)
-st_crs(nc) <- "EPSG:4267"
+nc <- st_read(system.file("shapes/sids.gpkg", package="spData")[1], quiet=TRUE)
 row.names(nc) <- as.character(nc$FIPSNO)
 nc$ft.SID74 <- sqrt(1000)*(sqrt(nc$SID74/nc$BIR74) + sqrt((nc$SID74+1)/nc$BIR74))
 nc$ft.NWBIR74 <- sqrt(1000)*(sqrt(nc$NWBIR74/nc$BIR74) + sqrt((nc$NWBIR74+1)/nc$BIR74))

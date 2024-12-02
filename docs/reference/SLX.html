@@ -292,7 +292,7 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Direct     Indirect Total     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INC 8.2671e-06 0.024029 5.1387e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">crds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">COL.OLD</span><span class="op">$</span><span class="va">X</span>, <span class="va">COL.OLD</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mdist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">crds</span>, <span class="fl">2</span>, <span class="va">range</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dnb</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/dnearneigh.html" class="external-link">dnearneigh</a></span><span class="op">(</span><span class="va">crds</span>, <span class="fl">0</span>, <span class="va">mdist</span><span class="op">)</span></span></span>
@@ -306,70 +306,24 @@ for the data on which the model was fitted. Should have row names corresponding 
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optimize.html" class="external-link">optimize</a></span><span class="op">(</span><span class="va">f</span>, interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">4</span><span class="op">)</span>, form<span class="op">=</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">COL.OLD</span>, dnb<span class="op">=</span><span class="va">dnb</span>, dists<span class="op">=</span><span class="va">dists</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, maximum<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.589667 logLik: -172.6864 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 2.510333 logLik: -177.741 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.020665 logLik: -171.5379 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 0.8721475 logLik: -171.7979 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.11302 logLik: -171.4973 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.107329 logLik: -171.497 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.105705 logLik: -171.497 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.105746 logLik: -171.497 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.105664 logLik: -171.497 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> power: 1.105705 logLik: -171.497 </span>
 <span class="r-in"><span><span class="va">glst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dists</span>, <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="va">d</span><span class="op">^</span><span class="va">opt</span><span class="op">$</span><span class="va">maximum</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">lw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">dnb</span>, glist<span class="op">=</span><span class="va">glst</span>, style<span class="op">=</span><span class="st">"B"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">SLX</span> <span class="op">&lt;-</span> <span class="fu">lmSLX</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">SLX</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula(paste("y ~ ", paste(colnames(x)[-1], collapse = "+"))), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = as.data.frame(x), weights = weights)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate  Std. Error  t value   Pr(&gt;|t|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      18.78498  11.23795     1.67157   0.10187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC              -0.65428   0.29463    -2.22064   0.03169</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL            -0.18244   0.08138    -2.24174   0.03019</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag..Intercept.   6.27790   4.44284     1.41304   0.16484</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.INC          -0.12958   0.28794    -0.45002   0.65496</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.HOVAL         0.02668   0.11273     0.23664   0.81406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">SLX</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (SlX, glht, n-k):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct    Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -0.6542760 -0.12957739 -0.7838534</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.1824383  0.02667561 -0.1557627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.29463342 0.2879383 0.3742251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.08138257 0.1127279 0.1404591</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.220644 -0.4500179 -2.094604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.241736  0.2366371 -1.108954</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct   Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.026375 0.65270  0.036206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.024978 0.81294  0.267450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="va">COL.SLX</span> <span class="op">&lt;-</span> <span class="fu">lmSLX</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pslx0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pslx1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.SLX</span>, newdata<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in predict.SlX(COL.SLX, newdata = COL.OLD, listw = lw):</span> mismatch between newdata and spatial weights. newdata should have region.id as row.names</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">pslx0</span>, <span class="va">pslx1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'current' in selecting a method for function 'all.equal': object 'pslx1' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="va">COL.OLD1</span> <span class="op">&lt;-</span> <span class="va">COL.OLD</span></span></span>
 <span class="r-in"><span><span class="va">COL.OLD1</span><span class="op">$</span><span class="va">INC</span> <span class="op">&lt;-</span> <span class="va">COL.OLD1</span><span class="op">$</span><span class="va">INC</span> <span class="op">+</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="va">pslx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">COL.SLX</span>, newdata<span class="op">=</span><span class="va">COL.OLD1</span>, listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in predict.SlX(COL.SLX, newdata = COL.OLD1, listw = lw):</span> mismatch between newdata and spatial weights. newdata should have region.id as row.names</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">COL.SLX</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5.623621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.479902</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pslx2</span><span class="op">-</span><span class="va">pslx1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'mean': object 'pslx2' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.479902</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
