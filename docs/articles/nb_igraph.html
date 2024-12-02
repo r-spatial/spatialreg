@@ -134,7 +134,7 @@ is reported on loading:</p>
 <pre><code><span><span class="co">## Loading required package: spData</span></span></code></pre>
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
 <pre><code><span><span class="co">## Loading required package: sf</span></span></code></pre>
-<pre><code><span><span class="co">## Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.0; sf_use_s2() is TRUE</span></span></code></pre>
+<pre><code><span><span class="co">## Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.1; sf_use_s2() is TRUE</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="getting-some-data">Getting some data<a class="anchor" aria-label="anchor" href="#getting-some-data"></a>
@@ -153,9 +153,9 @@ turn depends on <strong>sf</strong>.</p>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html" class="external-link">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <pre><code><span><span class="co">##           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span></span>
-<span><span class="co">##       "3.13.0"       "3.10.0"        "9.5.0"         "true"         "true" </span></span>
+<span><span class="co">##       "3.13.0"       "3.10.0"        "9.5.1"         "true"         "true" </span></span>
 <span><span class="co">##           PROJ </span></span>
-<span><span class="co">##        "9.5.0"</span></span></code></pre>
+<span><span class="co">##        "9.5.1"</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="va">columbus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>

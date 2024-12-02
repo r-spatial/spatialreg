@@ -5,7 +5,7 @@ articles:
   nb_igraph: nb_igraph.html
   sids_models: sids_models.html
   SpatialFiltering: SpatialFiltering.html
-last_built: 2024-11-19T11:32Z
+last_built: 2024-12-02T10:09Z
 urls:
   reference: https://r-spatial.github.io/spatialreg/reference
   article: https://r-spatial.github.io/spatialreg/articles
