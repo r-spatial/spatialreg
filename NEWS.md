@@ -1,6 +1,9 @@
 # Version 1.3-6 (development)
 
+* Remove remaining `spData` ESRI shapefile use
+
 * #56 add Anselin-Kelejian (1997) test to `stsls`, reported in its summary method, analogous to the reporting in the summary method of `lagsarlm` of the Lagrange multiplier test, both for residual spatial autocorrelation
+
 * adding missing man page anchors
 
 # Version 1.3-5 (2024-08-19)
