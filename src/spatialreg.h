@@ -1,7 +1,10 @@
-/* Copyright 2019-2022 by Roger S. Bivand. */
+/* Copyright 2019-2024 by Roger S. Bivand. */
 
 #ifndef USE_FC_LEN_T
 # define USE_FC_LEN_T
+#endif
+#ifndef R_NO_REMAP
+# define R_NO_REMAP
 #endif
 #include <R.h>
 #include <Rmath.h>

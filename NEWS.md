@@ -1,5 +1,6 @@
 # Version 1.3-7 (development)
 
+* convert `error` to `Rf_error` in `src/ml_sse.c` to accommodate R_NO_REMAP
 
 # Version 1.3-6 (2024-12-02)
 

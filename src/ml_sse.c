@@ -63,18 +63,18 @@ void opt_error_set(SEXP env) {
     SEXP y, x, wy, WX;
     int i, n, p, np, pc=0;
 
-    n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-    p = INTEGER_POINTER(findVarInFrame(env, install("p")))[0];
+    n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+    p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("p")))[0];
     np = n*p;
 
-    pt = (OPT_ERROR_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
-    if (pt->set) error("opt_error_set: function called out of order");
+    pt = (OPT_ERROR_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
+    if (pt->set) Rf_error("opt_error_set: function called out of order");
 
-    PROTECT(y = findVarInFrame(env, install("y"))); pc++;
-    PROTECT(x = findVarInFrame(env, install("x"))); pc++;
-    PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
-    PROTECT(WX = findVarInFrame(env, install("WX"))); pc++;
+    PROTECT(y = Rf_findVarInFrame(env, Rf_install("y"))); pc++;
+    PROTECT(x = Rf_findVarInFrame(env, Rf_install("x"))); pc++;
+    PROTECT(wy = Rf_findVarInFrame(env, Rf_install("wy"))); pc++;
+    PROTECT(WX = Rf_findVarInFrame(env, Rf_install("WX"))); pc++;
 
     pt->y = R_Calloc(n, double);
     pt->x = R_Calloc(np, double);
@@ -149,18 +149,18 @@ void hess_error_set(SEXP env) {
     SEXP y, x, wy, WX;
     int i, n, p, np, pc=0;
 
-    n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-    p = INTEGER_POINTER(findVarInFrame(env, install("p")))[0];
+    n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+    p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("p")))[0];
     np = n*p;
 
-    pt = (HESS_ERROR_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
-    if (pt->set) error("hess_error_set: function called out of order");
+    pt = (HESS_ERROR_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
+    if (pt->set) Rf_error("hess_error_set: function called out of order");
 
-    PROTECT(y = findVarInFrame(env, install("y"))); pc++;
-    PROTECT(x = findVarInFrame(env, install("x"))); pc++;
-    PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
-    PROTECT(WX = findVarInFrame(env, install("WX"))); pc++;
+    PROTECT(y = Rf_findVarInFrame(env, Rf_install("y"))); pc++;
+    PROTECT(x = Rf_findVarInFrame(env, Rf_install("x"))); pc++;
+    PROTECT(wy = Rf_findVarInFrame(env, Rf_install("wy"))); pc++;
+    PROTECT(WX = Rf_findVarInFrame(env, Rf_install("WX"))); pc++;
 
     pt->y = R_Calloc(n, double);
     pt->x = R_Calloc(np, double);
@@ -228,17 +228,17 @@ void hess_lag_set(SEXP env) {
     SEXP y, x, wy;
     int i, n, p, np, pc=0;
 
-    n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-    p = INTEGER_POINTER(findVarInFrame(env, install("m")))[0];
+    n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+    p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("m")))[0];
     np = n*p;
 
-    pt = (HESS_LAG_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
-    if (pt->set) error("hess_lag_set: function called out of order");
+    pt = (HESS_LAG_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
+    if (pt->set) Rf_error("hess_lag_set: function called out of order");
 
-    PROTECT(y = findVarInFrame(env, install("y"))); pc++;
-    PROTECT(x = findVarInFrame(env, install("x"))); pc++;
-    PROTECT(wy = findVarInFrame(env, install("wy"))); pc++;
+    PROTECT(y = Rf_findVarInFrame(env, Rf_install("y"))); pc++;
+    PROTECT(x = Rf_findVarInFrame(env, Rf_install("x"))); pc++;
+    PROTECT(wy = Rf_findVarInFrame(env, Rf_install("wy"))); pc++;
 
     pt->y = R_Calloc(n, double);
     pt->x = R_Calloc(np, double);
@@ -299,16 +299,16 @@ SEXP R_ml_sse_env(SEXP env, SEXP coef) {
   int pc=0, first_time;
   OPT_ERROR_SSE *pt;
 
-  first_time = LOGICAL_POINTER(findVarInFrame(env, install("first_time")))[0];
+  first_time = LOGICAL_POINTER(Rf_findVarInFrame(env, Rf_install("first_time")))[0];
   if (first_time) {
     opt_error_set(env);
   }
 
-  n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-  p = INTEGER_POINTER(findVarInFrame(env, install("p")))[0];
+  n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+  p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("p")))[0];
   np = n*p;
-  pt = (OPT_ERROR_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
+  pt = (OPT_ERROR_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
 
   for (i=0; i<n; i++) pt->yl[i] = pt->y[i];
   for (i=0; i<np; i++) pt->xlq[i] = pt->x[i];
@@ -319,7 +319,7 @@ SEXP R_ml_sse_env(SEXP env, SEXP coef) {
 
   F77_CALL(dqrdc2)(pt->xlq, &n, &n, &p, &tol, &k, pt->qraux, pt->jpvt,
     pt->work); 
-  if (p != k) warning("Q looses full rank"); 
+  if (p != k) Rf_warning("Q looses full rank"); 
 /*  k = 0;
   F77_CALL(dqrdc)(pt->xlq, &n, &n, &p, pt->qraux, pt->jpvt, pt->work, &k);*/
 
@@ -356,16 +356,16 @@ SEXP R_ml1_sse_env(SEXP env, SEXP lambda, SEXP beta) {
   int pc=0, first_time;
   HESS_ERROR_SSE *pt;
 
-  first_time = LOGICAL_POINTER(findVarInFrame(env, install("first_time")))[0];
+  first_time = LOGICAL_POINTER(Rf_findVarInFrame(env, Rf_install("first_time")))[0];
   if (first_time) {
     hess_error_set(env);
   }
 
-  n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-  p = INTEGER_POINTER(findVarInFrame(env, install("p")))[0];
+  n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+  p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("p")))[0];
   np = n*p;
-  pt = (HESS_ERROR_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
+  pt = (HESS_ERROR_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
 
   for (i=0; i<n; i++) pt->yl[i] = pt->y[i];
   for (i=0; i<np; i++) pt->xl[i] = pt->x[i];
@@ -402,15 +402,15 @@ SEXP R_ml2_sse_env(SEXP env, SEXP rho, SEXP beta) {
   int pc=0, first_time;
   HESS_LAG_SSE *pt;
 
-  first_time = LOGICAL_POINTER(findVarInFrame(env, install("first_time")))[0];
+  first_time = LOGICAL_POINTER(Rf_findVarInFrame(env, Rf_install("first_time")))[0];
   if (first_time) {
     hess_lag_set(env);
   }
 
-  n = INTEGER_POINTER(findVarInFrame(env, install("n")))[0];
-  p = INTEGER_POINTER(findVarInFrame(env, install("m")))[0];
-  pt = (HESS_LAG_SSE *) R_ExternalPtrAddr(findVarInFrame(env,
-        install("ptr")));
+  n = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("n")))[0];
+  p = INTEGER_POINTER(Rf_findVarInFrame(env, Rf_install("m")))[0];
+  pt = (HESS_LAG_SSE *) R_ExternalPtrAddr(Rf_findVarInFrame(env,
+        Rf_install("ptr")));
 
   for (i=0; i<n; i++) pt->yl[i] = pt->y[i];
   for (i=0; i<p; i++) pt->beta1[i] = NUMERIC_POINTER(beta)[i];

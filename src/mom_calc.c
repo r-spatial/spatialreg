@@ -1,4 +1,4 @@
-/* Copyright 2010 by Roger S. Bivand. */
+/* Copyright 2010-24 by Roger S. Bivand. */
 
 #include "spatialreg.h"
 
@@ -7,10 +7,10 @@ static int c__1 = 1;
 SEXP mom_calc_int2(SEXP is, SEXP m, SEXP nb, SEXP weights, SEXP card) {
     SEXP Omega;
     int hm = INTEGER_POINTER(m)[0];
-    int n = length(card);
+    int n = Rf_length(card);
     double *eta, *zeta, *omega, sum, res;
     int i, ii, j, k1, k2, k3;
-    int iis = length(is);
+    int iis = Rf_length(is);
 
     omega = (double *) R_alloc((size_t) hm, sizeof(double));
     eta = (double *) R_alloc((size_t) n, sizeof(double));
@@ -39,10 +39,10 @@ SEXP mom_calc_int2(SEXP is, SEXP m, SEXP nb, SEXP weights, SEXP card) {
             }
             res = F77_CALL(ddot)(&n, zeta, &c__1, eta, &c__1);
             if (R_FINITE(res)) omega[(j-1)] += res;
-            else error("non-finite dot product %d, %d", i, j);
+            else Rf_error("non-finite dot product %d, %d", i, j);
             res = F77_CALL(ddot)(&n, zeta, &c__1, zeta, &c__1);
             if (R_FINITE(res)) omega[j] += res;
-            else error("non-finite dot product %d, %d", i, j);
+            else Rf_error("non-finite dot product %d, %d", i, j);
             for (k1=0; k1<n; k1++) eta[k1] = zeta[k1];
         }
     }

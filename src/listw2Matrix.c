@@ -23,7 +23,7 @@ SEXP listw2dsT(SEXP nbs, SEXP wts, SEXP card, SEXP ncard2)
 		    NUMERIC_POINTER(VECTOR_ELT(ans, 2))[ii] = 
 		        NUMERIC_POINTER(VECTOR_ELT(wts, i))[j]; 
 		    if (ii >= INTEGER_POINTER(ncard2)[0])
-			error("ncard2 incorrectly given");
+			Rf_error("ncard2 incorrectly given");
 		    ii++;
                 }
 	    }
@@ -50,7 +50,7 @@ SEXP listw2dgR(SEXP nbs, SEXP wts, SEXP card, SEXP ncard)
 		NUMERIC_POINTER(VECTOR_ELT(ans, 1))[ii] = 
 		    NUMERIC_POINTER(VECTOR_ELT(wts, i))[j]; 
 		if (ii >= INTEGER_POINTER(ncard)[0])
-		    error("ncard incorrectly given");
+		    Rf_error("ncard incorrectly given");
 		ii++;
 	    }
 	}

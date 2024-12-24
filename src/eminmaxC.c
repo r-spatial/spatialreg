@@ -1,10 +1,10 @@
-/* Copyright 2015 by Roger S. Bivand. */
+/* Copyright 2015-24 by Roger S. Bivand. */
 
 #include "spatialreg.h"
 
 
 SEXP lmin21(SEXP nb, SEXP y, SEXP cy, SEXP card) {
-    int i, j, k, nswitch=0, n=length(card), pc=0;
+    int i, j, k, nswitch=0, n=Rf_length(card), pc=0;
     SEXP ans;
     double t1, t2, ytemp;
     double *Y, *CY;
@@ -52,20 +52,20 @@ SEXP lmin21(SEXP nb, SEXP y, SEXP cy, SEXP card) {
 }
 
 SEXP lmin22(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta) {
-    int i, j, k, nswitch=0, n=length(card), pc=0;
+    int i, j, k, nswitch=0, n=Rf_length(card), pc=0;
     SEXP ans;
     double t1, t2, ytemp, yhat;
     double *Y, *CY, *B;
 
     Y = (double *) R_alloc((size_t) n, sizeof(double));
     CY = (double *) R_alloc((size_t) n, sizeof(double));
-    B = (double *) R_alloc((size_t) length(beta), sizeof(double));
+    B = (double *) R_alloc((size_t) Rf_length(beta), sizeof(double));
 
     for (i=0; i<n; i++) {
         Y[i] = NUMERIC_POINTER(y)[i];
         CY[i] = NUMERIC_POINTER(cy)[i];
     }
-    for (i=0; i<length(beta); i++) {
+    for (i=0; i<Rf_length(beta); i++) {
         B[i] = NUMERIC_POINTER(beta)[i];
     }
 
@@ -105,20 +105,20 @@ SEXP lmin22(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta) {
 }
 
 SEXP lmin23(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta, SEXP tol) {
-    int i, j, k, nswitch=0, n=length(card), pc=0;
+    int i, j, k, nswitch=0, n=Rf_length(card), pc=0;
     SEXP ans;
     double tmp, var, yhat;
     double *Y, *CY, *B;
 
     Y = (double *) R_alloc((size_t) n, sizeof(double));
     CY = (double *) R_alloc((size_t) n, sizeof(double));
-    B = (double *) R_alloc((size_t) length(beta), sizeof(double));
+    B = (double *) R_alloc((size_t) Rf_length(beta), sizeof(double));
 
     for (i=0; i<n; i++) {
         Y[i] = NUMERIC_POINTER(y)[i];
         CY[i] = NUMERIC_POINTER(cy)[i];
     }
-    for (i=0; i<length(beta); i++) {
+    for (i=0; i<Rf_length(beta); i++) {
         B[i] = NUMERIC_POINTER(beta)[i];
     }
     PROTECT(ans = NEW_LIST(2)); pc++;
@@ -151,20 +151,20 @@ SEXP lmin23(SEXP nb, SEXP y, SEXP cy, SEXP card, SEXP beta, SEXP tol) {
 }
 
 SEXP lmin3(SEXP nb, SEXP ev1, SEXP ev1_lag, SEXP n_nei, SEXP beta, SEXP tol) {
-    int i, j, k, nswitch=0, n=length(n_nei), pc=0;
+    int i, j, k, nswitch=0, n=Rf_length(n_nei), pc=0;
     SEXP ans;
     double tmp, var, yhat, ntmp;
     double *Y, *CY, *B;
 
     Y = (double *) R_alloc((size_t) n, sizeof(double));
     CY = (double *) R_alloc((size_t) n, sizeof(double));
-    B = (double *) R_alloc((size_t) length(beta), sizeof(double));
+    B = (double *) R_alloc((size_t) Rf_length(beta), sizeof(double));
 
     for (i=0; i<n; i++) {
         Y[i] = NUMERIC_POINTER(ev1)[i];
         CY[i] = NUMERIC_POINTER(ev1_lag)[i];
     }
-    for (i=0; i<length(beta); i++) {
+    for (i=0; i<Rf_length(beta); i++) {
         B[i] = NUMERIC_POINTER(beta)[i];
     }
     PROTECT(ans = NEW_LIST(2)); pc++;
@@ -200,20 +200,20 @@ SEXP lmin3(SEXP nb, SEXP ev1, SEXP ev1_lag, SEXP n_nei, SEXP beta, SEXP tol) {
 
 
 SEXP lmin3S(SEXP nb, SEXP ev1, SEXP ev1_lag, SEXP n_nei, SEXP card, SEXP beta, SEXP tol) {
-    int i, j, k, nswitch=0, n=length(card), pc=0;
+    int i, j, k, nswitch=0, n=Rf_length(card), pc=0;
     SEXP ans;
     double tmp, var, yhat, ntmp;
     double *Y, *CY, *B;
 
     Y = (double *) R_alloc((size_t) n, sizeof(double));
     CY = (double *) R_alloc((size_t) n, sizeof(double));
-    B = (double *) R_alloc((size_t) length(beta), sizeof(double));
+    B = (double *) R_alloc((size_t) Rf_length(beta), sizeof(double));
 
     for (i=0; i<n; i++) {
         Y[i] = NUMERIC_POINTER(ev1)[i];
         CY[i] = NUMERIC_POINTER(ev1_lag)[i];
     }
-    for (i=0; i<length(beta); i++) {
+    for (i=0; i<Rf_length(beta); i++) {
         B[i] = NUMERIC_POINTER(beta)[i];
     }
     PROTECT(ans = NEW_LIST(2)); pc++;
