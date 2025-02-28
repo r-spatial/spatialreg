@@ -134,6 +134,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             	    if (length(Ddcfact) > 0) {
                         warning("use of spatially lagged factors (categorical variables)\n", 
                         paste(names(Ddcfact), collapse=", "), "\nis not well-understood")
+                    }
 #	            dmf <- lm(Durbin, data, na.action=na.action, 
 #		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
