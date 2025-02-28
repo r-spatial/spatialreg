@@ -1,7 +1,9 @@
-# spatialreg
-
-[![Actions Status](https://github.com/r-spatial/spatialreg/workflows/R-CMD-check/badge.svg)](https://github.com/r-spatial/spatialreg/actions)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/r-spatial/spatialreg/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/r-spatial/spatialreg/actions/workflows/check-standard.yaml)
 [![CRAN](http://www.r-pkg.org/badges/version/spatialreg)](https://cran.r-project.org/package=spatialreg)
+<!-- badges: end -->
+
+# spatialreg
 
 ### spatialreg: spatial models estimation and testing
 
