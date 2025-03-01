@@ -18,14 +18,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         if (attr(mt, "intercept") == 1 && !any(attr(mt, "factors") == 1)) {
             stop("intercept-only model, Durbin invalid")
         }
-	dcfact <- which(attr(attr(mf, "terms"), "dataClasses") == "factor")
-        have_factor_preds <- FALSE
-        if (length(dcfact) > 0) {
-            have_factor_preds <- TRUE
-            factnames <- names(dcfact)
-            xlevels <- lapply(factnames, function(xnms) levels(mf[[xnms]]))
-            names(xlevels) <- factnames
-        }
+	have_factor_preds <- have_factor_preds_mf(mf)
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
 	if (listw$style == "M") warning("missing spatial weights style")
@@ -58,7 +51,8 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         if (isTRUE(Durbin)) {
             if (have_factor_preds)
                 warning("use of spatially lagged factors (categorical variables)\n",
-                paste(factnames, collapse=", "), "\nis not well-understood")
+                paste(attr(have_factor_preds, "factnames"), collapse=", "),
+                "\nis not well-understood")
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                prefix=prefix)
         } else if (is.formula(Durbin)) {
@@ -69,10 +63,11 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             }
             dmf <- lm(Durbin, data1, na.action=na.fail, 
 	        method="model.frame")
-	    Ddcfact <- which(attr(attr(dmf, "terms"), "dataClasses") == "factor")
-            if (length(Ddcfact) > 0) {
+	    formula_durbin_factors <- have_factor_preds_mf(dmf)
+            if (formula_durbin_factors) {
                 warning("use of spatially lagged factors (categorical variables)\n", 
-                paste(names(Ddcfact), collapse=", "), "\nis not well-understood")
+                paste(attr(formula_durbin_factors, "factnames"), collapse=", "),
+                "\nis not well-understood")
             }
 #	    dmf <- lm(Durbin, data, na.action=na.action, 
 #	         method="model.frame")

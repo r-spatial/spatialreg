@@ -46,14 +46,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             warning("intercept-only model, Durbin invalid and set FALSE")
             Durbin <- FALSE
         }
-	dcfact <- which(attr(attr(mf, "terms"), "dataClasses") == "factor")
-        have_factor_preds <- FALSE
-        if (length(dcfact) > 0) {
-            have_factor_preds <- TRUE
-            factnames <- names(dcfact)
-            xlevels <- lapply(factnames, function(xnms) levels(mf[[xnms]]))
-            names(xlevels) <- factnames
-        }
+        have_factor_preds <- have_factor_preds_mf(mf)
 #
 	na.act <- attr(mf, "na.action")
 	if (!is.null(na.act)) {
@@ -76,7 +69,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             etype <- "emixed"
             if (have_factor_preds)
                 warning("use of spatially lagged factors (categorical variables)\n", 
-                paste(factnames, collapse=", "), "\nis not well-understood")
+                paste(attr(have_factor_preds, "factnames"), collapse=", "),
+                "\nis not well-understood")
         }
         if (is.formula(Durbin)) etype <- "emixed"
         if (is.logical(Durbin) && !isTRUE(Durbin)) etype <- "error"
@@ -130,11 +124,12 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                     }
 	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
-	    	    Ddcfact <- which(attr(attr(dmf, "terms"), "dataClasses") == "factor")
-            	    if (length(Ddcfact) > 0) {
-                        warning("use of spatially lagged factors (categorical variables)\n", 
-                        paste(names(Ddcfact), collapse=", "), "\nis not well-understood")
-                    }
+	           formula_durbin_factors <- have_factor_preds_mf(dmf)
+                   if (formula_durbin_factors) {
+                       warning("use of spatially lagged factors (categorical variables)\n", 
+                       paste(attr(formula_durbin_factors, "factnames"), collapse=", "),
+                       "\nis not well-understood")
+                   }
 #	            dmf <- lm(Durbin, data, na.action=na.action, 
 #		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
