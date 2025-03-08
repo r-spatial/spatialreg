@@ -67,10 +67,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 #        }
         if (is.logical(Durbin) && isTRUE(Durbin)) {
             etype <- "emixed"
-            if (have_factor_preds)
-                warning("use of spatially lagged factors (categorical variables)\n", 
-                paste(attr(have_factor_preds, "factnames"), collapse=", "),
-                "\nis not well-understood")
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
         }
         if (is.formula(Durbin)) etype <- "emixed"
         if (is.logical(Durbin) && !isTRUE(Durbin)) etype <- "error"
@@ -125,11 +122,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
 	           formula_durbin_factors <- have_factor_preds_mf(dmf)
-                   if (formula_durbin_factors) {
-                       warning("use of spatially lagged factors (categorical variables)\n", 
-                       paste(attr(formula_durbin_factors, "factnames"), collapse=", "),
-                       "\nis not well-understood")
-                   }
+                   if (formula_durbin_factors) 
+                       warn_factor_preds(formula_durbin_factors)
 #	            dmf <- lm(Durbin, data, na.action=na.action, 
 #		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
@@ -586,6 +580,7 @@ lagsarlm <- function(formula, data = list(), listw,
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, 
 		method="model.frame")
+        have_factor_preds <- have_factor_preds_mf(mf)
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
 	can.sim <- FALSE
@@ -607,7 +602,10 @@ lagsarlm <- function(formula, data = list(), listw,
             Durbin <- TRUE
             warning("formula Durbin requires row-standardised weights; set TRUE")
         }
-        if (is.logical(Durbin) && isTRUE(Durbin)) type <- "mixed"
+        if (is.logical(Durbin) && isTRUE(Durbin)) {
+            type <- "mixed"
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
+        }
         if (is.formula(Durbin)) type <- "mixed"
         if (is.logical(Durbin) && !isTRUE(Durbin)) type <- "lag"
 	switch(type, lag = if (!quiet) cat("\nSpatial lag model\n"),
@@ -651,6 +649,9 @@ lagsarlm <- function(formula, data = list(), listw,
                     }
 	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
+	            formula_durbin_factors <- have_factor_preds_mf(dmf)
+                    if (formula_durbin_factors) 
+                        warn_factor_preds(formula_durbin_factors)
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
                     if (inherits(fx, "try-error")) 
                         stop("Durbin variable mis-match")
@@ -955,6 +956,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
         if (!inherits(formula, "formula")) formula <- as.formula(formula)
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, method="model.frame")
+        have_factor_preds <- have_factor_preds_mf(mf)
 	na.act <- attr(mf, "na.action")
 	if (!inherits(listw, "listw")) stop("No neighbourhood list")
         if (is.null(listw2)) listw2 <- listw
@@ -1005,6 +1007,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
                 prefix <- "lag"
                 if (isTRUE(Durbin)) {
+                    if (have_factor_preds) warn_factor_preds(have_factor_preds)
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
                         prefix=prefix)
                 } else {
@@ -1015,6 +1018,9 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
                     }
 	            dmf <- lm(Durbin, data1, na.action=na.fail, 
 		        method="model.frame")
+	            formula_durbin_factors <- have_factor_preds_mf(dmf)
+                    if (formula_durbin_factors) 
+                        warn_factor_preds(formula_durbin_factors)
 #	            dmf <- lm(Durbin, data, na.action=na.action, 
 #		        method="model.frame")
                     fx <- try(model.matrix(Durbin, dmf), silent=TRUE)

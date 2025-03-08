@@ -16,3 +16,9 @@ have_factor_preds_mf <- function(mf) {
     }
     have_factor_preds
 }
+
+warn_factor_preds <- function(x) {
+    warning("use of spatially lagged factors (categorical variables)\n", 
+        paste(attr(x, "factnames"), collapse=", "),
+        "\nis not well-understood")
+}

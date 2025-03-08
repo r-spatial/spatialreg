@@ -49,10 +49,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         dvars <- c(NCOL(x), 0L)
         prefix <- "lag"
         if (isTRUE(Durbin)) {
-            if (have_factor_preds)
-                warning("use of spatially lagged factors (categorical variables)\n",
-                paste(attr(have_factor_preds, "factnames"), collapse=", "),
-                "\nis not well-understood")
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                prefix=prefix)
         } else if (is.formula(Durbin)) {
@@ -64,11 +61,8 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             dmf <- lm(Durbin, data1, na.action=na.fail, 
 	        method="model.frame")
 	    formula_durbin_factors <- have_factor_preds_mf(dmf)
-            if (formula_durbin_factors) {
-                warning("use of spatially lagged factors (categorical variables)\n", 
-                paste(attr(formula_durbin_factors, "factnames"), collapse=", "),
-                "\nis not well-understood")
-            }
+            if (formula_durbin_factors)
+                warn_factor_preds(formula_durbin_factors)
 #	    dmf <- lm(Durbin, data, na.action=na.action, 
 #	         method="model.frame")
             fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
