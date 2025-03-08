@@ -38,6 +38,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
     if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action=na.action,  method="model.frame")
+    have_factor_preds <- have_factor_preds_mf(mf)
     na.act <- attr(mf, "na.action")
     if (!inherits(listw, "listw")) stop("No neighbourhood list")
     can.sim <- FALSE
@@ -85,6 +86,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
     if (is.formula(Durbin) || isTRUE(Durbin)) {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                 prefix=prefix)
         } else {
@@ -95,6 +97,9 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
             }
 	    dmf <- lm(Durbin, data1, na.action=na.fail, 
 	        method="model.frame")
+	    formula_durbin_factors <- have_factor_preds_mf(dmf)
+            if (formula_durbin_factors)
+                warn_factor_preds(formula_durbin_factors)
 #            dmf <- lm(Durbin, data, na.action=na.action, 
 #	        method="model.frame")
             fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
@@ -521,6 +526,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action=na.action,  method="model.frame")
+    have_factor_preds <- have_factor_preds_mf(mf)
     na.act <- attr(mf, "na.action")
     if (!inherits(listw, "listw")) stop("No neighbourhood list")
     can.sim <- FALSE
@@ -563,6 +569,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     if (is.formula(Durbin) || isTRUE(Durbin)) {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                 prefix=prefix)
         } else {
@@ -573,6 +580,9 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
             }
 	    dmf <- lm(Durbin, data1, na.action=na.fail, 
 	        method="model.frame")
+	    formula_durbin_factors <- have_factor_preds_mf(dmf)
+            if (formula_durbin_factors)
+                warn_factor_preds(formula_durbin_factors)
 #            dmf <- lm(Durbin, data, na.action=na.action, 
 #	        method="model.frame")
             fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
@@ -998,6 +1008,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
     if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action=na.action,  method="model.frame")
+    have_factor_preds <- have_factor_preds_mf(mf)
     na.act <- attr(mf, "na.action")
     if (!inherits(listw, "listw")) stop("No neighbourhood list")
     if (is.null(listw2)) listw2 <- listw
@@ -1057,6 +1068,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
     if (is.formula(Durbin) || isTRUE(Durbin)) {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
             WX <- create_WX(x, listw, zero.policy=zero.policy,
                 prefix=prefix)
         } else {
@@ -1067,6 +1079,9 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
             }
 	    dmf <- lm(Durbin, data1, na.action=na.fail, 
 	        method="model.frame")
+	    formula_durbin_factors <- have_factor_preds_mf(dmf)
+            if (formula_durbin_factors)
+                warn_factor_preds(formula_durbin_factors)
 #            dmf <- lm(Durbin, data, na.action=na.action, 
 #	        method="model.frame")
             fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
