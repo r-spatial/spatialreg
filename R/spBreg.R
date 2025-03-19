@@ -130,6 +130,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
             attr(dvars, "f") <- Durbin
             attr(dvars, "inds") <- inds
             attr(dvars, "zero_fill") <- zero_fill
+            attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
         }
 	x <- cbind(x, WX)
 	m <- NCOL(x)
@@ -386,6 +387,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
     attr(res, "acc_rate") <- acc_rate
     attr(res, "dvars") <- dvars
     attr(res, "MH") <- priors$rhoMH
+    attr(res, "have_factor_preds") <- have_factor_preds
     class(res) <- c("MCMC_sar_G", class(res))
     res
 
@@ -613,6 +615,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
             attr(dvars, "f") <- Durbin
             attr(dvars, "inds") <- inds
             attr(dvars, "zero_fill") <- zero_fill
+            attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
         }
 	x <- cbind(x, WX)
         xcolnames <- colnames(x)
@@ -948,6 +951,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     attr(res, "n") <- n
     attr(res, "k") <- k
     attr(res, "MH") <- priors$lambdaMH
+    attr(res, "have_factor_preds") <- have_factor_preds
     class(res) <- c("MCMC_sem_G", class(res))
     res
 
@@ -1112,6 +1116,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
             attr(dvars, "f") <- Durbin
             attr(dvars, "inds") <- inds
             attr(dvars, "zero_fill") <- zero_fill
+            attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
         }
 	x <- cbind(x, WX)
 	m <- NCOL(x)
@@ -1383,6 +1388,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
     attr(res, "acc_rate1") <- acc_rate1
     attr(res, "acc_rate2") <- acc_rate2
     attr(res, "dvars") <- dvars
+    attr(res, "have_factor_preds") <- have_factor_preds
     class(res) <- c("MCMC_sac_G", class(res))
     res
 

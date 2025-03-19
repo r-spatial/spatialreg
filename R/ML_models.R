@@ -154,6 +154,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                     attr(dvars, "f") <- Durbin
                     attr(dvars, "inds") <- inds
                     attr(dvars, "zero_fill") <- zero_fill
+                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
                 }
 		x <- cbind(x, WX)
 		m <- NCOL(x)
@@ -507,6 +508,8 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                 hf_calls=get("hf_calls", envir=env), intern_classic=iC,
                 pWinternal=pWinternal, weights=weights, emixedImps=emixedImps,
                 dvars=dvars), class=c("Sarlm"))
+        attr(ret, "have_factor_preds") <- have_factor_preds
+
         rm(env)
         GC <- gc()
 	if (zero.policy) {
@@ -680,6 +683,7 @@ lagsarlm <- function(formula, data = list(), listw,
                     attr(dvars, "f") <- Durbin
                     attr(dvars, "inds") <- inds
                     attr(dvars, "zero_fill") <- zero_fill
+                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
                 }
 		x <- cbind(x, WX)
 		m <- NCOL(x)
@@ -887,6 +891,7 @@ lagsarlm <- function(formula, data = list(), listw,
                 f_calls=get("f_calls", envir=env),
                 hf_calls=get("hf_calls", envir=env), intern_classic=iC),
                 class=c("Sarlm"))
+        attr(ret, "have_factor_preds") <- have_factor_preds
         rm(env)
         GC <- gc()
 	if (zero.policy) {
@@ -1051,6 +1056,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
                     attr(dvars, "f") <- Durbin
                     attr(dvars, "inds") <- inds
                     attr(dvars, "zero_fill") <- zero_fill
+                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
                 }
 		x <- cbind(x, WX)
 		m <- NCOL(x)
@@ -1329,6 +1335,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             optimHess=FALSE, insert=FALSE, interval1=interval1,
             interval2=interval2, timings=do.call("rbind", timings)[, c(1, 3)]),
             class=c("Sarlm"))
+        attr(ret, "have_factor_preds") <- have_factor_preds
         rm(env)
         GC <- gc()
         if (is.null(llprof)) ret$llprof <- llprof

@@ -100,6 +100,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             attr(dvars, "f") <- Durbin
             attr(dvars, "inds") <- inds
             attr(dvars, "zero_fill") <- zero_fill
+            attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
         }
 	x <- cbind(x, WX)
 	rm(WX)
@@ -214,6 +215,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         tms <- as.character(lm.model$terms)
         attr(lm.model, "SLX_call") <- paste(y_name, " ", tms[1], " ", tms[3],
             ", data = ", d_name, ", listw = ", listw_name, sep="")
+        attr(lm.model, "have_factor_preds") <- have_factor_preds
         class(lm.model) <- c("SlX", class(lm.model))
         lm.model
 }
