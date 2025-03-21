@@ -571,7 +571,20 @@ lagImpactMat <- function(x, reportQ=NULL) {
   }
   mat <- cbind(direct, indirect, total)
   colnames(mat) <- c("Direct", "Indirect", "Total")
-  rownames(mat) <- attr(x, "bnames")
+  bnames <- attr(x, "bnames")
+  have_factor_preds <- attr(x, "have_factor_preds")
+  if (!is.null(have_factor_preds)) {
+    if (have_factor_preds) {
+      xlevels <- attr(have_factor_preds, "xlevels")
+      factnames <- attr(have_factor_preds, "factnames")
+      rownames(mat) <- bnames
+    } else {
+      rownames(mat) <- bnames
+    }
+  } else {
+    rownames(mat) <- bnames
+  }
+
   if (!is.null(reportQ) && reportQ) {
     if (is.null(x$res)) {
       Qobj <- attr(x, "Qres")
@@ -586,9 +599,9 @@ lagImpactMat <- function(x, reportQ=NULL) {
         Qobj$indirect <- matrix(Qobj$indirect, ncol=1)
         Qobj$total <- matrix(Qobj$total, ncol=1)
       }
-      colnames(Qobj$direct) <- attr(x, "bnames")
-      colnames(Qobj$indirect) <- attr(x, "bnames")
-      colnames(Qobj$total) <- attr(x, "bnames")
+      colnames(Qobj$direct) <- rownames(mat)
+      colnames(Qobj$indirect) <- rownames(mat)
+      colnames(Qobj$total) <- rownames(mat)
       rownames(Qobj$direct) <- paste("Q", 1:nrow(Qobj$direct), sep="")
       rownames(Qobj$indirect) <- paste("Q", 1:nrow(Qobj$indirect), sep="")
       rownames(Qobj$total) <- paste("Q", 1:nrow(Qobj$total), sep="")

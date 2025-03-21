@@ -346,6 +346,18 @@ impacts.Sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
     iicept <- length(icept) > 0L
     zero_fill <- NULL
     dvars <- obj$dvars
+#  have_factor_preds <- attr(x, "have_factor_preds")
+#  if (!is.null(have_factor_preds)) {
+#    if (have_factor_preds) {
+#      xlevels <- attr(have_factor_preds, "xlevels")
+#      factnames <- attr(have_factor_preds, "factnames")
+#      rownames(mat) <- bnames
+#    } else {
+#      rownames(mat) <- bnames
+#    }
+#  } else {
+#    rownames(mat) <- bnames
+#  }
     if (obj$type == "lag" || obj$type == "sac") {
       if (iicept) {
         P <- matrix(beta[-icept], ncol=1)
