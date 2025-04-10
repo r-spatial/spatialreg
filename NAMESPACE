@@ -16,7 +16,8 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "nb2listw", "n.comp.nb", "listw2U", "listw2mat", "Szero", "listw2sn",
  "mat2listw", "is.symmetric.nb", "chkIDs", "get.spChkOption",
- "subset.listw", "spweights.constants")
+ "subset.listw", "spweights.constants", "have_factor_preds_mf",
+ "warn_factor_preds")
 
 import(Matrix#, except=c("expm")
 )
