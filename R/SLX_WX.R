@@ -46,7 +46,11 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         if (is.null(weights)) weights <- rep(as.numeric(1), n)
         if (any(is.na(weights))) stop("NAs in weights")
         if (any(weights < 0)) stop("negative weights")
-        dvars <- c(NCOL(x), 0L)
+#        dvars <- c(NCOL(x), 0L)
+        if (!(isTRUE(Durbin) || is.formula(Durbin))) {
+            stop("Durbin argument neither TRUE nor formula")
+        } else {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
             if (have_factor_preds) warn_factor_preds(have_factor_preds)
@@ -94,7 +98,7 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
             wxn <- substring(colnames(WX), nchar(prefix)+2,
                 nchar(colnames(WX)))
             zero_fill <- length(xn) + (which(!(xn %in% wxn)))
-        } else stop("Durbin argument neither TRUE nor formula")
+        } 
         dvars <- c(NCOL(x), NCOL(WX))
         if (is.formula(Durbin)) {
             attr(dvars, "f") <- Durbin
@@ -104,6 +108,21 @@ lmSLX <- function(formula, data = list(), listw, na.action, weights=NULL, Durbin
         }
 	x <- cbind(x, WX)
 	rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
+        } 
 #        WX <- create_WX(x, listw, zero.policy=zero.policy, prefix="lag")
 #        x <- cbind(x, WX)
 # 180128 Mark L. Burkey summary.lm error for SlX object
@@ -437,4 +456,67 @@ create_WX <- function(x, listw, zero.policy=NULL, prefix="") {
         WX
 }
 
+create_Durbin <- function(Durbin, have_factor_preds, x, listw, zero.policy, 
+        data, na.act) {
+        prefix <- "lag"
+        if (isTRUE(Durbin)) {
+            if (have_factor_preds) warn_factor_preds(have_factor_preds)
+            WX <- create_WX(x, listw, zero.policy=zero.policy,
+               prefix=prefix)
+        } else if (is.formula(Durbin)) {
+            data1 <- data
+            if (!is.null(na.act) && (inherits(na.act, "omit") ||
+                inherits(na.act, "exclude"))) {
+                data1 <- data1[-c(na.act),]
+            }
+            dmf <- lm(Durbin, data1, na.action=na.fail, 
+	        method="model.frame")
+	    formula_durbin_factors <- have_factor_preds_mf(dmf)
+            if (formula_durbin_factors)
+                warn_factor_preds(formula_durbin_factors)
+#	    dmf <- lm(Durbin, data, na.action=na.action, 
+#	         method="model.frame")
+            fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
+            if (inherits(fx, "try-error")) 
+                 stop("Durbin variable mis-match")
+            WX <- create_WX(fx, listw, zero.policy=zero.policy,
+                prefix=prefix)
+            inds <- match(substring(colnames(WX), 5,
+	        nchar(colnames(WX))), colnames(x))
+            if (anyNA(inds)) {
+              wna <- which(is.na(inds)) #TR: continue if Durbin has intercept, but formula has not
+              if (length(wna) == 1 && grepl("Intercept", colnames(WX)[wna])
+                 && attr(terms(formula), "intercept") == 0
+                 && attr(terms(Durbin), "intercept") == 1) {
+                inds <- inds[-wna]
+              } else{
+                stop("WX variables not in X: ",
+                     paste(substring(colnames(WX), 5,
+                     nchar(colnames(WX)))[is.na(inds)], collapse=" "))
+              }
+            } 
+            icept <- grep("(Intercept)", colnames(x))
+            iicept <- length(icept) > 0L
+            if (iicept) {
+                xn <- colnames(x)[-1]
+            } else {
+                xn <- colnames(x)
+            }
+            wxn <- substring(colnames(WX), nchar(prefix)+2,
+                nchar(colnames(WX)))
+            zero_fill <- length(xn) + (which(!(xn %in% wxn)))
+        } 
+        dvars <- c(NCOL(x), NCOL(WX))
+        if (is.formula(Durbin)) {
+            attr(dvars, "f") <- Durbin
+            attr(dvars, "inds") <- inds
+            attr(dvars, "xn") <- xn
+            attr(dvars, "wxn") <- wxn
+            attr(dvars, "zero_fill") <- zero_fill
+            attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
+        }
+	x <- cbind(x, WX)
+	rm(WX)
+        list(x=x, dvars=dvars)
+}
 
