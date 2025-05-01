@@ -84,6 +84,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
 #        WX <- create_WX(x, listw, zero.policy=zero.policy, prefix="lag")
 #FIXME
     if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
             if (have_factor_preds) warn_factor_preds(have_factor_preds)
@@ -121,7 +122,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
             }
             wxn <- substring(colnames(WX), nchar(prefix)+2,
                 nchar(colnames(WX)))
-            zero_fill <- NULL
+            zero_fill <- integer(0L)
             if (length((which(!(xn %in% wxn)))) > 0L)
                 zero_fill <- length(xn) + (which(!(xn %in% wxn)))
         }
@@ -135,6 +136,20 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
 	x <- cbind(x, WX)
 	m <- NCOL(x)
 	rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
     }
 #        x <- cbind(x, WX)
 #        rm(WX)
@@ -408,7 +423,7 @@ impacts.MCMC_sar_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
     beta <- means[1:(length(means)-2)]
     icept <- grep("(Intercept)", names(beta))
     iicept <- length(icept) > 0L
-    zero_fill <- NULL
+    zero_fill <- integer(0L)
     dvars <- NULL
     samples <- as.matrix(obj)
     interval <- attr(obj, "control")$interval
@@ -569,6 +584,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
     dvars <- c(NCOL(x), 0L)
 
     if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
             if (have_factor_preds) warn_factor_preds(have_factor_preds)
@@ -606,7 +622,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
             }
             wxn <- substring(colnames(WX), nchar(prefix)+2,
                 nchar(colnames(WX)))
-            zero_fill <- NULL
+            zero_fill <- integer(0L)
             if (length((which(!(xn %in% wxn)))) > 0L)
                 zero_fill <- length(xn) + (which(!(xn %in% wxn)))
         }
@@ -621,6 +637,22 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
         xcolnames <- colnames(x)
 	m <- NCOL(x)
 	rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            xcolnames <- colnames(x)
+	    m <- NCOL(x)
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
     }
 #        x <- cbind(x, WX)
 #        rm(WX)
@@ -1070,6 +1102,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
 #        WX <- create_WX(x, listw, zero.policy=zero.policy, prefix="lag")
 #FIXME
     if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
         prefix <- "lag"
         if (isTRUE(Durbin)) {
             if (have_factor_preds) warn_factor_preds(have_factor_preds)
@@ -1107,7 +1140,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
             }
             wxn <- substring(colnames(WX), nchar(prefix)+2,
                 nchar(colnames(WX)))
-            zero_fill <- NULL
+            zero_fill <- integer(0L)
             if (length((which(!(xn %in% wxn)))) > 0L)
                 zero_fill <- length(xn) + (which(!(xn %in% wxn)))
         }
@@ -1121,6 +1154,20 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	x <- cbind(x, WX)
 	m <- NCOL(x)
 	rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
     }
     if (NROW(x) != length(listw2$neighbours))
         stop("Input data and neighbourhood list2 have different dimensions")
