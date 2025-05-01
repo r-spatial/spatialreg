@@ -109,6 +109,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         dvars <- c(NCOL(x), 0L)
 
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
                 prefix <- "lag"
                 if (isTRUE(Durbin)) {
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
@@ -145,7 +146,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
                     }
                     wxn <- substring(colnames(WX), nchar(prefix)+2,
                         nchar(colnames(WX)))
-                    zero_fill <- NULL
+                    zero_fill <- integer(0L)
                     if (length((which(!(xn %in% wxn)))) > 0L) 
                         zero_fill <- length(xn) + (which(!(xn %in% wxn)))
                 }
@@ -159,6 +160,21 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 		x <- cbind(x, WX)
 		m <- NCOL(x)
 		rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
+
 	}
 # added aliased after trying boston with TOWN dummy
 	lm.base <- lm(y ~ x - 1, weights=weights)
@@ -640,6 +656,7 @@ lagsarlm <- function(formula, data = list(), listw,
         dvars <- c(NCOL(x), 0L)
 #FIXME
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
                 prefix <- "lag"
                 if (isTRUE(Durbin)) {
                     WX <- create_WX(x, listw, zero.policy=zero.policy,
@@ -674,7 +691,7 @@ lagsarlm <- function(formula, data = list(), listw,
                     }
                     wxn <- substring(colnames(WX), nchar(prefix)+2,
                         nchar(colnames(WX)))
-                    zero_fill <- NULL
+                    zero_fill <- integer(0L)
                     if (length((which(!(xn %in% wxn)))) > 0L)
                         zero_fill <- length(xn) + (which(!(xn %in% wxn)))
                 }
@@ -688,6 +705,20 @@ lagsarlm <- function(formula, data = list(), listw,
 		x <- cbind(x, WX)
 		m <- NCOL(x)
 		rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
 	}
 # added aliased after trying boston with TOWN dummy
 	lm.base <- lm(y ~ x - 1)
@@ -1010,6 +1041,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
         dvars <- c(m, 0L)
 #	if (type != "sac") {
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
+        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
                 prefix <- "lag"
                 if (isTRUE(Durbin)) {
                     if (have_factor_preds) warn_factor_preds(have_factor_preds)
@@ -1047,7 +1079,7 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
                     }
                     wxn <- substring(colnames(WX), nchar(prefix)+2,
                         nchar(colnames(WX)))
-                    zero_fill <- NULL
+                    zero_fill <- integer(0L)
                     if (length((which(!(xn %in% wxn)))) > 0L)
                         zero_fill <- length(xn) + (which(!(xn %in% wxn)))
                 }
@@ -1061,6 +1093,20 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
 		x <- cbind(x, WX)
 		m <- NCOL(x)
 		rm(WX)
+        } else { # SPATIALREG_CREATE_DURBIN
+            res <- create_Durbin(Durbin=Durbin, 
+                have_factor_preds=have_factor_preds, x=x, listw=listw,
+                zero.policy=zero.policy, data=data, na.act=na.act)
+            x <- res$x
+            dvars <- res$dvars
+            inds <-attr(dvars, "inds") 
+            xn <- attr(dvars, "xn")
+            wxn <- attr(dvars, "wxn")
+            zero_fill <- attr(dvars, "zero_fill")
+            formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
+            attr(dvars, "xn") <- NULL
+            attr(dvars, "wxn") <- NULL
+        }
 	}
 	if (NROW(x) != length(listw2$neighbours))
 	    stop("Input data and neighbourhood list2 have different dimensions")

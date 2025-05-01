@@ -23,14 +23,56 @@ expect_warning(COL.err0 <- errorsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
 expect_warning(COL.err1 <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
 expect_warning(COL.err2 <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
 expect_silent(COL.err3 <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="0")
+expect_warning(COL.err0a <- errorsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
+expect_warning(COL.err1a <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
+expect_warning(COL.err2a <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
+expect_silent(COL.err3a <- errorsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="")
+COL.err0$timings <- COL.err0a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.err0, COL.err0a)))
+COL.err1$timings <- COL.err1a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.err1, COL.err1a)))
+COL.err2$timings <- COL.err2a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.err2, COL.err2a)))
+COL.err3$timings <- COL.err3a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.err3, COL.err3a)))
 expect_warning(COL.lag0 <- lagsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
 expect_warning(COL.lag1 <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
 expect_warning(COL.lag2 <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
 expect_silent(COL.lag3 <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="0")
+expect_warning(COL.lag0a <- lagsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
+expect_warning(COL.lag1a <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
+expect_warning(COL.lag2a <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
+expect_silent(COL.lag3a <- lagsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="")
+COL.lag0$timings <- COL.lag0a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.lag0, COL.lag0a)))
+COL.lag1$timings <- COL.lag1a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.lag1, COL.lag1a)))
+COL.lag2$timings <- COL.lag2a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.lag2, COL.lag2a)))
+COL.lag3$timings <- COL.lag3a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.lag3, COL.lag3a)))
 expect_warning(COL.sac0 <- sacsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
 expect_warning(COL.sac1 <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
 expect_warning(COL.sac2 <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
 expect_silent(COL.sac3 <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="0")
+expect_warning(COL.sac0a <- sacsarlm(f, data=COL.OLD, lw, Durbin=TRUE))
+expect_warning(COL.sac1a <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
+expect_warning(COL.sac2a <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
+expect_silent(COL.sac3a <- sacsarlm(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+Sys.setenv("SPATIALREG_CREATE_DURBIN"="")
+COL.sac0$timings <- COL.sac0a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.sac0, COL.sac0a)))
+COL.sac1$timings <- COL.sac1a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.sac1, COL.sac1a)))
+COL.sac2$timings <- COL.sac2a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.sac2, COL.sac2a)))
+COL.sac3$timings <- COL.sac3a$timings <- NULL
+expect_true(isTRUE(all.equal(COL.sac3, COL.sac3a)))
 expect_warning(COL.lag0 <- spBreg_lag(f, data=COL.OLD, lw, Durbin=TRUE))
 expect_warning(COL.lag1 <- spBreg_lag(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
 expect_warning(COL.lag2 <- spBreg_lag(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
