@@ -1329,8 +1329,12 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
 	        lambda2 = lambda + cc2*rnorm(1)
 	    }
         }
-        i1 = max(which(detval21 <= (lambda2 + gsize2)))
-	i2 = max(which(detval21 <= (lambda2 - gsize2)))
+        i1 <- which(detval21 <= (lambda2 + gsize2))
+        if (length(i1) == 0L) i1 <- -Inf
+        else i1 = max(i1)
+        i2 <- which(detval21 <= (lambda2 - gsize2))
+	if (length(i2) == 0L) i2 <- -Inf
+        else i2 = max(i2)
         index = round((i1+i2)/2)
         if (!is.finite(index)) index = 1 #Fixed this
 	detm = detval22[index]
