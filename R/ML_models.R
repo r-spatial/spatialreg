@@ -109,61 +109,10 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
         dvars <- c(NCOL(x), 0L)
 
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
-        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
-                prefix <- "lag"
-                if (isTRUE(Durbin)) {
-                    WX <- create_WX(x, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                } else {
-                    data1 <- data
-                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
-                        inherits(na.act, "exclude"))) {
-                        data1 <- data1[-c(na.act),]
-                    }
-	            dmf <- lm(Durbin, data1, na.action=na.fail, 
-		        method="model.frame")
-	           formula_durbin_factors <- have_factor_preds_mf(dmf)
-                   if (formula_durbin_factors) 
-                       warn_factor_preds(formula_durbin_factors)
-#	            dmf <- lm(Durbin, data, na.action=na.action, 
-#		        method="model.frame")
-                    fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (inherits(fx, "try-error")) 
-                        stop("Durbin variable mis-match")
-                    WX <- create_WX(fx, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                    inds <- match(substring(colnames(WX), 5,
-	                nchar(colnames(WX))), colnames(x))
-                    if (anyNA(inds)) stop("WX variables not in X: ",
-                        paste(substring(colnames(WX), 5,
-                        nchar(colnames(WX)))[is.na(inds)], collapse=" "))
-                    icept <- grep("(Intercept)", colnames(x))
-                    iicept <- length(icept) > 0L
-                    if (iicept) {
-                        xn <- colnames(x)[-1]
-                    } else {
-                        xn <- colnames(x)
-                    }
-                    wxn <- substring(colnames(WX), nchar(prefix)+2,
-                        nchar(colnames(WX)))
-                    zero_fill <- integer(0L)
-                    if (length((which(!(xn %in% wxn)))) > 0L) 
-                        zero_fill <- length(xn) + (which(!(xn %in% wxn)))
-                }
-                dvars <- c(NCOL(x), NCOL(WX))
-                if (is.formula(Durbin)) {
-                    attr(dvars, "f") <- Durbin
-                    attr(dvars, "inds") <- inds
-                    attr(dvars, "zero_fill") <- zero_fill
-                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
-                }
-		x <- cbind(x, WX)
-		m <- NCOL(x)
-		rm(WX)
-        } else { # SPATIALREG_CREATE_DURBIN
             res <- create_Durbin(Durbin=Durbin, 
                 have_factor_preds=have_factor_preds, x=x, listw=listw,
-                zero.policy=zero.policy, data=data, na.act=na.act)
+                zero.policy=zero.policy, data=data, na.act=na.act,
+                formula=formula)
             x <- res$x
             dvars <- res$dvars
             inds <-attr(dvars, "inds") 
@@ -175,7 +124,6 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
             attr(dvars, "wxn") <- NULL
         }
 
-	}
 # added aliased after trying boston with TOWN dummy
 	lm.base <- lm(y ~ x - 1, weights=weights)
 	aliased <- is.na(coefficients(lm.base))
@@ -656,59 +604,10 @@ lagsarlm <- function(formula, data = list(), listw,
         dvars <- c(NCOL(x), 0L)
 #FIXME
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
-        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
-                prefix <- "lag"
-                if (isTRUE(Durbin)) {
-                    WX <- create_WX(x, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                } else {
-                    data1 <- data
-                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
-                        inherits(na.act, "exclude"))) {
-                        data1 <- data1[-c(na.act),]
-                    }
-	            dmf <- lm(Durbin, data1, na.action=na.fail, 
-		        method="model.frame")
-	            formula_durbin_factors <- have_factor_preds_mf(dmf)
-                    if (formula_durbin_factors) 
-                        warn_factor_preds(formula_durbin_factors)
-                    fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (inherits(fx, "try-error")) 
-                        stop("Durbin variable mis-match")
-                    WX <- create_WX(fx, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                    inds <- match(substring(colnames(WX), 5,
-	                nchar(colnames(WX))), colnames(x))
-                    if (anyNA(inds)) stop("WX variables not in X: ",
-                        paste(substring(colnames(WX), 5,
-                        nchar(colnames(WX)))[is.na(inds)], collapse=" "))
-                    icept <- grep("(Intercept)", colnames(x))
-                    iicept <- length(icept) > 0L
-                    if (iicept) {
-                        xn <- colnames(x)[-1]
-                    } else {
-                        xn <- colnames(x)
-                    }
-                    wxn <- substring(colnames(WX), nchar(prefix)+2,
-                        nchar(colnames(WX)))
-                    zero_fill <- integer(0L)
-                    if (length((which(!(xn %in% wxn)))) > 0L)
-                        zero_fill <- length(xn) + (which(!(xn %in% wxn)))
-                }
-                dvars <- c(NCOL(x), NCOL(WX))
-                if (is.formula(Durbin)) {
-                    attr(dvars, "f") <- Durbin
-                    attr(dvars, "inds") <- inds
-                    attr(dvars, "zero_fill") <- zero_fill
-                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
-                }
-		x <- cbind(x, WX)
-		m <- NCOL(x)
-		rm(WX)
-        } else { # SPATIALREG_CREATE_DURBIN
             res <- create_Durbin(Durbin=Durbin, 
                 have_factor_preds=have_factor_preds, x=x, listw=listw,
-                zero.policy=zero.policy, data=data, na.act=na.act)
+                zero.policy=zero.policy, data=data, na.act=na.act,
+                formula=formula)
             x <- res$x
             dvars <- res$dvars
             inds <-attr(dvars, "inds") 
@@ -718,7 +617,6 @@ lagsarlm <- function(formula, data = list(), listw,
             formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
             attr(dvars, "xn") <- NULL
             attr(dvars, "wxn") <- NULL
-        }
 	}
 # added aliased after trying boston with TOWN dummy
 	lm.base <- lm(y ~ x - 1)
@@ -1041,62 +939,10 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
         dvars <- c(m, 0L)
 #	if (type != "sac") {
 	if (is.formula(Durbin) || isTRUE(Durbin)) {
-        if (Sys.getenv("SPATIALREG_CREATE_DURBIN") == "") {
-                prefix <- "lag"
-                if (isTRUE(Durbin)) {
-                    if (have_factor_preds) warn_factor_preds(have_factor_preds)
-                    WX <- create_WX(x, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                } else {
-                    data1 <- data
-                    if (!is.null(na.act) && (inherits(na.act, "omit") ||
-                        inherits(na.act, "exclude"))) {
-                        data1 <- data1[-c(na.act),]
-                    }
-	            dmf <- lm(Durbin, data1, na.action=na.fail, 
-		        method="model.frame")
-	            formula_durbin_factors <- have_factor_preds_mf(dmf)
-                    if (formula_durbin_factors) 
-                        warn_factor_preds(formula_durbin_factors)
-#	            dmf <- lm(Durbin, data, na.action=na.action, 
-#		        method="model.frame")
-                    fx <- try(model.matrix(Durbin, dmf), silent=TRUE)
-                    if (inherits(fx, "try-error")) 
-                        stop("Durbin variable mis-match")
-                    WX <- create_WX(fx, listw, zero.policy=zero.policy,
-                        prefix=prefix)
-                    inds <- match(substring(colnames(WX), 5,
-	                nchar(colnames(WX))), colnames(x))
-                    if (anyNA(inds)) stop("WX variables not in X: ",
-                        paste(substring(colnames(WX), 5,
-                        nchar(colnames(WX)))[is.na(inds)], collapse=" "))
-                    icept <- grep("(Intercept)", colnames(x))
-                    iicept <- length(icept) > 0L
-                    if (iicept) {
-                        xn <- colnames(x)[-1]
-                    } else {
-                        xn <- colnames(x)
-                    }
-                    wxn <- substring(colnames(WX), nchar(prefix)+2,
-                        nchar(colnames(WX)))
-                    zero_fill <- integer(0L)
-                    if (length((which(!(xn %in% wxn)))) > 0L)
-                        zero_fill <- length(xn) + (which(!(xn %in% wxn)))
-                }
-                dvars <- c(NCOL(x), NCOL(WX))
-                if (is.formula(Durbin)) {
-                    attr(dvars, "f") <- Durbin
-                    attr(dvars, "inds") <- inds
-                    attr(dvars, "zero_fill") <- zero_fill
-                    attr(dvars, "formula_durbin_factors") <- formula_durbin_factors
-                }
-		x <- cbind(x, WX)
-		m <- NCOL(x)
-		rm(WX)
-        } else { # SPATIALREG_CREATE_DURBIN
             res <- create_Durbin(Durbin=Durbin, 
                 have_factor_preds=have_factor_preds, x=x, listw=listw,
-                zero.policy=zero.policy, data=data, na.act=na.act)
+                zero.policy=zero.policy, data=data, na.act=na.act,
+                formula=formula)
             x <- res$x
             dvars <- res$dvars
             inds <-attr(dvars, "inds") 
@@ -1106,7 +952,6 @@ sacsarlm <- function(formula, data = list(), listw, listw2=NULL, na.action,
             formula_durbin_factors <- attr(dvars, "formula_durbin_factors")
             attr(dvars, "xn") <- NULL
             attr(dvars, "wxn") <- NULL
-        }
 	}
 	if (NROW(x) != length(listw2$neighbours))
 	    stop("Input data and neighbourhood list2 have different dimensions")
