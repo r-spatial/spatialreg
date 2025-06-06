@@ -1,5 +1,7 @@
 # Version 1.3-7 (development)
 
+* suggest `codingMatrices` to expand examples with factors (categorical variables)
+
 * introduce warnings for factors (categorical variables) in Durbin models (`errorsarlm`, `lagsarlm`, `sacsarlm`, `spBreg_lag`, `spBreg_err`, `spBreg_sac` and `lm.SLX`)
 
 * convert `error` to `Rf_error` in `src/ml_sse.c` to accommodate R_NO_REMAP

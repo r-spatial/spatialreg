@@ -28,4 +28,8 @@ expect_warning(COL.err0 <- spBreg_err(f, data=COL.OLD, lw, Durbin=TRUE))
 expect_warning(COL.err1 <- spBreg_err(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
 expect_warning(COL.err2 <- spBreg_err(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
 expect_silent(COL.err3 <- spBreg_err(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
+expect_warning(COL.sac0 <- spBreg_sac(f, data=COL.OLD, lw, Durbin=TRUE))
+expect_warning(COL.sac1 <- spBreg_sac(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD*fEW))
+expect_warning(COL.sac2 <- spBreg_sac(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL + fDISCBD))
+expect_silent(COL.sac3 <- spBreg_sac(f, data=COL.OLD, lw, Durbin=~ INC + HOVAL))
 
