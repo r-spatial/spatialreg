@@ -315,22 +315,49 @@ impacts.SlX <- function(obj, ...) {
     impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="glht")
 }
 
-
-impactsWX <- function(obj, n, k, type="SlX", method="glht") {
+impactsWX <- function(obj, n, k, type="SlX", method="glht", have_factor_preds=FALSE) {
     imps <- lapply(obj, function(x) x[, 1])
+    bnames <- rownames(obj[[1]])
+    bnames <- update_bnames(bnames, have_factor_preds=have_factor_preds)
     names(imps) <- c("direct", "indirect", "total")
-    attr(imps, "bnames") <- rownames(obj[[1]])
+    attr(imps, "bnames") <- bnames
     ses <- lapply(obj, function(x) x[, 2])
     names(ses) <- c("direct", "indirect", "total")
-    attr(ses, "bnames") <- rownames(obj[[1]])
+    attr(ses, "bnames") <- bnames
     res <- list(impacts=imps, se=ses)
     attr(res, "n") <- n
     attr(res, "k") <- k
     attr(res, "type") <- type
     attr(res, "method") <- method
-    attr(res, "bnames") <- rownames(obj[[1]])
+    attr(res, "bnames") <- bnames
     class(res) <- "WXimpact"
     res
+}
+
+update_bnames <- function(bnames, have_factor_preds=FALSE) {
+    interactions <- length(grep(":", bnames)) > 0L
+    b_suffix <- rep("dy/dx", length(bnames))
+    if (have_factor_preds && !interactions) {
+        factnames <- attr(have_factor_preds, "factnames")
+        xlevels <- attr(have_factor_preds, "xlevels")
+        contrasts <- attr(have_factor_preds, "contrasts")
+        for (pred in seq(along=factnames)) {
+            npred <- grep(factnames[pred], bnames)
+            xlpred <- xlevels[[pred]]
+            cpred <- contrasts[[pred]]
+            if (length(npred) == length(xlpred)) {
+                b_suffix[npred] <- xlpred
+            } else {
+                switch(cpred,
+                    contr.treatment = ,
+                    code_control = ,
+                    code_diff =
+                )
+            }
+        }
+    }
+    bnames <- paste(bnames, b_suffix)
+    bnames
 }
 
 
