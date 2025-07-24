@@ -47,7 +47,7 @@ expect_true(isTRUE(all.equal(c(m2c.imps[[1]]$indirect["ft.NWBIR74"],
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m2c, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m2c.imps[[1]]$total["east"],
-            summary(m2c.imps)$semat["east", "Total"]), 
+            summary(m2c.imps)$semat["east dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
@@ -74,9 +74,9 @@ expect_true(isTRUE(all.equal(c(m2d.imps[[1]]$indirect["ft.NWBIR74"],
 lc1 <- summary(multcomp::glht(m2d, linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m2d, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m2d.imps[[1]]$total["ft.NWBIR74"],
-            summary(m2d.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m2d.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m2d.imps[[1]]$total["east"],
-            summary(m2d.imps)$semat["east", "Total"]), 
+            summary(m2d.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -104,9 +104,9 @@ expect_true(isTRUE(all.equal(c(m2e.imps[[1]]$indirect["ft.NWBIR74"],
 lc1 <- summary(multcomp::glht(m2e, linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m2e, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m2e.imps[[1]]$total["ft.NWBIR74"],
-            summary(m2e.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m2e.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m2e.imps[[1]]$total["east"],
-            summary(m2e.imps)$semat["east", "Total"]), 
+            summary(m2e.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -135,9 +135,9 @@ lc1 <- summary(multcomp::glht(m2f,
                linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m2f, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m2f.imps[[1]]$total["ft.NWBIR74"],
-            summary(m2f.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m2f.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m2f.imps[[1]]$total["east"],
-            summary(m2f.imps)$semat["east", "Total"]), 
+            summary(m2f.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -163,7 +163,7 @@ expect_true(isTRUE(all.equal(m3b.imps[[1]]$indirect,
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m3b, linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 expect_true(isTRUE(all.equal(c(m3b.imps[[1]]$total,
-            summary(m3b.imps)$semat["ft.NWBIR74", "Total"]), 
+            summary(m3b.imps)$semat["ft.NWBIR74 dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
@@ -191,9 +191,9 @@ lc1 <- summary(multcomp::glht(m3c,
                linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m3c, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m3c.imps[[1]]$total["ft.NWBIR74"],
-            summary(m3c.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m3c.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m3c.imps[[1]]$total["east"],
-            summary(m3c.imps)$semat["east", "Total"]), 
+            summary(m3c.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -222,9 +222,9 @@ lc1 <- summary(multcomp::glht(m3e,
                linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m3e, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m3e.imps[[1]]$total["ft.NWBIR74"],
-            summary(m3e.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m3e.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m3e.imps[[1]]$total["east"],
-            summary(m3e.imps)$semat["east", "Total"]), 
+            summary(m3e.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -258,9 +258,9 @@ lc1 <- summary(multcomp::glht(m3f,
                linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m3f, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m3f.imps[[1]]$total["ft.NWBIR74"],
-            summary(m3f.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m3f.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m3f.imps[[1]]$total["east"],
-            summary(m3f.imps)$semat["east", "Total"]), 
+            summary(m3f.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -289,9 +289,9 @@ lc1 <- summary(multcomp::glht(m3fb,
                linfct = c("ft.NWBIR74 + lag.ft.NWBIR74 = 0")))
 lc2 <- summary(multcomp::glht(m3fb, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m3fb.imps[[1]]$total["ft.NWBIR74"],
-            summary(m3fb.imps)$semat["ft.NWBIR74", "Total"],
+            summary(m3fb.imps)$semat["ft.NWBIR74 dy/dx", "Total"],
             m3fb.imps[[1]]$total["east"],
-            summary(m3fb.imps)$semat["east", "Total"]), 
+            summary(m3fb.imps)$semat["east dy/dx", "Total"]), 
           c(lc1$test$coefficients,
             lc1$test$sigma,
             lc2$test$coefficients,
@@ -333,7 +333,7 @@ expect_true(isTRUE(all.equal(c(m1c.imps[[1]]$indirect["ft.NWBIR74"],
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m1c, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m1c.imps[[1]]$total["east"],
-            summary(m1c.imps)$semat["east", "Total"]), 
+            summary(m1c.imps)$semat["east dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
@@ -359,7 +359,7 @@ expect_true(isTRUE(all.equal(c(m1d.imps[[1]]$indirect["ft.NWBIR74"],
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m1d, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m1d.imps[[1]]$total["east"],
-            summary(m1d.imps)$semat["east", "Total"]), 
+            summary(m1d.imps)$semat["east dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
@@ -384,7 +384,7 @@ expect_true(isTRUE(all.equal(c(m1e.imps[[1]]$indirect["ft.NWBIR74"],
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m1e, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m1e.imps[[1]]$total["east"],
-            summary(m1e.imps)$semat["east", "Total"]), 
+            summary(m1e.imps)$semat["east dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
@@ -409,7 +409,7 @@ expect_true(isTRUE(all.equal(c(m1f.imps[[1]]$indirect["ft.NWBIR74"],
 # Total impact is linear combination
 lc <- summary(multcomp::glht(m1f, linfct = c("east + lag.east = 0")))
 expect_true(isTRUE(all.equal(c(m1f.imps[[1]]$total["east"],
-            summary(m1f.imps)$semat["east", "Total"]), 
+            summary(m1f.imps)$semat["east dy/dx", "Total"]), 
           c(lc$test$coefficients,
             lc$test$sigma), 
           tolerance = 1e-5, check.attributes = FALSE)))
