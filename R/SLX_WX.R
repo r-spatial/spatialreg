@@ -272,7 +272,8 @@ impacts.SlX <- function(obj, ...) {
     stopifnot(!is.null(attr(obj, "mixedImps")))
     n <- nrow(obj$model)
     k <- obj$qr$rank
-    impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="glht")
+    impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="glht",
+        have_factor_preds=attr(obj, "have_factor_preds"))
 }
 
 impactsWX <- function(obj, n, k, type="SlX", method="glht", have_factor_preds=FALSE) {
@@ -302,6 +303,30 @@ update_bnames <- function(bnames, have_factor_preds=FALSE) {
         for (pred in seq(along=factnames)) {
             npred <- grep(paste0("^", factnames[pred], ".*"), bnames)
             b_suffix[npred] <- "(F)"
+#=======
+#        xlevels <- attr(have_factor_preds, "xlevels")
+#        contrasts <- attr(have_factor_preds, "pred_contrasts")
+#        for (pred in seq(along=factnames)) {
+#            npred <- grep(factnames[pred], bnames)
+#            xlpred <- xlevels[[pred]]
+#            cpred <- contrasts[[pred]]
+#            if (length(npred) >= length(xlpred)) {
+#                b_suffix[npred] <- ""
+#            } else {
+#                if (cpred == "contr.treatment") {
+#                    b_suffix[npred] <- xlpred[-1]
+#                } else if (cpred == "code_control") {
+#                    b_suffix[npred] <- paste(xlpred[-1], "vs.", xlpred[1])
+#                } else if (cpred == "code_diff") {
+#                    b_suffix[npred] <- paste(xlpred[-1], "vs.",
+#                        xlpred[-length(xlpred)])
+#                } else if (cpred == "contr.poly") {
+#                    b_suffix[npred] <- "poly"
+#                } else {
+#                    b_suffix[npred] <- ""
+#                }
+#            }
+#>>>>>>> ddd1e233b0387bd18bd409837b00671295e6001d
         }
     }
     bnames <- paste(bnames, b_suffix)
