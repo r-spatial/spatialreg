@@ -1,4 +1,6 @@
-# Version 1.3-7 (development)
+# Version 1.4-1 (development)
+
+* annotate `impacts` output with `"dy/dx"` or `"(F)"` to distinguish continuous and categorical independent variables
 
 * suggest `codingMatrices` to expand examples with factors (categorical variables)
 

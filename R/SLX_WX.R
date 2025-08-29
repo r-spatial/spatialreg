@@ -295,25 +295,13 @@ impactsWX <- function(obj, n, k, type="SlX", method="glht", have_factor_preds=FA
 }
 
 update_bnames <- function(bnames, have_factor_preds=FALSE) {
-    interactions <- length(grep(":", bnames)) > 0L
     b_suffix <- rep("dy/dx", length(bnames))
-    if (have_factor_preds && !interactions) {
+    stopifnot(!is.null(have_factor_preds))
+    if (have_factor_preds) {
         factnames <- attr(have_factor_preds, "factnames")
-        xlevels <- attr(have_factor_preds, "xlevels")
-        contrasts <- attr(have_factor_preds, "contrasts")
         for (pred in seq(along=factnames)) {
-            npred <- grep(factnames[pred], bnames)
-            xlpred <- xlevels[[pred]]
-            cpred <- contrasts[[pred]]
-            if (length(npred) == length(xlpred)) {
-                b_suffix[npred] <- xlpred
-            } else {
-                switch(cpred,
-                    contr.treatment = ,
-                    code_control = ,
-                    code_diff =
-                )
-            }
+            npred <- grep(paste0("^", factnames[pred], ".*"), bnames)
+            b_suffix[npred] <- "(F)"
         }
     }
     bnames <- paste(bnames, b_suffix)

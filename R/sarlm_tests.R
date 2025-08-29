@@ -414,6 +414,8 @@ impacts.Sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
             }
         }
     }
+    bnames <- update_bnames(bnames,
+        have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=mu, Sigma=Sigma,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=interval,
         type=obj$type, tr=tr, R=R, listw=listw, evalues=evalues, tol=tol,

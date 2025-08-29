@@ -67,7 +67,7 @@ errorsarlm <- function(formula, data = list(), listw, na.action, weights=NULL,
 #        }
         if (is.logical(Durbin) && isTRUE(Durbin)) {
             etype <- "emixed"
-            if (have_factor_preds) warn_factor_preds(have_factor_preds)
+#            if (have_factor_preds) warn_factor_preds(have_factor_preds)
         }
         if (is.formula(Durbin)) etype <- "emixed"
         if (is.logical(Durbin) && !isTRUE(Durbin)) etype <- "error"
@@ -571,7 +571,7 @@ lagsarlm <- function(formula, data = list(), listw,
         }
         if (is.logical(Durbin) && isTRUE(Durbin)) {
             type <- "mixed"
-            if (have_factor_preds) warn_factor_preds(have_factor_preds)
+#            if (have_factor_preds) warn_factor_preds(have_factor_preds)
         }
         if (is.formula(Durbin)) type <- "mixed"
         if (is.logical(Durbin) && !isTRUE(Durbin)) type <- "lag"

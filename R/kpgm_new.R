@@ -33,6 +33,7 @@ GMerrorsar <- function(#W, y, X,
         if (!inherits(formula, "formula")) formula <- as.formula(formula)
 	mt <- terms(formula, data = data)
 	mf <- lm(formula, data, na.action=na.action, method="model.frame")
+        have_factor_preds <- have_factor_preds_mf(mf)
 	na.act <- attr(mf, "na.action")
 	if (!is.null(na.act)) {
 	    subset <- !(1:length(listw$neighbours) %in% na.act)
@@ -234,6 +235,7 @@ GMerrorsar <- function(#W, y, X,
 	}
 	if (!is.null(na.act))
 		ret$na.action <- na.act
+        attr(ret, "have_factor_preds") <- have_factor_preds
 	ret
 }
 
@@ -411,6 +413,8 @@ impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
     Sigma <- obj$secstep_var
     irho <- 1
     drop2beta <- 1
+    bnames <- update_bnames(bnames,
+        have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=mu, Sigma=Sigma,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=NULL,
         type="lag", tr=tr, R=R, listw=listw, evalues=evalues, tol=tol,
@@ -543,6 +547,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
     if (!inherits(formula, "formula")) formula <- as.formula(formula)
     mt <- terms(formula, data = data)
     mf <- lm(formula, data, na.action = na.fail, method = "model.frame")
+    have_factor_preds <- have_factor_preds_mf(mf)
     na.act <- attr(mf, "na.action")
     cl <- match.call()
     if (!is.null(na.act)) {
@@ -670,6 +675,7 @@ gstsls<-function (formula, data = list(), listw, listw2=NULL,
     }
         
     if (!is.null(na.act)) ret$na.action <- na.act
+    attr(ret, "have_factor_preds") <- have_factor_preds
     ret
 }
 

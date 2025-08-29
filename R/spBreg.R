@@ -437,6 +437,8 @@ impacts.MCMC_sar_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
 
     R <- nrow(samples)
 
+    bnames <- update_bnames(bnames,
+        have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=NULL, Sigma=NULL,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=interval,
         type=type, tr=tr, R=R, listw=listw, evalues=evalues, tol=NULL,
