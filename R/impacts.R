@@ -572,18 +572,7 @@ lagImpactMat <- function(x, reportQ=NULL) {
   mat <- cbind(direct, indirect, total)
   colnames(mat) <- c("Direct", "Indirect", "Total")
   bnames <- attr(x, "bnames")
-  have_factor_preds <- attr(x, "have_factor_preds")
-  if (!is.null(have_factor_preds)) {
-    if (have_factor_preds) {
-      xlevels <- attr(have_factor_preds, "xlevels")
-      factnames <- attr(have_factor_preds, "factnames")
-      rownames(mat) <- bnames
-    } else {
-      rownames(mat) <- bnames
-    }
-  } else {
-    rownames(mat) <- bnames
-  }
+  rownames(mat) <- bnames
 
   if (!is.null(reportQ) && reportQ) {
     if (is.null(x$res)) {
