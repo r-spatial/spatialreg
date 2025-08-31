@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,10 +102,11 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">wheat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/wheat.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">nbr1</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html" class="external-link">poly2nb</a></span><span class="op">(</span><span class="va">wheat</span>, queen<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">nbrl</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html" class="external-link">nblag</a></span><span class="op">(</span><span class="va">nbr1</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>lag 2 neighbour object has 2 sub-graphs</span>
 <span class="r-in"><span><span class="va">nbr12</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html" class="external-link">nblag_cumul</a></span><span class="op">(</span><span class="va">nbrl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cms0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">c</span>, <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cms1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span> <span class="op">-</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">wheat</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">cms0</span><span class="op">)</span></span></span>
@@ -116,18 +117,72 @@
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">lm_obj</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fl">0</span>, h<span class="op">=</span><span class="fl">0</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">zz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">influence.measures</a></span><span class="op">(</span><span class="va">lm_obj</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Potentially influential observations of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 lm(formula = Y ~ X, data = plt_out) :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dfb.1_ dfb.X dffit   cov.r   cook.d hat    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  -0.12   0.01 -0.12    0.98_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   0.10   0.01  0.11    0.98_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60   0.00   0.00  0.00    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118  0.01   0.01  0.02    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137 -0.10  -0.01 -0.10    0.98_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143 -0.02  -0.04 -0.05    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157 -0.10  -0.05 -0.11    0.99_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166  0.00   0.00  0.00    1.02_*  0.00   0.02_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168  0.01   0.02  0.03    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176 -0.10   0.17 -0.20_*  0.99    0.02   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177  0.03  -0.07  0.08    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191  0.01   0.04  0.04    1.02_*  0.00   0.02_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192  0.10   0.18  0.20_*  0.99    0.02   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201 -0.10   0.07 -0.12    0.99_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216  0.02   0.05  0.05    1.02_*  0.00   0.01_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217  0.03   0.08  0.09    1.02_*  0.00   0.01_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225 -0.11  -0.07 -0.13    0.98_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237 -0.10   0.02 -0.10    0.99_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242 -0.02  -0.04 -0.04    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287  0.14  -0.23  0.27_*  0.97_*  0.04   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290 -0.18  -0.35 -0.40_*  0.95_*  0.08   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295 -0.01  -0.01 -0.01    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322  0.00   0.00  0.00    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325 -0.10  -0.07 -0.12    0.99_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351  0.19  -0.04  0.20_*  0.94_*  0.02   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369  0.01  -0.03  0.03    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376 -0.05  -0.13 -0.14    1.02_*  0.01   0.02_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392 -0.04   0.08 -0.09    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393 -0.03   0.06 -0.07    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394 -0.01   0.03 -0.03    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402  0.10   0.02  0.10    0.99_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 429  0.13  -0.10  0.16    0.98_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 430 -0.11  -0.23 -0.25_*  0.99    0.03   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 438  0.00  -0.01 -0.01    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 442 -0.01   0.04 -0.04    1.02_*  0.00   0.02_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 443 -0.01   0.02 -0.02    1.02_*  0.00   0.01_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 461  0.02   0.04  0.04    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 462  0.01   0.03  0.03    1.03_*  0.00   0.02_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 466  0.01  -0.02  0.02    1.02_*  0.00   0.01_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 467 -0.03   0.08 -0.08    1.02_*  0.00   0.01_*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 468  0.02  -0.04  0.04    1.01_*  0.00   0.01  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 480  0.13   0.05  0.14    0.97_*  0.01   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 488  0.16   0.09  0.18    0.96_*  0.02   0.00  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 492 -0.13   0.12 -0.17    0.98_*  0.01   0.00  </span>
 <span class="r-in"><span><span class="va">infl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">zz</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">plt_out</span><span class="op">$</span><span class="va">X</span><span class="op">[</span><span class="va">infl</span><span class="op">]</span>, <span class="va">plt_out</span><span class="op">$</span><span class="va">Y</span><span class="op">[</span><span class="va">infl</span><span class="op">]</span>, pch<span class="op">=</span><span class="fl">3</span>, cex<span class="op">=</span><span class="fl">0.6</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="aple.plot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">plt_out</span><span class="op">$</span><span class="va">Y</span>, <span class="va">plt_out</span><span class="op">$</span><span class="va">X</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">plt_out</span><span class="op">$</span><span class="va">X</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.6601805</span>
 <span class="r-in"><span><span class="va">wheat</span><span class="op">$</span><span class="va">localAple</span> <span class="op">&lt;-</span> <span class="fu">localAple</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">$</span><span class="va">yield_detrend</span>, scale<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">nbr12</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">$</span><span class="va">localAple</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6601805</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">$</span><span class="va">localAple</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="aple.plot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">opar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>no.readonly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">[</span>,<span class="st">"localAple"</span><span class="op">]</span>, reset<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_centroid</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wheat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">infl</span>,<span class="op">]</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">infl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="aple.plot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">opar</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -139,7 +194,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

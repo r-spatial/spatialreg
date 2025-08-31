@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@ of functions in the spatial statistics module user’s manual <span class="citat
 </h2>
 <p>We will be using the <strong>spdep</strong> and
 <strong>spatialreg</strong> packages, here version: spdep, version
-1.3-8, 2024-11-25, the <strong>sf</strong> package and the
+1.4-1, 2025-08-25, the <strong>sf</strong> package and the
 <strong>tmap</strong> package. The data from the sources referred to
 above is documented in the <a href="https://jakubnowosad.com/spData/reference/nc.sids.html" class="external-link">help
 page</a> for the <code>nc.sids</code> data set in
@@ -113,13 +113,12 @@ use the NAD27 datum.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">ft.SID74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">SID74</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">SID74</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">nc</span><span class="op">$</span><span class="va">both</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">L_id</span>, <span class="va">nc</span><span class="op">$</span><span class="va">M_id</span>, sep<span class="op">=</span><span class="st">":"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
 <p>We will now examine the data set reproduced from Cressie and
 collaborators, included in <strong>spData</strong> (formerly in
 <strong>spdep</strong>), and add the neighbour relationships used in
 <span class="citation">Cressie and Chan (<a href="#ref-cressie+chan:1989">1989</a>)</span> to the background map as
 a graph shown in Figure :</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gal_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"weights/ncCC89.gal"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">ncCC89</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="va">gal_file</span>, region.id<span class="op">=</span><span class="va">nc</span><span class="op">$</span><span class="va">FIPSNO</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
@@ -134,7 +133,7 @@ that a number of questions are raised along the way.</p>
 <p>Building the weights is much more complicated, because they use a
 combination of distance-metric and population-at-risk based weights, but
 we can get quite close <span class="citation">(see also <a href="#ref-kaluznyetal:1996">Kaluzny et al. 1996</a>)</span>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sids.nhbr30.dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nbdists.html" class="external-link">nbdists</a></span><span class="op">(</span><span class="va">ncCC89</span>, <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">east</span>, <span class="va">nc</span><span class="op">$</span><span class="va">north</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sids.nhbr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">listw2sn</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">ncCC89</span>, glist<span class="op">=</span><span class="va">sids.nhbr30.dist</span>, style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dij</span> <span class="op">&lt;-</span> <span class="va">sids.nhbr</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span>
@@ -151,18 +150,18 @@ we can get quite close <span class="citation">(see also <a href="#ref-kaluznyeta
 second (II) includes all the 12 parcels of contiguous counties in 4
 east-west and 4 north-south bands, while the fourth (IV) includes the
 transformed non-white birth-rate:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">ft.NWBIR74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="va">nc</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Cressie identifies Anson county as an outlier, and drops it from
 further analysis. Because the weights are constructed in a complicated
 way, they will be subsetted by dropping the row and column of the
 weights matrix:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">nc</span><span class="op">)</span></span>
 <span><span class="va">outl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">rstandard</a></span><span class="op">(</span><span class="va">lm_nc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NAME</span><span class="op">[</span><span class="va">outl</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "Anson"</span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html" class="external-link">listw2mat</a></span><span class="op">(</span><span class="va">sids.nhbr.listw</span><span class="op">)</span></span>
 <span><span class="va">W.4</span> <span class="op">&lt;-</span> <span class="va">W</span><span class="op">[</span><span class="op">-</span><span class="va">outl</span>, <span class="op">-</span><span class="va">outl</span><span class="op">]</span></span>
 <span><span class="va">sids.nhbr.listw.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">mat2listw</a></span><span class="op">(</span><span class="va">W.4</span><span class="op">)</span></span>
@@ -175,7 +174,7 @@ Chan (<a href="#ref-cressie+chan:1989">1989</a>)</span>, also given in
 for the null weighted CAR model (Cressie has intercept 2.838,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>θ</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\theta}</annotation></semantics></math>
 0.833, for k=1):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/" class="external-link">spatialreg</a></span><span class="op">)</span></span>
 <span><span class="va">ecarIaw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spautolm.html">spautolm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">nc2</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIaw</span><span class="op">)</span></span></code></pre></div>
@@ -203,7 +202,7 @@ for the null weighted CAR model (Cressie has intercept 2.838,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>θ</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\theta}</annotation></semantics></math>
 0.710, and failure in the numerical Hessian used to calculate the
 standard error of the spatial coefficient:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ecarIIaw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spautolm.html">spautolm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">both</span> <span class="op">-</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">nc2</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIIaw</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -247,7 +246,7 @@ for by the transformed non-white birth variable (Cressie intercept
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>θ</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\theta}</annotation></semantics></math>
 0.640 — not significant), but the estimate of the spatial coefficient is
 not close here:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ecarIVaw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spautolm.html">spautolm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">nc2</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -265,14 +264,14 @@ not close here:</p>
 <span><span class="co">## ft.NWBIR74  0.0408354  0.0062919  6.4902 8.572e-11</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Lambda: 0.22391 LR test value: 1.1577 p-value: 0.28194 </span></span>
-<span><span class="co">## Numerical Hessian standard error of lambda: 0.5537 </span></span>
+<span><span class="co">## Numerical Hessian standard error of lambda: 0.55663 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Log likelihood: -114.0376 </span></span>
 <span><span class="co">## ML residual variance (sigma squared): 1201.5, (sigma: 34.663)</span></span>
 <span><span class="co">## Number of observations: 99 </span></span>
 <span><span class="co">## Number of parameters estimated: 4 </span></span>
 <span><span class="co">## AIC: NA (not available for weighted model)</span></span></code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc2</span><span class="op">$</span><span class="va">fitIV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted.values</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">tmap4</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">tm_shape</span><span class="op">(</span><span class="va">nc2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">tm_polygons</span><span class="op">(</span>fill<span class="op">=</span><span class="st">"fitIV"</span>, fill.scale<span class="op">=</span><span class="fu">tm_scale</span><span class="op">(</span>values<span class="op">=</span><span class="st">"brewer.yl_or_br"</span><span class="op">)</span>, fill.legend<span class="op">=</span><span class="fu">tm_legend</span><span class="op">(</span>position<span class="op">=</span><span class="fu">tm_pos_in</span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"bottom"</span><span class="op">)</span>, frame<span class="op">=</span><span class="cn">FALSE</span>, item.r <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, lwd<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></span>
@@ -282,7 +281,7 @@ not close here:</p>
 <p><img src="sids_models_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>The final figure shows the value of the log likelihood function for
 the null model (I):</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ecarIawll</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spautolm.html">spautolm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">nc2</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span>, llprof<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.9020532358</span>, length.out<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ll</span> <span class="op">~</span> <span class="va">lambda</span>, <span class="va">ecarIawll</span><span class="op">$</span><span class="va">llprof</span>, type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sids_models_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
@@ -328,7 +327,7 @@ Rare Events.”</span> <em>Biometrics</em> 39: 193–205.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

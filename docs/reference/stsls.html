@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -243,55 +243,55 @@ Finance and Economics</em> 17, 99-121. <a href="https://doi.org/10.1023/A%3A1007
 <span class="r-in"><span><span class="va">loobj1</span> <span class="op">&lt;-</span> <span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.lag.stsls</span>, R<span class="op">=</span><span class="fl">200</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">loobj1</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, trace):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0607411 -0.7739768 -1.834718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2814136 -0.2053354 -0.486749</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct   Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -1.0607411 -0.7739768 -1.834718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -0.2814136 -0.2053354 -0.486749</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.4250637 0.7860257 0.9598058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1068486 0.6601511 0.7218709</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.39372735 0.9704671 1.0525425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.09753357 0.3124369 0.3649182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.474018 -1.0625140 -1.9657924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.826222 -0.4999244 -0.8755077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct   Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -2.798202 -0.8587183 -1.838488</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -2.953086 -0.8378465 -1.506637</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.0133603 0.28800  0.049323</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.0047101 0.61713  0.381298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Direct    Indirect Total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.0051388 0.39050  0.065991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.0031461 0.40212  0.131904</span>
 <span class="r-in"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="va">lw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">loobj2</span> <span class="op">&lt;-</span> <span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.lag.stsls</span>, R<span class="op">=</span><span class="fl">200</span>, evalues<span class="op">=</span><span class="va">ev</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">loobj2</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, evalues):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Direct   Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.0607411 -0.7739768 -1.834718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.2814136 -0.2053354 -0.486749</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct   Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -1.0607411 -0.7739768 -1.834718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -0.2814136 -0.2053354 -0.486749</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct  Indirect     Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.3647280 1.2688013 1.3886153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.1175608 0.8263993 0.9011554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.3852057 0.7161038 0.8244862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.1000983 0.4122215 0.4688733</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -2.955756 -0.7150236 -1.4296758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -2.404673 -0.4145933 -0.6939034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct   Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -2.899929 -1.1601275 -2.362491</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -2.750352 -0.6014615 -1.115954</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direct   Indirect Total  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   0.003119 0.47459  0.15281</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL 0.016187 0.67844  0.48774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Direct    Indirect Total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.0037325 0.24600  0.018153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.0059531 0.54753  0.264442</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">coda</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/coda/man/HPDinterval.html" class="external-link">HPDinterval</a></span><span class="op">(</span><span class="va">loobj1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            lower      upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC   -1.8854657 -0.2997080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL -0.4662763 -0.1121351</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  lower       upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -1.7799556 -0.35225230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -0.4587508 -0.09515137</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"Probability")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
 <span class="r-in"><span><span class="va">COL.lag.stslsW</span> <span class="op">&lt;-</span> <span class="fu">stsls</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, <span class="va">lw</span>, W2X<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -451,7 +451,7 @@ Finance and Economics</em> 17, 99-121. <a href="https://doi.org/10.1023/A%3A1007
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

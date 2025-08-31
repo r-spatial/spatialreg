@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -272,9 +272,9 @@ variable in making predictions for the fitting data.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error   z value     Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.8932190 5.36616256 11.161276 0.0000000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.9413120 0.33056857 -2.847554 0.0044056574</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357787</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.8932192 5.36616252 11.161276 0.0000000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.9413120 0.33056857 -2.847554 0.0044056569</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.3022502 0.09047605 -3.340665 0.0008357788</span>
 <span class="r-in"><span><span class="va">COL.errW.GM</span> <span class="op">&lt;-</span> <span class="fu">GMerrorsar</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="va">COL.nb</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span>, returnHcov<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.errW.GM</span>, Hausman<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -366,7 +366,7 @@ variable in making predictions for the fitting data.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017201 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017197 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -276.1069 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
@@ -435,7 +435,7 @@ variable in making predictions for the fitting data.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

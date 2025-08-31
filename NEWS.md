@@ -1,5 +1,7 @@
 # Version 1.4-1 (development)
 
+* import `spdep` >= 1.4.1
+
 * annotate `impacts` output with `"dy/dx"` or `"(F)"` to distinguish continuous and categorical independent variables
 
 * suggest `codingMatrices` to expand examples with factors (categorical variables)

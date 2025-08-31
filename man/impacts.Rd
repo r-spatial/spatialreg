@@ -98,22 +98,30 @@ require("sf", quietly=TRUE)
 columbus <- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
 #require("spdep", quietly=TRUE)
 col.gal.nb <- spdep::read.gal(system.file("weights/columbus.gal", package="spData")[1])
+columbus$fEW <- factor(columbus$EW)
+columbus$fDISCBD <- ordered(cut(columbus$DISCBD, c(0, 1.5, 3, 4.5, 6)))
+run <- require("codingMatrices", quietly=TRUE)
+f <- formula(log(CRIME) ~ INC + HOVAL + fDISCBD + fEW)
 listw <- spdep::nb2listw(col.gal.nb)
 ev <- eigenw(listw)
-lobj <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw,
- control=list(pre_eig=ev))
+lobj <- lagsarlm(f, columbus, listw, control=list(pre_eig=ev))
 summary(lobj)
-mobj <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin=TRUE,
- control=list(pre_eig=ev))
+if (run) {
+contrasts(columbus$fDISCBD) <- "code_diff"
+lobjd <- lagsarlm(f, columbus, listw, control=list(pre_eig=ev))
+}
+mobj <- lagsarlm(f, columbus, listw, Durbin=TRUE, control=list(pre_eig=ev))
 summary(mobj)
-mobj1 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, Durbin= ~ INC,
- control=list(pre_eig=ev))
+mobj1 <- lagsarlm(f, columbus, listw, Durbin= ~ INC + HOVAL, control=list(pre_eig=ev))
 summary(mobj1)
 W <- as(listw, "CsparseMatrix")
 trMatc <- trW(W, type="mult")
 trMC <- trW(W, type="MC")
 set.seed(1)
 impacts(lobj, listw=listw)
+if (run) {
+impacts(lobjd, listw=listw)
+}
 impacts(lobj, tr=trMatc)
 impacts(lobj, tr=trMC)
 impacts(lobj, evalues=ev)
@@ -131,21 +139,21 @@ try(impacts(mobj, evalues=ev), silent=TRUE)
 }
 summary(impacts(mobj, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
 summary(impacts(mobj1, tr=trMatc, R=200), short=TRUE, zstats=TRUE)
-xobj <- lmSLX(CRIME ~ INC + HOVAL, columbus, listw)
+xobj <- lmSLX(f, columbus, listw)
 summary(impacts(xobj))
-eobj <- errorsarlm(CRIME ~ INC + HOVAL, columbus, listw, etype="emixed")
+eobj <- errorsarlm(f, columbus, listw, etype="emixed")
 summary(impacts(eobj), adjust_k=TRUE)
 \dontrun{
-mobj1 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+mobj1 <- lagsarlm(f, columbus, listw, type="mixed", 
 method="Matrix", control=list(fdHess=TRUE))
 summary(mobj1)
 set.seed(1)
 summary(impacts(mobj1, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
 summary(impacts(mobj, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
-mobj2 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+mobj2 <- lagsarlm(f, columbus, listw, type="mixed", 
 method="Matrix", control=list(fdHess=TRUE, optimHess=TRUE))
 summary(impacts(mobj2, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
-mobj3 <- lagsarlm(CRIME ~ INC + HOVAL, columbus, listw, type="mixed", 
+mobj3 <- lagsarlm(f, columbus, listw, type="mixed", 
 method="spam", control=list(fdHess=TRUE))
 summary(impacts(mobj3, tr=trMatc, R=1000), zstats=TRUE, short=TRUE)
 }
@@ -155,7 +163,7 @@ Wb <- as(spdep::nb2listw(boston.soi), "CsparseMatrix")
 trMatb <- trW(Wb, type="mult")
 gp2mMi <- lagsarlm(log(CMEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + 
 I(RM^2) +  AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT), 
-data=boston.c, spdep::nb2listw(boston.soi), type="mixed", method="Matrix", 
+data=boston.c, spdep::nb2listw(boston.soi), Durbin=TRUE, method="Matrix", 
 control=list(fdHess=TRUE), trs=trMatb)
 summary(gp2mMi)
 summary(impacts(gp2mMi, tr=trMatb, R=1000), zstats=TRUE, short=TRUE)

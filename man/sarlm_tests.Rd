@@ -72,7 +72,7 @@ Dordrecht: Kluwer, pp. 121--122.
 }
 \author{Roger Bivand \email{Roger.Bivand@nhh.no}, \code{bptest}: Torsten Hothorn and Achim Zeileis, modified by Roger Bivand}
 
-\seealso{\code{\link{logLik.lm}}, \code{\link{anova.Sarlm}}}
+\seealso{\code{\link{logLik.lm}}, \code{\link{anova.Sarlm}}, \code{\link{impacts}}}
 
 \examples{
 require("sf", quietly=TRUE)
