@@ -272,8 +272,10 @@ impacts.SlX <- function(obj, ...) {
     stopifnot(!is.null(attr(obj, "mixedImps")))
     n <- nrow(obj$model)
     k <- obj$qr$rank
+    hfp <- attr(obj, "have_factor_preds")
+    if (is.null(hfp)) hfp <- FALSE
     impactsWX(attr(obj, "mixedImps"), n, k, type="SlX", method="glht",
-        have_factor_preds=attr(obj, "have_factor_preds"))
+        have_factor_preds=hfp)
 }
 
 impactsWX <- function(obj, n, k, type="SlX", method="glht", have_factor_preds=FALSE) {
