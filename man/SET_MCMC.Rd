@@ -100,6 +100,9 @@ neighbours, if FALSE (default) assign NA}
     }}
 }}
 
+\details{From version 1.4.1, functions for models including spatially lagged independent variables warn on fitting if any of the right-hand side variables are factors. This is because the interpretation of coefficients that are not slopes is unclear when the variable is not interpretable on an unbounded line, such as factors. Factor variable names are shown with the suffix \dQuote{(F)}, others \dQuote{dy/dx} in output from impact methods. A discussion can be found at \url{https://github.com/rsbivand/eqc25_talk}.
+}
+
 \references{LeSage J and RK Pace (2009) Introduction to Spatial Econometrics. CRC Press, Boca Raton.
 }
 

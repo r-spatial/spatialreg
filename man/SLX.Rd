@@ -54,7 +54,11 @@ for the data on which the model was fitted. Should have row names corresponding 
 }
 
 \value{
-The \code{lmSLX} function returns an \dQuote{lm} object with a \dQuote{mixedImps} list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts calculated using a simplified local copy of the estimable function from the gmodels package.
+The \code{lmSLX} function returns an \dQuote{lm} object with a \dQuote{mixedImps} list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts and their standard errors calculated using \code{multcomp::glht}.
+}
+
+
+\details{From version 1.4.1, functions for models including spatially lagged independent variables warn on fitting if any of the right-hand side variables are factors. This is because the interpretation of coefficients that are not slopes is unclear when the variable is not interpretable on an unbounded line, such as factors. Factor variable names are shown with the suffix \dQuote{(F)}, others \dQuote{dy/dx} in output from impact methods. A discussion can be found at \url{https://github.com/rsbivand/eqc25_talk}.
 }
 
 \seealso{\code{\link{lm}}

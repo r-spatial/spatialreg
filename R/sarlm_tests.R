@@ -22,7 +22,7 @@ LR.Sarlm <- function(x, y)
 	else LLx <- x
 	if (!inherits(y, "logLik")) LLy <- logLik(y)
 	else LLy <- y
-	statistic <- 2*(LLx - LLy)
+	statistic <- c(2*(LLx - LLy))
 	attr(statistic, "names") <- "Likelihood ratio"
 	parameter <- abs(attr(LLx, "df") - attr(LLy, "df"))
 	if (parameter < 1) 

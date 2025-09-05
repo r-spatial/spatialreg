@@ -1,6 +1,6 @@
 Package: spatialreg
-Version: 1.4-1
-Date: 2025-08-29
+Version: 1.4-2
+Date: 2025-09-05
 Title: Spatial Regression Analysis
 Encoding: UTF-8
 Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
@@ -27,7 +27,7 @@ Authors@R: c(person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bi
              person(given = "JuanTomas", family = "Sayago", role = c("ctb"), email = "juantomas.sayago@gmail.com"),
              person("Michael", "Tiefelsdorf", role = "ctb"))
 Depends: R (>= 3.3), spData (>= 2.3.1), Matrix, sf
-Imports: spdep (>= 1.4-1), coda, methods, MASS, boot, splines, LearnBayes,
+Imports: spdep (>= 1.4.1), coda, methods, MASS, boot, splines, LearnBayes,
         nlme, multcomp
 Suggests: parallel, RSpectra, tmap, foreign, spam, knitr, lmtest, expm,
         sandwich, rmarkdown, igraph, tinytest, codingMatrices

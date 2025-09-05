@@ -1,4 +1,6 @@
-# Version 1.4-1 (development)
+# Version 1.4-2 (development)
+
+# Version 1.4-1 (2025-09-04)
 
 * import `spdep` >= 1.4.1
 

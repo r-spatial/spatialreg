@@ -118,6 +118,8 @@ Refer to the help page of \code{\link{predict.Sarlm}} for discussions and
 references.
 
 Because numerical optimisation is used to find the values of lambda and rho in \code{sacsarlm}, care needs to be shown. It has been found that the surface of the 2D likelihood function often forms a \dQuote{banana trench} from (low rho, high lambda) through (high rho, high lambda) to (high rho, low lambda) values. In addition, sometimes the banana has optima towards both ends, one local, the other global, and conseqently the choice of the starting point for the final optimization becomes crucial. The default approach is not to use just (0, 0) as a starting point, nor the (rho, lambda) values from \code{gstsls}, which lie in a central part of the \dQuote{trench}, but either four values at (low rho, high lambda), (0, 0), (high rho, high lambda), and (high rho, low lambda), and to use the best of these start points for the final optimization. Optionally, nine points can be used spanning the whole (lower, upper) space.
+
+From version 1.4.1, functions for models including spatially lagged independent variables warn on fitting if any of the right-hand side variables are factors. This is because the interpretation of coefficients that are not slopes is unclear when the variable is not interpretable on an unbounded line, such as factors. Factor variable names are shown with the suffix \dQuote{(F)}, others \dQuote{dy/dx} in output from impact methods. A discussion can be found at \url{https://github.com/rsbivand/eqc25_talk}.
 }
 
 \section{Control arguments}{
