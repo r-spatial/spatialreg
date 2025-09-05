@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,6 +145,7 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <p>If a model is fitted with the “Durbin=” set to a formula subsetting the explanatory variables, the impacts object returned reports Durbin impacts for variables included in the formula and lag impacts for the other variables.</p>
 <p>When <code>Q</code> and <code>tr</code> are given, addition impact component results are provided for each step in the traces of powers of the weights matrix up to and including the <code>Q</code>'th power. This increases computing time because the output object is substantially increased in size in proportion to the size of <code>Q</code>.</p>
 <p>The method for <code>gmsar</code> objects is only for those of <code>type</code> <code>SARAR</code> output by <code>gstsls</code>, and assume that the spatial error coefficient is fixed, and thus omitted from the coefficients and covariance matrix used for simulation.</p>
+<p>From version 1.4.1, functions for models including spatially lagged independent variables warn on fitting if any of the right-hand side variables are factors. This is because the interpretation of coefficients that are not slopes is unclear when the variable is not interpretable on an unbounded line, such as factors. Factor variable names are shown with the suffix “(F)”, others “dy/dx” in output from impact methods. A discussion can be found at <a href="https://github.com/rsbivand/eqc25_talk" class="external-link">https://github.com/rsbivand/eqc25_talk</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

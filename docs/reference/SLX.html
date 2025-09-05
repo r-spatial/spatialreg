@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +129,11 @@ for the data on which the model was fitted. Should have row names corresponding 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The <code>lmSLX</code> function returns an “lm” object with a “mixedImps” list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts calculated using a simplified local copy of the estimable function from the gmodels package.</p>
+    <p>The <code>lmSLX</code> function returns an “lm” object with a “mixedImps” list of three impact matrixes (impacts and standard errors) for direct, indirect and total impacts; total impacts and their standard errors calculated using <code><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">multcomp::glht</a></code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>From version 1.4.1, functions for models including spatially lagged independent variables warn on fitting if any of the right-hand side variables are factors. This is because the interpretation of coefficients that are not slopes is unclear when the variable is not interpretable on an unbounded line, such as factors. Factor variable names are shown with the suffix “(F)”, others “dy/dx” in output from impact methods. A discussion can be found at <a href="https://github.com/rsbivand/eqc25_talk" class="external-link">https://github.com/rsbivand/eqc25_talk</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
