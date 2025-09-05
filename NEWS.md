@@ -1,5 +1,7 @@
 # Version 1.4-2 (development)
 
+* remove tests in `test_Durbin_factor.R` for `sacsarlm` and `spBreg_*` failing under MKL 2023-2
+
 # Version 1.4-1 (2025-09-04)
 
 * import `spdep` >= 1.4.1
