@@ -2,6 +2,8 @@
 
 * remove tests in `test_Durbin_factor.R` for `sacsarlm` and `spBreg_*` failing under MKL 2023-2
 
+* replace `MASS:mvrnorm` with `mvtnorm::rmvnorm` in `impacts` methods or elsewhere to ensure better stability with given seeds
+
 # Version 1.4-1 (2025-09-04)
 
 * import `spdep` >= 1.4.1

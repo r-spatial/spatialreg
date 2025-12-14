@@ -201,7 +201,7 @@ spBreg_lag <- function(formula, data = list(), listw, na.action, Durbin, type,
         ys = y - rho*wy          
         b = crossprod(x, ys) + sige*TIc
         b0 = AI %*% b # see eq 5.29, p. 140
-        bhat = MASS::mvrnorm(1, b0, sige*AI) #norm_rnd(sige*AI) + b0;  
+        bhat = t(rmvnorm(n=1, mean=b0, sigma=sige*AI)) #norm_rnd(sige*AI) + b0;  
         bsave[iter, 1:k] = as.vector(bhat)
 #        nano_1 <- nano_1 + microbenchmark::get_nanotime() - nano_p
           
@@ -441,8 +441,7 @@ impacts.MCMC_sar_G <- function(obj, ..., tr=NULL, listw=NULL, evalues=NULL,
         have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=NULL, Sigma=NULL,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=interval,
-        type=type, tr=tr, R=R, listw=listw, evalues=evalues, tol=NULL,
-        empirical=NULL, Q=Q, icept=icept, iicept=iicept, p=p, samples=samples,
+        type=type, tr=tr, R=R, listw=listw, evalues=evalues, Q=Q, icept=icept, iicept=iicept, p=p, samples=samples,
         zero_fill=zero_fill, dvars=dvars)
     attr(res, "iClass") <- class(obj)
     res
@@ -681,7 +680,7 @@ spBreg_err <- function(formula, data = list(), listw, na.action, Durbin, etype,
         yss = y - lambda*wy
         b = crossprod(xss, yss) + sige*TIc
         b0 = AI %*% b
-        bhat = MASS::mvrnorm(1, b0, sige*AI)
+        bhat = t(rmvnorm(n=1, mean=b0, sigma=sige*AI))
         bsave[iter, 1:k] = as.vector(bhat)
 
 	#update sige:
@@ -1141,7 +1140,7 @@ spBreg_sac <- function(formula, data = list(), listw, listw2=NULL, na.action,
         yss = y - rho*wy -lambda*w2y + rho*lambda*w2wy
         b = crossprod(xss, yss) + sige*TIc
         b0 = AI %*% b
-        bhat = MASS::mvrnorm(1, b0, sige*AI)
+        bhat = t(rmvnorm(n=1, mean=b0, sigma=sige*AI))
         bsave[iter, 1:k] = as.vector(bhat)
           
           ##% update sige

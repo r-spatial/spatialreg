@@ -11,6 +11,8 @@
 \alias{coef.Sarlm}
 \alias{vcov.Sarlm}
 \alias{fitted.Sarlm}
+\alias{nobs.Sarlm}
+\alias{set_coef.Sarlm}
 
 \title{Spatial simultaneous autoregressive model estimation by maximum likelihood}
 
@@ -59,6 +61,8 @@ sacsarlm(formula, data = list(), listw, listw2 = NULL, na.action, Durbin, type,
 \method{coef}{Sarlm}(object, ...)
 \method{vcov}{Sarlm}(object, ...)
 \method{fitted}{Sarlm}(object, ...)
+\method{nobs}{Sarlm}(object, ...)
+\method{set_coef}{Sarlm}(model, coefs, ...)
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit. The details 
@@ -85,7 +89,8 @@ neighbours, if FALSE (default) assign NA - causing \code{lagsarlm()} to terminat
   \item{interval1, interval2}{default is NULL, search intervals for each weights object for autoregressive parameters}
   \item{trs}{default NULL, if given, a vector of powered spatial weights matrix traces output by \code{trW}; when given, insert the asymptotic analytical values into the numerical Hessian instead of the approximated values; may be used to get around some problems raised when the numerical Hessian is poorly conditioned, generating NaNs in subsequent operations; the use of trs is recommended}
  \item{control}{list of extra control arguments - see section below}
-  \item{object}{\code{Sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm}}
+  \item{object, model}{\code{Sarlm} object from \code{lagsarlm}, \code{errorsarlm} or \code{sacsarlm}}
+  \item{coefs}{numerical, replacement coefficients to be inserted into a fitted model}
   \item{correlation}{logical; if 'TRUE', the correlation matrix of the estimated parameters including sigma is returned and printed (default=FALSE)}
   \item{Nagelkerke}{if TRUE, the Nagelkerke pseudo R-squared is reported}
   \item{Hausman}{if TRUE, the results of the Hausman test for error models are reported}

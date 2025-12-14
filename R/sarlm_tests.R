@@ -291,7 +291,7 @@ fitted.Sarlm <- function(object, ...) {
 }
 
 impacts.Sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
-  useHESS=NULL, tol=1e-6, empirical=FALSE, Q=NULL) {
+  useHESS=NULL, Q=NULL) {
     if (obj$type == "error") {
         if (obj$etype == "emixed") {
             return(impactSDEM(obj))
@@ -418,9 +418,8 @@ impacts.Sarlm <- function(obj, ..., tr=NULL, R=NULL, listw=NULL, evalues=NULL,
         have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=mu, Sigma=Sigma,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=interval,
-        type=obj$type, tr=tr, R=R, listw=listw, evalues=evalues, tol=tol,
-        empirical=empirical,Q=Q, icept=icept, iicept=iicept, p=p,
-        zero_fill=zero_fill, dvars=dvars)
+        type=obj$type, tr=tr, R=R, listw=listw, evalues=evalues, Q=Q,
+        icept=icept, iicept=iicept, p=p, zero_fill=zero_fill, dvars=dvars)
     attr(res, "useHESS") <- usingHESS
     attr(res, "insert") <- iNsert
     attr(res, "iClass") <- class(obj)

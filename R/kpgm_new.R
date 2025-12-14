@@ -387,7 +387,7 @@ Hausman.test.Gmsar <- function(object, ..., tol=NULL) {
 
 
 impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
-  evalues=NULL, tol=1e-6, empirical=FALSE, Q=NULL) {
+  evalues=NULL, Q=NULL) {
     stopifnot(obj$type == "SARAR") 
     if (is.null(listw) && !is.null(obj$listw_style) && 
             obj$listw_style != "W")
@@ -417,9 +417,8 @@ impacts.Gmsar <- function(obj, ..., n=NULL, tr=NULL, R=NULL, listw=NULL,
         have_factor_preds=attr(obj, "have_factor_preds"))
     res <- intImpacts(rho=rho, beta=beta, P=P, n=n, mu=mu, Sigma=Sigma,
         irho=irho, drop2beta=drop2beta, bnames=bnames, interval=NULL,
-        type="lag", tr=tr, R=R, listw=listw, evalues=evalues, tol=tol,
-        empirical=empirical, Q=Q, icept=icept, iicept=iicept, p=p,
-        zero_fill=NULL, dvars=NULL)
+        type="lag", tr=tr, R=R, listw=listw, evalues=evalues, Q=Q,
+        icept=icept, iicept=iicept, p=p, zero_fill=NULL, dvars=NULL)
     attr(res, "iClass") <- class(obj)
     res
 }

@@ -11,7 +11,7 @@ importFrom("stats", "lm.fit", "as.formula", "coef", "lm", "model.extract",
              "rnorm", "sd", "predict", "AIC", "nlm", "optimize",
              "dbeta", "rchisq", "runif", "spline", "fitted", "formula",
              "model.response", "anova", "delete.response", "fitted.values",
-             "model.frame")
+             "model.frame", "nobs")
 
 importFrom("spdep", "is.symmetric.glist", "lag.listw", "card",
  "nb2listw", "n.comp.nb", "listw2U", "listw2mat", "Szero", "listw2sn",
@@ -24,7 +24,7 @@ import(Matrix#, except=c("expm")
 import(sf)
 #importFrom(expm, expAtv, expm)
 importFrom(coda, as.mcmc, HPDinterval)
-importFrom(MASS, mvrnorm)
+importFrom(mvtnorm, rmvnorm)
 importFrom(boot, boot)
 importFrom("methods", "new", "is", "slot", "as")
 importFrom("graphics", "plot")
@@ -33,6 +33,7 @@ importFrom(LearnBayes, rwmetrop)
 importFrom(nlme, fdHess)
 importFrom(multcomp, glht)
 importFrom("utils", "packageVersion")
+importFrom("marginaleffects", "set_coef")
 
 ##################
 # ML SE
@@ -53,6 +54,8 @@ S3method(predict, Sarlm)
 S3method(impacts, Sarlm)
 S3method(Hausman.test, Sarlm)
 S3method(MCMCsamp, Sarlm)
+S3method(nobs, Sarlm)
+S3method(set_coef, Sarlm)
 
 S3method(print, summary.Sarlm)
 S3method(coef, summary.Sarlm)

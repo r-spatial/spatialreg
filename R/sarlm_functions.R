@@ -292,6 +292,21 @@ print.summary.Sarlm <- function(x, digits = max(5, .Options$digits - 3),
 
 coef.summary.Sarlm <- function(object, ...) object$Coef
 
+nobs.Sarlm <- function(object, ...) length(object$y)
+
+set_coef.Sarlm <- function(model, coefs, ...) {
+    if (!is.null(model[["rho"]])) {
+        model[["rho"]] <- coefs["rho"]
+        coefs <- coefs[-match("rho", names(coefs))]
+    }
+    if (!is.null(model[["lambda"]])) {
+        model[["lambda"]] <- coefs["lambda"]
+        coefs <- coefs[-match("lambda", names(coefs))]
+    }
+    model[["coefficients"]][names(coefs)] <- coefs
+    model
+}
+
 getVmate <- function(coefs, env, s2, trs, tol.solve=1.0e-10, optim=FALSE,
     optimM="optimHess") {
     if (optim) {

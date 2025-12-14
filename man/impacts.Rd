@@ -12,9 +12,8 @@
 \description{The calculation of impacts for spatial lag and spatial Durbin models is needed in order to interpret the regression coefficients correctly, because of the spillovers between the terms in these data generation processes (unlike the spatial error model). Methods for \dQuote{SLX} and Bayesian fitted models are also provided, the former do not need MC simulations, while the latter pass through MCMC draws.}
 \usage{
 #\method{impacts}{sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
-# useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
-#\method{impacts}{lagmess}(obj, ..., R=NULL, listw=NULL, tol=1e-6,
-# empirical=FALSE)
+# useHESS = NULL, Q=NULL)
+#\method{impacts}{lagmess}(obj, ..., R=NULL, listw=NULL)
 #\method{impacts}{SLX}(obj, ...)
 #\method{impacts}{MCMC_sar_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
 #\method{impacts}{MCMC_sem_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)
@@ -39,8 +38,6 @@ or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{n}{defaults to \code{length(obj$residuals)}; in the method for \code{gmsar} objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti}
   \item{R}{If given, simulations are used to compute distributions for the impact measures, returned as \code{mcmc} objects; the objects are used for convenience but are not output by an MCMC process}
   \item{useHESS}{Use the Hessian approximation (if available) even if the asymptotic coefficient covariance matrix is available; used for comparing methods}
-  \item{tol}{Argument passed to \code{mvrnorm}: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix}
-  \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
   \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
   \item{reportQ}{default NULL; if TRUE and \code{Q} given as an argument to \code{impacts}, report impact components}
   \item{x, object}{LagImpact objects created by \code{impacts} methods}
@@ -53,6 +50,7 @@ or by \code{lmSLX}; in \code{HPDinterval.LagImpact}, a LagImpact object}
   \item{adjust_k}{default TRUE if SDEM else FALSE, adjust internal OLS SDEM standard errors by dividing by n rather than (n-k) (default changed and bug fixed after 0.7-8; standard errors now ML in SDEM summary and impacts summary and identical - for SLX use FALSE)}
   \item{rho, beta, P, mu, Sigma, irho, drop2beta, bnames,
     interval, type, icept, iicept, p, mess, samples, zero_fill, dvars}{internal arguments shared inside impacts methods}
+  \item{tol, empirical}{deprecated arguments}
 }
 
 \details{If called without \code{R} being set, the method returns the direct, indirect and total impacts for the variables in the model, for the variables themselves in tha spatial lag model case, for the variables and their spatial lags in the spatial Durbin (mixed) model case. The spatial lag impact measures are computed using eq. 2.46 (LeSage and Pace, 2009, p. 38), either using the exact dense matrix (when \code{listw} is given), or traces of powers of the weights matrix (when \code{tr} is given). When the traces are created by powering sparse matrices, the exact and the trace methods should give very similar results, unless the number of powers used is very small, or the spatial coefficient is close to its bounds.
