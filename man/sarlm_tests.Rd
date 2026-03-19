@@ -24,7 +24,7 @@ Wald1.Sarlm(object)
 \method{anova}{Sarlm}(object, ...)
 bptest.Sarlm(object, varformula=NULL, studentize = TRUE, data=list())
 \method{impacts}{Sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,
- useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
+ useHESS = NULL, Q=NULL)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
@@ -32,7 +32,7 @@ bptest.Sarlm(object, varformula=NULL, studentize = TRUE, data=list())
   \item{y}{a \code{logLik} object or an object for which a \code{logLik()} function exists}
   \item{object, obj}{a \code{Sarlm} object}
   \item{\dots}{further arguments passed to or from other methods}
-%  \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
+  \item{tol}{\code{tol} argument passed to \code{solve}, default NULL}
   \item{varformula}{a formula describing only the potential explanatory variables for the variance (no dependent variable needed). By default the same explanatory variables are taken as in the main regression model}
   \item{studentize}{logical. If set to \code{TRUE} Koenker's studentized
    version of the test statistic will be used.}
@@ -41,8 +41,6 @@ bptest.Sarlm(object, varformula=NULL, studentize = TRUE, data=list())
   \item{evalues}{vector of eigenvalues of spatial weights matrix for impacts calculations}
   \item{R}{If given, simulations are used to compute distributions for the impact measures, returned as \code{mcmc} objects; the objects are used for convenience but are not output by an MCMC process}
   \item{useHESS}{Use the Hessian approximation (if available) even if the asymptotic coefficient covariance matrix is available; used for comparing methods}
-  \item{tol}{Argument passed to \code{mvrnorm} and \code{solve}: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix}
-  \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
   \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
 }
 \value{

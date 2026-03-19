@@ -367,8 +367,9 @@ mixedImpacts_e   <- function(rho, P, n, evalues) {
 
 
 intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
-                       interval, type, tr, R, listw, evalues, tol, empirical, Q, icept, iicept, p,
-                       mess=FALSE, samples=NULL, zero_fill=NULL, dvars=NULL) {
+                       interval, type, tr, R, listw, evalues, tol, empirical, Q, icept,
+                       iicept, p, mess=FALSE, samples=NULL, zero_fill=NULL,
+                       dvars=NULL) {
   if (is.null(evalues)) {
     if (is.null(listw) && is.null(tr))
       stop("either tr or listw must be given")
@@ -382,6 +383,8 @@ intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
       tr <- NULL
     }
   }
+  if (!missing(tol)) warning("argument tol deprecated")
+  if (!missing(empirical))  warning("argument empirical deprecated")
   timings <- list()
   .ptime_start <- proc.time()
   if (is.null(listw)) {
@@ -415,8 +418,8 @@ intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
     if (!is.null(R)) {
       
       if (is.null(samples)) {
-        samples <- mvrnorm(n=R, mu=mu, Sigma=Sigma, tol=tol,
-                           empirical=empirical)
+        if (!inherits(Sigma, "matrix")) Sigma <- as.matrix(Sigma)
+        samples <- rmvnorm(n=R, mean=mu, sigma=Sigma)
         if (mess) samples[,irho] <- 1 - exp(samples[,irho])
       }
       if (!is.null(interval)) {
@@ -500,8 +503,8 @@ intImpacts <- function(rho, beta, P, n, mu, Sigma, irho, drop2beta, bnames,
     .ptime_start <- proc.time()
     if (!is.null(R)) {
       #print(Sigma)
-      samples <- mvrnorm(n=R, mu=mu, Sigma=Sigma, tol=tol,
-                         empirical=empirical)
+      if (!inherits(Sigma, "matrix")) Sigma <- as.matrix(Sigma)
+      samples <- rmvnorm(n=R, mean=mu, sigma=Sigma)
       check <- ((samples[,irho] > interval[1]) & 
                   (samples[,irho] < interval[2]))
       if (any(!check)) samples <- samples[check,]

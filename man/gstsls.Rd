@@ -11,7 +11,7 @@ gstsls(formula, data = list(), listw, listw2 = NULL, na.action = na.fail,
     zero.policy = attr(listw, "zero.policy"), pars=NULL, scaleU=FALSE, control = list(), 
     verbose=NULL, method="nlminb", robust=FALSE, legacy=FALSE, W2X=TRUE, sig2n_k=FALSE) 
 \method{impacts}{Gmsar}(obj, \dots, n = NULL, tr = NULL, R = NULL,
- listw = NULL, evalues=NULL, tol = 1e-06, empirical = FALSE, Q=NULL)
+ listw = NULL, evalues=NULL, Q=NULL)
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit. The details 
@@ -40,8 +40,6 @@ neighbours, if FALSE (default) assign NA - causing \code{GMerrorsar()} to termin
   \item{tr}{A vector of traces of powers of the spatial weights matrix created using \code{trW}, for approximate impact measures; if not given, \code{listw} must be given for exact measures (for small to moderate spatial weights matrices); the traces must be for the same spatial weights as were used in fitting the spatial regression, and must be row-standardised}
   \item{evalues}{vector of eigenvalues of spatial weights matrix for impacts calculations}
   \item{R}{If given, simulations are used to compute distributions for the impact measures, returned as \code{mcmc} objects; the objects are used for convenience but are not output by an MCMC process}
-  \item{tol}{Argument passed to \code{mvrnorm}: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix}
-  \item{empirical}{Argument passed to \code{mvrnorm} (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix}
   \item{Q}{default NULL, else an integer number of cumulative power series impacts to calculate if \code{tr} is given}
   \item{n}{defaults to \code{length(obj$residuals)}; in the method for \code{Gmsar} objects it may be used in panel settings to compute the impacts for cross-sectional weights only, suggested by Angela Parenti}
 

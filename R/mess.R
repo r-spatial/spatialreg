@@ -230,8 +230,7 @@ logLik.Lagmess <- function (object, ...)
 #    res <- list(lmobj=lmobj, alpha=alpha, alphase=alphase, rho=rho, bestmess=bestmess, q=q, start=start, na.action=na.act, nullLL=nullLL, use_expm=use_expm, mess_hess=mess_hess)
 
 
-impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
-    empirical=FALSE) {
+impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL) {
     if (!is.null(R)) stopifnot(!is.null(obj$mess_hess))
     stopifnot(!is.null(listw))
     use_expm <- obj$use_expm
@@ -268,8 +267,7 @@ impacts.Lagmess <- function(obj, ..., R=NULL, listw=NULL, tol=1e-6,
         .ptime_start <- proc.time()
         ialpha <- 1
         drop2beta <- 1
-        samples <- mvrnorm(n=R, mu=c(alpha, beta), Sigma=obj$mess_hess,
-            tol=tol, empirical=empirical)
+        samples <- rmvnorm(n=R, mean=c(alpha, beta), sigma=obj$mess_hess)
         timings[["impacts_samples"]] <- proc.time() - .ptime_start
         .ptime_start <- proc.time()
         sres <- apply(samples, 1, processMessSample,
