@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,9 +46,8 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co">#\method{impacts}{sarlm}(obj, \dots, tr, R = NULL, listw = NULL, evalues=NULL,</span></span>
-<span><span class="co"># useHESS = NULL, tol = 1e-06, empirical = FALSE, Q=NULL)</span></span>
-<span><span class="co">#\method{impacts}{lagmess}(obj, ..., R=NULL, listw=NULL, tol=1e-6,</span></span>
-<span><span class="co"># empirical=FALSE)</span></span>
+<span><span class="co"># useHESS = NULL, Q=NULL)</span></span>
+<span><span class="co">#\method{impacts}{lagmess}(obj, ..., R=NULL, listw=NULL)</span></span>
 <span><span class="co">#\method{impacts}{SLX}(obj, ...)</span></span>
 <span><span class="co">#\method{impacts}{MCMC_sar_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)</span></span>
 <span><span class="co">#\method{impacts}{MCMC_sem_g}(obj, ..., tr=NULL, listw=NULL, evalues=NULL, Q=NULL)</span></span>
@@ -96,12 +95,6 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
   <dt id="arg-usehess">useHESS<a class="anchor" aria-label="anchor" href="#arg-usehess"></a></dt>
 <dd><p>Use the Hessian approximation (if available) even if the asymptotic coefficient covariance matrix is available; used for comparing methods</p></dd>
 
-  <dt id="arg-tol">tol<a class="anchor" aria-label="anchor" href="#arg-tol"></a></dt>
-<dd><p>Argument passed to <code>mvrnorm</code>: tolerance (relative to largest variance) for numerical lack of positive-definiteness in the coefficient covariance matrix</p></dd>
-
-  <dt id="arg-empirical">empirical<a class="anchor" aria-label="anchor" href="#arg-empirical"></a></dt>
-<dd><p>Argument passed to <code>mvrnorm</code> (default FALSE): if true, the coefficients and their covariance matrix specify the empirical not population mean and covariance matrix</p></dd>
-
   <dt id="arg-q">Q<a class="anchor" aria-label="anchor" href="#arg-q"></a></dt>
 <dd><p>default NULL, else an integer number of cumulative power series impacts to calculate if <code>tr</code> is given</p></dd>
 
@@ -135,6 +128,9 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
   <dt id="arg-rho-beta-p-mu-sigma-irho-drop-beta-bnames-interval-type-icept-iicept-p-mess-samples-zero-fill-dvars">rho, beta, P, mu, Sigma, irho, drop2beta, bnames,
     interval, type, icept, iicept, p, mess, samples, zero_fill, dvars<a class="anchor" aria-label="anchor" href="#arg-rho-beta-p-mu-sigma-irho-drop-beta-bnames-interval-type-icept-iicept-p-mess-samples-zero-fill-dvars"></a></dt>
 <dd><p>internal arguments shared inside impacts methods</p></dd>
+
+  <dt id="arg-tol-empirical">tol, empirical<a class="anchor" aria-label="anchor" href="#arg-tol-empirical"></a></dt>
+<dd><p>deprecated arguments</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -349,12 +345,12 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-in"><span><span class="fu">impacts</span><span class="op">(</span><span class="va">lobj</span>, tr<span class="op">=</span><span class="va">trMC</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    Direct     Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -0.05306662  0.013044384 -0.04002223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -0.02965376  0.007289235 -0.02236453</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.11907144  0.029269127 -0.08980231</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  0.37407910 -0.091952940  0.28212616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.03771706  0.009271287 -0.02844577</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.08539508 -0.020991093  0.06440399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -0.05303288  0.013010644 -0.04002223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -0.02963491  0.007270381 -0.02236453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.11899573  0.029193421 -0.08980231</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  0.37384126 -0.091715099  0.28212616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.03769308  0.009247306 -0.02844577</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.08534079 -0.020936798  0.06440399</span>
 <span class="r-in"><span><span class="fu">impacts</span><span class="op">(</span><span class="va">lobj</span>, evalues<span class="op">=</span><span class="va">ev</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, evalues):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    Direct     Indirect       Total</span>
@@ -380,30 +376,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    Direct    Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.032357639 0.011318159 0.026828034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.008460842 0.004750921 0.007544692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.415062516 0.113760329 0.323208761</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.271496369 0.094644703 0.213350587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.253641590 0.066131588 0.197880926</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.280462744 0.082242472 0.211686873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.032198021 0.010586529 0.027343925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.008536286 0.004965342 0.007295719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.427784454 0.124236614 0.327396547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.272884419 0.088311572 0.226247266</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.242343959 0.063144429 0.196654588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.282959370 0.070702863 0.227608861</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -1.6493500  1.0888390 -1.5299451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -3.5830745  1.5252536 -3.0577087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.3400607  0.4966262 -0.2619054</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  1.4736046 -1.0103753  1.4270016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.1492345  0.1357353 -0.1459245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.3517685 -0.2812783  0.3567766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -1.6136470  1.0027299 -1.5118829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -3.5534014  1.3533361 -3.2365657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.3012284  0.4339303 -0.2289297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  1.3345289 -0.8796413  1.2662679</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.1840497  0.1315488 -0.1845712</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.2853271 -0.1160991  0.3186494</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Direct     Indirect Total    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.09907595 0.27622  0.1260303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.00033957 0.12720  0.0022304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.73381079 0.61945  0.7933944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.14058808 0.31232  0.1535794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.88136863 0.89203  0.8839810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.72501192 0.77850  0.7212591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.10660401 0.31599  0.1305637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.00038028 0.17595  0.0012098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.76324036 0.66434  0.8189236</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.18203057 0.37905  0.2054172</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.85397444 0.89534  0.8535654</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.77539357 0.90757  0.7499924</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lobjIQ5</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span>, reportQ<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (lag, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    Direct     Indirect       Total</span>
@@ -462,81 +458,81 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    Direct    Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.032357639 0.011318159 0.026828034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.008460842 0.004750921 0.007544692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.415062516 0.113760329 0.323208761</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.271496369 0.094644703 0.213350587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.253641590 0.066131588 0.197880926</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.280462744 0.082242472 0.211686873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.032198021 0.010586529 0.027343925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.008536286 0.004965342 0.007295719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.427784454 0.124236614 0.327396547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.272884419 0.088311572 0.226247266</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.242343959 0.063144429 0.196654588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.282959370 0.070702863 0.227608861</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -1.6493500  1.0888390 -1.5299451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -3.5830745  1.5252536 -3.0577087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.3400607  0.4966262 -0.2619054</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  1.4736046 -1.0103753  1.4270016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.1492345  0.1357353 -0.1459245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.3517685 -0.2812783  0.3567766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     -1.6136470  1.0027299 -1.5118829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   -3.5534014  1.3533361 -3.2365657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) -0.3012284  0.4339303 -0.2289297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F)  1.3345289 -0.8796413  1.2662679</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) -0.1840497  0.1315488 -0.1845712</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)       0.2853271 -0.1160991  0.3186494</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Direct     Indirect Total    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.09907595 0.27622  0.1260303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.00033957 0.12720  0.0022304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.73381079 0.61945  0.7933944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.14058808 0.31232  0.1535794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.88136863 0.89203  0.8839810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.72501192 0.77850  0.7212591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx     0.10660401 0.31599  0.1305637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx   0.00038028 0.17595  0.0012098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.L (F) 0.76324036 0.66434  0.8189236</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.Q (F) 0.18203057 0.37905  0.2054172</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBD.C (F) 0.85397444 0.89534  0.8535654</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)      0.77539357 0.90757  0.7499924</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated impact components z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Direct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)   fEW1 (F)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 -1.6468901  -3.5967303    -0.3323984     1.4762686   -0.14949394  0.3538141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q2        NaN         NaN           NaN           NaN           NaN        NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.7574332  -0.9256686    -0.4268599     0.7073491   -0.09957003  0.2012658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.5239537   0.6396654     0.3623024    -0.5115371    0.06206242 -0.1368570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3903404  -0.4889234    -0.3043860     0.3931146   -0.03830825  0.0987072</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)    fEW1 (F)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 -1.6068710  -3.5684081    -0.2920634     1.3343061   -0.18490469  0.28995270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q2        NaN         NaN           NaN           NaN           NaN         NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.6654716  -0.8392850    -0.3689039     0.5729230   -0.09080301  0.05026793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.4283678   0.5529226     0.2840155    -0.3627465    0.07612433  0.01148692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3003730  -0.3915966    -0.2212287     0.2570945   -0.06566033 -0.04834433</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Indirect</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)   fEW1 (F)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q1        NaN         NaN           NaN           NaN           NaN        NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q2  1.0630591   1.4483439     0.4900057    -0.9791228    0.13318971 -0.2739262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.7574332  -0.9256686    -0.4268599     0.7073491   -0.09957003  0.2012658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.5239537   0.6396654     0.3623024    -0.5115371    0.06206242 -0.1368570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3903404  -0.4889234    -0.3043860     0.3931146   -0.03830825  0.0987072</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)    fEW1 (F)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q1        NaN         NaN           NaN           NaN           NaN         NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q2  0.9836815   1.3049540     0.4359765    -0.8644240    0.12534191 -0.11183678</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.6654716  -0.8392850    -0.3689039     0.5729230   -0.09080301  0.05026793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.4283678   0.5529226     0.2840155    -0.3627465    0.07612433  0.01148692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3003730  -0.3915966    -0.2212287     0.2570945   -0.06566033 -0.04834433</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)   fEW1 (F)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 -1.6468901  -3.5967303    -0.3323984     1.4762686   -0.14949394  0.3538141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q2  1.0630591   1.4483439     0.4900057    -0.9791228    0.13318971 -0.2739262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.7574332  -0.9256686    -0.4268599     0.7073491   -0.09957003  0.2012658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.5239537   0.6396654     0.3623024    -0.5115371    0.06206242 -0.1368570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3903404  -0.4889234    -0.3043860     0.3931146   -0.03830825  0.0987072</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F)    fEW1 (F)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 -1.6068710  -3.5684081    -0.2920634     1.3343061   -0.18490469  0.28995270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q2  0.9836815   1.3049540     0.4359765    -0.8644240    0.12534191 -0.11183678</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 -0.6654716  -0.8392850    -0.3689039     0.5729230   -0.09080301  0.05026793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4  0.4283678   0.5529226     0.2840155    -0.3627465    0.07612433  0.01148692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 -0.3003730  -0.3915966    -0.2212287     0.2570945   -0.06566033 -0.04834433</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated impact components p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Direct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F) fEW1 (F)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 0.099581  0.00032224  0.73959       0.13987       0.88116       0.72348 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 0.10808   0.00035916  0.77024       0.18210       0.85330       0.77185 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Q2 NA        NA          NA            NA            NA            NA      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.448790  0.35461824  0.66948       0.47935       0.92069       0.84049 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.600311  0.52239017  0.71713       0.60898       0.95051       0.89114 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.696285  0.62489590  0.76083       0.69423       0.96944       0.92137 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.50575   0.40130938  0.71220       0.56670       0.92765       0.95991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.66838   0.58031642  0.77640       0.71679       0.93932       0.99083 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.76389   0.69535631  0.82491       0.79711       0.94765       0.96144 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Indirect</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F) fEW1 (F)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Q1 NA        NA          NA            NA            NA            NA      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q2 0.28776   0.14752     0.62413       0.32752       0.89404       0.78414 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.44879   0.35462     0.66948       0.47935       0.92069       0.84049 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.60031   0.52239     0.71713       0.60898       0.95051       0.89114 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.69628   0.62490     0.76083       0.69423       0.96944       0.92137 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q2 0.32527   0.19191     0.66285       0.38736       0.90025       0.91095 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.50575   0.40131     0.71220       0.56670       0.92765       0.95991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.66838   0.58032     0.77640       0.71679       0.93932       0.99083 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.76389   0.69536     0.82491       0.79711       0.94765       0.96144 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    INC dy/dx HOVAL dy/dx fDISCBD.L (F) fDISCBD.Q (F) fDISCBD.C (F) fEW1 (F)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 0.099581  0.00032224  0.73959       0.13987       0.88116       0.72348 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q2 0.287755  0.14752090  0.62413       0.32752       0.89404       0.78414 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.448790  0.35461824  0.66948       0.47935       0.92069       0.84049 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.600311  0.52239017  0.71713       0.60898       0.95051       0.89114 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.696285  0.62489590  0.76083       0.69423       0.96944       0.92137 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q1 0.10808   0.00035916  0.77024       0.18210       0.85330       0.77185 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q2 0.32527   0.19190852  0.66285       0.38736       0.90025       0.91095 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q3 0.50575   0.40130938  0.71220       0.56670       0.92765       0.95991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q4 0.66838   0.58031642  0.77640       0.71679       0.93932       0.99083 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Q5 0.76389   0.69535631  0.82491       0.79711       0.94765       0.96144 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">impacts</span><span class="op">(</span><span class="va">mobj</span>, listw<span class="op">=</span><span class="va">listw</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, exact):</span>
@@ -559,12 +555,12 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-in"><span><span class="fu">impacts</span><span class="op">(</span><span class="va">mobj</span>, tr<span class="op">=</span><span class="va">trMC</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct     Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -0.05006587 -0.009206860 -0.05927273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -0.02902606  0.005300453 -0.02372561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.43273311 -1.443368230 -1.01063512</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.27171888  0.098915196  0.37063408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.57583189 -0.438263588  0.13756830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.06043051  0.183203221  0.12277271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -0.05011897 -0.009153760 -0.05927273</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -0.02899549  0.005269884 -0.02372561</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.42440866 -1.435043779 -1.01063512</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.27228937  0.098344715  0.37063408</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.57330426 -0.435735956  0.13756830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.05937391  0.182146618  0.12277271</span>
 <span class="r-in"><span><span class="fu">impacts</span><span class="op">(</span><span class="va">mobj1</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct     Indirect       Total</span>
@@ -607,31 +603,31 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.036962648 0.05084747 0.04972074</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008679655 0.01482206 0.01176581</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.551312924 0.73671856 0.45516098</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.525097382 0.67920183 0.45487957</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.661906894 1.09489180 0.76794194</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.680044348 0.75184225 0.24268354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.04007337 0.4246233 0.4395851</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.01147091 0.1760879 0.1813305</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.58904879 6.9113761 7.0433550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.59974853 3.3448213 3.3831617</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.60661743 1.2316474 1.0088726</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.67401119 0.7694596 0.3121581</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.35293720 -0.2537862 -1.2653176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.32927424  0.3936154 -1.9601510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.74577317 -1.9776269 -2.2976488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.62314115  0.0750689  0.8314216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.95358365 -0.3884948  0.2680201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.03949598  0.2108893  0.5426674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct    Indirect       Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.29161747  0.04169967 -0.07746578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -2.51461026  0.09503796 -0.06678320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.84297356 -0.14998260 -0.07667278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.41106515 -0.02024585  0.05285498</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  1.06912710 -0.31239394  0.26147200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.08051817  0.23472324  0.40473050</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.17607569 0.799661 0.205758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00087073 0.693865 0.049978</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.45580445 0.047971 0.021582</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.53319177 0.940160 0.405735</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.34029443 0.697650 0.788684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.96849496 0.832974 0.587359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct   Indirect Total  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.196490 0.96674  0.93825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.011916 0.92428  0.94675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.399243 0.88078  0.93888</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.681025 0.98385  0.95785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.285012 0.75474  0.79373</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.935825 0.81442  0.68568</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">impacts</span><span class="op">(</span><span class="va">mobj1</span>, tr<span class="op">=</span><span class="va">trMatc</span>, R<span class="op">=</span><span class="fl">200</span><span class="op">)</span>, short<span class="op">=</span><span class="cn">TRUE</span>, zstats<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct     Indirect       Total</span>
@@ -646,30 +642,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.034248289 0.05477142 0.04560629</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008468381 0.01412591 0.01200802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.353746836 0.13088559 0.26498052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.421952840 0.12808010 0.31192428</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.450381737 0.15216548 0.33350061</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.262734596 0.07858056 0.19886190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.030366547 0.05056312 0.04476444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008890799 0.01437362 0.01275784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.340527773 0.13712780 0.25110468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.410061367 0.12934391 0.30174660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.451945152 0.14404190 0.34013015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.260039301 0.07482156 0.20105110</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct    Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.53673262  0.07026954 -1.06962658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.59935327  0.44527347 -2.01455278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) -1.36488339  1.02925565 -1.31371337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.09403281 -0.10895446  0.08246396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.83192598 -0.63486152  0.83382235</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)          0.47753970 -0.40814243  0.46964319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.66905591 -0.01740920 -1.15189036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.36304376  0.51780714 -1.76028090</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) -1.28019493  0.86393144 -1.26430502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.07577798 -0.05188593  0.08073825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.83601090 -0.71734836  0.80705238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)          0.37971460 -0.38196374  0.34897394</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.12435880 0.94398  0.284787</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00031901 0.65612  0.043952</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.17228970 0.30336  0.188943</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.92508310 0.91324  0.934278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.40545073 0.52552  0.404381</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.63297786 0.68317  0.638610</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect Total  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.09510630 0.98611  0.24937</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00077088 0.60459  0.07836</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.20047659 0.38763  0.20612</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.93959573 0.95862  0.93565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.40314877 0.47316  0.41964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.70415728 0.70249  0.72711</span>
 <span class="r-in"><span><span class="va">xobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="SLX.html">lmSLX</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">columbus</span>, <span class="va">listw</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>use of spatially lagged factors (categorical variables)</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> fDISCBD, fEW</span>
@@ -812,30 +808,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.034777469 0.05306687 0.05023350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008757124 0.01395932 0.01124856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.574486602 0.77890912 0.40899170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.540845185 0.66541390 0.44286234</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.591570656 1.02156938 0.72434284</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.660106155 0.73432393 0.22946673</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.034914580 0.05078645 0.04877969</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.009168988 0.01503549 0.01169550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.561090264 0.77511618 0.41334943</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.554689479 0.67343464 0.44513630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.589205278 0.96930226 0.70220843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.648157823 0.72875362 0.23065107</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.4110878 -0.1933727 -1.1811987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.3180852  0.4090151 -2.0755824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.7300076 -1.8522019 -2.5020492</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.4935226  0.1631910  0.8479133</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.9502864 -0.4185751  0.1857657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.0740122  0.2404616  0.5565985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.4004887 -0.1571855 -1.1660665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.2020383  0.3485614 -2.0622166</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.7698209 -1.8637180 -2.4498859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.4854517  0.1178708  0.7832505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.9955892 -0.4559156  0.2060447</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.1171795  0.2584545  0.4873111</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.15821874 0.846667 0.237524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00090637 0.682529 0.037933</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.46538554 0.063997 0.012348</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.62164339 0.870368 0.396486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.34196672 0.675527 0.852628</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.94100068 0.809972 0.577802</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct    Indirect Total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.1613670 0.875099 0.243588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.0013646 0.727419 0.039187</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.4414062 0.062361 0.014290</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.6273560 0.906170 0.433480</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.3194498 0.648451 0.836756</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.9067178 0.796056 0.626038</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu">impacts</span><span class="op">(</span><span class="va">mobj</span>, tr<span class="op">=</span><span class="va">trMatc</span>, R<span class="op">=</span><span class="fl">1000</span><span class="op">)</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (mixed, trace):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct     Indirect       Total</span>
@@ -850,30 +846,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.035660554 0.18739091 0.19400671</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.009052111 0.03900344 0.03869308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.563738191 2.25669654 2.28983204</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.547196282 1.33552735 1.30244644</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.586975252 1.34334825 1.18454602</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.627732946 0.83606135 0.58100282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.034361118 0.05820791 0.05682386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.009110538 0.01758732 0.01560487</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.600232069 0.93223139 0.66010753</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.566538983 0.69081171 0.48306608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.581495739 1.02565992 0.78503361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.620713378 0.69372797 0.22641489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      Direct    Indirect       Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.3821426 -0.00573716 -0.25959445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.1952198  0.19064004 -0.55534142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.7559109 -0.58263655 -0.38810622</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.4462675  0.05550360  0.24440352</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  1.0569157 -0.37754296  0.09557391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.1132405  0.19267326  0.15490780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.47846015 -0.1659242 -1.0639835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.19397024  0.3457892 -1.4750061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.72934305 -1.5269344 -1.4932129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.51095323  0.1233050  0.7755781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  1.01000469 -0.4304817  0.1857062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.09272081  0.2678059  0.5663560</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct    Indirect Total  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.1669279 0.99542  0.79518</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.0013972 0.84881  0.57866</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.4497026 0.56014  0.69794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.6554040 0.95574  0.80692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.2905501 0.70577  0.92386</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.9098399 0.84721  0.87689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.1392847 0.86822  0.28734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.0014033 0.72950  0.14021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.4657918 0.12678  0.13538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.6093838 0.90187  0.43800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.3124930 0.66685  0.85268</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.9261254 0.78885  0.57115</span>
 <span class="r-in"><span><span class="va">mobj2</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">lagsarlm</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">columbus</span>, <span class="va">listw</span>, type<span class="op">=</span><span class="st">"mixed"</span>, </span></span>
 <span class="r-in"><span>method<span class="op">=</span><span class="st">"Matrix"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fdHess<span class="op">=</span><span class="cn">TRUE</span>, optimHess<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>use of spatially lagged factors (categorical variables)</span>
@@ -893,30 +889,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.035555131 0.05073204 0.04855824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.009468544 0.01533706 0.01182661</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.564446479 0.77204966 0.41679801</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.556314915 0.66843055 0.44155612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.584109404 0.99122774 0.71106337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.638102169 0.70572005 0.22862357</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.034560681 0.05202389 0.04934873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008849542 0.01436242 0.01182192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.583984901 0.79453308 0.40775202</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.534746156 0.68537387 0.45273784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.585406472 1.01779477 0.74927843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.644626049 0.70756107 0.21952770</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.4188927 -0.2356718 -1.2851583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.1019019  0.3955657 -1.9704446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.8204812 -1.9113140 -2.4292620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.5244398  0.1674555  0.9142350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  1.0164971 -0.4802347  0.1655598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.1148537  0.2858752  0.5618821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.42127203 -0.1953328 -1.2012893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.26432418  0.3833840 -1.9778059</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.76537261 -1.8647255 -2.5373755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.46477572  0.1976818  0.8482237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.95459098 -0.4237352  0.1702281</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.06488861  0.2291142  0.5479190</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct    Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.1559303 0.813687 0.198737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.0019228 0.692425 0.048787</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.4119418 0.055964 0.015130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.5999727 0.867012 0.360593</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.3093927 0.631060 0.868503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.9085611 0.774974 0.574196</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.1552377 0.84513  0.229639</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.0010973 0.70144  0.047951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.4440497 0.06222  0.011169</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.6420921 0.84329  0.396313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.3397846 0.67176  0.864831</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.9482627 0.81878  0.583748</span>
 <span class="r-in"><span><span class="va">mobj3</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">lagsarlm</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">columbus</span>, <span class="va">listw</span>, type<span class="op">=</span><span class="st">"mixed"</span>, </span></span>
 <span class="r-in"><span>method<span class="op">=</span><span class="st">"spam"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fdHess<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>use of spatially lagged factors (categorical variables)</span>
@@ -936,30 +932,30 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.032618931 0.05105639 0.04875442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008654348 0.01470922 0.01194568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.557217837 0.75196428 0.40304357</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.550444960 0.68691292 0.44978564</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.593198232 1.02976687 0.75458758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.629329528 0.70272234 0.22678867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.033745257 0.05307187 0.04915650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.008896117 0.01395402 0.01099169</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.561279468 0.78344519 0.41791425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.544197996 0.66423748 0.43240507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.593325811 0.97933534 0.71602876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.644079849 0.71604484 0.21992686</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct   Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.49049029 -0.1839322 -1.1898226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.37140216  0.4229281 -1.9217270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.75319414 -1.9117134 -2.5254018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.44211057  0.1718926  0.8035667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  1.01133586 -0.4743450  0.1477070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.09473353  0.2588692  0.5392446</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        -1.41272587 -0.1906571 -1.1756598</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      -3.35155566  0.4551439 -2.1347701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F)  0.77887522 -1.8508292 -2.4235991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F)  0.52183626  0.1101818  0.8260059</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F)  0.97978462 -0.4581765  0.1852203</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         -0.07870018  0.2331363  0.5285704</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect Total   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.13609537 0.854067 0.234116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00074787 0.672348 0.054640</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.45133326 0.055913 0.011557</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.65840919 0.863522 0.421647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.31185571 0.635254 0.882574</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.92452649 0.795736 0.589718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx        0.15773634 0.848794 0.239731</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx      0.00080359 0.649006 0.032780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm2-m1 (F) 0.43605322 0.064194 0.015368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm3-m2 (F) 0.60178434 0.912265 0.408801</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fDISCBDm4-m3 (F) 0.32719245 0.646826 0.853056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fEW1 (F)         0.93727110 0.815656 0.597104</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">boston</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span></span></span>
@@ -986,11 +982,11 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type: mixed </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   Estimate  Std. Error  z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.89816225  0.24400199   7.7793 7.327e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.89816225  0.24400294   7.7793 7.327e-15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CRIM           -0.00571021  0.00093857  -6.0839 1.173e-09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ZN              0.00069091  0.00051874   1.3319 0.1828931</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INDUS          -0.00111343  0.00307380  -0.3622 0.7171778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1          -0.04163225  0.02738839  -1.5201 0.1284937</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1          -0.04163225  0.02738840  -1.5201 0.1284937</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2)       -0.01034950  0.19358633  -0.0535 0.9573639</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2)         0.00794979  0.00102109   7.7856 6.883e-15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AGE            -0.00128789  0.00048929  -2.6322 0.0084838</span>
@@ -999,24 +995,24 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> TAX            -0.00049084  0.00012146  -4.0412 5.317e-05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO        -0.01319853  0.00595331  -2.2170 0.0266227</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> B               0.00056383  0.00011084   5.0867 3.643e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT)     -0.24724454  0.02265149 -10.9152 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT)     -0.24724454  0.02265150 -10.9152 &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.CRIM       -0.00464215  0.00173900  -2.6694 0.0075978</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.ZN         -0.00037937  0.00070703  -0.5366 0.5915659</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.INDUS       0.00025064  0.00385911   0.0649 0.9482165</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.CHAS1       0.12518252  0.04083949   3.0652 0.0021750</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.I(NOX^2)   -0.38640403  0.22253428  -1.7364 0.0824967</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.I(NOX^2)   -0.38640403  0.22253432  -1.7364 0.0824968</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.I(RM^2)    -0.00451252  0.00148919  -3.0302 0.0024440</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.AGE         0.00149678  0.00068470   2.1860 0.0288128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(DIS)   -0.00453785  0.10056961  -0.0451 0.9640104</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(RAD)   -0.00940702  0.03127787  -0.3008 0.7636002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(DIS)   -0.00453785  0.10056962  -0.0451 0.9640104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(RAD)   -0.00940702  0.03127788  -0.3008 0.7636002</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.TAX         0.00041083  0.00017859   2.3004 0.0214237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.PTRATIO     0.00060355  0.00789994   0.0764 0.9391011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.PTRATIO     0.00060355  0.00789995   0.0764 0.9391011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lag.B          -0.00050781  0.00014107  -3.5996 0.0003187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(LSTAT)  0.09846780  0.03574183   2.7550 0.0058697</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lag.log(LSTAT)  0.09846780  0.03574187   2.7550 0.0058697</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rho: 0.59578, LR test value: 181.68, p-value: &lt; 2.22e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.037474</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 15.899, p-value: &lt; 2.22e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 15.898, p-value: &lt; 2.22e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 252.76, p-value: &lt; 2.22e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: 300.6131 for mixed model</span>
@@ -1048,51 +1044,51 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        Direct     Indirect        Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx       0.0009960006 0.0036424839 0.0041047328</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx         0.0004924859 0.0012155865 0.0012712450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx      0.0029397626 0.0058970655 0.0052944318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)        0.0270654569 0.0793586015 0.0865170638</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx   0.1797650855 0.2891620662 0.2380146033</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx    0.0011033785 0.0031208010 0.0036485340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx        0.0004754896 0.0012414139 0.0013469887</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx   0.0874827483 0.1090459544 0.0741915185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx   0.0205272789 0.0509964901 0.0499343944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx        0.0001119854 0.0003214412 0.0003250673</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx    0.0055558689 0.0122916354 0.0120607649</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx          0.0001051127 0.0002329224 0.0002402479</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx 0.0219644525 0.0585181294 0.0642535271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx       0.0010187475 0.0034731614 0.0039572691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx         0.0004953559 0.0012372378 0.0012649951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx      0.0028029574 0.0057197966 0.0051920475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)        0.0277058122 0.0826448563 0.0915400508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx   0.1710489720 0.2781318249 0.2416975710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx    0.0010767044 0.0030410036 0.0034987019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx        0.0004786794 0.0012375171 0.0013167320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx   0.0852410189 0.1084881326 0.0760790272</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx   0.0204736160 0.0506486494 0.0490276895</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx        0.0001195085 0.0003163806 0.0003249098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx    0.0058207887 0.0123533893 0.0119644745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx          0.0001065122 0.0002368501 0.0002380004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx 0.0218703588 0.0580567220 0.0619685540</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Direct    Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx        -7.4994841 -4.98634164 -6.2445379</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx           1.3849089  0.04677364  0.5812456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx       -0.4125128 -0.17162017 -0.4202047</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)         -0.7071731  2.84563534  2.3889585</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx    -0.5333156 -3.10740906 -4.1779636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx      7.1941457  0.13786078  2.2935518</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx         -2.3725648  1.37545631  0.4301303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx    -1.6251567 -1.60672404 -4.2778465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx     3.0681266  1.18607155  2.4725598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx         -4.1348241  0.80977399 -0.6237021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx     -2.6987618 -1.34211706 -2.6110102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx            4.9701783 -1.68363867  0.5422391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx -11.7603876 -1.90095740 -5.7514500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx        -7.3203741 -5.22085306 -6.4667016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx           1.4291232  0.05285644  0.6113229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx       -0.4039075 -0.14710985 -0.3801148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)         -0.7277550  2.75235020  2.2646322</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx    -0.5618575 -3.17743923 -4.0540421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx      7.4516491  0.17482235  2.4451523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx         -2.3631765  1.33754263  0.3979763</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx    -1.6500370 -1.64668260 -4.1969038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx     3.0978694  1.16856102  2.5008445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx         -3.8848395  0.78890626 -0.6607271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx     -2.4869923 -1.33375639 -2.5870479</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx            4.9617418 -1.59801003  0.6302394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx -11.8101114 -1.87918924 -5.9286673</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect   Total     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx       6.4171e-14 6.1533e-07 4.2505e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx         0.1660803  0.9626936  0.5610750 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx      0.6799636  0.8637361  0.6743359 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)        0.4794589  0.0044323  0.0168962 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx   0.5938151  0.0018874  2.9413e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx    6.2861e-13 0.8903504  0.0218163 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx        0.0176651  0.1689900  0.6671008 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx   0.1041292  0.1081149  1.8871e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx   0.0021541  0.2355940  0.0134149 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx        3.5523e-05 0.4180701  0.5328233 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx    0.0069598  0.1795580  0.0090275 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx          6.6891e-07 0.0922515  0.5876538 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx &lt; 2.22e-16 0.0573076  8.8481e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct     Indirect  Total     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CRIM dy/dx       2.4736e-13 1.781e-07 1.0017e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ZN dy/dx         0.1529688  0.9578463 0.5409858 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INDUS dy/dx      0.6862807  0.8830453 0.7038602 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CHAS1 (F)        0.4667636  0.0059169 0.0235353 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(NOX^2) dy/dx   0.5742131  0.0014858 5.0340e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I(RM^2) dy/dx    9.2149e-14 0.8612192 0.0144791 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AGE dy/dx        0.0181190  0.1810456 0.6906476 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(DIS) dy/dx   0.0989354  0.0996233 2.7059e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(RAD) dy/dx   0.0019492  0.2425805 0.0123898 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAX dy/dx        0.0001024  0.4301668 0.5087873 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PTRATIO dy/dx    0.0128828  0.1822837 0.0096802 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B dy/dx          6.9864e-07 0.1100407 0.5285379 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT) dy/dx &lt; 2.22e-16 0.0602187 3.0540e-09</span>
 <span class="r-in"><span><span class="co">#data(house, package="spData")</span></span></span>
 <span class="r-in"><span><span class="co">#lw &lt;- spdep::nb2listw(LO_nb)</span></span></span>
 <span class="r-in"><span><span class="co">#form &lt;- formula(log(price) ~ age + I(age^2) + I(age^3) + log(lotsize) +</span></span></span>
@@ -1122,7 +1118,7 @@ or by <code>lmSLX</code>; in <code>HPDinterval.LagImpact</code>, a LagImpact obj
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

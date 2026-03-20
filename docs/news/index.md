@@ -1,0 +1,236 @@
+# Changelog
+
+## Version 1.4-2 (development)
+
+CRAN release: 2025-09-06
+
+- remove tests in `test_Durbin_factor.R` for `sacsarlm` and `spBreg_*`
+  failing under MKL 2023-2
+
+- replace `MASS:mvrnorm` with
+  [`mvtnorm::rmvnorm`](https://rdrr.io/pkg/mvtnorm/man/Mvnorm.html) in
+  `impacts` methods or elsewhere to ensure better stability with given
+  seeds
+
+## Version 1.4-1 (2025-09-04)
+
+CRAN release: 2025-09-04
+
+- import `spdep` \>= 1.4.1
+
+- annotate `impacts` output with `"dy/dx"` or `"(F)"` to distinguish
+  continuous and categorical independent variables
+
+- suggest `codingMatrices` to expand examples with factors (categorical
+  variables)
+
+- introduce warnings for factors (categorical variables) in Durbin
+  models (`errorsarlm`, `lagsarlm`, `sacsarlm`, `spBreg_lag`,
+  `spBreg_err`, `spBreg_sac` and `lm.SLX`)
+
+- convert `error` to `Rf_error` in `src/ml_sse.c` to accommodate
+  R_NO_REMAP
+
+## Version 1.3-6 (2024-12-02)
+
+CRAN release: 2024-12-02
+
+- Remove remaining `spData` ESRI shapefile use
+
+- [\#56](https://github.com/r-spatial/spatialreg/issues/56) add
+  Anselin-Kelejian (1997) test to `stsls`, reported in its summary
+  method, analogous to the reporting in the summary method of `lagsarlm`
+  of the Lagrange multiplier test, both for residual spatial
+  autocorrelation
+
+- adding missing man page anchors
+
+## Version 1.3-5 (2024-08-19)
+
+CRAN release: 2024-08-19
+
+- conforming with STRICT_R_HEADERS=1
+
+- Condition on forthcoming `tmap` 4
+
+- [\#52](https://github.com/r-spatial/spatialreg/issues/52) subgraph
+  updates
+
+## Version 1.3-4 (2024-06-10)
+
+CRAN release: 2024-06-10
+
+- migrate from ESRI Shapefile to GeoPackage
+  [\#50](https://github.com/r-spatial/spatialreg/issues/50)
+
+## Version 1.3-3 (2024-05-31)
+
+CRAN release: 2024-05-31
+
+- protect `errorsarlm` against missing `Durbin=` if only intercept
+
+- fix longstanding bugs in `getVmate` in a non-default side logic branch
+
+- add `return_impacts=` to `lmSLX` to work around issues with aliased
+  variables; impacts should be improved to handle this case when time
+  permits
+
+- add `sqrt=TRUE` in calls to Matrix `determinant` methods in
+  `matrix_ldet`
+
+- add `igraph (>= 2.0.0)` in DESCRIPTION for re-named `igraph` functions
+
+## Version 1.3-2 (2024-02-06)
+
+CRAN release: 2024-02-06
+
+- pass through SlX formula in call
+
+- re-corrected [\#19](https://github.com/r-spatial/spatialreg/issues/19)
+  because the fitted model weights component may be NULL
+
+- suppress warning from
+  [`multcomp::glht`](https://rdrr.io/pkg/multcomp/man/glht.html) as the
+  test which throws the warning is discarded
+
+## Version 1.3-1 (2023-11-23)
+
+CRAN release: 2023-11-23
+
+- move `expm` from Imports to Suggests
+  [\#42](https://github.com/r-spatial/spatialreg/issues/42)
+
+- added `zero.policy` pass-through to
+  [`spdep::mat2listw`](https://r-spatial.github.io/spdep/reference/mat2listw.html)
+  calls in `predict.Sarlm` and to
+  [`spdep::sn2listw`](https://r-spatial.github.io/spdep/reference/listw2sn.html)
+  in `sids_models.Rmd`; set `spdep` requirement to `1.3-1`
+
+- corrected [\#19](https://github.com/r-spatial/spatialreg/issues/19)
+  because the fitted model weights component is never NULL, but may have
+  a single unique value
+
+## Version 1.2-9 (2023-05-25)
+
+CRAN release: 2023-05-25
+
+- raised [\#39](https://github.com/r-spatial/spatialreg/issues/39), no
+  support for weights in SEM/SDEM/SLX
+  [\#39](https://github.com/r-spatial/spatialreg/issues/39)
+
+- address [\#37](https://github.com/r-spatial/spatialreg/issues/37);
+  [\#38](https://github.com/r-spatial/spatialreg/issues/38) remains (no
+  formula Durbin support for prediction using any Sarlm object)
+
+- address [\#19](https://github.com/r-spatial/spatialreg/issues/19) by
+  not reporting `AIC` where case weights are used in `spautolm` or
+  `errorsarlm`
+
+- address bug in [`predict()`](https://rdrr.io/r/stats/predict.html) for
+  new data, SDEM. Others in
+  [\#37](https://github.com/r-spatial/spatialreg/issues/37),
+  [\#38](https://github.com/r-spatial/spatialreg/issues/38) need work.
+
+- Further added checking for SLX/SDEM impacts and edge/corner cases;
+  starting transition to use **multcomp** in place og **gmodels**
+
+## Version 1.2-8 (2023-03-01)
+
+CRAN release: 2023-03-01
+
+- Attending to SLX/Durbin/non-W-style weights:
+  [\#7](https://github.com/r-spatial/spatialreg/issues/7),
+  [\#36](https://github.com/r-spatial/spatialreg/issues/36),
+  [\#26](https://github.com/r-spatial/spatialreg/issues/26),
+  [\#35](https://github.com/r-spatial/spatialreg/issues/35),
+  [\#30](https://github.com/r-spatial/spatialreg/issues/30)
+  [\#24](https://github.com/r-spatial/spatialreg/issues/24),
+  [\#23](https://github.com/r-spatial/spatialreg/issues/23), partly
+  based on [\#13](https://github.com/r-spatial/spatialreg/issues/13)
+
+## Version 1.2-6 (2022-10-07)
+
+CRAN release: 2022-10-07
+
+- make local copy of
+  [`gmodels::estimable()`](https://rdrr.io/pkg/gmodels/man/estimable.html)
+  for lm objects only, add authors to package contributors
+
+- -Wstrict-prototypes fixes
+
+## Version 1.2-5 (2022-08-16)
+
+CRAN release: 2022-08-16
+
+- updating coercion for **Matrix** 1.4-2
+
+- updating dontrun/donttest for package split (previously unchecked,
+  mostly in `aple`)
+
+## Version 1.2-3 (2022-04-18)
+
+CRAN release: 2022-04-18
+
+- protect definition of USE_FC_LEN_T
+
+- unescape underscores in help pages
+
+## Version 1.2-1 (2021-11-11)
+
+CRAN release: 2021-11-11
+
+- Add Fortran character handling USE_FC_LEN_T WRE §6.6.1
+
+- Add **spdep** split-out functionality
+
+## Version 1.1-8 (2021-05-03)
+
+CRAN release: 2021-05-03
+
+- [\#18](https://github.com/r-spatial/spatialreg/issues/18) standardize
+  use of [`coef()`](https://rdrr.io/r/stats/coef.html) methods for
+  (some) fitted model summary objects
+
+- <https://github.com/tidymodels/broom/issues/1003#issuecomment-798694400>
+  changing **spatialreg** model output class names: **spdep** `sarlm`
+  -\> **spatialreg** `Sarlm`, `spautolm` -\> `Spautolm`, `stsls` -\>
+  `Stsls`, `gmsar` -\> `Gmsar`, `lagmess` -\> `Lagmess`, `SLX` -\> ,
+  `SlX`, `MCMC_s*_g` -\> `MCMC_s*_G`, `SFResult` -\> `SfResult`,
+  `ME_res` -\> `Me_res`, `lagImpact` -\> `LagImpact`, `WXImpact` -\>
+  `WXimpact`
+
+- [\#16](https://github.com/r-spatial/spatialreg/issues/16) merged
+  coordination of impacts methods (Gianfranco Piras)
+
+- [\#14](https://github.com/r-spatial/spatialreg/issues/14) merged
+  correction to SDEM and SLX impacts when a lagged intercept is present
+  (Tobias Rüttenauer).
+
+## Version 1.1-5 (2019-12-01)
+
+CRAN release: 2019-12-01
+
+- [\#6](https://github.com/r-spatial/spatialreg/issues/6),
+  [\#11](https://github.com/r-spatial/spatialreg/issues/11) na.action
+  and precomputed eigenvalue bug
+
+- [\#9](https://github.com/r-spatial/spatialreg/issues/9) Griddy Gibbs
+  issue
+
+- [\#8](https://github.com/r-spatial/spatialreg/issues/8) Predict method
+  for SLX
+
+- [\#7](https://github.com/r-spatial/spatialreg/issues/7),
+  [\#13](https://github.com/r-spatial/spatialreg/issues/13)-14 Offset
+  impacts for SDEM/SLX
+
+- [\#5](https://github.com/r-spatial/spatialreg/issues/5),
+  [\#10](https://github.com/r-spatial/spatialreg/issues/10) Panel
+  Durbin= argument
+
+## Version 1.1-3 (2019-04-01)
+
+CRAN release: 2019-04-01
+
+- \#2 Split spatialreg from spdep; spdep functions still present there
+  as deprecated

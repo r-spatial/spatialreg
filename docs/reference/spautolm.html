@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -397,7 +397,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    0.21    0.00    0.21 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.639   0.001   0.648 </span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -417,7 +417,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017197 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.017194 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -276.1069 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)</span>
@@ -427,22 +427,22 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate Std. Error   z value     Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.61819272 0.17678351 -3.496891 4.707136e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.61819273 0.17678351 -3.496891 4.707135e-04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PEXPOSURE    0.07101384 0.04205063  1.688770 9.126350e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.75419996 0.62472153  6.009397 1.862142e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.41988960 0.19132936 -2.194591 2.819298e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PCTAGE65P    3.75419994 0.62472154  6.009397 1.862142e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.41988959 0.19132936 -2.194590 2.819299e-02</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">resvar</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472153  0.19132936 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472154  0.19132936 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">imat</span><span class="op">)</span><span class="op">*</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472153  0.19132936 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.17678351  0.04205063  0.62472154  0.19132936 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">$</span><span class="va">fdHess</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.01719720 0.18518821 0.04385029 0.62998618 0.20355594</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.01719408 0.18508571 0.04384078 0.62993111 0.20346094</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.233   0.000   0.234 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.732   0.001   0.742 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -473,7 +473,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.226   0.000   0.227 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.686   0.000   0.694 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -522,7 +522,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.016356 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.016576 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -251.6017 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)</span>
@@ -533,7 +533,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.241   0.000   0.243 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.726   0.000   0.734 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -638,7 +638,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.382789   0.195564 -1.9574 0.0503053</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.084123 LR test value: 5.8009 p-value: 0.016018 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.030853 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.03086 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -275.8283 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.40758, (sigma: 0.63842)</span>
@@ -650,7 +650,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.264   0.000   0.265 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.864   0.000   0.874 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -700,7 +700,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> PCTOWNHOME  -0.386820   0.157436 -2.4570  0.014010</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.022419 LR test value: 0.38785 p-value: 0.53343 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.038916 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.038391 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -251.5711 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1102.9, (sigma: 33.21)</span>
@@ -712,7 +712,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.260   0.000   0.261 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.834   0.000   0.844 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -922,7 +922,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> log(LSTAT)  -0.32961379  0.02353891 -14.0029 &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.61991 LR test value: 144.28 p-value: &lt; 2.22e-16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.04431 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.044374 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: 229.1208 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.02596, (sigma: 0.16112)</span>
@@ -942,7 +942,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

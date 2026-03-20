@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,10 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.4-2" id="version-14-2-development">Version 1.4-2 (development)<a class="anchor" aria-label="anchor" href="#version-14-2-development"></a></h2>
-</div>
+<h2 class="pkg-version" data-toc-text="1.4-2" id="version-14-2-development">Version 1.4-2 (development)<a class="anchor" aria-label="anchor" href="#version-14-2-development"></a></h2><p class="text-muted">CRAN release: 2025-09-06</p>
+<ul><li><p>remove tests in <code>test_Durbin_factor.R</code> for <code>sacsarlm</code> and <code>spBreg_*</code> failing under MKL 2023-2</p></li>
+<li><p>replace <code>MASS:mvrnorm</code> with <code><a href="https://rdrr.io/pkg/mvtnorm/man/Mvnorm.html" class="external-link">mvtnorm::rmvnorm</a></code> in <code>impacts</code> methods or elsewhere to ensure better stability with given seeds</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4-1" id="version-14-1-2025-09-04">Version 1.4-1 (2025-09-04)<a class="anchor" aria-label="anchor" href="#version-14-1-2025-09-04"></a></h2><p class="text-muted">CRAN release: 2025-09-04</p>
 <ul><li><p>import <code>spdep</code> &gt;= 1.4.1</p></li>
@@ -145,7 +147,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
