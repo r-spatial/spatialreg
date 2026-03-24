@@ -9,4 +9,7 @@ error.eig <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, fdHess=TRUE))
 error.eig.alt <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=TRUE, fdHess=TRUE))
 expect_true(isTRUE(all.equal(error.eig$lambda, error.eig.alt$lambda, scale=1, tolerance=3e-8)))
 expect_true(isTRUE(all.equal(error.eig$fdHess, error.eig.alt$fdHess, scale=1, tolerance=1e-5)))
+# lag.eig <- lagsarlm(f, boston.tr, lw, control=list(pre_eig=e, fdHess=TRUE))
+# lag.eig.alt <- lagsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=TRUE, fdHess=TRUE))
+# expect_true(isTRUE(all.equal(lag.eig$fdHess, lag.eig.alt$fdHess, scale=1, tolerance=1e-6)))
 
