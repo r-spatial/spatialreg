@@ -150,17 +150,17 @@ lw <- spdep::nb2listw(hopkins.rook.nb, style="B")
 set.seed(123)
 system.time(MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
  listw=lw, alpha=0.05, verbose=TRUE, nsim=49))
-#> eV[,1], I: 0.09317701 ZI: NA, pr(ZI): 0.04
-#> eV[,2], I: 0.06621331 ZI: NA, pr(ZI): 0.12
+#> eV[,1], I: 0.08273151 ZI: NA, pr(ZI): 0.04
+#> eV[,9], I: 0.06266473 ZI: NA, pr(ZI): 0.14
 #>    user  system elapsed 
-#>   5.357   0.006   3.767 
+#>   1.374   0.000   1.381 
 glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
 #anova(glmME, test="Chisq")
 coef(summary(glmME))
 #>                       Estimate Std. Error   z value     Pr(>|z|)
-#> (Intercept)          -1.152465  0.1549646 -7.436954 1.030335e-13
-#> fitted(MEbinom1)vec1 -7.424943  2.4429946 -3.039279 2.371449e-03
-#> fitted(MEbinom1)vec2  6.985828  2.4395762  2.863541 4.189339e-03
+#> (Intercept)          -1.149323  0.1546365 -7.432422 1.066270e-13
+#> fitted(MEbinom1)vec1  8.328982  2.4564041  3.390721 6.970892e-04
+#> fitted(MEbinom1)vec9  5.493335  2.4015917  2.287372 2.217409e-02
 anova(glmbase, glmME, test="Chisq")
 #> Analysis of Deviance Table
 #> 
@@ -168,7 +168,7 @@ anova(glmbase, glmME, test="Chisq")
 #> Model 2: c(hopkins_part) ~ 1 + fitted(MEbinom1)
 #>   Resid. Df Resid. Dev Df Deviance  Pr(>Chi)    
 #> 1       255     292.23                          
-#> 2       253     274.16  2   18.067 0.0001193 ***
+#> 2       253     274.81  2   17.413 0.0001655 ***
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 # \dontrun{
@@ -205,7 +205,7 @@ system.time(lagcol1 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
 #> eV[,6], I: 0.1178225 ZI: NA, pr(ZI): 0.08
 #> eV[,4], I: 0.06242664 ZI: NA, pr(ZI): 0.27
 #>    user  system elapsed 
-#>   1.205   0.000   1.217 
+#>   0.569   0.000   0.572 
 lagcol1
 #>   Eigenvector ZI pr(ZI)
 #> 0          NA NA   0.01

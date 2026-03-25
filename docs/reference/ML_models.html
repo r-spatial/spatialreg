@@ -31,7 +31,7 @@ where \(\rho\) and \(\lambda\) are found by nlminb or optim() first, and \(\beta
 
     <a class="navbar-brand me-2" href="../index.html">spatialreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4-4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -244,7 +244,7 @@ references.</p>
 <dd><p>(error model) default 250, if returnHcov=TRUE and the method is not “eigen”, pass this order to <code>powerWeights</code> as the power series maximum limit</p></dd>
 
   <dt>fdHess:</dt>
-<dd><p>default NULL, then set to (method != "eigen") internally; use <code>fdHess</code> to compute an approximate Hessian using finite differences when using sparse matrix methods; used to make a coefficient covariance matrix when the number of observations is large; may be turned off to save resources if need be</p></dd>
+<dd><p>default NULL, then set to (method != "eigen") internally; use <code>fdHess</code> to compute an approximate Hessian using finite differences when using sparse matrix methods; used to make a coefficient covariance matrix when the number of observations is large; may be turned off to save resources if need be. If TRUE, use of compiled sum of squared error (SSE) calculation is controlled by <code>compiled_sse</code> below</p></dd>
 
   <dt>optimHess:</dt>
 <dd><p>default FALSE, use <code>fdHess</code> from <span class="pkg">nlme</span>, if TRUE, use <code>optim</code> to calculate Hessian at optimum</p></dd>
@@ -253,7 +253,7 @@ references.</p>
 <dd><p>default “optimHess”, may be “nlm” or one of the <code>optim</code> methods</p></dd>
 
   <dt>compiled_sse:</dt>
-<dd><p>default FALSE; logical value used in the log likelihood function to choose compiled code for computing SSE</p></dd>
+<dd><p>default FALSE for <code>lagsarlm</code> but TRUE for <code>errorsarlm</code> as sum of squared error (SSE) calculation is more demanding; logical value used in the log likelihood function to choose compiled code for computing SSE</p></dd>
 
   <dt>Imult:</dt>
 <dd><p>default 2; used for preparing the Cholesky decompositions for updating in the Jacobian function</p></dd>
@@ -593,7 +593,7 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing eigenvalues ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.221   0.000   0.223 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.163   0.000   0.163 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.lag.M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, </span>
@@ -651,7 +651,7 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing eigenvalues ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.756   0.004   0.780 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.442   0.002   0.447 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.lag.sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, </span>
@@ -1213,7 +1213,7 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 55.383119   5.449775 10.1625 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 55.383118   5.449775 10.1625 &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.936595   0.319355 -2.9328 0.0033596</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.299857   0.088678 -3.3814 0.0007212</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1247,7 +1247,7 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.15 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617902  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.151 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">COL.errW.M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1261,7 +1261,7 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.893219   5.366162 11.1613 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 59.893219   5.366163 11.1613 &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INC         -0.941312   0.330569 -2.8476 0.0044057</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL       -0.302250   0.090476 -3.3407 0.0008358</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1379,8 +1379,8 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard errors:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  Direct  Indirect      Total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD dy/dx 2.00928137        NA 2.00928137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx    0.31517363 0.6038588 0.67559400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DISCBD dy/dx 2.00928140        NA 2.00928140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx    0.31517363 0.6038588 0.67559401</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx  0.09012493        NA 0.09012493</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Z-values:</span>
@@ -1413,107 +1413,107 @@ Bernat for contributions to the asymptotic standard error code.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      lambda (Intercept)         INC       HOVAL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.5748430  58.2460522  -0.8473027  -0.3024909 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.5748430  58.2460531  -0.8473028  -0.3024909 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -161.8763 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">resid</a></span><span class="op">(</span><span class="va">COL.err.NA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1001        1002        1003        1004        1005        1006 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -4.1827083 -11.4413380   0.3187493 -34.4716309   2.4224477  -4.3209507 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1007        1008        1009        1010        1011        1012 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   8.6674417 -13.3866995  -1.9227660  17.8575397  -1.1148457  -2.3043478 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1013        1014        1015        1016        1017        1018 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -8.1693509  -5.8050023   0.1497374   5.9319143  -7.0302832   2.3911282 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1019        1020        1021        1022        1023        1024 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -8.9509992          NA          NA          NA          NA          NA </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1025        1026        1027        1028        1029        1030 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          NA  -2.5294070  -9.6002535  -6.9563557  -0.4363056   5.9849363 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1031        1032        1033        1034        1035        1036 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6.2588266   7.7552701  10.8341321  23.2392722  -0.0559500   1.4380856 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1037        1038        1039        1040        1041        1042 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   9.5199526  12.1829537   8.3103173  17.0683450   7.0441836   7.5008889 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1043        1044        1045        1046        1047        1048 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -7.7848598  -6.7920741  -7.9497749 -11.2536209  -5.6899461   5.0483743 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1049 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.2249739 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1001         1002         1003         1004         1005         1006 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -4.18270827 -11.44133870   0.31874930 -34.47163064   2.42244749  -4.32095076 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1007         1008         1009         1010         1011         1012 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   8.66744161 -13.38669921  -1.92276572  17.85753938  -1.11484616  -2.30434797 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1013         1014         1015         1016         1017         1018 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -8.16935131  -5.80500232   0.14973709   5.93191455  -7.03028239   2.39112835 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1019         1020         1021         1022         1023         1024 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -8.95099917           NA           NA           NA           NA           NA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1025         1026         1027         1028         1029         1030 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           NA  -2.52940722  -9.60025406  -6.95635595  -0.43630590   5.98493691 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1031         1032         1033         1034         1035         1036 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   6.25882676   7.75527047  10.83413252  23.23927270  -0.05594927   1.43808585 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1037         1038         1039         1040         1041         1042 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   9.51995272  12.18295375   8.31031720  17.06834507   7.04418414   7.50088949 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1043         1044         1045         1046         1047         1048 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -7.78485971  -6.79207472  -7.94977561 -11.25362133  -5.68994646   5.04837373 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         1049 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2.22497374 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="eigenw.html">eigenw</a></span><span class="op">(</span><span class="fu"><a href="similar.listw.html">similar.listw</a></span><span class="op">(</span><span class="va">listw</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.005   0.000   0.004 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.001   0.000   0.001 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"eigen"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">ev</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.442   0.000   0.447 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.180   0.000   0.181 </span>
 <span class="r-in"><span><span class="va">ocoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"eigen"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">ev</span>, LAPACK<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.446   0.000   0.452 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.168   0.000   0.169 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"eigen"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">ev</span>, compiled_sse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.438   0.000   0.444 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.171   0.000   0.172 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix_J"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>the default value of argument 'sqrt' of method 'determinant(&lt;CHMfactor&gt;, &lt;logical&gt;)' may change from TRUE to FALSE as soon as the next release of Matrix; set 'sqrt' when programming</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.563   0.001   0.605 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.202   0.000   0.203 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix_J"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.517   0.000   0.523 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.185   0.000   0.187 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix_J"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.529   0.000   0.535 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.176   0.000   0.177 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.253   0.000   0.254 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.165   0.000   0.167 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.236   0.000   0.237 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.163   0.000   0.164 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"Matrix"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.248   0.000   0.249 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.162   0.000   0.163 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"spam"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>spamPivot<span class="op">=</span><span class="st">"MMD"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.261   0.000   0.263 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.175   0.000   0.177 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"spam"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>spamPivot<span class="op">=</span><span class="st">"RCM"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.359   0.000   0.363 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.173   0.000   0.174 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"spam_update"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>spamPivot<span class="op">=</span><span class="st">"MMD"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.490   0.000   0.497 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.167   0.000   0.167 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">COL.errW.eig</span> <span class="op">&lt;-</span> <span class="fu">errorsarlm</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> <span class="va">listw</span>, method<span class="op">=</span><span class="st">"spam_update"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>spamPivot<span class="op">=</span><span class="st">"RCM"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.263   0.000   0.265 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.167   0.000   0.168 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">ocoef</span>, <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coefficients</a></span><span class="op">(</span><span class="va">COL.errW.eig</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>

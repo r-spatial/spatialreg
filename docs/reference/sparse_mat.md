@@ -125,11 +125,11 @@ x <- apply(x, 2, scale)
 W <- as(lw, "CsparseMatrix")
 system.time(e <- invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) %*% x)
 #>    user  system elapsed 
-#>   0.018   0.000   0.013 
+#>   0.002   0.000   0.002 
 system.time(ee <- powerWeights(W, rho=0.98, X=x))
 #> Warning: not converged within order iterations
 #>    user  system elapsed 
-#>   0.739   0.035   0.800 
+#>   0.197   0.011   0.209 
 str(attr(ee, "internal"))
 #> List of 5
 #>  $ series: num [1:250] 0.287 0.234 0.201 0.178 0.16 ...
@@ -142,10 +142,10 @@ all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 # \dontrun{
 system.time(ee <- powerWeights(W, rho=0.9, X=x))
 #>    user  system elapsed 
-#>   0.471   0.029   0.508 
+#>   0.145   0.014   0.164 
 system.time(ee <- powerWeights(W, rho=0.98, order=1000, X=x))
 #>    user  system elapsed 
-#>   2.453   0.026   2.510 
+#>   0.745   0.011   0.772 
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 #> [1] TRUE
 nb60rt <- spdep::cell2nb(60, 60, torus=TRUE)
@@ -154,7 +154,7 @@ set.seed(1)
 x <- matrix(rnorm(dim(W)[1]), ncol=1)
 system.time(ee <- powerWeights(W, rho=0.3, X=x))
 #>    user  system elapsed 
-#>   0.044   0.000   0.044 
+#>   0.011   0.000   0.011 
 str(as(ee, "matrix"))
 #>  num [1:3600, 1] -0.383 0.207 -0.731 1.552 0.32 ...
 #>  - attr(*, "dimnames")=List of 2
@@ -163,6 +163,6 @@ str(as(ee, "matrix"))
 obj <- errorsarlm(as(ee, "matrix")[,1] ~ 1, listw=spdep::nb2listw(nb60rt), method="Matrix")
 coefficients(obj)
 #>      lambda (Intercept) 
-#>  0.30639872  0.01380415 
+#>  0.30639876  0.01380415 
 # }
 ```

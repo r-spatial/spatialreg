@@ -234,7 +234,7 @@ spdep::lm.LMtests(obj1, lw, test="all")
 #> 
 system.time(obj2 <- lagmess(log(PRICE) ~ PATIO + log(AGE) + log(SQFT), data=baltimore, listw=lw))
 #>    user  system elapsed 
-#>   0.126   0.000   0.138 
+#>    0.03    0.00    0.03 
 (x <- summary(obj2))
 #> Matrix exponential spatial lag model:
 #> 

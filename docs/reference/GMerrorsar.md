@@ -409,7 +409,7 @@ summary(esar1f)
 #> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
 #> 
 #> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 
-#> Numerical Hessian standard error of lambda: 0.017194 
+#> Numerical Hessian standard error of lambda: 0.017197 
 #> 
 #> Log likelihood: -276.1069 
 #> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)

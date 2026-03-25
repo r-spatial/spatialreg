@@ -343,7 +343,8 @@ impact methods. A discussion can be found at
   to compute an approximate Hessian using finite differences when using
   sparse matrix methods; used to make a coefficient covariance matrix
   when the number of observations is large; may be turned off to save
-  resources if need be
+  resources if need be. If TRUE, use of compiled sum of squared error
+  (SSE) calculation is controlled by `compiled_sse` below
 
 - optimHess::
 
@@ -356,8 +357,10 @@ impact methods. A discussion can be found at
 
 - compiled_sse::
 
-  default FALSE; logical value used in the log likelihood function to
-  choose compiled code for computing SSE
+  default FALSE for `lagsarlm` but TRUE for `errorsarlm` as sum of
+  squared error (SSE) calculation is more demanding; logical value used
+  in the log likelihood function to choose compiled code for computing
+  SSE
 
 - Imult::
 
@@ -755,7 +758,7 @@ system.time(COL.lag.M <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 #> Computing eigenvalues ...
 #> 
 #>    user  system elapsed 
-#>   0.221   0.000   0.223 
+#>   0.163   0.000   0.163 
 summary(COL.lag.M)
 #> 
 #> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
@@ -813,7 +816,7 @@ system.time(COL.lag.sp <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 #> Computing eigenvalues ...
 #> 
 #>    user  system elapsed 
-#>   0.756   0.004   0.780 
+#>   0.442   0.002   0.447 
 summary(COL.lag.sp)
 #> 
 #> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
@@ -1375,7 +1378,7 @@ summary(COL.errB.eig)
 #> Type: error 
 #> Coefficients: (asymptotic standard errors) 
 #>              Estimate Std. Error z value  Pr(>|z|)
-#> (Intercept) 55.383119   5.449775 10.1625 < 2.2e-16
+#> (Intercept) 55.383118   5.449775 10.1625 < 2.2e-16
 #> INC         -0.936595   0.319355 -2.9328 0.0033596
 #> HOVAL       -0.299857   0.088678 -3.3814 0.0007212
 #> 
@@ -1409,7 +1412,7 @@ COL.errW.M <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 #> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.15 
 #> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 #> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
-#> lambda: 0.5617902  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
+#> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134783  SSE: 4683.151 
 #> lambda: 0.5617903  function: -183.3805  Jacobian: -2.134782  SSE: 4683.151 
 summary(COL.errW.M)
 #> 
@@ -1423,7 +1426,7 @@ summary(COL.errW.M)
 #> Type: error 
 #> Coefficients: (asymptotic standard errors) 
 #>              Estimate Std. Error z value  Pr(>|z|)
-#> (Intercept) 59.893219   5.366162 11.1613 < 2.2e-16
+#> (Intercept) 59.893219   5.366163 11.1613 < 2.2e-16
 #> INC         -0.941312   0.330569 -2.8476 0.0044057
 #> HOVAL       -0.302250   0.090476 -3.3407 0.0008358
 #> 
@@ -1541,8 +1544,8 @@ summary(impacts(COL.SDEM.eig))
 #> ========================================================
 #> Standard errors:
 #>                  Direct  Indirect      Total
-#> DISCBD dy/dx 2.00928137        NA 2.00928137
-#> INC dy/dx    0.31517363 0.6038588 0.67559400
+#> DISCBD dy/dx 2.00928140        NA 2.00928140
+#> INC dy/dx    0.31517363 0.6038588 0.67559401
 #> HOVAL dy/dx  0.09012493        NA 0.09012493
 #> ========================================================
 #> Z-values:
@@ -1575,107 +1578,107 @@ COL.err.NA
 #> 
 #> Coefficients:
 #>      lambda (Intercept)         INC       HOVAL 
-#>   0.5748430  58.2460522  -0.8473027  -0.3024909 
+#>   0.5748430  58.2460531  -0.8473028  -0.3024909 
 #> 
 #> Log likelihood: -161.8763 
 resid(COL.err.NA)
-#>        1001        1002        1003        1004        1005        1006 
-#>  -4.1827083 -11.4413380   0.3187493 -34.4716309   2.4224477  -4.3209507 
-#>        1007        1008        1009        1010        1011        1012 
-#>   8.6674417 -13.3866995  -1.9227660  17.8575397  -1.1148457  -2.3043478 
-#>        1013        1014        1015        1016        1017        1018 
-#>  -8.1693509  -5.8050023   0.1497374   5.9319143  -7.0302832   2.3911282 
-#>        1019        1020        1021        1022        1023        1024 
-#>  -8.9509992          NA          NA          NA          NA          NA 
-#>        1025        1026        1027        1028        1029        1030 
-#>          NA  -2.5294070  -9.6002535  -6.9563557  -0.4363056   5.9849363 
-#>        1031        1032        1033        1034        1035        1036 
-#>   6.2588266   7.7552701  10.8341321  23.2392722  -0.0559500   1.4380856 
-#>        1037        1038        1039        1040        1041        1042 
-#>   9.5199526  12.1829537   8.3103173  17.0683450   7.0441836   7.5008889 
-#>        1043        1044        1045        1046        1047        1048 
-#>  -7.7848598  -6.7920741  -7.9497749 -11.2536209  -5.6899461   5.0483743 
-#>        1049 
-#>   2.2249739 
+#>         1001         1002         1003         1004         1005         1006 
+#>  -4.18270827 -11.44133870   0.31874930 -34.47163064   2.42244749  -4.32095076 
+#>         1007         1008         1009         1010         1011         1012 
+#>   8.66744161 -13.38669921  -1.92276572  17.85753938  -1.11484616  -2.30434797 
+#>         1013         1014         1015         1016         1017         1018 
+#>  -8.16935131  -5.80500232   0.14973709   5.93191455  -7.03028239   2.39112835 
+#>         1019         1020         1021         1022         1023         1024 
+#>  -8.95099917           NA           NA           NA           NA           NA 
+#>         1025         1026         1027         1028         1029         1030 
+#>           NA  -2.52940722  -9.60025406  -6.95635595  -0.43630590   5.98493691 
+#>         1031         1032         1033         1034         1035         1036 
+#>   6.25882676   7.75527047  10.83413252  23.23927270  -0.05594927   1.43808585 
+#>         1037         1038         1039         1040         1041         1042 
+#>   9.51995272  12.18295375   8.31031720  17.06834507   7.04418414   7.50088949 
+#>         1043         1044         1045         1046         1047         1048 
+#>  -7.78485971  -6.79207472  -7.94977561 -11.25362133  -5.68994646   5.04837373 
+#>         1049 
+#>   2.22497374 
 print(system.time(ev <- eigenw(similar.listw(listw))))
 #>    user  system elapsed 
-#>   0.005   0.000   0.004 
+#>   0.001   0.000   0.001 
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev))))
 #>    user  system elapsed 
-#>   0.442   0.000   0.447 
+#>   0.180   0.000   0.181 
 ocoef <- coefficients(COL.errW.eig)
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev, LAPACK=FALSE))))
 #>    user  system elapsed 
-#>   0.446   0.000   0.452 
+#>   0.168   0.000   0.169 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev, compiled_sse=TRUE))))
 #>    user  system elapsed 
-#>   0.438   0.000   0.444 
+#>   0.171   0.000   0.172 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=TRUE))))
 #> Warning: the default value of argument 'sqrt' of method 'determinant(<CHMfactor>, <logical>)' may change from TRUE to FALSE as soon as the next release of Matrix; set 'sqrt' when programming
 #>    user  system elapsed 
-#>   0.563   0.001   0.605 
+#>   0.202   0.000   0.203 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=FALSE))))
 #>    user  system elapsed 
-#>   0.517   0.000   0.523 
+#>   0.185   0.000   0.187 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=as.logical(NA)))))
 #>    user  system elapsed 
-#>   0.529   0.000   0.535 
+#>   0.176   0.000   0.177 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=TRUE))))
 #>    user  system elapsed 
-#>   0.253   0.000   0.254 
+#>   0.165   0.000   0.167 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=FALSE))))
 #>    user  system elapsed 
-#>   0.236   0.000   0.237 
+#>   0.163   0.000   0.164 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=as.logical(NA)))))
 #>    user  system elapsed 
-#>   0.248   0.000   0.249 
+#>   0.162   0.000   0.163 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam", control=list(spamPivot="MMD"))))
 #>    user  system elapsed 
-#>   0.261   0.000   0.263 
+#>   0.175   0.000   0.177 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam", control=list(spamPivot="RCM"))))
 #>    user  system elapsed 
-#>   0.359   0.000   0.363 
+#>   0.173   0.000   0.174 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam_update", control=list(spamPivot="MMD"))))
 #>    user  system elapsed 
-#>   0.490   0.000   0.497 
+#>   0.167   0.000   0.167 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam_update", control=list(spamPivot="RCM"))))
 #>    user  system elapsed 
-#>   0.263   0.000   0.265 
+#>   0.167   0.000   0.168 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 # }

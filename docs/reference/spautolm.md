@@ -505,7 +505,7 @@ system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="eigen",
  control=list(pre_eig=eigs)))
 #>    user  system elapsed 
-#>   0.639   0.001   0.648 
+#>   0.231   0.000   0.233 
 res <- summary(esar1f)
 print(res)
 #> 
@@ -525,7 +525,7 @@ print(res)
 #> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
 #> 
 #> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 
-#> Numerical Hessian standard error of lambda: 0.017194 
+#> Numerical Hessian standard error of lambda: 0.017197 
 #> 
 #> Log likelihood: -276.1069 
 #> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)
@@ -535,22 +535,22 @@ print(res)
 #> 
 coef(res)
 #>                Estimate Std. Error   z value     Pr(>|z|)
-#> (Intercept) -0.61819273 0.17678351 -3.496891 4.707135e-04
+#> (Intercept) -0.61819272 0.17678351 -3.496891 4.707136e-04
 #> PEXPOSURE    0.07101384 0.04205063  1.688770 9.126350e-02
-#> PCTAGE65P    3.75419994 0.62472154  6.009397 1.862142e-09
-#> PCTOWNHOME  -0.41988959 0.19132936 -2.194590 2.819299e-02
+#> PCTAGE65P    3.75419996 0.62472153  6.009397 1.862142e-09
+#> PCTOWNHOME  -0.41988960 0.19132936 -2.194591 2.819298e-02
 sqrt(diag(res$resvar))
 #> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME 
-#>  0.17678351  0.04205063  0.62472154  0.19132936 
+#>  0.17678351  0.04205063  0.62472153  0.19132936 
 sqrt(diag(esar1f$fit$imat)*esar1f$fit$s2)
 #> (Intercept)   PEXPOSURE   PCTAGE65P  PCTOWNHOME 
-#>  0.17678351  0.04205063  0.62472154  0.19132936 
+#>  0.17678351  0.04205063  0.62472153  0.19132936 
 sqrt(diag(esar1f$fdHess))
-#> [1] 0.01719408 0.18508571 0.04384078 0.62993111 0.20346094
+#> [1] 0.01719720 0.18518821 0.04385029 0.62998618 0.20355594
 system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.732   0.001   0.742 
+#>   0.259   0.001   0.262 
 summary(esar1M)
 #> 
 #> Call: 
@@ -581,7 +581,7 @@ system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix",
  control=list(super=TRUE)))
 #>    user  system elapsed 
-#>   0.686   0.000   0.694 
+#>   0.236   0.000   0.237 
 summary(esar1M)
 #> 
 #> Call: 
@@ -630,7 +630,7 @@ summary(esar1wf)
 #> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975
 #> 
 #> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 
-#> Numerical Hessian standard error of lambda: 0.016576 
+#> Numerical Hessian standard error of lambda: 0.016356 
 #> 
 #> Log likelihood: -251.6017 
 #> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)
@@ -641,7 +641,7 @@ summary(esar1wf)
 system.time(esar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="SAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.726   0.000   0.734 
+#>   0.254   0.000   0.256 
 summary(esar1wM)
 #> 
 #> Call: 
@@ -746,7 +746,7 @@ summary(ecar1f)
 #> PCTOWNHOME  -0.382789   0.195564 -1.9574 0.0503053
 #> 
 #> Lambda: 0.084123 LR test value: 5.8009 p-value: 0.016018 
-#> Numerical Hessian standard error of lambda: 0.03086 
+#> Numerical Hessian standard error of lambda: 0.030853 
 #> 
 #> Log likelihood: -275.8283 
 #> ML residual variance (sigma squared): 0.40758, (sigma: 0.63842)
@@ -758,7 +758,7 @@ summary(ecar1f)
 system.time(ecar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="CAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.864   0.000   0.874 
+#>   0.284   0.000   0.287 
 summary(ecar1M)
 #> 
 #> Call: 
@@ -808,7 +808,7 @@ summary(ecar1wf)
 #> PCTOWNHOME  -0.386820   0.157436 -2.4570  0.014010
 #> 
 #> Lambda: 0.022419 LR test value: 0.38785 p-value: 0.53343 
-#> Numerical Hessian standard error of lambda: 0.038391 
+#> Numerical Hessian standard error of lambda: 0.038916 
 #> 
 #> Log likelihood: -251.5711 
 #> ML residual variance (sigma squared): 1102.9, (sigma: 33.21)
@@ -820,7 +820,7 @@ summary(ecar1wf)
 system.time(ecar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="CAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.834   0.000   0.844 
+#>   0.275   0.000   0.277 
 summary(ecar1wM)
 #> 
 #> Call: 
@@ -1030,7 +1030,7 @@ summary(gp1)
 #> log(LSTAT)  -0.32961379  0.02353891 -14.0029 < 2.2e-16
 #> 
 #> Lambda: 0.61991 LR test value: 144.28 p-value: < 2.22e-16 
-#> Numerical Hessian standard error of lambda: 0.044374 
+#> Numerical Hessian standard error of lambda: 0.04431 
 #> 
 #> Log likelihood: 229.1208 
 #> ML residual variance (sigma squared): 0.02596, (sigma: 0.16112)

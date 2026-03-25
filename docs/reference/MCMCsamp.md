@@ -115,7 +115,7 @@ summary(esar1f)
 #> PCTOWNHOME  -0.419890   0.191329 -2.1946 0.0281930
 #> 
 #> Lambda: 0.040487 LR test value: 5.2438 p-value: 0.022026 
-#> Numerical Hessian standard error of lambda: 0.017194 
+#> Numerical Hessian standard error of lambda: 0.017197 
 #> 
 #> Log likelihood: -276.1069 
 #> ML residual variance (sigma squared): 0.41388, (sigma: 0.64333)
@@ -135,20 +135,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.04312 0.01737 0.0005491       0.002192
-#> (Intercept) -0.64875 0.18226 0.0057637       0.023218
-#> PEXPOSURE    0.08481 0.04907 0.0015518       0.006311
-#> PCTAGE65P    3.78234 0.58076 0.0183653       0.066333
-#> PCTOWNHOME  -0.39620 0.22091 0.0069858       0.030267
+#> lambda       0.04312 0.01737 0.0005492       0.002192
+#> (Intercept) -0.64878 0.18237 0.0057670       0.023233
+#> PEXPOSURE    0.08482 0.04908 0.0015521       0.006313
+#> PCTAGE65P    3.78239 0.58082 0.0183670       0.066342
+#> PCTOWNHOME  -0.39617 0.22100 0.0069887       0.030280
 #> 
 #> 2. Quantiles for each variable:
 #> 
 #>                  2.5%      25%      50%     75%     97.5%
-#> lambda       0.008417  0.03208  0.04214  0.0550  0.076103
-#> (Intercept) -1.039139 -0.77553 -0.64401 -0.5121 -0.326717
-#> PEXPOSURE   -0.004897  0.05362  0.08142  0.1152  0.202214
-#> PCTAGE65P    2.627489  3.40004  3.73461  4.1834  4.961677
-#> PCTOWNHOME  -0.819693 -0.56249 -0.39268 -0.2268  0.003843
+#> lambda       0.008411  0.03208  0.04214  0.0550  0.076109
+#> (Intercept) -1.039336 -0.77567 -0.64409 -0.5121 -0.326677
+#> PEXPOSURE   -0.004902  0.05360  0.08142  0.1152  0.202238
+#> PCTAGE65P    2.627532  3.40016  3.73464  4.1835  4.961815
+#> PCTOWNHOME  -0.819645 -0.56246 -0.39268 -0.2267  0.003968
 #> 
 # \dontrun{
 esar1fw <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
@@ -171,7 +171,7 @@ summary(esar1fw)
 #> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975
 #> 
 #> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 
-#> Numerical Hessian standard error of lambda: 0.016576 
+#> Numerical Hessian standard error of lambda: 0.016356 
 #> 
 #> Log likelihood: -251.6017 
 #> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)
@@ -191,20 +191,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.01300 0.01674 0.0002368      0.0009254
-#> (Intercept) -0.80039 0.14839 0.0020986      0.0084178
-#> PEXPOSURE    0.08015 0.02889 0.0004086      0.0015790
-#> PCTAGE65P    3.78384 0.58436 0.0082641      0.0333591
-#> PCTOWNHOME  -0.37235 0.16125 0.0022804      0.0089901
+#> lambda       0.01169 0.01624 0.0002297      0.0008772
+#> (Intercept) -0.79033 0.15551 0.0021993      0.0090011
+#> PEXPOSURE    0.08039 0.03032 0.0004288      0.0017519
+#> PCTAGE65P    3.79171 0.59196 0.0083716      0.0336389
+#> PCTOWNHOME  -0.39026 0.16608 0.0023487      0.0098247
 #> 
 #> 2. Quantiles for each variable:
 #> 
-#>                 2.5%       25%      50%      75%    97.5%
-#> lambda      -0.02006  0.001984  0.01314  0.02452  0.04696
-#> (Intercept) -1.07354 -0.900021 -0.80332 -0.70216 -0.51025
-#> PEXPOSURE    0.02362  0.060131  0.07984  0.09844  0.13595
-#> PCTAGE65P    2.61573  3.396785  3.81384  4.18217  4.86523
-#> PCTOWNHOME  -0.69549 -0.479514 -0.37158 -0.26255 -0.06704
+#>                 2.5%        25%      50%      75%    97.5%
+#> lambda      -0.01965  0.0006597  0.01168  0.02307  0.04430
+#> (Intercept) -1.08314 -0.8927964 -0.79262 -0.68715 -0.47784
+#> PEXPOSURE    0.02358  0.0594403  0.08005  0.10066  0.13746
+#> PCTAGE65P    2.56380  3.3955941  3.82009  4.19123  4.89072
+#> PCTOWNHOME  -0.71093 -0.4987043 -0.38579 -0.27777 -0.04613
 #> 
 ecar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, family="CAR", method="eigen")
@@ -226,7 +226,7 @@ summary(ecar1f)
 #> PCTOWNHOME  -0.382789   0.195564 -1.9574 0.0503053
 #> 
 #> Lambda: 0.084123 LR test value: 5.8009 p-value: 0.016018 
-#> Numerical Hessian standard error of lambda: 0.03086 
+#> Numerical Hessian standard error of lambda: 0.030853 
 #> 
 #> Log likelihood: -275.8283 
 #> ML residual variance (sigma squared): 0.40758, (sigma: 0.63842)
@@ -246,20 +246,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.08485 0.03006 0.0004251       0.001840
-#> (Intercept) -0.66320 0.21524 0.0030439       0.014580
-#> PEXPOSURE    0.08242 0.04989 0.0007056       0.003037
-#> PCTAGE65P    3.65269 0.64311 0.0090950       0.039341
-#> PCTOWNHOME  -0.35760 0.22514 0.0031840       0.014849
+#> lambda       0.08672 0.02827 0.0003997       0.001558
+#> (Intercept) -0.67248 0.19726 0.0027896       0.011360
+#> PEXPOSURE    0.08184 0.04725 0.0006682       0.003118
+#> PCTAGE65P    3.73780 0.63160 0.0089322       0.036461
+#> PCTOWNHOME  -0.36832 0.21084 0.0029818       0.011673
 #> 
 #> 2. Quantiles for each variable:
 #> 
-#>                  2.5%      25%      50%     75%   97.5%
-#> lambda       0.021098  0.06566  0.08492  0.1070  0.1398
-#> (Intercept) -1.172915 -0.78604 -0.63980 -0.5233 -0.2865
-#> PEXPOSURE   -0.008489  0.04920  0.07832  0.1125  0.1965
-#> PCTAGE65P    2.400190  3.17776  3.65485  4.0906  4.9433
-#> PCTOWNHOME  -0.761080 -0.51641 -0.37279 -0.2168  0.1504
+#>                  2.5%      25%      50%     75%    97.5%
+#> lambda       0.025744  0.06814  0.08847  0.1082  0.13553
+#> (Intercept) -1.068981 -0.80324 -0.66901 -0.5288 -0.31383
+#> PEXPOSURE   -0.006343  0.04870  0.07988  0.1101  0.18106
+#> PCTAGE65P    2.510382  3.30901  3.71955  4.1849  4.93624
+#> PCTOWNHOME  -0.749971 -0.52407 -0.37754 -0.2268  0.06382
 #> 
 esar1fw <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8, family="SAR", method="eigen")
@@ -281,7 +281,7 @@ summary(esar1fw)
 #> PCTOWNHOME  -0.380778   0.156507 -2.4330  0.014975
 #> 
 #> Lambda: 0.0095636 LR test value: 0.32665 p-value: 0.56764 
-#> Numerical Hessian standard error of lambda: 0.016576 
+#> Numerical Hessian standard error of lambda: 0.016356 
 #> 
 #> Log likelihood: -251.6017 
 #> ML residual variance (sigma squared): 1104.1, (sigma: 33.229)
@@ -301,20 +301,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.01285 0.01605 0.0002269      0.0008353
-#> (Intercept) -0.78979 0.16154 0.0022845      0.0098840
-#> PEXPOSURE    0.07897 0.03125 0.0004420      0.0018876
-#> PCTAGE65P    3.80337 0.62549 0.0088458      0.0373827
-#> PCTOWNHOME  -0.39118 0.17236 0.0024375      0.0101411
+#> lambda       0.01218 0.01736 0.0002456      0.0009721
+#> (Intercept) -0.79091 0.15946 0.0022550      0.0093972
+#> PEXPOSURE    0.08060 0.03094 0.0004375      0.0018442
+#> PCTAGE65P    3.75176 0.61190 0.0086536      0.0350189
+#> PCTOWNHOME  -0.38073 0.16960 0.0023986      0.0099494
 #> 
 #> 2. Quantiles for each variable:
 #> 
-#>                 2.5%       25%      50%      75%    97.5%
-#> lambda      -0.01870  0.002134  0.01270  0.02419  0.04464
-#> (Intercept) -1.09016 -0.895820 -0.78818 -0.68302 -0.46802
-#> PEXPOSURE    0.02011  0.057760  0.07845  0.10179  0.14063
-#> PCTAGE65P    2.51194  3.411864  3.78334  4.21963  5.01253
-#> PCTOWNHOME  -0.72202 -0.511085 -0.39158 -0.27288 -0.05472
+#>                 2.5%        25%      50%      75%    97.5%
+#> lambda      -0.02066 -0.0004051  0.01247  0.02407  0.04673
+#> (Intercept) -1.09506 -0.8979827 -0.79094 -0.67699 -0.48005
+#> PEXPOSURE    0.02134  0.0596160  0.07998  0.10148  0.14157
+#> PCTAGE65P    2.49138  3.3417727  3.75371  4.17112  4.86996
+#> PCTOWNHOME  -0.70291 -0.4985537 -0.38926 -0.26526 -0.03689
 #> 
 ecar1fw <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, weights=POP8, family="CAR", method="eigen")
@@ -336,7 +336,7 @@ summary(ecar1fw)
 #> PCTOWNHOME  -0.386820   0.157436 -2.4570  0.014010
 #> 
 #> Lambda: 0.022419 LR test value: 0.38785 p-value: 0.53343 
-#> Numerical Hessian standard error of lambda: 0.038391 
+#> Numerical Hessian standard error of lambda: 0.038916 
 #> 
 #> Log likelihood: -251.5711 
 #> ML residual variance (sigma squared): 1102.9, (sigma: 33.21)
@@ -356,20 +356,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.03478 0.04079 0.0005769       0.002511
-#> (Intercept) -0.83251 0.16481 0.0023308       0.011061
-#> PEXPOSURE    0.08962 0.03570 0.0005049       0.002349
-#> PCTAGE65P    3.74934 0.58194 0.0082299       0.034899
-#> PCTOWNHOME  -0.34673 0.17171 0.0024283       0.010821
+#> lambda       0.03643 0.04000 0.0005656       0.002496
+#> (Intercept) -0.83380 0.15921 0.0022516       0.009557
+#> PEXPOSURE    0.09146 0.03564 0.0005041       0.002328
+#> PCTAGE65P    3.74541 0.59139 0.0083635       0.035567
+#> PCTOWNHOME  -0.35098 0.16985 0.0024020       0.010103
 #> 
 #> 2. Quantiles for each variable:
 #> 
 #>                 2.5%       25%      50%      75%     97.5%
-#> lambda      -0.04817  0.006844  0.03556  0.06383  0.112814
-#> (Intercept) -1.19744 -0.939036 -0.82513 -0.72555 -0.511357
-#> PEXPOSURE    0.02580  0.065603  0.08504  0.11214  0.164547
-#> PCTAGE65P    2.63663  3.329179  3.75917  4.15136  4.903759
-#> PCTOWNHOME  -0.67001 -0.454367 -0.35147 -0.22914 -0.001242
+#> lambda      -0.04248  0.009929  0.03992  0.06421  0.107947
+#> (Intercept) -1.16303 -0.931364 -0.82780 -0.72458 -0.533264
+#> PEXPOSURE    0.02607  0.066845  0.08816  0.11358  0.169012
+#> PCTAGE65P    2.62240  3.344094  3.73831  4.14135  4.932697
+#> PCTOWNHOME  -0.69416 -0.457822 -0.35334 -0.24199  0.003307
 #> 
 # }
 esar0 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
@@ -472,20 +472,20 @@ summary(res)
 #>    plus standard error of the mean:
 #> 
 #>                 Mean      SD  Naive SE Time-series SE
-#> lambda       0.01177 0.01571 0.0002221      0.0008781
-#> (Intercept) -0.79575 0.14274 0.0020186      0.0078442
-#> PEXPOSURE    0.08036 0.02929 0.0004143      0.0017545
-#> PCTAGE65P    3.81500 0.57129 0.0080793      0.0330363
-#> PCTOWNHOME  -0.38426 0.15508 0.0021932      0.0087813
+#> lambda       0.01185 0.01586 0.0002243       0.000952
+#> (Intercept) -0.79592 0.15281 0.0021611       0.009049
+#> PEXPOSURE    0.08120 0.03093 0.0004375       0.001727
+#> PCTAGE65P    3.81188 0.58735 0.0083063       0.035676
+#> PCTOWNHOME  -0.38593 0.16644 0.0023539       0.009856
 #> 
 #> 2. Quantiles for each variable:
 #> 
-#>                 2.5%      25%      50%      75%    97.5%
-#> lambda      -0.01899  0.00175  0.01220  0.02213  0.04328
-#> (Intercept) -1.07330 -0.89063 -0.79366 -0.70020 -0.51399
-#> PEXPOSURE    0.02200  0.06082  0.08123  0.10067  0.13675
-#> PCTAGE65P    2.70738  3.41885  3.80976  4.20150  4.94589
-#> PCTOWNHOME  -0.70906 -0.47931 -0.38839 -0.28703 -0.06345
+#>                 2.5%        25%      50%      75%    97.5%
+#> lambda      -0.02122  0.0009004  0.01280  0.02316  0.04010
+#> (Intercept) -1.08926 -0.8963389 -0.79550 -0.69660 -0.48600
+#> PEXPOSURE    0.01866  0.0610133  0.08258  0.10361  0.13758
+#> PCTAGE65P    2.66188  3.4243662  3.81139  4.21915  4.90807
+#> PCTOWNHOME  -0.71563 -0.4972762 -0.38797 -0.28154 -0.04634
 #> 
 esar1 <- errorsarlm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME, data=nydata,
  listw=listw_NY, etype="emixed")

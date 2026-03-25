@@ -108,21 +108,21 @@ listw <- spdep::nb2listw(col.gal.nb)
 W <- as(listw, "CsparseMatrix")
 system.time(trMat <- trW(W, type="mult"))
 #>    user  system elapsed 
-#>   0.014   0.000   0.014 
+#>   0.004   0.000   0.005 
 str(trMat)
 #>  num [1:30] 0 10.91 3.65 5.62 3.66 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.014 0.014
+#>  - attr(*, "timings")= Named num [1:2] 0.004 0.005
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "mult"
 #>  - attr(*, "n")= int 49
 set.seed(1100)
 system.time(trMC <- trW(W, type="MC"))
 #>    user  system elapsed 
-#>   0.027   0.000   0.028 
+#>   0.007   0.000   0.006 
 str(trMC)
 #>  num [1:30] 0 10.91 3.69 5.36 3.64 ...
 #>  - attr(*, "sd")= num [1:30] NA NA 0.598 0.495 0.489 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.027 0.028
+#>  - attr(*, "timings")= Named num [1:2] 0.007 0.006
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "MC"
 #>  - attr(*, "n")= int 49
@@ -137,10 +137,10 @@ listwS <- similar.listw(listw)
 W <- forceSymmetric(as(listwS, "CsparseMatrix"))
 system.time(trmom <- trW(listw=listwS, m=24, type="moments"))
 #>    user  system elapsed 
-#>   0.008   0.000   0.008 
+#>   0.001   0.000   0.001 
 str(trmom)
 #>  num [1:24] 0 10.91 3.65 5.62 3.66 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.008 0.008
+#>  - attr(*, "timings")= Named num [1:2] 0.001 0.001
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "moments"
 #>  - attr(*, "n")= int 49
@@ -148,10 +148,10 @@ all.equal(trMat[1:24], trmom, check.attributes=FALSE)
 #> [1] TRUE
 system.time(trMat <- trW(W, m=24, type="mult"))
 #>    user  system elapsed 
-#>   0.014   0.000   0.015 
+#>   0.003   0.000   0.003 
 str(trMat)
 #>  num [1:24] 0 10.91 3.65 5.62 3.66 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.014 0.015
+#>  - attr(*, "timings")= Named num [1:2] 0.003 0.003
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "mult"
 #>  - attr(*, "n")= int 49
@@ -160,11 +160,11 @@ all.equal(trMat, trmom, check.attributes=FALSE)
 set.seed(1)
 system.time(trMC <- trW(W, m=24, type="MC"))
 #>    user  system elapsed 
-#>   0.031   0.000   0.031 
+#>   0.007   0.000   0.007 
 str(trMC)
 #>  num [1:24] 0 10.91 2.44 4.97 2.82 ...
 #>  - attr(*, "sd")= num [1:24] NA NA 0.618 0.501 0.451 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.031 0.031
+#>  - attr(*, "timings")= Named num [1:2] 0.007 0.007
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "MC"
 #>  - attr(*, "n")= int 49
@@ -174,10 +174,10 @@ listw <- spdep::nb2listw(boston.soi)
 listwS <- similar.listw(listw)
 system.time(trmom <- trW(listw=listwS, m=24, type="moments"))
 #>    user  system elapsed 
-#>   0.485   0.000   0.488 
+#>   0.137   0.000   0.138 
 str(trmom)
 #>  num [1:24] 0 124.2 32.7 63.7 33.2 ...
-#>  - attr(*, "timings")= Named num [1:2] 0.485 0.488
+#>  - attr(*, "timings")= Named num [1:2] 0.137 0.138
 #>   ..- attr(*, "names")= chr [1:2] "user.self" "elapsed"
 #>  - attr(*, "type")= chr "moments"
 #>  - attr(*, "n")= int 506
@@ -193,7 +193,7 @@ if(!get.mcOption()) {
 }
 system.time(trmomp <- trW(listw=listwS, m=24, type="moments"))
 #>    user  system elapsed 
-#>   0.471   0.000   0.474 
+#>   0.136   0.000   0.138 
 if(!get.mcOption()) {
   set.ClusterOption(NULL)
   stopCluster(cl)

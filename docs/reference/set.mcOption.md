@@ -63,7 +63,7 @@ ls(envir=spatialreg:::.spatialregOptions)
 library(parallel)
 nc <- max(2L, detectCores(logical=FALSE), na.rm = TRUE)-1L
 nc
-#> [1] 3
+#> [1] 5
 # set nc to 1L here
 if (nc > 1L) nc <- 1L
 #nc <- ifelse(nc > 2L, 2L, nc)

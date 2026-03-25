@@ -114,7 +114,7 @@ errorsarlm(yield_detrend ~ 1, wheat, spdep::nb2listw(nbr12, style="W"))
 #> 
 #> Coefficients:
 #>      lambda (Intercept) 
-#>  0.60189687 -0.00251772 
+#>  0.60189686 -0.00251772 
 #> 
 #> Log likelihood: -192.9519 
 # }

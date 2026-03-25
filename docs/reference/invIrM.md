@@ -160,15 +160,15 @@ legend(c(-0.02, 0.01), c(7, 25),
 x <- matrix(rnorm(length(nb7rt)), ncol=1)
 system.time(e <- invIrM(nb7rt, rho=0.9, method="chol", feasible=TRUE) %*% x)
 #>    user  system elapsed 
-#>   0.014   0.000   0.014 
+#>   0.002   0.000   0.002 
 system.time(e <- invIrM(nb7rt, rho=0.9, method="chol", feasible=NULL) %*% x)
 #>    user  system elapsed 
-#>   0.013   0.000   0.013 
+#>   0.002   0.000   0.003 
 system.time(e <- invIrM(nb7rt, rho=0.9, method="solve", feasible=TRUE) %*% x)
 #>    user  system elapsed 
-#>   0.004   0.000   0.004 
+#>   0.001   0.000   0.001 
 system.time(e <- invIrM(nb7rt, rho=0.9, method="solve", feasible=NULL) %*% x)
 #>    user  system elapsed 
-#>   0.005   0.000   0.006 
+#>   0.001   0.000   0.001 
 # }
 ```

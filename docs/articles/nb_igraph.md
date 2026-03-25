@@ -62,7 +62,7 @@ library(spatialreg)
 
     ## Loading required package: sf
 
-    ## Linking to GEOS 3.14.1, GDAL 3.12.2, PROJ 9.8.0; sf_use_s2() is TRUE
+    ## Linking to GEOS 3.14.1, GDAL 3.12.3, PROJ 9.9.0; sf_use_s2() is TRUE
 
 ### Getting some data
 
@@ -82,9 +82,9 @@ if (dothis) {
 ```
 
     ##           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-    ##       "3.14.1"       "3.12.2"        "9.8.0"         "true"         "true" 
+    ##       "3.14.1"       "3.12.3"        "9.9.0"         "true"         "true" 
     ##           PROJ 
-    ##        "9.8.0"
+    ##        "9.9.0"
 
 ``` r
 library(sf)
