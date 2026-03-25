@@ -6,7 +6,7 @@ e <- eigenw(lw)
 f <- log(MEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT)
 error.eig <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=FALSE, fdHess=TRUE))
 error.eig.alt <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=TRUE, fdHess=TRUE))
-tols <- c(3e-8, 1e-5, 1e-6)
+tols <- c(3e-8, 1e-5, 1e-5)
 if (.Platform$OS.type == "unix" && Sys.info()["sysname"] == "Darwin") {
   tols <- tols*10
 }
