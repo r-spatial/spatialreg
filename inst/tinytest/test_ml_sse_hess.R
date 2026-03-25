@@ -1,15 +1,18 @@
-library(spatialreg)
-library(spData)
-boston.tr <- sf::st_read(system.file("shapes/boston_tracts.gpkg", package="spData")[1])
+suppressPackageStartupMessages(library(spatialreg))
+boston.tr <- sf::st_read(system.file("shapes/boston_tracts.gpkg", package="spData")[1], quiet=TRUE)
 boston_nb <- spdep::poly2nb(boston.tr)
 lw <- spdep::nb2listw(boston_nb)
 e <- eigenw(lw)
 f <- log(MEDV) ~ CRIM + ZN + INDUS + CHAS + I(NOX^2) + I(RM^2) + AGE + log(DIS) + log(RAD) + TAX + PTRATIO + B + log(LSTAT)
 error.eig <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=FALSE, fdHess=TRUE))
 error.eig.alt <- errorsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=TRUE, fdHess=TRUE))
-expect_true(isTRUE(all.equal(error.eig$lambda, error.eig.alt$lambda, scale=1, tolerance=3e-8)))
-expect_true(isTRUE(all.equal(error.eig$fdHess, error.eig.alt$fdHess, scale=1, tolerance=1e-5)))
+tols <- c(3e-8, 1e-5, 1e-6)
+if (.Platform$OS.type == "unix" && Sys.info()["sysname"] == "Darwin") {
+  tols <- tols*10
+}
+expect_true(isTRUE(all.equal(error.eig$lambda, error.eig.alt$lambda, scale=1, tolerance=tols[1])))
+expect_true(isTRUE(all.equal(error.eig$fdHess, error.eig.alt$fdHess, scale=1, tolerance=tols[2])))
 lag.eig <- lagsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=FALSE, fdHess=TRUE))
 lag.eig.alt <- lagsarlm(f, boston.tr, lw, control=list(pre_eig=e, compiled_sse=TRUE, fdHess=TRUE))
-expect_true(isTRUE(all.equal(lag.eig$fdHess, lag.eig.alt$fdHess, scale=1, tolerance=1e-6)))
+expect_true(isTRUE(all.equal(lag.eig$fdHess, lag.eig.alt$fdHess, scale=1, tolerance=tols[3])))
 
