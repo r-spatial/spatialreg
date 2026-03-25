@@ -132,10 +132,10 @@ From version 1.4.1, functions for models including spatially lagged independent 
   \item{tol.opt:}{the desired accuracy of the optimization - passed to \code{optimize()} (default=square root of double precision machine tolerance, a larger root may be used needed, see help(boston) for an example)}
   \item{returnHcov:}{(error model) default TRUE, return the Vo matrix for a spatial Hausman test}
   \item{pWOrder:}{(error model) default 250, if returnHcov=TRUE and the method is not \dQuote{eigen}, pass this order to \code{powerWeights} as the power series maximum limit}
-  \item{fdHess:}{default NULL, then set to (method != "eigen") internally; use \code{fdHess} to compute an approximate Hessian using finite differences when using sparse matrix methods; used to make a coefficient covariance matrix when the number of observations is large; may be turned off to save resources if need be}
+  \item{fdHess:}{default NULL, then set to (method != "eigen") internally; use \code{fdHess} to compute an approximate Hessian using finite differences when using sparse matrix methods; used to make a coefficient covariance matrix when the number of observations is large; may be turned off to save resources if need be. If TRUE, use of compiled sum of squared error (SSE) calculation is controlled by \code{compiled_sse} below}
   \item{optimHess:}{default FALSE, use \code{fdHess} from \pkg{nlme}, if TRUE, use \code{optim} to calculate Hessian at optimum}
   \item{optimHessMethod:}{default \dQuote{optimHess}, may be \dQuote{nlm} or one of the \code{optim} methods}
-  \item{compiled_sse:}{default FALSE; logical value used in the log likelihood function to choose compiled code for computing SSE}
+  \item{compiled_sse:}{default FALSE for \code{lagsarlm} but TRUE for \code{errorsarlm} as sum of squared error (SSE) calculation is more demanding; logical value used in the log likelihood function to choose compiled code for computing SSE}
   \item{Imult:}{default 2; used for preparing the Cholesky decompositions for updating in the Jacobian function}
   \item{super:}{if NULL (default), set to FALSE to use a simplicial decomposition for the sparse Cholesky decomposition and method \dQuote{Matrix_J}, set to  \code{as.logical(NA)} for method \dQuote{Matrix}, if TRUE, use a supernodal decomposition}
   \item{cheb_q:}{default 5; highest power of the approximating polynomial for the Chebyshev approximation}
