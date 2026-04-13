@@ -213,7 +213,7 @@ n <- nc.sids$BIR74
 el1 <- min(dij)/dij
 el2 <- sqrt(n[sids.nhbr$to]/n[sids.nhbr$from])
 sids.nhbr$weights <- el1*el2
-sids.nhbr.listw <- spdep::sn2listw(sids.nhbr)
+sids.nhbr.listw <- spdep::sn2listw(sids.nhbr, style="B", zero.policy=TRUE)
 both <- factor(paste(nc.sids$L_id, nc.sids$M_id, sep=":"))
 ft.NWBIR74 <- sqrt(1000)*(sqrt(nc.sids$NWBIR74/nc.sids$BIR74) +
  sqrt((nc.sids$NWBIR74+1)/nc.sids$BIR74))
@@ -223,7 +223,7 @@ as.character(nc.sids$NAME[outl])
 mdata.4 <- mdata[-outl,]
 W <- spdep::listw2mat(sids.nhbr.listw)
 W.4 <- W[-outl, -outl]
-sids.nhbr.listw.4 <- spdep::mat2listw(W.4)
+sids.nhbr.listw.4 <- spdep::mat2listw(W.4, style="B", zero.policy=TRUE)
 esarI <- errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
 summary(esarI)

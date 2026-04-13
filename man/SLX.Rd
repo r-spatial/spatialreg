@@ -97,8 +97,8 @@ f <- function(x, form, data, dnb, dists, verbose) {
 opt <- optimize(f, interval=c(0.1, 4), form=CRIME ~ INC + HOVAL,
  data=COL.OLD, dnb=dnb, dists=dists, verbose=TRUE, maximum=TRUE)
 glst <- lapply(dists, function(d) 1/(d^opt$maximum))
-lw <- spdep::nb2listw(dnb, glist=glst, style="B")
-SLX <- lmSLX(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw)
+lwa <- spdep::nb2listw(dnb, glist=glst, style="B")
+SLX <- lmSLX(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lwa)
 summary(SLX)
 summary(impacts(SLX))
 }

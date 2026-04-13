@@ -299,8 +299,7 @@ impactsWX <- function(obj, n, k, type="SlX", method="glht", have_factor_preds=FA
 
 update_bnames <- function(bnames, have_factor_preds=FALSE) {
     b_suffix <- rep("dy/dx", length(bnames))
-    stopifnot(!is.null(have_factor_preds))
-    if (have_factor_preds) {
+    if (!is.null(have_factor_preds) && have_factor_preds) { # email 2604113
         factnames <- attr(have_factor_preds, "factnames")
         for (pred in seq(along=factnames)) {
             npred <- grep(paste0("^", factnames[pred], ".*"), bnames)
