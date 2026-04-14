@@ -1,16 +1,31 @@
 # Changelog
 
-## Version 1.4-2 (development)
+## Version 1.4-4 (development)
+
+- slacken `update_bname` argument tests to adapt for
+  [`splm::spml`](https://rdrr.io/pkg/splm/man/spml.html)
+
+- fix failing `dont_run` examples
+
+- add `NO_LEGACY_NONAPI` defined to headers
+
+## Version 1.4-3 (2026-03-21)
+
+CRAN release: 2026-03-21
+
+- use `R_getVar` in place of `Rf_findVarInFrame` for R \>= 4.5.0
+
+- replace [`MASS::mvrnorm`](https://rdrr.io/pkg/MASS/man/mvrnorm.html)
+  with [`mvtnorm::rmvnorm`](https://rdrr.io/pkg/mvtnorm/man/Mvnorm.html)
+  in `impacts` methods or elsewhere to ensure better stability with
+  given seeds
+
+## Version 1.4-2 (2025-09-06)
 
 CRAN release: 2025-09-06
 
 - remove tests in `test_Durbin_factor.R` for `sacsarlm` and `spBreg_*`
   failing under MKL 2023-2
-
-- replace `MASS:mvrnorm` with
-  [`mvtnorm::rmvnorm`](https://rdrr.io/pkg/mvtnorm/man/Mvnorm.html) in
-  `impacts` methods or elsewhere to ensure better stability with given
-  seeds
 
 ## Version 1.4-1 (2025-09-04)
 

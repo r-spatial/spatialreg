@@ -397,7 +397,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"eigen"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pre_eig<span class="op">=</span><span class="va">eigs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.231   0.000   0.233 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.220   0.000   0.222 </span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1f</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -442,7 +442,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.259   0.001   0.262 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.243   0.000   0.246 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -473,7 +473,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span>,</span></span>
 <span class="r-in"><span> control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>super<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.236   0.000   0.237 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.225   0.000   0.226 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -533,7 +533,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">esar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"SAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.254   0.000   0.256 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.241   0.000   0.243 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -650,7 +650,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1M</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.284   0.000   0.287 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.274   0.000   0.275 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1M</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -712,7 +712,7 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">ecar1wM</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">Z</span> <span class="op">~</span> <span class="va">PEXPOSURE</span> <span class="op">+</span> <span class="va">PCTAGE65P</span> <span class="op">+</span> <span class="va">PCTOWNHOME</span>,</span></span>
 <span class="r-in"><span> data<span class="op">=</span><span class="va">nydata</span>, listw<span class="op">=</span><span class="va">listw_NY</span>, weights<span class="op">=</span><span class="va">POP8</span>, family<span class="op">=</span><span class="st">"CAR"</span>, method<span class="op">=</span><span class="st">"Matrix"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.275   0.000   0.277 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.274   0.000   0.276 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecar1wM</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
@@ -757,10 +757,10 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-in"><span><span class="va">el1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dij</span><span class="op">)</span><span class="op">/</span><span class="va">dij</span></span></span>
 <span class="r-in"><span><span class="va">el2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">[</span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">to</span><span class="op">]</span><span class="op">/</span><span class="va">n</span><span class="op">[</span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">from</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sids.nhbr</span><span class="op">$</span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="va">el1</span><span class="op">*</span><span class="va">el2</span></span></span>
-<span class="r-in"><span><span class="va">sids.nhbr.listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">sn2listw</a></span><span class="op">(</span><span class="va">sids.nhbr</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style is M (missing); style should be set to a valid value</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>56, 87 are not origins</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in spdep::sn2listw(sids.nhbr):</span> no-neighbour observations found, set zero.policy to TRUE</span>
+<span class="r-in"><span><span class="va">sids.nhbr.listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/listw2sn.html" class="external-link">sn2listw</a></span><span class="op">(</span><span class="va">sids.nhbr</span>, style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no-neighbour observations found, set zero.policy to TRUE;</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> this warning will soon become an error</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>neighbour object has 3 sub-graphs</span>
 <span class="r-in"><span><span class="va">both</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">L_id</span>, <span class="va">nc.sids</span><span class="op">$</span><span class="va">M_id</span>, sep<span class="op">=</span><span class="st">":"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ft.NWBIR74</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">/</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">NWBIR74</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="va">nc.sids</span><span class="op">$</span><span class="va">BIR74</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -770,65 +770,299 @@ Ord, J. K. 1975 Estimation methods for models of spatial interaction,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Anson"</span>
 <span class="r-in"><span><span class="va">mdata.4</span> <span class="op">&lt;-</span> <span class="va">mdata</span><span class="op">[</span><span class="op">-</span><span class="va">outl</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html" class="external-link">listw2mat</a></span><span class="op">(</span><span class="va">sids.nhbr.listw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="va">W.4</span> <span class="op">&lt;-</span> <span class="va">W</span><span class="op">[</span><span class="op">-</span><span class="va">outl</span>, <span class="op">-</span><span class="va">outl</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'W' not found</span>
-<span class="r-in"><span><span class="va">sids.nhbr.listw.4</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">mat2listw</a></span><span class="op">(</span><span class="va">W.4</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'W.4' not found</span>
+<span class="r-in"><span><span class="va">sids.nhbr.listw.4</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/mat2listw.html" class="external-link">mat2listw</a></span><span class="op">(</span><span class="va">W.4</span>, style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>neighbour object has 3 sub-graphs</span>
 <span class="r-in"><span><span class="va">esarI</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarI</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarI' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:errorsarlm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     zero.policy = TRUE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.887117 -0.636573 -0.043429  0.448767  3.406724 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regions with no neighbours included:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  56 87 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.97463    0.13011  22.862 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.66864, LR test value: 10.214, p-value: 0.0013939</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.11473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 5.8279, p-value: 5.6145e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 33.964, p-value: 5.6145e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -133.8616 for error model</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 273.72, (AIC for lm: 281.94)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIa</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIa</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIa' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     family = "SAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.887117 -0.636573 -0.043429  0.448767  3.406724 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.97463    0.13011  22.862 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.66864 LR test value: 10.214 p-value: 0.0013939 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.16505 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -133.8616 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 273.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIV</span> <span class="op">&lt;-</span> <span class="fu"><a href="ML_models.html">errorsarlm</a></span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIV</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIV' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> errorsarlm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     zero.policy = TRUE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.123648 -0.573163  0.017859  0.468022  2.693604 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Type: error </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regions with no neighbours included:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  56 87 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: (asymptotic standard errors) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.549443   0.219230  7.0677 1.576e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.18465, LR test value: 0.50496, p-value: 0.47733</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Asymptotic standard error: 0.20648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     z-value: 0.89424, p-value: 0.37119</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wald statistic: 0.79967, p-value: 0.37119</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -117.7464 for error model</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 243.49, (AIC for lm: 242)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIVa</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIVa</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIVa' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     family = "SAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.123648 -0.573163  0.017859  0.468022  2.693604 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.549443   0.219230  7.0677 1.576e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.18465 LR test value: 0.50496 p-value: 0.47733 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25601 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -117.7464 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 243.49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.867485 -0.568644  0.019717  0.502197  3.498013 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 2.852052   0.090271  31.594 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.7338 LR test value: 12.917 p-value: 0.00032554 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.13886 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -130.0975 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1539.4, (sigma: 39.236)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">both</span> <span class="op">-</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIIaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIIaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ both - 1, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.590809 -0.432976  0.016736  0.357284  3.536718 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:2  2.05545    0.22184  9.2654 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:3  2.87260    0.16181 17.7531 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:4  4.16365    0.34330 12.1283 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:1  2.47255    0.29757  8.3090 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:2  2.15307    0.21172 10.1692 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:3  2.64235    0.17296 15.2770 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:4  3.26604    0.28287 11.5459 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:1  3.11277    0.34166  9.1107 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:2  2.76541    0.15667 17.6508 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:3  2.86582    0.18593 15.4134 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:4  3.18142    0.21617 14.7169 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both4:3  3.69333    0.23348 15.8188 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.32136 LR test value: 1.4004 p-value: 0.23666 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25501 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -109.8922 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1071.6, (sigma: 32.735)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">esarIVaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"SAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">esarIVaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIVaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "SAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.00956 -0.45229  0.12547  0.55952  2.92223 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.5769279  0.2501334  6.3043 2.894e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.0368573  0.0069413  5.3099 1.097e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.3839 LR test value: 1.9983 p-value: 0.15747 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.25778 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -119.5648 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1295.8, (sigma: 35.997)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 100 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata.4</span>, listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>,</span></span>
 <span class="r-in"><span> weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw.4' not found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ 1, data = mdata.4, listw = sids.nhbr.listw.4, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.009350 -0.638915 -0.060761  0.428526  2.019409 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 2.942864   0.095304  30.879 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.86832 LR test value: 23.003 p-value: 1.6172e-06 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.048102 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -118.7564 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1264, (sigma: 35.553)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIIaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">both</span> <span class="op">-</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">mdata.4</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw.4' not found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NaNs produced</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIIaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIIaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ both - 1, data = mdata.4, listw = sids.nhbr.listw.4, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min        1Q    Median        3Q       Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.564067 -0.461531 -0.020982  0.384458  2.054255 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:2  2.06282    0.20065 10.2806 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:3  2.91982    0.14171 20.6048 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both1:4  4.12159    0.30076 13.7037 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:1  2.58281    0.27014  9.5611 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:2  2.17549    0.18265 11.9104 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:3  2.67030    0.15355 17.3910 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both2:4  3.10806    0.24748 12.5588 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:1  2.93237    0.30007  9.7724 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:2  2.65317    0.14139 18.7646 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:3  2.91685    0.17134 17.0234 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both3:4  3.20447    0.20402 15.7063 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> both4:3  3.80672    0.20831 18.2742 &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.22163 LR test value: 1.3827 p-value: 0.23964 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: NaN </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -99.2181 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 890.66, (sigma: 29.844)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">ecarIVaw</span> <span class="op">&lt;-</span> <span class="fu">spautolm</span><span class="op">(</span><span class="va">ft.SID74</span> <span class="op">~</span> <span class="va">ft.NWBIR74</span>, data<span class="op">=</span><span class="va">mdata.4</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">sids.nhbr.listw.4</span>, weights<span class="op">=</span><span class="va">BIR74</span>, family<span class="op">=</span><span class="st">"CAR"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'sids.nhbr.listw.4' not found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-symmetric spatial weights in CAR model</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIVaw' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata.4, listw = sids.nhbr.listw.4, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     weights = BIR74, family = "CAR")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.99259 -0.44794  0.15464  0.60748  1.95751 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value  Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.434705   0.225521  6.3618 1.995e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ft.NWBIR74  0.040903   0.006299  6.4936 8.382e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lambda: 0.22724 LR test value: 1.1936 p-value: 0.2746 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Numerical Hessian standard error of lambda: 0.55239 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log likelihood: -114.0196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML residual variance (sigma squared): 1201, (sigma: 34.655)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations: 99 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters estimated: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: NA (not available for weighted model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">nc.sids</span><span class="op">$</span><span class="va">fitIV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/append.html" class="external-link">append</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted.values</a></span><span class="op">(</span><span class="va">ecarIVaw</span><span class="op">)</span>, <span class="cn">NA</span>, <span class="va">outl</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'ecarIVaw' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nc.sids</span><span class="op">[</span>,<span class="st">"fitIV"</span><span class="op">]</span>, nbreaks<span class="op">=</span><span class="fl">12</span><span class="op">)</span> <span class="co"># Cressie 1993, p. 565</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `[.data.frame`(x, i, j, drop = drop):</span> undefined columns selected</span>
+<span class="r-plt img"><img src="spautolm-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">oldcol</span>, package<span class="op">=</span><span class="st">"spdep"</span><span class="op">)</span></span></span>

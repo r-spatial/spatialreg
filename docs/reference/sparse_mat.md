@@ -129,7 +129,7 @@ system.time(e <- invIrM(nb7rt, rho=0.98, method="solve", feasible=NULL) %*% x)
 system.time(ee <- powerWeights(W, rho=0.98, X=x))
 #> Warning: not converged within order iterations
 #>    user  system elapsed 
-#>   0.197   0.011   0.209 
+#>   0.198   0.005   0.204 
 str(attr(ee, "internal"))
 #> List of 5
 #>  $ series: num [1:250] 0.287 0.234 0.201 0.178 0.16 ...
@@ -142,10 +142,10 @@ all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 # \dontrun{
 system.time(ee <- powerWeights(W, rho=0.9, X=x))
 #>    user  system elapsed 
-#>   0.145   0.014   0.164 
+#>   0.142   0.008   0.152 
 system.time(ee <- powerWeights(W, rho=0.98, order=1000, X=x))
 #>    user  system elapsed 
-#>   0.745   0.011   0.772 
+#>   0.749   0.011   0.764 
 all.equal(e, as(ee, "matrix"), check.attributes=FALSE)
 #> [1] TRUE
 nb60rt <- spdep::cell2nb(60, 60, torus=TRUE)

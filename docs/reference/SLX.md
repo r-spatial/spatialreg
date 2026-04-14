@@ -339,8 +339,8 @@ opt <- optimize(f, interval=c(0.1, 4), form=CRIME ~ INC + HOVAL,
 #> power: 1.105664 logLik: -171.497 
 #> power: 1.105705 logLik: -171.497 
 glst <- lapply(dists, function(d) 1/(d^opt$maximum))
-lw <- spdep::nb2listw(dnb, glist=glst, style="B")
-SLX <- lmSLX(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw)
+lwa <- spdep::nb2listw(dnb, glist=glst, style="B")
+SLX <- lmSLX(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lwa)
 summary(SLX)
 #> 
 #> Call:
@@ -381,15 +381,13 @@ summary(impacts(SLX))
 COL.SLX <- lmSLX(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw)
 pslx0 <- predict(COL.SLX)
 pslx1 <- predict(COL.SLX, newdata=COL.OLD, listw=lw)
-#> Error in predict.SlX(COL.SLX, newdata = COL.OLD, listw = lw): mismatch between newdata and spatial weights. newdata should have region.id as row.names
 all.equal(pslx0, pslx1)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'current' in selecting a method for function 'all.equal': object 'pslx1' not found
+#> [1] TRUE
 COL.OLD1 <- COL.OLD
 COL.OLD1$INC <- COL.OLD1$INC + 1
 pslx2 <- predict(COL.SLX, newdata=COL.OLD1, listw=lw)
-#> Error in predict.SlX(COL.SLX, newdata = COL.OLD1, listw = lw): mismatch between newdata and spatial weights. newdata should have region.id as row.names
 sum(coef(COL.SLX)[c(2,4)])
-#> [1] 5.623621
+#> [1] -2.479902
 mean(pslx2-pslx1)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'mean': object 'pslx2' not found
+#> [1] -2.479902
 ```

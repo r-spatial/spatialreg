@@ -505,7 +505,7 @@ system.time(esar1f <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="eigen",
  control=list(pre_eig=eigs)))
 #>    user  system elapsed 
-#>   0.231   0.000   0.233 
+#>   0.220   0.000   0.222 
 res <- summary(esar1f)
 print(res)
 #> 
@@ -550,7 +550,7 @@ sqrt(diag(esar1f$fdHess))
 system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.259   0.001   0.262 
+#>   0.243   0.000   0.246 
 summary(esar1M)
 #> 
 #> Call: 
@@ -581,7 +581,7 @@ system.time(esar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="SAR", method="Matrix",
  control=list(super=TRUE)))
 #>    user  system elapsed 
-#>   0.236   0.000   0.237 
+#>   0.225   0.000   0.226 
 summary(esar1M)
 #> 
 #> Call: 
@@ -641,7 +641,7 @@ summary(esar1wf)
 system.time(esar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="SAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.254   0.000   0.256 
+#>   0.241   0.000   0.243 
 summary(esar1wM)
 #> 
 #> Call: 
@@ -758,7 +758,7 @@ summary(ecar1f)
 system.time(ecar1M <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, family="CAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.284   0.000   0.287 
+#>   0.274   0.000   0.275 
 summary(ecar1M)
 #> 
 #> Call: 
@@ -820,7 +820,7 @@ summary(ecar1wf)
 system.time(ecar1wM <- spautolm(Z ~ PEXPOSURE + PCTAGE65P + PCTOWNHOME,
  data=nydata, listw=listw_NY, weights=POP8, family="CAR", method="Matrix"))
 #>    user  system elapsed 
-#>   0.275   0.000   0.277 
+#>   0.274   0.000   0.276 
 summary(ecar1wM)
 #> 
 #> Call: 
@@ -865,10 +865,10 @@ n <- nc.sids$BIR74
 el1 <- min(dij)/dij
 el2 <- sqrt(n[sids.nhbr$to]/n[sids.nhbr$from])
 sids.nhbr$weights <- el1*el2
-sids.nhbr.listw <- spdep::sn2listw(sids.nhbr)
-#> Warning: style is M (missing); style should be set to a valid value
-#> Warning: 56, 87 are not origins
-#> Error in spdep::sn2listw(sids.nhbr): no-neighbour observations found, set zero.policy to TRUE
+sids.nhbr.listw <- spdep::sn2listw(sids.nhbr, style="B", zero.policy=TRUE)
+#> Warning: no-neighbour observations found, set zero.policy to TRUE;
+#> this warning will soon become an error
+#> Warning: neighbour object has 3 sub-graphs
 both <- factor(paste(nc.sids$L_id, nc.sids$M_id, sep=":"))
 ft.NWBIR74 <- sqrt(1000)*(sqrt(nc.sids$NWBIR74/nc.sids$BIR74) +
  sqrt((nc.sids$NWBIR74+1)/nc.sids$BIR74))
@@ -878,65 +878,299 @@ as.character(nc.sids$NAME[outl])
 #> [1] "Anson"
 mdata.4 <- mdata[-outl,]
 W <- spdep::listw2mat(sids.nhbr.listw)
-#> Error: object 'sids.nhbr.listw' not found
 W.4 <- W[-outl, -outl]
-#> Error: object 'W' not found
-sids.nhbr.listw.4 <- spdep::mat2listw(W.4)
-#> Error: object 'W.4' not found
+sids.nhbr.listw.4 <- spdep::mat2listw(W.4, style="B", zero.policy=TRUE)
+#> Warning: neighbour object has 3 sub-graphs
 esarI <- errorsarlm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarI)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarI' not found
+#> 
+#> Call:errorsarlm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, 
+#>     zero.policy = TRUE)
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -1.887117 -0.636573 -0.043429  0.448767  3.406724 
+#> 
+#> Type: error 
+#> Regions with no neighbours included:
+#>  56 87 
+#> Coefficients: (asymptotic standard errors) 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept)  2.97463    0.13011  22.862 < 2.2e-16
+#> 
+#> Lambda: 0.66864, LR test value: 10.214, p-value: 0.0013939
+#> Asymptotic standard error: 0.11473
+#>     z-value: 5.8279, p-value: 5.6145e-09
+#> Wald statistic: 33.964, p-value: 5.6145e-09
+#> 
+#> Log likelihood: -133.8616 for error model
+#> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)
+#> Number of observations: 100 
+#> Number of parameters estimated: 3 
+#> AIC: 273.72, (AIC for lm: 281.94)
+#> 
 esarIa <- spautolm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIa)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIa' not found
+#> 
+#> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, 
+#>     family = "SAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -1.887117 -0.636573 -0.043429  0.448767  3.406724 
+#> 
+#> Coefficients: 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept)  2.97463    0.13011  22.862 < 2.2e-16
+#> 
+#> Lambda: 0.66864 LR test value: 10.214 p-value: 0.0013939 
+#> Numerical Hessian standard error of lambda: 0.16505 
+#> 
+#> Log likelihood: -133.8616 
+#> ML residual variance (sigma squared): 0.81932, (sigma: 0.90516)
+#> Number of observations: 100 
+#> Number of parameters estimated: 3 
+#> AIC: 273.72
+#> 
 esarIV <- errorsarlm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  zero.policy=TRUE)
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIV)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIV' not found
+#> 
+#> Call:
+#> errorsarlm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, 
+#>     zero.policy = TRUE)
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -2.123648 -0.573163  0.017859  0.468022  2.693604 
+#> 
+#> Type: error 
+#> Regions with no neighbours included:
+#>  56 87 
+#> Coefficients: (asymptotic standard errors) 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 1.549443   0.219230  7.0677 1.576e-12
+#> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11
+#> 
+#> Lambda: 0.18465, LR test value: 0.50496, p-value: 0.47733
+#> Asymptotic standard error: 0.20648
+#>     z-value: 0.89424, p-value: 0.37119
+#> Wald statistic: 0.79967, p-value: 0.37119
+#> 
+#> Log likelihood: -117.7464 for error model
+#> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)
+#> Number of observations: 100 
+#> Number of parameters estimated: 4 
+#> AIC: 243.49, (AIC for lm: 242)
+#> 
 esarIVa <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata, listw=sids.nhbr.listw,
  family="SAR")
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIVa)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIVa' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, 
+#>     family = "SAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -2.123648 -0.573163  0.017859  0.468022  2.693604 
+#> 
+#> Coefficients: 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 1.549443   0.219230  7.0677 1.576e-12
+#> ft.NWBIR74  0.041974   0.006171  6.8018 1.033e-11
+#> 
+#> Lambda: 0.18465 LR test value: 0.50496 p-value: 0.47733 
+#> Numerical Hessian standard error of lambda: 0.25601 
+#> 
+#> Log likelihood: -117.7464 
+#> ML residual variance (sigma squared): 0.61546, (sigma: 0.78451)
+#> Number of observations: 100 
+#> Number of parameters estimated: 4 
+#> AIC: 243.49
+#> 
 esarIaw <- spautolm(ft.SID74 ~ 1, data=mdata, listw=sids.nhbr.listw,
  weights=BIR74, family="SAR")
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIaw' not found
+#> 
+#> Call: spautolm(formula = ft.SID74 ~ 1, data = mdata, listw = sids.nhbr.listw, 
+#>     weights = BIR74, family = "SAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -1.867485 -0.568644  0.019717  0.502197  3.498013 
+#> 
+#> Coefficients: 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 2.852052   0.090271  31.594 < 2.2e-16
+#> 
+#> Lambda: 0.7338 LR test value: 12.917 p-value: 0.00032554 
+#> Numerical Hessian standard error of lambda: 0.13886 
+#> 
+#> Log likelihood: -130.0975 
+#> ML residual variance (sigma squared): 1539.4, (sigma: 39.236)
+#> Number of observations: 100 
+#> Number of parameters estimated: 3 
+#> AIC: NA (not available for weighted model)
+#> 
 esarIIaw <- spautolm(ft.SID74 ~ both - 1, data=mdata, listw=sids.nhbr.listw,
  weights=BIR74, family="SAR")
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIIaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIIaw' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ both - 1, data = mdata, listw = sids.nhbr.listw, 
+#>     weights = BIR74, family = "SAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -2.590809 -0.432976  0.016736  0.357284  3.536718 
+#> 
+#> Coefficients: 
+#>         Estimate Std. Error z value  Pr(>|z|)
+#> both1:2  2.05545    0.22184  9.2654 < 2.2e-16
+#> both1:3  2.87260    0.16181 17.7531 < 2.2e-16
+#> both1:4  4.16365    0.34330 12.1283 < 2.2e-16
+#> both2:1  2.47255    0.29757  8.3090 < 2.2e-16
+#> both2:2  2.15307    0.21172 10.1692 < 2.2e-16
+#> both2:3  2.64235    0.17296 15.2770 < 2.2e-16
+#> both2:4  3.26604    0.28287 11.5459 < 2.2e-16
+#> both3:1  3.11277    0.34166  9.1107 < 2.2e-16
+#> both3:2  2.76541    0.15667 17.6508 < 2.2e-16
+#> both3:3  2.86582    0.18593 15.4134 < 2.2e-16
+#> both3:4  3.18142    0.21617 14.7169 < 2.2e-16
+#> both4:3  3.69333    0.23348 15.8188 < 2.2e-16
+#> 
+#> Lambda: 0.32136 LR test value: 1.4004 p-value: 0.23666 
+#> Numerical Hessian standard error of lambda: 0.25501 
+#> 
+#> Log likelihood: -109.8922 
+#> ML residual variance (sigma squared): 1071.6, (sigma: 32.735)
+#> Number of observations: 100 
+#> Number of parameters estimated: 14 
+#> AIC: NA (not available for weighted model)
+#> 
 esarIVaw <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata,
  listw=sids.nhbr.listw, weights=BIR74, family="SAR")
-#> Error: object 'sids.nhbr.listw' not found
 summary(esarIVaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'esarIVaw' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata, listw = sids.nhbr.listw, 
+#>     weights = BIR74, family = "SAR")
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -2.00956 -0.45229  0.12547  0.55952  2.92223 
+#> 
+#> Coefficients: 
+#>              Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 1.5769279  0.2501334  6.3043 2.894e-10
+#> ft.NWBIR74  0.0368573  0.0069413  5.3099 1.097e-07
+#> 
+#> Lambda: 0.3839 LR test value: 1.9983 p-value: 0.15747 
+#> Numerical Hessian standard error of lambda: 0.25778 
+#> 
+#> Log likelihood: -119.5648 
+#> ML residual variance (sigma squared): 1295.8, (sigma: 35.997)
+#> Number of observations: 100 
+#> Number of parameters estimated: 4 
+#> AIC: NA (not available for weighted model)
+#> 
 ecarIaw <- spautolm(ft.SID74 ~ 1, data=mdata.4, listw=sids.nhbr.listw.4,
  weights=BIR74, family="CAR")
-#> Error: object 'sids.nhbr.listw.4' not found
+#> Warning: Non-symmetric spatial weights in CAR model
 summary(ecarIaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIaw' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ 1, data = mdata.4, listw = sids.nhbr.listw.4, 
+#>     weights = BIR74, family = "CAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -2.009350 -0.638915 -0.060761  0.428526  2.019409 
+#> 
+#> Coefficients: 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 2.942864   0.095304  30.879 < 2.2e-16
+#> 
+#> Lambda: 0.86832 LR test value: 23.003 p-value: 1.6172e-06 
+#> Numerical Hessian standard error of lambda: 0.048102 
+#> 
+#> Log likelihood: -118.7564 
+#> ML residual variance (sigma squared): 1264, (sigma: 35.553)
+#> Number of observations: 99 
+#> Number of parameters estimated: 3 
+#> AIC: NA (not available for weighted model)
+#> 
 ecarIIaw <- spautolm(ft.SID74 ~ both - 1, data=mdata.4,
  listw=sids.nhbr.listw.4, weights=BIR74, family="CAR")
-#> Error: object 'sids.nhbr.listw.4' not found
+#> Warning: Non-symmetric spatial weights in CAR model
+#> Warning: NaNs produced
 summary(ecarIIaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIIaw' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ both - 1, data = mdata.4, listw = sids.nhbr.listw.4, 
+#>     weights = BIR74, family = "CAR")
+#> 
+#> Residuals:
+#>       Min        1Q    Median        3Q       Max 
+#> -2.564067 -0.461531 -0.020982  0.384458  2.054255 
+#> 
+#> Coefficients: 
+#>         Estimate Std. Error z value  Pr(>|z|)
+#> both1:2  2.06282    0.20065 10.2806 < 2.2e-16
+#> both1:3  2.91982    0.14171 20.6048 < 2.2e-16
+#> both1:4  4.12159    0.30076 13.7037 < 2.2e-16
+#> both2:1  2.58281    0.27014  9.5611 < 2.2e-16
+#> both2:2  2.17549    0.18265 11.9104 < 2.2e-16
+#> both2:3  2.67030    0.15355 17.3910 < 2.2e-16
+#> both2:4  3.10806    0.24748 12.5588 < 2.2e-16
+#> both3:1  2.93237    0.30007  9.7724 < 2.2e-16
+#> both3:2  2.65317    0.14139 18.7646 < 2.2e-16
+#> both3:3  2.91685    0.17134 17.0234 < 2.2e-16
+#> both3:4  3.20447    0.20402 15.7063 < 2.2e-16
+#> both4:3  3.80672    0.20831 18.2742 < 2.2e-16
+#> 
+#> Lambda: 0.22163 LR test value: 1.3827 p-value: 0.23964 
+#> Numerical Hessian standard error of lambda: NaN 
+#> 
+#> Log likelihood: -99.2181 
+#> ML residual variance (sigma squared): 890.66, (sigma: 29.844)
+#> Number of observations: 99 
+#> Number of parameters estimated: 14 
+#> AIC: NA (not available for weighted model)
+#> 
 ecarIVaw <- spautolm(ft.SID74 ~ ft.NWBIR74, data=mdata.4,
  listw=sids.nhbr.listw.4, weights=BIR74, family="CAR")
-#> Error: object 'sids.nhbr.listw.4' not found
+#> Warning: Non-symmetric spatial weights in CAR model
 summary(ecarIVaw)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'ecarIVaw' not found
+#> 
+#> Call: 
+#> spautolm(formula = ft.SID74 ~ ft.NWBIR74, data = mdata.4, listw = sids.nhbr.listw.4, 
+#>     weights = BIR74, family = "CAR")
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -1.99259 -0.44794  0.15464  0.60748  1.95751 
+#> 
+#> Coefficients: 
+#>             Estimate Std. Error z value  Pr(>|z|)
+#> (Intercept) 1.434705   0.225521  6.3618 1.995e-10
+#> ft.NWBIR74  0.040903   0.006299  6.4936 8.382e-11
+#> 
+#> Lambda: 0.22724 LR test value: 1.1936 p-value: 0.2746 
+#> Numerical Hessian standard error of lambda: 0.55239 
+#> 
+#> Log likelihood: -114.0196 
+#> ML residual variance (sigma squared): 1201, (sigma: 34.655)
+#> Number of observations: 99 
+#> Number of parameters estimated: 4 
+#> AIC: NA (not available for weighted model)
+#> 
 nc.sids$fitIV <- append(fitted.values(ecarIVaw), NA, outl-1)
-#> Error: object 'ecarIVaw' not found
 plot(nc.sids[,"fitIV"], nbreaks=12) # Cressie 1993, p. 565
-#> Error in `[.data.frame`(x, i, j, drop = drop): undefined columns selected
+
 # }
 # \dontrun{
 data(oldcol, package="spdep")

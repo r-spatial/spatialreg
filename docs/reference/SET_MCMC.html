@@ -667,7 +667,27 @@ neighbours, if FALSE (default) assign NA</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sige        68.5025 88.13909 101.6888 118.2545 160.2792</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.sacW.B0</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'print': error in evaluating the argument 'object' in selecting a method for function 'summary': !is.null(have_factor_preds) is not TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (sac, trace):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct   Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -1.0484757 -0.4376707 -1.486146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -0.2833971 -0.1182999 -0.401697</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.3612558 0.4612321 0.6947562</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.1032726 0.1213316 0.1870873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -2.942749 -1.162120 -2.301660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -2.778912 -1.158532 -2.285308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Direct    Indirect Total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.0032531 0.24519  0.021354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.0054541 0.24665  0.022295</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.sacW.B1</span> <span class="op">&lt;-</span> <span class="fu">spBreg_sac</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>, listw<span class="op">=</span><span class="va">lw</span>,</span></span>
 <span class="r-in"><span> Durbin<span class="op">=</span><span class="cn">TRUE</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ndraw<span class="op">=</span><span class="fl">1500L</span>, nomit<span class="op">=</span><span class="fl">500L</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -704,7 +724,27 @@ neighbours, if FALSE (default) assign NA</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sige        64.6867 84.395156 96.9599 114.4101 159.7252</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="impacts.html">impacts</a></span><span class="op">(</span><span class="va">COL.sacW.B1</span>, tr<span class="op">=</span><span class="va">trMatc</span><span class="op">)</span>, zstats<span class="op">=</span><span class="cn">TRUE</span>, short<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'print': error in evaluating the argument 'object' in selecting a method for function 'summary': !is.null(have_factor_preds) is not TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Impact measures (sacmixed, trace):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -1.0383125 -1.2306234 -2.2689359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -0.2802765  0.1367066 -0.1435699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulation results ( variance matrix):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ========================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated standard errors</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Direct  Indirect     Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.35479003 0.9166518 1.0199952</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.09740686 0.2760415 0.3126178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated z-values:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Direct   Indirect      Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   -2.942557 -1.4682889 -2.3430500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx -2.874944  0.5430077 -0.4163122</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simulated p-values:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Direct    Indirect Total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INC dy/dx   0.0032551 0.14203  0.019127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HOVAL dy/dx 0.0040410 0.58712  0.677182</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">COL.lag.Bayes</span> <span class="op">&lt;-</span> <span class="fu">spBreg_lag</span><span class="op">(</span><span class="va">CRIME</span> <span class="op">~</span> <span class="va">INC</span> <span class="op">+</span> <span class="va">HOVAL</span>, data<span class="op">=</span><span class="va">COL.OLD</span>,</span></span>
 <span class="r-in"><span> listw<span class="op">=</span><span class="va">lw</span><span class="op">)</span></span></span>

@@ -738,7 +738,27 @@ print(summary(COL.sacW.B0))
 #> sige        68.5025 88.13909 101.6888 118.2545 160.2792
 #> 
 print(summary(impacts(COL.sacW.B0, tr=trMatc), zstats=TRUE, short=TRUE))
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'print': error in evaluating the argument 'object' in selecting a method for function 'summary': !is.null(have_factor_preds) is not TRUE
+#> Impact measures (sac, trace):
+#>                 Direct   Indirect     Total
+#> INC dy/dx   -1.0484757 -0.4376707 -1.486146
+#> HOVAL dy/dx -0.2833971 -0.1182999 -0.401697
+#> ========================================================
+#> Simulation results ( variance matrix):
+#> ========================================================
+#> Simulated standard errors
+#>                Direct  Indirect     Total
+#> INC dy/dx   0.3612558 0.4612321 0.6947562
+#> HOVAL dy/dx 0.1032726 0.1213316 0.1870873
+#> 
+#> Simulated z-values:
+#>                Direct  Indirect     Total
+#> INC dy/dx   -2.942749 -1.162120 -2.301660
+#> HOVAL dy/dx -2.778912 -1.158532 -2.285308
+#> 
+#> Simulated p-values:
+#>             Direct    Indirect Total   
+#> INC dy/dx   0.0032531 0.24519  0.021354
+#> HOVAL dy/dx 0.0054541 0.24665  0.022295
 set.seed(1)
 COL.sacW.B1 <- spBreg_sac(CRIME ~ INC + HOVAL, data=COL.OLD, listw=lw,
  Durbin=TRUE, control=list(ndraw=1500L, nomit=500L))
@@ -775,7 +795,27 @@ print(summary(COL.sacW.B1))
 #> sige        64.6867 84.395156 96.9599 114.4101 159.7252
 #> 
 print(summary(impacts(COL.sacW.B1, tr=trMatc), zstats=TRUE, short=TRUE))
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'print': error in evaluating the argument 'object' in selecting a method for function 'summary': !is.null(have_factor_preds) is not TRUE
+#> Impact measures (sacmixed, trace):
+#>                 Direct   Indirect      Total
+#> INC dy/dx   -1.0383125 -1.2306234 -2.2689359
+#> HOVAL dy/dx -0.2802765  0.1367066 -0.1435699
+#> ========================================================
+#> Simulation results ( variance matrix):
+#> ========================================================
+#> Simulated standard errors
+#>                 Direct  Indirect     Total
+#> INC dy/dx   0.35479003 0.9166518 1.0199952
+#> HOVAL dy/dx 0.09740686 0.2760415 0.3126178
+#> 
+#> Simulated z-values:
+#>                Direct   Indirect      Total
+#> INC dy/dx   -2.942557 -1.4682889 -2.3430500
+#> HOVAL dy/dx -2.874944  0.5430077 -0.4163122
+#> 
+#> Simulated p-values:
+#>             Direct    Indirect Total   
+#> INC dy/dx   0.0032551 0.14203  0.019127
+#> HOVAL dy/dx 0.0040410 0.58712  0.677182
 set.seed(1)
 COL.lag.Bayes <- spBreg_lag(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw=lw)

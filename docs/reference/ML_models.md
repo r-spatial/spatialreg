@@ -758,7 +758,7 @@ system.time(COL.lag.M <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 #> Computing eigenvalues ...
 #> 
 #>    user  system elapsed 
-#>   0.163   0.000   0.163 
+#>   0.157   0.000   0.158 
 summary(COL.lag.M)
 #> 
 #> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
@@ -816,7 +816,7 @@ system.time(COL.lag.sp <- lagsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
 #> Computing eigenvalues ...
 #> 
 #>    user  system elapsed 
-#>   0.442   0.002   0.447 
+#>   0.436   0.000   0.438 
 summary(COL.lag.sp)
 #> 
 #> Call:lagsarlm(formula = CRIME ~ INC + HOVAL, data = COL.OLD, listw = listw, 
@@ -1606,61 +1606,61 @@ print(system.time(ev <- eigenw(similar.listw(listw))))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev))))
 #>    user  system elapsed 
-#>   0.180   0.000   0.181 
+#>   0.161   0.000   0.163 
 ocoef <- coefficients(COL.errW.eig)
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev, LAPACK=FALSE))))
 #>    user  system elapsed 
-#>   0.168   0.000   0.169 
+#>   0.161   0.000   0.161 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="eigen", control=list(pre_eig=ev, compiled_sse=TRUE))))
 #>    user  system elapsed 
-#>   0.171   0.000   0.172 
+#>   0.159   0.000   0.160 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=TRUE))))
 #> Warning: the default value of argument 'sqrt' of method 'determinant(<CHMfactor>, <logical>)' may change from TRUE to FALSE as soon as the next release of Matrix; set 'sqrt' when programming
 #>    user  system elapsed 
-#>   0.202   0.000   0.203 
+#>   0.181   0.000   0.182 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=FALSE))))
 #>    user  system elapsed 
-#>   0.185   0.000   0.187 
+#>    0.18    0.00    0.18 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix_J", control=list(super=as.logical(NA)))))
 #>    user  system elapsed 
-#>   0.176   0.000   0.177 
+#>   0.178   0.000   0.179 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=TRUE))))
 #>    user  system elapsed 
-#>   0.165   0.000   0.167 
+#>   0.163   0.000   0.165 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=FALSE))))
 #>    user  system elapsed 
-#>   0.163   0.000   0.164 
+#>   0.164   0.000   0.165 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="Matrix", control=list(super=as.logical(NA)))))
 #>    user  system elapsed 
-#>   0.162   0.000   0.163 
+#>   0.164   0.000   0.165 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam", control=list(spamPivot="MMD"))))
 #>    user  system elapsed 
-#>   0.175   0.000   0.177 
+#>   0.171   0.000   0.173 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
@@ -1672,13 +1672,13 @@ print(all.equal(ocoef, coefficients(COL.errW.eig)))
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam_update", control=list(spamPivot="MMD"))))
 #>    user  system elapsed 
-#>   0.167   0.000   0.167 
+#>   0.169   0.000   0.170 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 print(system.time(COL.errW.eig <- errorsarlm(CRIME ~ INC + HOVAL, data=COL.OLD,
  listw, method="spam_update", control=list(spamPivot="RCM"))))
 #>    user  system elapsed 
-#>   0.167   0.000   0.168 
+#>   0.169   0.000   0.170 
 print(all.equal(ocoef, coefficients(COL.errW.eig)))
 #> [1] TRUE
 # }

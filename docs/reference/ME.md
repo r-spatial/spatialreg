@@ -153,7 +153,7 @@ system.time(MEbinom1 <- ME(c(hopkins_part) ~ 1, family="binomial",
 #> eV[,1], I: 0.08273151 ZI: NA, pr(ZI): 0.04
 #> eV[,9], I: 0.06266473 ZI: NA, pr(ZI): 0.14
 #>    user  system elapsed 
-#>   1.374   0.000   1.381 
+#>   1.237   0.001   1.248 
 glmME <- glm(c(hopkins_part) ~ 1 + fitted(MEbinom1), family="binomial")
 #anova(glmME, test="Chisq")
 coef(summary(glmME))
@@ -205,7 +205,7 @@ system.time(lagcol1 <- ME(CRIME ~ INC + HOVAL, data=columbus, family="gaussian",
 #> eV[,6], I: 0.1178225 ZI: NA, pr(ZI): 0.08
 #> eV[,4], I: 0.06242664 ZI: NA, pr(ZI): 0.27
 #>    user  system elapsed 
-#>   0.569   0.000   0.572 
+#>   0.566   0.000   0.569 
 lagcol1
 #>   Eigenvector ZI pr(ZI)
 #> 0          NA NA   0.01

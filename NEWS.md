@@ -10,7 +10,7 @@
 
 * use `R_getVar` in place of `Rf_findVarInFrame` for R >= 4.5.0
 
-* replace `MASS:mvrnorm` with `mvtnorm::rmvnorm` in `impacts` methods or elsewhere to ensure better stability with given seeds
+* replace `MASS::mvrnorm` with `mvtnorm::rmvnorm` in `impacts` methods or elsewhere to ensure better stability with given seeds
 
 # Version 1.4-2 (2025-09-06)
 
